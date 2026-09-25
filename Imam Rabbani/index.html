@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İmâm-ı Rabbânî — Biyografik Animasyon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f5ee;
+    --panel: #fffdf7;
+    --ink: #241d12;
+    --muted: #827253;
+    --line: #eae2cd;
+    --accent: #a3741f;
+    --accent-2: #d9b23f;
+    --gold-soft: #f6e7b8;
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(86, 66, 20, .09);
+  }
+  /* olay kategori pastelleri */
+  .k-dogum   { background: #e1f3e8; }
+  .k-kayip   { background: #fae9ec; }
+  .k-ilim    { background: #e9effc; }
+  .k-eser    { background: #e9effc; }
+  .k-saray   { background: #faf2da; }
+  .k-sefer   { background: #ffeadd; }
+  .k-esaret  { background: #fbe0e0; }
+  .k-tasavvuf{ background: #e0f2ef; }
+  .k-vefat   { background: #e6e8ee; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(135deg, #201607, #45320f 55%, #8a6a20);
+    color: #fff6e0;
+    padding: 2.6rem 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute; left: -15%; right: -15%; top: -130%;
+    height: 230%; background: radial-gradient(circle, rgba(253,215,120,.22), transparent 45%);
+  }
+  header .rozet {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: rgba(246,231,184,.14);
+    border: 1px solid rgba(246,231,184,.38);
+    color: #f3dc9a;
+    padding: .35rem .95rem; border-radius: 999px;
+    font-size: .72rem; letter-spacing: 1.4px; text-transform: uppercase;
+    font-weight: 600;
+  }
+  header h1 {
+    position: relative; z-index: 1;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 800;
+    margin: .9rem 0 .15rem;
+    letter-spacing: -.5px;
+    color: #ffedbe;
+  }
+  header .alt {
+    position: relative; z-index: 1;
+    font-size: .95rem; color: rgba(255,238,190,.88);
+  }
+  header .alt b { font-weight: 700; color: #fff6e0; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,251,240,.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: center; gap: .4rem;
+    padding: .65rem 1rem;
+  }
+  nav .tab {
+    border: none; background: transparent; cursor: pointer;
+    font-family: inherit; font-size: .9rem; font-weight: 600;
+    color: var(--muted);
+    padding: .5rem 1.15rem;
+    border-radius: 10px;
+    transition: .2s;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  nav .tab .sayi {
+    font-size: .72rem; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 6px;
+    display: grid; place-items: center;
+    background: #f0e8d2; color: var(--muted);
+  }
+  nav .tab:hover { background: #f3ecd9; color: var(--ink); }
+  nav .tab.aktif { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff8e6; }
+  nav .tab.aktif .sayi { background: rgba(255,255,255,.22); color: #fff8e6; }
+
+  main {
+    flex: 1;
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.6rem 1.2rem 3rem;
+  }
+  .sekme { display: none; }
+  .sekme.aktif { display: block; animation: fade .28s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .baslik { margin-bottom: 1.4rem; }
+  .baslik h2 { font-size: 1.35rem; font-weight: 800; letter-spacing: -.3px; color: #4a3820; }
+  .baslik p { font-size: .86rem; color: var(--muted); margin-top: .15rem; }
+
+  /* grup başlığı + sola alınmış kategori ikonu */
+  .grup { display: flex; align-items: center; gap: .6rem; margin: 1.5rem 0 .8rem; }
+  .grup .g-ikon {
+    flex: 0 0 auto;
+    width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 1.05rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: var(--shadow);
+  }
+  .grup .g-yazi { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--muted); }
+  .grup .adet {
+    font-size: .72rem; font-weight: 700;
+    background: #f0e8d2; color: var(--accent);
+    padding: .15rem .55rem; border-radius: 999px;
+  }
+  .grup .cizgi { flex: 1; height: 1px; background: linear-gradient(90deg, #d8c383, transparent); }
+
+  /* eserler: detaylar açık gelir, üstten göster/gizle butonuyla değişir */
+  #eserler .kart {
+    transform-origin: 50% 0;
+    transition: transform .22s cubic-bezier(.2,.7,.3,1.2), box-shadow .22s ease;
+  }
+  #eserler .kart:hover { transform: translateY(-4px); }
+  #eserler .kart .kopya, #eserler .kart .not {
+    overflow: hidden;
+    transition: opacity .22s ease, max-height .22s ease, margin .22s ease;
+  }
+  #eserler .kart .kopya { max-height: 6rem; opacity: 1; margin: .1rem 0 .35rem; }
+  #eserler .kart .not { max-height: 8rem; opacity: 1; margin: .4rem 0 0; }
+  #eserler.kapali .kart .kopya, #eserler.kapali .kart .not { max-height: 0 !important; opacity: 0; margin: 0; }
+
+  .detay-ayar { display: flex; align-items: center; gap: .4rem; margin: -.5rem 0 1rem; flex-wrap: wrap; }
+  .detay-ayar .detay-etiket { font-size: .72rem; font-weight: 700; color: var(--muted); letter-spacing: .5px; }
+  .detay-ayar .detay-btn {
+    font-size: .74rem; font-weight: 700;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: .32rem .85rem;
+    cursor: pointer;
+    color: #5b4a2c;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .detay-ayar .detay-btn:hover { border-color: var(--accent); }
+  .detay-ayar .detay-btn.aktif { background: var(--accent); border-color: var(--accent); color: #fff8e6; }
+
+  .kartlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: .9rem;
+  }
+  .kart {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    box-shadow: var(--shadow);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .kart:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(86,66,20,.14); }
+  .kart.blg { border-color: transparent; box-shadow: none; }
+  .kart.blg:hover { box-shadow: 0 12px 28px rgba(86,66,20,.1); }
+  .kart .ust { position: absolute; top: .5rem; right: .6rem; }
+  .kart .sira {
+    min-width: 24px; height: 24px; border-radius: 7px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,.85);
+    color: var(--accent);
+    font-weight: 700; font-size: .72rem; padding: 0 .45rem;
+  }
+  .kart h4 { font-size: 1rem; font-weight: 700; letter-spacing: -.2px; padding-right: 2rem; }
+  .kart h4 .adis { color: var(--muted); font-weight: 500; font-size: .88em; }
+  .kart .kopya { font-size: .78rem; color: var(--muted); margin: .1rem 0 .35rem; }
+  .kart .lokal { font-size: .8rem; font-weight: 500; display: flex; align-items: center; gap: .45rem; margin-top: .5rem; }
+  .kart .lokal::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 13px; height: 13px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23a3741f"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 9a2.5 2.5 0 0 1 0 2.5z"/></svg>') no-repeat center/contain;
+  }
+  .kart .not { font-size: .8rem; color: #4c4232; margin-top: .4rem; line-height: 1.5; }
+
+  /* Sözleri — 3 satır kırp, tıkla → popup'ta tamamı */
+  #sozler .kart { cursor: pointer; }
+  #sozler .kart .not {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  /* detaylı metin işareti + tıklanabilir kartlar */
+  .detay-d {
+    display: inline-block; margin-top: .55rem;
+    font-size: .68rem; font-weight: 700;
+    color: var(--accent);
+    border: 1px dashed rgba(163,116,31,.5);
+    border-radius: 999px; padding: .14rem .6rem;
+    cursor: pointer;
+  }
+  .kart.blg { cursor: pointer; }
+  .z-kart[data-derin] { cursor: pointer; }
+
+  /* Olaylar — kitap ve isim bağlantıları */
+  a.kitap-link, a.ad-link {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgba(163,116,31,.4);
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+  a.kitap-link:hover, a.ad-link:hover { color: #7d5812; text-decoration-color: #7d5812; }
+  .z-kart.k-vefat a.kitap-link, .z-kart.k-kayip a.kitap-link, .z-kart.k-vefat a.ad-link, .z-kart.k-kayip a.ad-link { color: #ffdf9e; text-decoration-color: rgba(255,223,158,.45); }
+  .z-kart.k-vefat a.kitap-link:hover, .z-kart.k-kayip a.kitap-link:hover, .z-kart.k-vefat a.ad-link:hover, .z-kart.k-kayip a.ad-link:hover { color: #fff; text-decoration-color: #fff; }
+
+  /* bilgi penceresi */
+  .hidden { display: none !important; }
+  .blg-ust {
+    position: fixed; inset: 0; z-index: 80;
+    background: rgba(36,29,18,.45);
+  }
+  .blg-popup {
+    position: fixed; z-index: 81;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(380px, 92vw);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 24px 70px rgba(36,29,18,.38);
+    padding: 1.2rem 1.3rem;
+    animation: fade .18s ease;
+  }
+  .blg-popup .p-bas { display: flex; align-items: flex-start; justify-content: space-between; gap: .6rem; }
+  .blg-popup .p-bas h3 { font-size: 1.02rem; font-weight: 800; color: #4a3820; letter-spacing: -.2px; line-height: 1.3; }
+  .blg-popup .p-bas h3 .adis { color: var(--muted); font-weight: 600; font-size: .88em; }
+  .blg-popup .p-kapat { border: none; background: none; cursor: pointer; color: var(--muted); font-size: 1.05rem; line-height: 1; padding: 2px 6px; border-radius: 6px; flex-shrink: 0; }
+  .blg-popup .p-kapat:hover { background: #eee5cf; color: var(--ink); }
+  .blg-popup .p-tur { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; background: #eef2fb; color: #5b7fd9; border-radius: 999px; padding: .22rem .7rem; margin-top: .55rem; }
+  .blg-popup .p-satir { font-size: .83rem; color: #4c4232; line-height: 1.55; margin-top: .55rem; }
+  .blg-popup .p-satir b { display: block; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; color: var(--muted); margin-bottom: .15rem; }
+
+  /* kısa kişi kartları */
+  .kisiler .kart { padding: .8rem .95rem; }
+  .kisiler .kart h4 { font-size: .95rem; }
+  .kisiler .kart .kopya { font-size: .74rem; margin: .05rem 0 .25rem; }
+  .kisiler .kart .not { font-size: .78rem; margin-top: .25rem; line-height: 1.45; }
+
+  /* zaman çizelgesi */
+  .lejant { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.2rem; }
+  .lejant span {
+    font-size: .72rem; font-weight: 600;
+    padding: .3rem .7rem; border-radius: 999px;
+    border: 1px solid var(--line);
+    display: inline-flex; align-items: center; gap: .35rem;
+    cursor: pointer; user-select: none;
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .lejant span:hover { transform: translateY(-1px); }
+  .lejant span.aktif { box-shadow: 0 0 0 2px #4a3820; }
+  .z-item.gizli { display: none; }
+  .zaman { position: relative; margin: .5rem 0 0; padding-left: 2rem; }
+  .zaman::before {
+    content: "";
+    position: absolute; left: 9px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(#b9822a, #d9b23f, #e6c75a, #b9822a);
+    border-radius: 2px;
+  }
+  .z-item { position: relative; margin-bottom: 1rem; }
+  .z-item::before {
+    content: "";
+    position: absolute; left: -1.82rem; top: 1rem;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--accent);
+  }
+  .z-item.c-dogum::before    { border-color: #2f9e63; }
+  .z-item.c-kayip::before    { border-color: #d96a7e; }
+  .z-item.c-ilim::before     { border-color: #5b7fd9; }
+  .z-item.c-saray::before    { border-color: #c9a43a; }
+  .z-item.c-sefer::before    { border-color: #e0833a; }
+  .z-item.c-esaret::before   { border-color: #d64545; }
+  .z-item.c-tasavvuf::before { border-color: #2fa89a; }
+  .z-item.c-vefat::before    { border-color: #5b6170; }
+
+  .z-bilgi { display: flex; align-items: center; gap: .5rem; margin-bottom: .4rem; flex-wrap: wrap; }
+  .z-yas {
+    font-size: .72rem; font-weight: 700;
+    color: #4a3820;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: .18rem .55rem;
+    border-radius: 999px;
+    letter-spacing: .2px;
+  }
+  .z-tarih {
+    display: inline-block;
+    font-size: .72rem; font-weight: 700;
+    background: var(--accent);
+    color: #fff8e6;
+    padding: .18rem .7rem;
+    border-radius: 999px;
+    letter-spacing: .3px;
+  }
+  .z-tarih .h { color: rgba(255,255,255,.68); font-weight: 600; }
+  .z-yas {
+    font-size: .72rem; font-weight: 700;
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--accent);
+    padding: .18rem .7rem;
+    border-radius: 999px;
+    letter-spacing: .3px;
+  }
+  .z-kart.k-vefat .z-yas, .z-kart.k-kayip .z-yas { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); }
+  .z-item.c-dogum .z-tarih    { background: #2f9e63; }
+  .z-item.c-kayip .z-tarih    { background: #d96a7e; }
+  .z-item.c-ilim .z-tarih     { background: #5b7fd9; }
+  .z-item.c-eser .z-tarih     { background: #5b7fd9; }
+  .z-item.c-saray .z-tarih    { background: #a3741f; }
+  .z-item.c-sefer .z-tarih    { background: #e0833a; }
+  .z-item.c-esaret .z-tarih   { background: #d64545; }
+  .z-item.c-tasavvuf .z-tarih { background: #2fa89a; }
+  .z-item.c-vefat .z-tarih    { background: #5b6170; }
+
+  .z-kart {
+    display: flex; gap: .9rem; align-items: flex-start; justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--line);
+  }
+  .z-kart.k-vefat {
+    background: #3a3f46;
+    border-color: #3a3f46;
+    color: #fff;
+  }
+  .z-kart.k-vefat h4 { color: #fff; }
+  .z-kart.k-vefat p { color: #e2e6ec; }
+  .z-kart.k-vefat .z-kat { background: rgba(255,255,255,.14); color: #f3dc9a; }
+  .z-kart.k-vefat .z-konum { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); color: #f3dc9a; }
+  .z-kart.k-kayip {
+    background: #57606b;
+    border-color: #57606b;
+    color: #fff;
+  }
+  .z-kart.k-kayip h4 { color: #fff; }
+  .z-kart.k-kayip p { color: #e6e9ee; }
+  .z-kart.k-kayip .z-kat { background: rgba(255,255,255,.14); color: #f3dc9a; }
+  .z-kart.k-kayip .z-konum { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); color: #f3dc9a; }
+  .z-icerik { flex: 1; min-width: 0; }
+  .z-bas { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+  .z-bas h4 { font-size: 1rem; font-weight: 700; letter-spacing: -.2px; }
+  .z-kat {
+    font-size: .68rem; font-weight: 700;
+    padding: .18rem .6rem; border-radius: 999px;
+    background: rgba(255,255,255,.7);
+    display: inline-flex; align-items: center; gap: .3rem;
+  }
+  .z-kart p { font-size: .8rem; color: #4c4232; line-height: 1.55; margin-top: .3rem; }
+  .z-kitap {
+    flex: 1 1 100%;
+    width: 100%;
+    margin-top: .8rem;
+    padding-top: .6rem;
+    border-top: 1px dashed rgba(163,116,31,.35);
+    font-size: .72rem; line-height: 1.6;
+    color: #7a6744;
+  }
+  .z-kitap .kitap-bas { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-size: .66rem; display: block; margin-bottom: .15rem; }
+  .z-kitap em { font-style: normal; font-weight: 600; color: #5b4a2c; }
+  .z-kart.k-vefat .z-kitap, .z-kart.k-kayip .z-kitap { border-top-color: rgba(255,255,255,.22); color: #e2e6ec; }
+  .z-kart.k-vefat .z-kitap .kitap-bas, .z-kart.k-kayip .z-kitap .kitap-bas { color: #f3dc9a; }
+  .z-kart.k-vefat .z-kitap em, .z-kart.k-kayip .z-kitap em { color: #fff; }
+  .z-konum {
+    flex: 0 0 auto;
+    font-size: .72rem; font-weight: 700;
+    color: var(--accent);
+    background: rgba(255,255,255,.75);
+    border: 1px solid #e2d3a5;
+    padding: .3rem .7rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    margin-top: .15rem;
+    display: inline-flex; align-items: center; gap: .35rem;
+  }
+  .z-konum::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 11px; height: 11px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23a3741f"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 9a2.5 2.5 0 0 1 0 2.5z"/></svg>') no-repeat center/contain;
+  }
+  .z-kart.k-vefat .z-konum::before { filter: brightness(1.6); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    background: #241d12;
+    color: #c9b98d;
+    text-align: center;
+    padding: 1.1rem 1rem;
+    font-size: .78rem;
+  }
+  footer b { color: #f3dc9a; }
+  footer a { color: #f3dc9a; text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    header { padding: 2rem 1rem 1.6rem; }
+    nav { position: static; overflow-x: auto; justify-content: flex-start; }
+    nav .tab { white-space: nowrap; }
+    .kartlar { grid-template-columns: 1fr; }
+    .z-kart { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="rozet">☪ Silsile-i Sâdât-ı Nakşibendiyye-i Aliyye</span>
+  <h1>İmâm-ı Rabbânî Müceddid-i Elf-i Sânî<br>Şeyh Ahmed-i Fârûkî Serhendî <span style="opacity:.55">(k.s.)</span></h1>
+  <p class="alt"><b>Müceddid-i Elf-i Sânî</b> · Ahkâm-ı İslâmiyye ile tasavvufu birleştiren Hanefî âlim · ö. 28 Safer 1034 (M. 1624)</p>
+</header>
+
+<nav id="tabBar">
+  <button class="tab aktif" data-sekme="sehirler"><span class="sayi">1</span> Şehirler</button>
+  <button class="tab" data-sekme="kisiler"><span class="sayi">2</span> Kişiler</button>
+  <button class="tab" data-sekme="olaylar"><span class="sayi">3</span> Olaylar</button>
+  <button class="tab" data-sekme="eserler"><span class="sayi">4</span> Eserleri</button>
+  <button class="tab" data-sekme="sozler"><span class="sayi">5</span> Sözleri</button>
+</nav>
+
+<main>
+  <section class="sekme aktif" id="sehirler">
+    <div class="baslik">
+      <h2>Şehirler</h2>
+      <p>Madde metninde geçen coğrafî noktalar — ileride ilüstratif haritaya point olarak işlenecek</p>
+    </div>
+    <div class="kartlar">
+      <div class="kart blg k-dogum"><div class="ust"><span class="sira">1</span></div><h4>Serhend <span class="adis">| Sirhind</span></h4><div class="lokal">Pencap eyaleti</div><div class="not">10 Muharrem 971 — Aşûrâ günü (M. 1564) doğum yeri; 28 Safer 1034 (M. 1624) vefat ve defnedildiği yer; kabr-i şerîfi buradadır.</div></div>
+      <div class="kart blg k-kayip"><div class="ust"><span class="sira">2</span></div><h4>Kâbil</h4><div class="lokal">Afganistan</div><div class="not">Soyunu ikinci halifeye dayandırdığı ailenin asıl memleketi.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">3</span></div><h4>Siyâlkût</h4><div class="lokal">Pencap</div><div class="not">Hadis, tefsir ve aklî ilimler tahsili; Kübrevî intisab.</div></div>
+      <div class="kart blg k-saray"><div class="ust"><span class="sira">4</span></div><h4>Agra</h4><div class="lokal">Bâbürlü başşehri</div><div class="not">Ekber Şah sarayı; 1028 (1619) sorgusu.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">5</span></div><h4>Delhi</h4><div class="lokal">Kuzey Hindistan</div><div class="not">Hâce Bâkī-Billâh ile buluşma ve Nakşibendî intisabı.</div></div>
+      <div class="kart blg k-kayip"><div class="ust"><span class="sira">6</span></div><h4>Şânesar</h4><div class="lokal">Hindistan</div><div class="not">Babasıyla buluşma; Şeyh Sultan'ın kızıyla evlilik.</div></div>
+      <div class="kart blg k-esaret"><div class="ust"><span class="sira">7</span></div><h4>Gevâliyâr <span class="adis">| Gwalior</span></h4><div class="lokal">Kuzey Hindistan</div><div class="not">Cihangir'in emriyle hapsedildiği kale (1028/1619).</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">8</span></div><h4>Burhânpûr</h4><div class="lokal">Dekken</div><div class="not">Halife Mîr Muhammed Nu'mân'ın faaliyet sahası.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">9</span></div><h4>Lahor</h4><div class="lokal">Pencap</div><div class="not">Halife Şeyh Muhammed Tâhir'in faaliyet sahası.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">10</span></div><h4>Patna</h4><div class="lokal">Bihar</div><div class="not">Halife Şeyh Nûr Muhammed'in faaliyet sahası.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">11</span></div><h4>Bengal</h4><div class="lokal">Doğu Hindistan</div><div class="not">Halife Şeyh Hâmid Mangalkotî ve Müceddidiyye'nin yayılışı.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">12</span></div><h4>Haremeyn <span class="adis">| Mekke–Medine</span></h4><div class="lokal">Arabistan</div><div class="not">Müceddidiyye'nin batıya yayılım ucu; tartışmaların odağı.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">13</span></div><h4>Mâverâünnehir</h4><div class="lokal">Orta Asya</div><div class="not">Müceddidiyye'nin kuzeye yayılım sahası.</div></div>
+    </div>
+  </section>
+
+  <section class="sekme kisiler" id="kisiler">
+    <div class="baslik">
+      <h2>Kişiler</h2>
+      <p>Hayatına dokunanlar — kategorilere göre</p>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🕌</span><span class="g-yazi">Aile</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-kayip"><h4>Babası <span class="adis">| Şeyh Abdülehad · Çiştiyye ve Kādirî şeyhi</span></h4><div class="not">Tasavvufa ve vahdet-i vücûda dair risâleleri bulunan bir şeyh; oğlunun ilk hocası oldu.</div></div>
+      <div class="kart blg k-kayip"><h4>Dedesi <span class="adis">| Zeynelâbidîn</span></h4><div class="not">İmâm-ı Rabbânî'nin dedesi; nesli 28. batında Hazret-i Ömer'e (r.a.) ulaşır.</div></div>
+      <div class="kart blg k-kayip"><h4>Eşi <span class="adis">| Şeyh Sultan'ın kızı</span></h4><div class="not">Şânesar'da, eşraftan Şeyh Sultan'ın kızıyla evlendi.</div></div>
+      <div class="kart blg k-kayip"><h4>Hâce Muhammed Sâdık</h4><div class="kopya">ö. 1025/1616</div><div class="not">Büyük oğlu; mânevî mirasın devamında emeği.</div></div>
+      <div class="kart blg k-kayip"><h4>Hâce Muhammed Saîd</h4><div class="kopya">ö. 1072/1662</div><div class="not">Oğlu; mânevî mirasın devamında emeği.</div></div>
+      <div class="kart blg k-kayip"><h4>Hâce Muhammed Ma'sûm <span class="adis">| Urvetü'l-vüskā</span></h4><div class="kopya">ö. 1079/1668</div><div class="not">Üçüncü oğlu; diğerlerine nisbetle en etkili; Müceddidiyye'nin yayılışında kilit isim.</div></div>
+      <div class="kart blg k-kayip"><h4>Hâce Muhammed Yahyâ</h4><div class="kopya">ö. 1096/1685</div><div class="not">Oğlu; mânevî mirasın devamında emeği.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">📖</span><span class="g-yazi">Hocaları</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim"><h4>Şeyh Ya'kūb Keşmîrî</h4><div class="not">Kübrevî şeyhi; Siyâlkût'ta hadis hocası; intisab edilen son hoca.</div></div>
+      <div class="kart blg k-ilim"><h4>Kadı Behlûl Bedahşânî</h4><div class="not">Siyâlkût'ta tefsir hocası.</div></div>
+      <div class="kart blg k-ilim"><h4>Mevlânâ Kemal Keşmîrî</h4><div class="not">Aklî ilimler hocası.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Hâce Bâkī-Billâh</h4><div class="kopya">ö. 1012/1603</div><div class="not">Nakşibendiyye'yi Hindistan'da yayan şeyh; 1007/1598'de intisab; bütün ruhî terakkînin temeli.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🛡️</span><span class="g-yazi">Bâbürlü Hükümdarlar</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-saray"><h4>Ekber Şah</h4><div class="kopya">1556–1605</div><div class="not">Sarayına girilen hükümdar; "Dîn-i İlâhî" senkretizmi İs̱bâtü'n-nübüvve'nin hedefi.</div></div>
+      <div class="kart blg k-saray"><h4>Cihangir</h4><div class="kopya">1605–1627</div><div class="not">1028/1619'da sorgulattı, Gevâliyâr'da hapsettirdi; sonra sarayında sohbetler.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">📚</span><span class="g-yazi">Çağdaşlar</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim"><h4>Feyzî-i Hindî</h4><div class="not">Agra'da dostluk kurduğu kardeşlerden; noktasız harflerle yazdığı Sevâṭıʿu'l-ilhâm'a yardım etti.</div></div>
+      <div class="kart blg k-ilim"><h4>Abdülhakîm Siyalkûtî</h4><div class="not">Hindistan ulemâsından; İmâm-ı Rabbânî'yi "Müceddid-i Elf-i Sânî" vasfıyla tavsîf eden ilk âlim.</div></div>
+      <div class="kart blg k-saray"><h4>Ebü'l-Fazl el-Allâmî</h4><div class="not">Feyzî'nin kardeşi; akılcı felsefeye aşırı önem verdiği gerekçesiyle eleştirildi.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🤲</span><span class="g-yazi">Halifeleri</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-tasavvuf"><h4>Tâceddin Osmânî</h4><div class="not">Şeyh Bâkī-Billâh'ın halifelerinden; Serhendî bu isimleri geride bırakarak en önemli halife oldu.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Şeyh Îlâhdâd</h4><div class="not">Şeyh Bâkī-Billâh'ın halifelerinden.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Mîr Muhammed Nu'mân</h4><div class="kopya">Burhânpûr</div><div class="not">Burhânpûr'da faaliyet gösteren halife.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Şeyh Muhammed Tâhir</h4><div class="kopya">Lahor</div><div class="not">Lahorlu şeyh.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Bedîüddin Sehârenpûrî</h4><div class="kopya">Agra</div><div class="not">Başşehir Agra'da Müceddidiyye'yi yaymak için çaba sarfetti.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Şeyh Nûr Muhammed</h4><div class="kopya">Patna</div><div class="not">Patnalı halife.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Şeyh Hâmid Mangalkotî</h4><div class="kopya">Bengal</div><div class="not">Müceddidiyye'yi Bengal'de yaydı.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Şeyh Muhammed Tâhir Bedahşî</h4><div class="kopya">Kâbil · Kandehar</div><div class="not">Kâbil ve Kandehar'da faal halife.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Mevlânâ Ahmed Berkî</h4><div class="not">Serhendî'nin halifelerinden.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Hâce Muhammed Hâşim-i Kişmî</h4><div class="not">Mektûbât derlemesine yardımcı oldu; Nesemâtü'l-ḳuds ve Zübdetü'l-Maḳāmāt'ın müellifi.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🗯️</span><span class="g-yazi">Tartışma ve Etkiler</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim"><h4>Muhammed b. Abdürresûl el-Berzencî</h4><div class="not">Ḳadḥu'z-zend reddiyesiyle müceddidlik iddiasına ve Kâbe'nin hakîkat-i Muhammedî'den üstünlüğü nazariyesine itiraz etti; Haremeyn ulemâsından fetva istendi.</div></div>
+      <div class="kart blg k-ilim"><h4>Şah Veliyyullah ed-Dihlevî</h4><div class="not">Fayṣalatü vaḥdeti'l-vücûd ve'ş-şühûd'da iki kavramın farkının lafzî olduğunu ispatlamaya çalıştı; Şevâhidü't-tecdîd'i yazdı.</div></div>
+      <div class="kart blg k-ilim"><h4>Mustafa Sabri Efendi</h4><div class="not">Osmanlı'nın son şeyhülislâmlarından; tarikata mensup olmamakla birlikte vahdet-i vücûdu bâtıl akîde olarak reddettiği için Serhendî'yi övdü.</div></div>
+      <div class="kart blg k-saray"><h4>Ebü'l-Kelâm Âzâd</h4><div class="not">Serhendî'yi Hint Müslümanlarını zalim idareci ve bozulmuş sûfîlerden kurtardığı için siyasî ölçülerle övdü.</div></div>
+      <div class="kart blg k-saray"><h4>Mevdûdî</h4><div class="not">Cemâat-i İslâmî kurucusu; müceddidliği Ekber ve Cihangir'e karşı duruşu sebebiyle kabul etti.</div></div>
+      <div class="kart blg k-ilim"><h4>Muhammed İkbal</h4><div class="not">Serhendî'yi yeni bir din psikolojisi geliştirdiği ve "yön verici güç dünyası"nı keşfettiği için tasavvufun ihya edicisi saydı.</div></div>
+      <div class="kart blg k-ilim"><h4>Yohanan Friedmann</h4><div class="not">Shaykh Ahmad Sirhindi (1971); sonraki saptırmaları düzelten çalışmanın müellifi.</div></div>
+      <div class="kart blg k-ilim"><h4>J. G. J. ter Haar</h4><div class="not">Follower and Heir of the Prophet (1952); Batı dilinde tasavvuf düşüncesini kapsamlı ele alan tek çalışma.</div></div>
+    </div>
+  </section>
+
+  <section class="sekme" id="olaylar">
+    <div class="baslik">
+      <h2>Olaylar</h2>
+      <p>Hayat kronolojisi — kategorilere göre blok renkleri</p>
+    </div>
+
+    <div class="lejant" id="lejant">
+      <span class="aktif" data-kat="tumu" style="background:#f3eddf">🗂️ Tümü</span>
+      <span data-kat="c-dogum" style="background:#e1f3e8">🌙 Doğum</span>
+      <span data-kat="c-kayip" style="background:#57606b;color:#fff">🤲 Aile ve Kayıplar</span>
+      <span data-kat="c-ilim" style="background:#e0f2ef">🕌 İlim ve Tasavvuf</span>
+      <span data-kat="c-eser" style="background:#e9effc">📖 Eser</span>
+      <span data-kat="c-saray" style="background:#faf2da">👑 Saray ve Siyaset</span>
+      <span data-kat="c-esaret" style="background:#fbe0e0">⛓️ Esaret</span>
+      <span data-kat="c-vefat" style="background:#3a3f46;color:#fff">🕋 Vefat</span>
+    </div>
+
+    <div class="zaman">
+<div class="z-item c-dogum"><div class="z-bilgi"><span class="z-yas">0 yaş</span><span class="z-tarih">10 Muharrem 971 <span class="h">| M. 1564 · Aşûrâ günü</span></span></div>
+        <div class="z-kart k-dogum" data-derin="dogum"><div class="z-icerik"><div class="z-bas"><h4>Doğum</h4><span class="z-kat">🌙 Doğum</span></div><p>Serhend beldesinde, Aşûrâ günü dünyaya geldi; Hâşiʿ kelimesi ebced hesabıyla bu tarihi gösterir. İsmi Ahmed, babasının adı Abdülehad, dedesinin adı Zeynelâbidîn'dir; lâkabı Bedrüddîn, künyesi Ebu'l-Berekât'tır. Nesli 28. batında Hazret-i Ömer'e (r.a.) ulaşır; <a class="ad-link" data-ad="Babası">babası</a> bir Çiştiyye ve Kādirî şeyhi idi.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Serhend</div></div>
+      </div>
+      <div class="z-item c-tasavvuf"><div class="z-bilgi"><span class="z-yas">y. 8</span><span class="z-tarih">y. 979 <span class="h">| h. 971 civarı</span></span></div>
+        <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>Babasından İlk Dersler</h4><span class="z-kat">📿 Tasavvuf</span></div><p>Öğrenimine <a class="ad-link" data-ad="Babası">babasının</a> yanında başladı; küçük yaşta Çiştiyye ve Kādiriyye tarikatlarına intisap etti. Sonraki yıllarda eleştireceği vahdet-i vücûdu yine babasından büyük bir şevkle öğrendi.</p></div><div class="z-konum">Serhend</div></div>
+      </div>
+      <div class="z-item c-ilim"><div class="z-bilgi"><span class="z-yas">17 yaş</span><span class="z-tarih">y. 988 <span class="h">| h. 981 civarı</span></span></div>
+        <div class="z-kart k-ilim"><div class="z-icerik"><div class="z-bas"><h4>Siyâlkût Tahsili</h4><span class="z-kat">🕌 İlim</span></div><p>Siyâlkût'ta <a class="ad-link" data-ad="Şeyh Ya'kūb Keşmîrî">Şeyh Ya'kūb Keşmîrî</a>'den hadis, <a class="ad-link" data-ad="Kadı Behlûl Bedahşânî">Kadı Behlûl Bedahşânî</a>'den tefsir, <a class="ad-link" data-ad="Mevlânâ Kemal Keşmîrî">Mevlânâ Kemal Keşmîrî</a>'den aklî ilimler okudu; Kübrevî şeyhi olan Ya'kūb Keşmîrî'ye intisap etti. Öğrenimini tamamlayıp on yedi yaşında memleketine döndü.</p></div><div class="z-konum">Siyâlkût</div></div>
+      </div>
+      <div class="z-item c-saray c-eser"><div class="z-bilgi"><span class="z-yas">y. 20</span><span class="z-tarih">y. 991 <span class="h">| h. 984 civarı</span></span></div>
+        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Agra'da Saray Yılları</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Bâbürlü Hükümdarı <a class="ad-link" data-ad="Ekber Şah">Ekber Şah</a>'ın sarayına girdi; <a class="ad-link" data-ad="Feyzî-i Hindî">Feyzî-i Hindî</a> ve <a class="ad-link" data-ad="Ebü'l-Fazl el-Allâmî">Ebü'l-Fazl'la</a> dostluk kurdu. Noktasız harflerle yazılan tefsire yardım etti; Ebü'l-Fazl'ı akılcı felsefeye peygamberliğin gerekliliğinden şüpheye düşecek derecede önem verdiği için eleştirdi. İlk eseri <a class="kitap-link" data-ad="İs̱bâtü'n-nübüvve">İs̱bâtü'n-nübüvve</a>'yi bu sırada kaleme aldı.</p></div><div class="z-konum">Agra</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="İs̱bâtü'n-nübüvve">İs̱bâtü'n-nübüvve</a> (ilk eser)</div></div>
+      </div>
+      <div class="z-item c-kayip"><div class="z-bilgi"><span class="z-yas">y. 21</span><span class="z-tarih">y. 992 <span class="h">| h. 992 civarı</span></span></div>
+        <div class="z-kart k-kayip"><div class="z-icerik"><div class="z-bas"><h4>Şânesar'da Evlilik</h4><span class="z-kat">🤲 Aile</span></div><p>Serhend'e dönüş yolculuğunda bir süre kaldığı Şânesar'da <a class="ad-link" data-ad="Babası">babası</a>yla buluştu; eşraftan <a class="ad-link" data-ad="Eşi">Şeyh Sultan'ın kızı</a>yla evlendi.</p></div><div class="z-konum">Şânesar</div></div>
+      </div>
+      <div class="z-item c-tasavvuf"><div class="z-bilgi"><span class="z-yas">y. 22–33</span><span class="z-tarih">y. 993–1007 <span class="h">| h. 993–1007</span></span></div>
+        <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>Seyrüsülûk Eserlerini Okudu</h4><span class="z-kat">📿 Tasavvuf</span></div><p>Serhend'e döndükten sonra babasının gözetiminde seyrüsülûkünü sürdürdü; et-Taʿarruf, ʿAvârifü'l-maʿârif ve Fuṣûṣü'l-ḥikem gibi eserleri babasından okudu.</p></div><div class="z-konum">Serhend</div></div>
+      </div>
+      <div class="z-item c-kayip"><div class="z-bilgi"><span class="z-yas">34 yaş</span><span class="z-tarih">1598 <span class="h">| h. 1007</span></span></div>
+        <div class="z-kart k-kayip"><div class="z-icerik"><div class="z-bas"><h4>Babasının Vefatı</h4><span class="z-kat">🤲 Aile</span></div><p>Babasının öldüğü yıl hacca gitmek üzere Serhend'den ayrıldı; yolculuk Delhi'ye düştü.</p></div><div class="z-konum">Serhend → Delhi</div></div>
+      </div>
+      <div class="z-item c-tasavvuf"><div class="z-bilgi"><span class="z-yas">34 yaş</span><span class="z-tarih">1598 <span class="h">| h. 1007</span></span></div>
+        <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>Bâkī-Billâh ile Buluşma</h4><span class="z-kat">📿 Tasavvuf</span></div><p>Delhi'de, Nakşibendiyye'yi Hindistan'da yayan <a class="ad-link" data-ad="Hâce Bâkī-Billâh">Hâce Bâkī-Billâh</a> ile karşılaştı; teklifini kabul edip bir süre yanında kaldı ve intisap etti. Bu intisab, kendisinin de ifadesiyle bütün ruhî terakkisinin temelini oluşturdu.</p></div><div class="z-konum">Delhi</div></div>
+      </div>
+      <div class="z-item c-tasavvuf c-eser"><div class="z-bilgi"><span class="z-yas">y. 34–35</span><span class="z-tarih">y. 1598–1600 <span class="h">| h. 1007–1008</span></span></div>
+        <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>İstiğrak ve Mektûbât'ın Doğuşu</h4><span class="z-kat">📿 Tasavvuf</span><span class="z-kat">📖 Eser</span></div><p>Serhend'e döndüğünde dâimî bir istiğrak haline girdi, inzivaya çekildi; bu hal zâil olunca <a class="ad-link" data-ad="Hâce Bâkī-Billâh">Bâkī-Billâh</a> ile mektuplaşmaya başladı. Bu mektuplar <a class="kitap-link" data-ad="Mektûbât">Mektûbât</a>'ın temelini oluşturur (26 mektup).</p></div><div class="z-konum">Serhend</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Mektûbât">Mektûbât</a> (temel)</div></div>
+      </div>
+      <div class="z-item c-kayip"><div class="z-bilgi"><span class="z-yas">39 yaş</span><span class="z-tarih">1603 <span class="h">| h. 1012</span></span></div>
+        <div class="z-kart k-kayip"><div class="z-icerik"><div class="z-bas"><h4>Son Ziyaret ve Şeyhin Vefatı</h4><span class="z-kat">🤲 Aile</span><span class="z-kat">📿 Tarikat</span></div><p><a class="ad-link" data-ad="Hâce Bâkī-Billâh">Bâkī-Billâh</a>, üçüncü ve son ziyaretinde oğullarının mânevî eğitimini ona görevlendirdi ve aynı yıl vefat etti. Serhendî, <a class="ad-link" data-ad="Tâceddin Osmânî">Tâceddin Osmânî</a> ve <a class="ad-link" data-ad="Şeyh Îlâhdâd">Şeyh Îlâhdâd</a> gibi halifeleri geride bırakarak şeyhin en önemli halifesi konumuna geldi.</p></div><div class="z-konum">Delhi</div></div>
+      </div>
+      <div class="z-item c-ilim c-eser"><div class="z-bilgi"><span class="z-yas">y. 40–45</span><span class="z-tarih">y. 1603–1610 <span class="h">| h. 1012–1019</span></span></div>
+        <div class="z-kart k-ilim" data-derin="vahdet"><div class="z-icerik"><div class="z-bas"><h4>Vahdet-i Vücûd'den Vahdet-i Şühûd'a</h4><span class="z-kat">🕌 İlim</span><span class="z-kat">📖 Eser</span></div><p>İlk başta tamamen bağlı olduğu vahdet-i vücûd anlayışını aşarak zılliyyet ve nihayet abdiyet makamına geçti; vahdet-i şühûd'un hakikatin daha doğru bir ifadesi olduğunu savundu. Bu dönemin yaklaşımları <a class="kitap-link" data-ad="Maʿârif-i Ledünniyye">Maʿârif-i Ledünniyye</a>'de toplandı.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Serhend</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Maʿârif-i Ledünniyye">Maʿârif-i Ledünniyye</a></div></div>
+      </div>
+      <div class="z-item c-ilim"><div class="z-bilgi"><span class="z-yas">—</span><span class="z-tarih">y. 1603–1612 <span class="h">| h. 1012–1021</span></span></div>
+        <div class="z-kart k-ilim" data-derin="imam-rabbani"><div class="z-icerik"><div class="z-bas"><h4>İmâm-ı Rabbânî Vasfı ve Müceddidlik</h4><span class="z-kat">🕌 İlim</span></div><p>Şeyhi <a class="ad-link" data-ad="Hâce Bâkī-Billâh">Bâkī-Billâh</a> kendisine "İmâm-ı Rabbânî" ismini verdi; hicrî ikinci bin yılın müceddidi olmasından dolayı "Müceddid-i Elf-i Sânî" denildi — bu vasıfla ilk defa Hindistan ulemâsından <a class="ad-link" data-ad="Abdülhakîm Siyalkûtî">Abdülhakîm Siyalkûtî</a> tavsîf etti. Ahkâm-ı İslâmiyye ile tasavvufu birleştirdiği için "Sıla" (birleştirici) ismi verildi.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Serhend</div></div>
+      </div>
+      <div class="z-item c-esaret"><div class="z-bilgi"><span class="z-yas">54 yaş</span><span class="z-tarih">1619 <span class="h">| h. 1028</span></span></div>
+        <div class="z-kart k-esaret" data-derin="esaret"><div class="z-icerik"><div class="z-bas"><h4>Cihangir'in Sorgusu ve Gevâliyâr Hapsi</h4><span class="z-kat">⛓️ Esaret</span></div><p>Bâbürlü Hükümdarı <a class="ad-link" data-ad="Cihangir">Cihangir</a>, mânevî makamının yüksekliğine ve sülûk esnasında ilk üç halifeyi aştığına dair iddiaları üzerine onu sorgulanmak üzere Agra'ya çağırttı; tatmin olmayınca Gevâliyâr (Gwalior) kalesinde hapsedilmesini emretti.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Gevâliyâr</div></div>
+      </div>
+      <div class="z-item c-saray"><div class="z-bilgi"><span class="z-yas">55 yaş</span><span class="z-tarih">y. 1619–1620 <span class="h">| h. 1029</span></span></div>
+        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Serbest Kalış ve Saray Sohbetleri</h4><span class="z-kat">👑 Saray</span></div><p>Yaklaşık bir yıl sonra serbest bırakıldı; hapsi, kahr sıfatının tecellîsini tamamlayan celâl sıfatının tecellîsi olarak yorumladı. Sultanın sarayında İslâm'ın prensiplerinden "bir kıl kadar bile" ayrılmadan sohbetler yaptı.</p></div><div class="z-konum">Agra</div></div>
+      </div>
+      <div class="z-item c-vefat c-eser"><div class="z-bilgi"><span class="z-yas">63 yaş</span><span class="z-tarih">28 Safer 1034 <span class="h">| M. 1624</span></span></div>
+        <div class="z-kart k-vefat" data-derin="vefat"><div class="z-icerik"><div class="z-bas"><h4>Vefat</h4><span class="z-kat">🕋 Vefat</span><span class="z-kat">📖 Eser</span></div><p>Serhend'de 63 yaşında âhirete irtihâl etti. Kabr-i şerîfi, bugün Hindistan sınırları içindeki Pencap eyaletine bağlı Serhend'dedir. Ardında sayısız halife ve hicrî II. binyılın müceddidi olarak tecdid anlayışını bıraktı.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Serhend</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sekme" id="eserler">
+    <div class="baslik">
+      <h2>Eserleri</h2>
+      <p>Sekiz eserin en meşhuru, 536 mektubu toplayan Mektûbât'tır</p>
+    </div>
+
+    <div class="detay-ayar">
+      <span class="detay-etiket">Detay:</span>
+      <button class="detay-btn aktif" data-durum="acik">Açık</button>
+      <button class="detay-btn" data-durum="kapali">Gizli</button>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🛡️</span><span class="g-yazi">Akaid ve Reddiyeler</span><span class="adet">2</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-eser" data-derin="isbatun-nubuvve"><div class="ust"><span class="sira">1</span></div><h4>İs̱bâtü'n-nübüvve</h4><div class="kopya">Arapça • Agra, y. 991/1584</div><div class="not">İlk eseri; Ekber'in "Dîn-i İlâhî" senkretizmine ve peygamberliği inkâra varan cereyanlara karşı nübüvvetin gerekliliğini savunur.</div></div>
+      <div class="kart blg k-eser" data-derin="teyid"><div class="ust"><span class="sira">2</span></div><h4>Teʾyîd-i Ehli's-sünne <span class="adis">| Redd-i Revâfıż</span></h4><div class="kopya">Farsça</div><div class="not">Şîa'ya reddiye; Anadolu ve Mâverâünnehir'e yayılan Şîa akımına karşı sünnî telakkileri savunur.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">✉️</span><span class="g-yazi">Mektûbât</span><span class="adet">1</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-eser" data-derin="mektubat"><div class="ust"><span class="sira">✉</span></div><h4>Mektûbât</h4><div class="kopya">Farsça • 3 cilt, 536 mektup • c. I 1025/1616, c. II 1028/1619, c. III ölümünden sonra</div><div class="not">En meşhur eseri; kalem erbabından halka kadar geniş bir kesimin feyz bulduğu, kendisine müracaatlarını aksettiren bir dinî-ilmî mecmuadır.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🕌</span><span class="g-yazi">Tasavvuf ve Diğer Risâleler</span><span class="adet">5</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-eser"><div class="ust"><span class="sira">3</span></div><h4>Mükâşefât-ı Ġaybiyye</h4><div class="kopya">Farsça • Karaçi 1384/1965</div><div class="not">Gaybî mükaşefelere dair tasavvufî eser.</div></div>
+      <div class="kart blg k-eser"><div class="ust"><span class="sira">4</span></div><h4>Ḥavâşî ve Taʿlîḳāt ber Şerḥ-i Rubâʿiyyât-ı Ḫâce Bâḳī-Billâh</h4><div class="kopya">Haşiye • Karaçi 1386/1966</div><div class="not">Şeyhi Bâkī-Billâh'ın rubâîleri şerhi üzerine haşiye ve taʿlîkat.</div></div>
+      <div class="kart blg k-eser" data-derin="maarif"><div class="ust"><span class="sira">5</span></div><h4>Maʿârif-i Ledünniyye</h4><div class="kopya">Arapça • Karaçi 1388/1968</div><div class="not">Rabbânî ilimler; vahdet-i vücûd ile tevhid ilişkisini ele alır.</div></div>
+      <div class="kart blg k-eser"><div class="ust"><span class="sira">6</span></div><h4>Mebdeʾ ü Meʿâd <span class="adis">| Âşık-nâme</span></h4><div class="kopya">Farsça • Karaçi 1403/1983</div><div class="not">Sülûkün başlangıç (mebdeʾ) ve sonuçlarını (meʿâd) anlatan tasavvufî eser.</div></div>
+      <div class="kart blg k-eser"><div class="ust"><span class="sira">7</span></div><h4>Risâle-i Tehlîliyye</h4><div class="kopya">Farsça • Karaçi 1403/1983</div><div class="not">Kelime-i tevhîdin içerdiği mânalara dair risâle.</div></div>
+    </div>
+  </section>
+
+  <section class="sekme" id="sozler">
+    <div class="baslik">
+      <h2>Sözleri</h2>
+      <p>Mübârek sözleri ve mektuplarından seçmeler</p>
+    </div>
+
+    <div class="grup"><span class="g-ikon">💬</span><span class="g-yazi">Mübârek Sözlerinden</span><span class="adet">4</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-tasavvuf"><h4>Silsile ve Kıyâmet</h4><div class="not">"Kıyâmete kadar bizim silsilemize girecek müridlerin tamamının isimlerini Allâhü Teâlâ bana bildirdi. Benim bu nisbetim kıyamet gününe kadar evlatlarım vâsıtasıyla devam edecektir. İmam Mehdî de bu nisbet-i şerîfe üzerine olacaktır."</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Âdâba Riâyet</h4><div class="not">"Bu tarikata girip de âdâbına riâyet etmeyen, bid'atler ihdas eden, bu yolda çok şey kaybeder ve hüsrana uğrar."</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Nâil Olunan Kemâlât</h4><div class="not">"Bana şöyle bildirildi: Sana verilen bu hususiyetlere ve kemâlâta, Mehdî aleyhisselam zamanına kadar senden başka kimse nail olamaz."</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Kerâmetten Üstün Sünen</h4><div class="not">"Bir kimse havada uçsa veya su üzerinde yürüse fakat müstehaplardan birini terk etse onun bu tâifede zerre mikdarı kıymeti yoktur."</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">✉️</span><span class="g-yazi">Mektuplarından</span><span class="adet">2</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim"><h4>Huşû ile Namaz</h4><div class="kopya">Mektûbât'tan</div><div class="not">"Mü'minin, mirâcı olan namazı tam bir tahâret ve iyi bir abdestten sonra kılmaya niyet etmesi icab eder. Farzları cemâatle kılmaya ehemmiyet göstermek, hattâ iftitâh tekbirini imamla beraber almayı hiç terk etmemek lâzımdır. Kezâ namazları müstehab vaktinde kılmak ve kırâatte sünnet olan mikdâra riâyet etmek lâzımdır. Rükû ve secdede taʻdîl-i erkân; âzâların sükûnet bulması muhakkak sûrette lâzımdır… Kavmede (rükûdan doğrulduktan sonraki kıyâmda) her âzâ yerine dönüp karar kılacak şekilde tam olarak kalkıp doğrulmak, âzâların sükûnet bulması ve kavmede olduğu gibi iki secde arasındaki oturuşta da taʻdîl-i erkâna riâyet edilmesi lâzımdır… Rükû ve secde tesbihlerinin en azı üç, çoğu ise -farklı görüşlere göre- yedi veya on birdir. İmamın tesbihlerinin adedinin, cemaatin hâline göre olması lâzımdır. Yalnız kılan insanın, gücü yettiği vakit tesbihleri en az mertebede, (yani üç kere) okumaktan hayâ etmesi ve beş veya yedi tesbih okuması lâzımdır. Secdeye giderken yere en yakın olan uzvunu koyar; evvela dizlerini, sonra ellerini, burnunu ve sonra alnını yere koyar. Ellerini ve dizini yere koyarken sağdan, secdeden kalkarken de semâya en yakın uzvundan başlaması lâzımdır. Kıyamda secde mahalline, rükûda ayaklarının üstüne, secdede burnunun ucuna, kaʻdede ellerine bakmalıdır. Peygamber Efendimiz'den (s.a.v.) rivâyet olunduğu üzere namaz kılan kimse, gözlerini bu yerlere sâbitler, bakışlarını başka taraflara dağıtmaz ise cemiyyet ile (huşû ve huzûr ile) namaz kılmak mümkün olur. Rükûda parmakları açık tutmak ve secdede birleştirmek sünnettir; Resûlüllâh Efendimiz (s.a.v.) yapılmasını emretmiştir."</div></div>
+      <div class="kart blg k-ilim"><h4>Sayılı Günleri İyi Değerlendirmek Lâzımdır</h4><div class="kopya">Mektûbât'tan</div><div class="not">"Akıllı kimsenin yapması gereken, hayatının sayılı günlerini Allâhü Teâlâ'nın râzı olacağı işlere sarf etmektir. Allâhü Teâlâ kulunun yaptıklarından râzı olmazsa bu nasıl bir hayattır? Allâhü Teâlâ her şeyi görür ve bilir, hâzır ve nâzırdır. Onun için Allâhü Teâlâ'dan hayâ etmek lâzımdır. Şayet bir kimse, işlediği ayıp ve çirkin şeyleri başkalarının gördüğünü zannetse, asla ve kat'a çirkin ve ayıp şeyleri yapmaz; başkalarının da bunu görmesini katiyen istemez. Ne hazindir ki hâzır ve nâzır olduğunu, bütün her şeye muttali olduğunu bildikleri halde insanların birçoğu, Allâhü Teâlâ'dan korkmazlar, üzülmezler ve aldırış etmezler. 'Lâ ilâhe illallâh diyerek îmânlarınızı yenileyiniz' hadîs-i şerîfi hükmünce her an bu mübarek sözlerle îmânı yenilemek lâzımdır. Bütün günahlardan Allâhü Teâlâ'ya tevbe etmek ve ona rücû etmek gerekir; zira başka vakitte tevbeye fırsat olacağını bilemez. 'Sonra yaparım diyenler helâk oldu' hadîs-i şerîfidir. Fırsatı ganimet bilmek ve Allâhü Teâlâ'nın râzı olacağı şekilde değerlendirmek lâzımdır. Tevbeye muvaffak olabilmek Allâhü Teâlâ'nın inâyetindendir; Allâhü Teâlâ'dan dâima bu mânâyı istemek ve şerîatte yüksek mertebelere ulaşmış olan hakîkat âlemi dervişlerinin himmetini taleb etmek, Allâhü Teâlâ'nın inâyeti zâhir olana kadar onların kapılarından meded istemek lâzımdır…"</div></div>
+    </div>
+  </section>
+</main>
+
+<div class="blg-ust hidden" id="blgUst"></div>
+<div class="blg-popup hidden" id="blgPop">
+  <div class="p-bas">
+    <h3 id="blgBaslik"></h3>
+    <button class="p-kapat" id="blgKapat" title="Kapat">✕</button>
+  </div>
+  <div class="p-tur hidden" id="blgTur"></div>
+  <div class="p-satir hidden" id="satirGrup"><b>Grup</b><span id="blgGrup"></span></div>
+  <div class="p-satir hidden" id="satirTarih"><b>Dönem / Kaynak</b><span id="blgTarih"></span></div>
+  <div class="p-satir hidden" id="satirOnemli"><b>Öne Çıkanlar</b><span id="blgOnemli"></span></div>
+  <div class="p-satir hidden" id="satirMetin"><b>Açıklama</b><span id="blgMetin"></span></div>
+  <div class="p-satir hidden" id="satirDetay"><b>Detaylı Metin</b><span id="blgDetay"></span></div>
+</div>
+
+<footer>
+  <b>İmâm-ı Rabbânî Müceddid-i Elf-i Sânî Şeyh Ahmed-i Fârûkî Serhendî (k.s.) Biyografi Projesi</b> • HTML + CSS + JS interaktif animasyon<br>
+  İçerik esası: Silsile-i Sâdât-ı Nakşibendiyye-i Aliyye · TDV İslâm Ansiklopedisi — "İmâm-ı Rabbânî", Hamid Algar (İstanbul 2000, c. 22) | <a href="../index.html">← Biyografiler anasayfası</a>
+</footer>
+
+<script>
+  const tabBar = document.getElementById('tabBar');
+  const sekmeler = document.querySelectorAll('.sekme');
+
+  function goster(id) {
+    document.querySelectorAll('nav .tab').forEach(t => t.classList.toggle('aktif', t.dataset.sekme === id));
+    sekmeler.forEach(s => s.classList.toggle('aktif', s.id === id));
+  }
+
+  tabBar.addEventListener('click', e => {
+    const btn = e.target.closest('.tab');
+    if (!btn) return;
+    const id = btn.dataset.sekme;
+    if (location.hash.slice(1) !== id) location.hash = id;
+    else goster(id);
+  });
+
+  window.addEventListener('hashchange', () => {
+    const id = location.hash.slice(1);
+    if (id && document.getElementById(id)) goster(id);
+  });
+
+  const ilkSekme = location.hash.slice(1);
+  if (ilkSekme && document.getElementById(ilkSekme)) goster(ilkSekme);
+
+  /* Olaylar — lejant çipleriyle filtre */
+  const lejant = document.getElementById('lejant');
+  if (lejant) {
+    const zamanKartlari = [...document.querySelectorAll('#olaylar .z-item')];
+    const eseriVar = z => z.querySelector('.z-kitap') !== null;
+    lejant.addEventListener('click', e => {
+      const chip = e.target.closest('span[data-kat]');
+      if (!chip) return;
+      const kat = chip.dataset.kat;
+      const zatenAktif = chip.classList.contains('aktif');
+      lejant.querySelectorAll('span[data-kat]').forEach(s => s.classList.remove('aktif'));
+      if (kat === 'tumu' || zatenAktif) {
+        zamanKartlari.forEach(z => z.classList.remove('gizli'));
+        lejant.querySelector('span[data-kat="tumu"]').classList.add('aktif');
+        return;
+      }
+      chip.classList.add('aktif');
+      zamanKartlari.forEach(z => {
+        const uygun = kat === 'c-ilim' ? (z.classList.contains('c-ilim') || z.classList.contains('c-tasavvuf'))
+                   : kat === 'c-eser' ? (z.classList.contains('c-eser') || eseriVar(z))
+                   : z.classList.contains(kat);
+        z.classList.toggle('gizli', !uygun);
+      });
+    });
+  }
+
+  /* Olaylar — Kitaplar başlığına adet */
+  document.querySelectorAll('#olaylar .z-kitap').forEach(k => {
+    const n = k.querySelectorAll('a.kitap-link').length;
+    if (n > 1) {
+      const bas = k.querySelector('.kitap-bas');
+      if (bas) bas.textContent = bas.textContent + ' (' + n + ')';
+    }
+  });
+
+  /* Eserler — detay göster/gizle */
+  const eserlerSec = document.getElementById('eserler');
+  if (eserlerSec) {
+    document.querySelectorAll('#eserler .detay-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#eserler .detay-btn').forEach(b => b.classList.toggle('aktif', b === btn));
+        eserlerSec.classList.toggle('kapali', btn.dataset.durum === 'kapali');
+      });
+    });
+  }
+
+  /* Kişiler ve Eserler — adlar link gibi, tıklayınca bilgi kutusu */
+  const blgUst = document.getElementById('blgUst');
+  const blgPop = document.getElementById('blgPop');
+  const blgBaslik = document.getElementById('blgBaslik');
+  const blgTur = document.getElementById('blgTur');
+  const blgTarih = document.getElementById('blgTarih');
+  const blgGrup = document.getElementById('blgGrup');
+  const blgOnemli = document.getElementById('blgOnemli');
+  const blgMetin = document.getElementById('blgMetin');
+  const blgDetay = document.getElementById('blgDetay');
+  const satirTur = blgTur;
+  const satirTarih = document.getElementById('satirTarih');
+  const satirGrup = document.getElementById('satirGrup');
+  const satirOnemli = document.getElementById('satirOnemli');
+  const satirMetin = document.getElementById('satirMetin');
+  const satirDetay = document.getElementById('satirDetay');
+
+  const ESER_TUR = {
+    'İs̱bâtü\'n-nübüvve': 'Arapça · Kelâm / Nübüvvet Savunması',
+    'Teʾyîd-i Ehli\'s-sünne': 'Farsça · Reddiye (Şîa)',
+    'Mektûbât': 'Farsça · Mecmûa (536 mektup)',
+    'Mükâşefât-ı Ġaybiyye': 'Farsça · Tasavvuf',
+    'Ḥavâşî ve Taʿlîḳāt ber Şerḥ-i Rubâʿiyyât-ı Ḫâce Bâḳī-Billâh': 'Haşiye · Şerh',
+    'Maʿârif-i Ledünniyye': 'Arapça · Tasavvuf',
+    'Mebdeʾ ü Meʿâd': 'Farsça · Tasavvuf / Âşık-nâme',
+    'Risâle-i Tehlîliyye': 'Farsça · Risâle (kelime-i tevhîd)'
+  };
+
+  const ESER_ONEMLI = {
+    'İs̱bâtü\'n-nübüvve': 'Agra döneminde kaleme aldığı ilk eseri; Ekber\'in "Dîn-i İlâhî" senkretizmine ve peygamberliği inkâra varan cereyanlara karşı nübüvvetin gerekliliğini savunur.',
+    'Teʾyîd-i Ehli\'s-sünne': 'Redd-i Revâfıż adıyla da bilinir; Şîa\'ya reddiye. Şâh İsmâʿîl-i Sâfî\'nin Şîa\'yı hâkim kılmaya çalıştığı dönemde İran\'dan sünnî bölgelere (Anadolu ve Mâverâünnehir) yayılan Şîa akımına karşı yazıldı.',
+    'Mektûbât': 'Üç cilt, 536 mektup; I. cilt 1025/1616, II. cilt 1028/1619, III. cilt ölümünden sonra derlendi. En meşhur eseridir; kalem ehli ile halkın feyz bulduğu bir dini-ilmî mecmuadır.',
+    'Mükâşefât-ı Ġaybiyye': 'Karaçi 1384/1965.',
+    'Ḥavâşî ve Taʿlîḳāt ber Şerḥ-i Rubâʿiyyât-ı Ḫâce Bâḳī-Billâh': 'Şeyhi Bâkī-Billâh\'ın rubâîlerinin şerhi üzerine haşiye ve taʿlîkat; Karaçi 1386/1966.',
+    'Maʿârif-i Ledünniyye': 'Rabbânî ilimler; vahdet-i vücûd-tevhid ilişkisini ele alır. Karaçi 1388/1968.',
+    'Mebdeʾ ü Meʿâd': 'Âşık-nâme adıyla da bilinir; sülûk ve seyrüseferin başlangıç ve sonuçlarını anlatır. Karaçi 1403/1983.',
+    'Risâle-i Tehlîliyye': 'Kelime-i tevhîdin içerdiği mânalara dair risâle. Karaçi 1403/1983.'
+  };
+
+  const DERIN_METIN = {
+    'dogum': 'İmâm-ı Rabbânî, 971 (M. 1564) yılında Aşûrâ gününde Hindistan\'ın Serhend beldesinde doğdu; Hâşiʻ kelimesi ebced hesabıyla bu tarihi gösterir. İsmi Ahmed, babasının ismi Abdülehad, dedesinin ismi Zeynelâbidîn\'dir. Lâkabı Bedrüddîn, künyesi Ebu\'l-Berekât\'tır. Nesli 28. batında Hazret-i Ömer\'e (r.a.) ulaşır.',
+    'imam-rabbani': 'Muhammed Bâkîbillâh Hazretleri kendisine "İmâm-ı Rabbânî" ismini vermişlerdir ve daha çok "İmâm-ı Rabbânî" ismiyle bilinir. Hicrî ikinci bin yılın müceddidi (yenileyicisi) olmasından dolayı "Müceddid-i Elf-i Sânî" denilmiştir ki bu vasıfla ilk defa, Hindistan ulemâsından Abdülhakîm Siyalkûtî Hazretleri tavsîf etmiştir. Ahkâm-ı İslâmiyye ve tasavvufu birleştirmesinden dolayı da birleştirici mânâsında "Sıla" ismi verilmiştir. Hazret-i Ömer\'in (r.a.) neslinden geldiği için "Fârûkî" diye anılmış, Serhend şehrinden olduğu için de oraya nisbetle "Serhendî" denilmiştir. Hanefî mezhebindendir.',
+    'vahdet': 'İlk başta tamamen bağlı olduğu vahdet-i vücûd anlayışını aşarak zılliyyet (varlığın Hak\'a nisbeti itibariyle gölge oluşu) ve nihayet abdiyet (kulluk) makamına geçti; vahdet-i şühûd\'un, hakîkatin daha isabetli bir ifadesi olduğunu savundu. Buna göre Hak ile kul arasında zât bakımından bir birlik değil, bir tecellî ve nisbet münasebeti vardır. Bu anlayışı sıddîkıyyet mertebesi ve "müceddid-i elf-i sânî" vasfıyla birleştirdi. Tarikatı şeriatin hizmetçisi saydı; nübüvvetin velâyetten üstün olduğunu ve silsilesinin Hazret-i Ebû Bekir\'e (r.a.) dayandığını vurguladı. Hicrî II. binyılın başında, Ebû Dâvûd\'un "her yüz yıl başında bir müceddid gelir" hadisi mânâsında müceddid görüşünü geliştirdi.',
+    'esaret': 'Bâbürlü Hükümdarı Cihangir, mânevî makamının yüksekliğine ve sülûk esnasında ilk üç halifeyi (Hazret-i Ebû Bekir, Hazret-i Ömer, Hazret-i Osman) geride bıraktığına dair iddiaları dolayısıyla onu 1028 (1619) yılında sorgulanmak üzere Agra\'ya çağırttı; tatmin olmayınca Gevâliyâr (Gwalior) kalesinde hapsettirdi. Yaklaşık bir yıl sonra serbest bırakıldı; bu hâlini, kahr sıfatının tecellîsini tamamlayan celâl sıfatının tecellîsi olarak yorumladı. Daha sonra sultanın sarayında İslâm\'ın prensiplerinden "bir kıl kadar bile" ayrılmadan sohbetlerde bulundu.',
+    'vefat': 'İmâm-ı Rabbânî Hazretleri 28 Safer 1034 (M. 1624) tarihinde 63 yaşında oldukları halde Serhend\'de âhirete irtihâl ettiler. Kabr-i şerifleri, bugün Hindistan hududları içerisinde olan Pencap eyaletine bağlı Serhend\'dedir.',
+    'isbatun-nubuvve': 'Agra yıllarında kaleme aldığı ilk eseri; Bâbürlü hükümdarı Ekber Şah\'ın "Dîn-i İlâhî" adlı senkretik telakkisine karşı, kendisince peygamberliğin gerekliliğini şüpheye düşüren akılcı felsefî cereyana (Ebü\'l-Fazl\'ın yaklaşımı gibi) nübüvvetin lüzumunu Arapça olarak savunur.',
+    'teyid': 'Teʾyîd-i Ehli\'s-sünne (Redd-i Revâfıż) adlı reddiyesini, Şâh İsmâʿîl-i Sâfî\'nin İmâmiyye\'yi hâkim kıldığı dönemde İran\'dan sünnî bölgelere (Anadolu ve Mâverâünnehir) yayılan Şîa akımına karşı yazdı; dört halifenin fazileti ve sünnî telakkiler savunulur.',
+    'mektubat': 'Mektûbât, üç cilt hâlinde 536 mektubu toplar; I. cilt 1025 (1616), II. cilt 1028 (1619) yılında derlendi, III. cilt ölümünden sonra tamamlandı. Temelini, şeyhi Bâkī-Billâh ile yaptığı yazışmalar (26 mektup) oluşturur. Müridlerin istifadeleri için istiğrak hâlindeyken kaleme alınan bu yazışmalar, kalem ehli ile halkın feyz bulduğu bir dinî-ilmî mecmuadır.',
+    'maarif': 'Rabbânî ilimlere dairdir; başta vahdet-i vücûd ile tevhid münasebeti olmak üzere hakîkat ehli için gerekli mânevî meseleleri ele alır.'
+  };
+
+  function eserBilgi(kart) {
+    const h4 = kart.querySelector('h4');
+    const ad = h4 ? h4.textContent.trim().toLowerCase().replace(/\s+/g, ' ') : '';
+    let tur = '', onemli = '';
+    for (const [k, v] of Object.entries(ESER_TUR)) {
+      if (ad === k.toLowerCase().replace(/\s+/g, ' ') || ad.startsWith(k.toLowerCase().replace(/\s+/g, ' '))) { tur = v; break; }
+    }
+    for (const [k, v] of Object.entries(ESER_ONEMLI)) {
+      if (ad === k.toLowerCase().replace(/\s+/g, ' ') || ad.startsWith(k.toLowerCase().replace(/\s+/g, ' '))) { onemli = v; break; }
+    }
+    return { tur, onemli };
+  }
+
+  function blgKapat() {
+    blgUst.classList.add('hidden');
+    blgPop.classList.add('hidden');
+  }
+
+  function blgAc(kart) {
+    const h4 = kart.querySelector('h4');
+    if (!h4) return;
+    blgBaslik.innerHTML = h4.innerHTML;
+    const bilgi = eserBilgi(kart);
+    const zItem = kart.closest('.z-item');
+    const zTarih = zItem ? zItem.querySelector('.z-tarih') : null;
+    const kop = kart.querySelector('.kopya') || zTarih;
+    if (bilgi.tur) { blgTur.textContent = bilgi.tur; blgTur.classList.remove('hidden'); }
+    else blgTur.classList.add('hidden');
+    if (kop && kop.textContent.trim()) { blgTarih.textContent = kop.textContent.trim(); satirTarih.classList.remove('hidden'); }
+    else satirTarih.classList.add('hidden');
+    const sec = kart.closest('section');
+    let grup = '';
+    if (sec) {
+      sec.querySelectorAll('.grup .g-yazi').forEach(g => {
+        if (kart.compareDocumentPosition(g) & Node.DOCUMENT_POSITION_FOLLOWING) grup = g.textContent.trim();
+      });
+    }
+    if (!grup && sec && sec.id === 'olaylar') {
+      const kat = kart.querySelector('.z-bas .z-kat');
+      if (kat) grup = kat.textContent.trim();
+    }
+    if (grup && !bilgi.tur) { blgGrup.textContent = grup; satirGrup.classList.remove('hidden'); }
+    else satirGrup.classList.add('hidden');
+    if (bilgi.onemli) { blgOnemli.textContent = bilgi.onemli; satirOnemli.classList.remove('hidden'); }
+    else satirOnemli.classList.add('hidden');
+    const nt = kart.querySelector('.not, p');
+    if (nt && nt.textContent.trim()) { blgMetin.textContent = nt.textContent.trim(); satirMetin.classList.remove('hidden'); }
+    else satirMetin.classList.add('hidden');
+    const dk = kart.dataset.derin;
+    if (dk && DERIN_METIN[dk]) { blgDetay.textContent = DERIN_METIN[dk]; satirDetay.classList.remove('hidden'); }
+    else satirDetay.classList.add('hidden');
+    blgUst.classList.remove('hidden');
+    blgPop.classList.remove('hidden');
+  }
+
+  const eserKartlari = [...document.querySelectorAll('#eserler .kart')].map(k => {
+    const h4 = k.querySelector('h4');
+    return { el: k, ad: h4 ? h4.textContent.trim().toLowerCase().replace(/\s+/g, ' ') : '' };
+  });
+  function eserBul(ad) {
+    const n = ad.trim().toLowerCase().replace(/\s+/g, ' ');
+    return eserKartlari.find(e => e.ad === n || e.ad.startsWith(n)) || null;
+  }
+
+  const kisiKartlari = [...document.querySelectorAll('#kisiler .kart')].map(k => {
+    const h4 = k.querySelector('h4');
+    const adis = h4 ? h4.querySelector('.adis') : null;
+    return {
+      el: k,
+      ad: h4 ? h4.textContent.trim().toLowerCase().replace(/\s+/g, ' ') : '',
+      adis: adis ? adis.textContent.trim().replace(/^\|\s*/, '').toLowerCase().replace(/\s+/g, ' ') : ''
+    };
+  });
+  function kisiBul(ad) {
+    const n = ad.trim().toLowerCase().replace(/\s+/g, ' ');
+    return kisiKartlari.find(k => k.adis && k.adis === n) ||
+           kisiKartlari.find(k => k.ad === n) ||
+           kisiKartlari.find(k => k.ad.includes(n)) || null;
+  }
+
+  document.querySelectorAll('a.kitap-link').forEach(a => {
+    a.addEventListener('click', e => {
+      e.stopPropagation();
+      const k = eserBul(a.dataset.ad);
+      if (k) blgAc(k.el);
+    });
+  });
+  document.querySelectorAll('a.ad-link').forEach(a => {
+    a.addEventListener('click', e => {
+      e.stopPropagation();
+      const k = kisiBul(a.dataset.ad);
+      if (k) blgAc(k.el);
+    });
+  });
+  document.querySelectorAll('.z-kart[data-derin], .kart.blg').forEach(el => {
+    el.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      blgAc(el);
+    });
+  });
+  document.getElementById('blgKapat').addEventListener('click', blgKapat);
+  blgUst.addEventListener('click', blgKapat);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') blgKapat(); });
+</script>
+
+</body>
+</html>

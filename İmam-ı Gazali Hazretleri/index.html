@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İmâm-ı Gazâlî Hazretleri — Biyografik Animasyon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f5ee;
+    --panel: #fffdf7;
+    --ink: #241d12;
+    --muted: #827253;
+    --line: #eae2cd;
+    --accent: #a3741f;
+    --accent-2: #d9b23f;
+    --gold-soft: #f6e7b8;
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(86, 66, 20, .09);
+  }
+  /* olay kategori pastelleri */
+  .k-dogum   { background: #e1f3e8; }
+  .k-kayip   { background: #fae9ec; }
+  .k-ilim    { background: #e9effc; }
+  .k-eser    { background: #e9effc; }
+  .k-saray   { background: #faf2da; }
+  .k-sefer   { background: #ffeadd; }
+  .k-esaret  { background: #fbe0e0; }
+  .k-tasavvuf{ background: #e0f2ef; }
+  .k-vefat   { background: #e6e8ee; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(135deg, #201607, #45320f 55%, #8a6a20);
+    color: #fff6e0;
+    padding: 2.6rem 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute; left: -15%; right: -15%; top: -130%;
+    height: 230%; background: radial-gradient(circle, rgba(253,215,120,.22), transparent 45%);
+  }
+  header .rozet {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: rgba(246,231,184,.14);
+    border: 1px solid rgba(246,231,184,.38);
+    color: #f3dc9a;
+    padding: .35rem .95rem; border-radius: 999px;
+    font-size: .72rem; letter-spacing: 1.4px; text-transform: uppercase;
+    font-weight: 600;
+  }
+  header h1 {
+    position: relative; z-index: 1;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 800;
+    margin: .9rem 0 .15rem;
+    letter-spacing: -.5px;
+    color: #ffedbe;
+  }
+  header .alt {
+    position: relative; z-index: 1;
+    font-size: .95rem; color: rgba(255,238,190,.88);
+  }
+  header .alt b { font-weight: 700; color: #fff6e0; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,251,240,.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: center; gap: .4rem;
+    padding: .65rem 1rem;
+  }
+  nav .tab {
+    border: none; background: transparent; cursor: pointer;
+    font-family: inherit; font-size: .9rem; font-weight: 600;
+    color: var(--muted);
+    padding: .5rem 1.15rem;
+    border-radius: 10px;
+    transition: .2s;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  nav .tab .sayi {
+    font-size: .72rem; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 6px;
+    display: grid; place-items: center;
+    background: #f0e8d2; color: var(--muted);
+  }
+  nav .tab:hover { background: #f3ecd9; color: var(--ink); }
+  nav .tab.aktif { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff8e6; }
+  nav .tab.aktif .sayi { background: rgba(255,255,255,.22); color: #fff8e6; }
+
+  main {
+    flex: 1;
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.6rem 1.2rem 3rem;
+  }
+  .sekme { display: none; }
+  .sekme.aktif { display: block; animation: fade .28s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .baslik { margin-bottom: 1.4rem; }
+  .baslik h2 { font-size: 1.35rem; font-weight: 800; letter-spacing: -.3px; color: #4a3820; }
+  .baslik p { font-size: .86rem; color: var(--muted); margin-top: .15rem; }
+
+  /* grup başlığı + sola alınmış kategori ikonu */
+  .grup { display: flex; align-items: center; gap: .6rem; margin: 1.5rem 0 .8rem; }
+  .grup .g-ikon {
+    flex: 0 0 auto;
+    width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 1.05rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: var(--shadow);
+  }
+  .grup .g-yazi { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--muted); }
+  .grup .adet {
+    font-size: .72rem; font-weight: 700;
+    background: #f0e8d2; color: var(--accent);
+    padding: .15rem .55rem; border-radius: 999px;
+  }
+  .grup .cizgi { flex: 1; height: 1px; background: linear-gradient(90deg, #d8c383, transparent); }
+
+  /* eserler: detaylar açık gelir, üstten göster/gizle butonuyla değişir */
+  #eserler .kart {
+    transform-origin: 50% 0;
+    transition: transform .22s cubic-bezier(.2,.7,.3,1.2), box-shadow .22s ease;
+  }
+  #eserler .kart:hover { transform: translateY(-4px); }
+  #eserler .kart .kopya, #eserler .kart .not {
+    overflow: hidden;
+    transition: opacity .22s ease, max-height .22s ease, margin .22s ease;
+  }
+  #eserler .kart .kopya { max-height: 6rem; opacity: 1; margin: .1rem 0 .35rem; }
+  #eserler .kart .not { max-height: 8rem; opacity: 1; margin: .4rem 0 0; }
+  #eserler.kapali .kart .kopya, #eserler.kapali .kart .not { max-height: 0 !important; opacity: 0; margin: 0; }
+
+  .detay-ayar { display: flex; align-items: center; gap: .4rem; margin: -.5rem 0 1rem; flex-wrap: wrap; }
+  .detay-ayar .detay-etiket { font-size: .72rem; font-weight: 700; color: var(--muted); letter-spacing: .5px; }
+  .detay-ayar .detay-btn {
+    font-size: .74rem; font-weight: 700;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: .32rem .85rem;
+    cursor: pointer;
+    color: #5b4a2c;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .detay-ayar .detay-btn:hover { border-color: var(--accent); }
+  .detay-ayar .detay-btn.aktif { background: var(--accent); border-color: var(--accent); color: #fff8e6; }
+
+  .kartlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: .9rem;
+  }
+  .kart {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    box-shadow: var(--shadow);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .kart:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(86,66,20,.14); }
+  .kart.blg { border-color: transparent; box-shadow: none; }
+  .kart.blg:hover { box-shadow: 0 12px 28px rgba(86,66,20,.1); }
+  .kart .ust { position: absolute; top: .5rem; right: .6rem; }
+  .kart .sira {
+    min-width: 24px; height: 24px; border-radius: 7px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,.85);
+    color: var(--accent);
+    font-weight: 700; font-size: .72rem; padding: 0 .45rem;
+  }
+  .kart h4 { font-size: 1rem; font-weight: 700; letter-spacing: -.2px; padding-right: 2rem; }
+  .kart h4 .adis { color: var(--muted); font-weight: 500; font-size: .88em; }
+  .kart .kopya { font-size: .78rem; color: var(--muted); margin: .1rem 0 .35rem; }
+  .kart .lokal { font-size: .8rem; font-weight: 500; display: flex; align-items: center; gap: .45rem; margin-top: .5rem; }
+  .kart .lokal::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 13px; height: 13px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23a3741f"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 9a2.5 2.5 0 0 1 0 2.5z"/></svg>') no-repeat center/contain;
+  }
+  .kart .not { font-size: .8rem; color: #4c4232; margin-top: .4rem; line-height: 1.5; }
+
+  /* Sözleri — 3 satır kırp, tıkla → popup'ta tamamı */
+  #sozler .kart { cursor: pointer; }
+  #sozler .kart .not {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  /* detaylı metin işareti + tıklanabilir kartlar */
+  .detay-d {
+    display: inline-block; margin-top: .55rem;
+    font-size: .68rem; font-weight: 700;
+    color: var(--accent);
+    border: 1px dashed rgba(163,116,31,.5);
+    border-radius: 999px; padding: .14rem .6rem;
+    cursor: pointer;
+  }
+  .kart.blg { cursor: pointer; }
+  .z-kart[data-derin] { cursor: pointer; }
+
+  /* Olaylar — kitap ve isim bağlantıları */
+  a.kitap-link, a.ad-link {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgba(163,116,31,.4);
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+  a.kitap-link:hover, a.ad-link:hover { color: #7d5812; text-decoration-color: #7d5812; }
+  .z-kart.k-vefat a.kitap-link, .z-kart.k-kayip a.kitap-link, .z-kart.k-vefat a.ad-link, .z-kart.k-kayip a.ad-link { color: #ffdf9e; text-decoration-color: rgba(255,223,158,.45); }
+  .z-kart.k-vefat a.kitap-link:hover, .z-kart.k-kayip a.kitap-link:hover, .z-kart.k-vefat a.ad-link:hover, .z-kart.k-kayip a.ad-link:hover { color: #fff; text-decoration-color: #fff; }
+
+  /* bilgi penceresi */
+  .hidden { display: none !important; }
+  .blg-ust {
+    position: fixed; inset: 0; z-index: 80;
+    background: rgba(36,29,18,.45);
+  }
+  .blg-popup {
+    position: fixed; z-index: 81;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(380px, 92vw);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 24px 70px rgba(36,29,18,.38);
+    padding: 1.2rem 1.3rem;
+    animation: fade .18s ease;
+  }
+  .blg-popup .p-bas { display: flex; align-items: flex-start; justify-content: space-between; gap: .6rem; }
+  .blg-popup .p-bas h3 { font-size: 1.02rem; font-weight: 800; color: #4a3820; letter-spacing: -.2px; line-height: 1.3; }
+  .blg-popup .p-bas h3 .adis { color: var(--muted); font-weight: 600; font-size: .88em; }
+  .blg-popup .p-kapat { border: none; background: none; cursor: pointer; color: var(--muted); font-size: 1.05rem; line-height: 1; padding: 2px 6px; border-radius: 6px; flex-shrink: 0; }
+  .blg-popup .p-kapat:hover { background: #eee5cf; color: var(--ink); }
+  .blg-popup .p-tur { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; background: #eef2fb; color: #5b7fd9; border-radius: 999px; padding: .22rem .7rem; margin-top: .55rem; }
+  .blg-popup .p-satir { font-size: .83rem; color: #4c4232; line-height: 1.55; margin-top: .55rem; }
+  .blg-popup .p-satir b { display: block; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; color: var(--muted); margin-bottom: .15rem; }
+
+  /* kısa kişi kartları */
+  .kisiler .kart { padding: .8rem .95rem; }
+  .kisiler .kart h4 { font-size: .95rem; }
+  .kisiler .kart .kopya { font-size: .74rem; margin: .05rem 0 .25rem; }
+  .kisiler .kart .not { font-size: .78rem; margin-top: .25rem; line-height: 1.45; }
+
+  /* zaman çizelgesi */
+  .lejant { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.2rem; }
+  .lejant span {
+    font-size: .72rem; font-weight: 600;
+    padding: .3rem .7rem; border-radius: 999px;
+    border: 1px solid var(--line);
+    display: inline-flex; align-items: center; gap: .35rem;
+    cursor: pointer; user-select: none;
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .lejant span:hover { transform: translateY(-1px); }
+  .lejant span.aktif { box-shadow: 0 0 0 2px #4a3820; }
+  .z-item.gizli { display: none; }
+  .zaman { position: relative; margin: .5rem 0 0; padding-left: 2rem; }
+  .zaman::before {
+    content: "";
+    position: absolute; left: 9px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(#b9822a, #d9b23f, #e6c75a, #b9822a);
+    border-radius: 2px;
+  }
+  .z-item { position: relative; margin-bottom: 1rem; }
+  .z-item::before {
+    content: "";
+    position: absolute; left: -1.82rem; top: 1rem;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--accent);
+  }
+  .z-item.c-dogum::before    { border-color: #2f9e63; }
+  .z-item.c-kayip::before    { border-color: #d96a7e; }
+  .z-item.c-ilim::before     { border-color: #5b7fd9; }
+  .z-item.c-saray::before    { border-color: #c9a43a; }
+  .z-item.c-sefer::before    { border-color: #e0833a; }
+  .z-item.c-esaret::before   { border-color: #d64545; }
+  .z-item.c-tasavvuf::before { border-color: #2fa89a; }
+  .z-item.c-vefat::before    { border-color: #5b6170; }
+
+  .z-bilgi { display: flex; align-items: center; gap: .5rem; margin-bottom: .4rem; flex-wrap: wrap; }
+  .z-yas {
+    font-size: .72rem; font-weight: 700;
+    color: #4a3820;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: .18rem .55rem;
+    border-radius: 999px;
+    letter-spacing: .2px;
+  }
+  .z-tarih {
+    display: inline-block;
+    font-size: .72rem; font-weight: 700;
+    background: var(--accent);
+    color: #fff8e6;
+    padding: .18rem .7rem;
+    border-radius: 999px;
+    letter-spacing: .3px;
+  }
+  .z-tarih .h { color: rgba(255,255,255,.68); font-weight: 600; }
+  .z-yas {
+    font-size: .72rem; font-weight: 700;
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--accent);
+    padding: .18rem .7rem;
+    border-radius: 999px;
+    letter-spacing: .3px;
+  }
+  .z-kart.k-vefat .z-yas, .z-kart.k-kayip .z-yas { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); }
+  .z-item.c-dogum .z-tarih    { background: #2f9e63; }
+  .z-item.c-kayip .z-tarih    { background: #d96a7e; }
+  .z-item.c-ilim .z-tarih     { background: #5b7fd9; }
+  .z-item.c-eser .z-tarih     { background: #5b7fd9; }
+  .z-item.c-saray .z-tarih    { background: #a3741f; }
+  .z-item.c-sefer .z-tarih    { background: #e0833a; }
+  .z-item.c-esaret .z-tarih   { background: #d64545; }
+  .z-item.c-tasavvuf .z-tarih { background: #2fa89a; }
+  .z-item.c-vefat .z-tarih    { background: #5b6170; }
+
+  .z-kart {
+    display: flex; gap: .9rem; align-items: flex-start; justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--line);
+  }
+  .z-kart.k-vefat {
+    background: #3a3f46;
+    border-color: #3a3f46;
+    color: #fff;
+  }
+  .z-kart.k-vefat h4 { color: #fff; }
+  .z-kart.k-vefat p { color: #e2e6ec; }
+  .z-kart.k-vefat .z-kat { background: rgba(255,255,255,.14); color: #f3dc9a; }
+  .z-kart.k-vefat .z-konum { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); color: #f3dc9a; }
+  .z-kart.k-kayip {
+    background: #57606b;
+    border-color: #57606b;
+    color: #fff;
+  }
+  .z-kart.k-kayip h4 { color: #fff; }
+  .z-kart.k-kayip p { color: #e6e9ee; }
+  .z-kart.k-kayip .z-kat { background: rgba(255,255,255,.14); color: #f3dc9a; }
+  .z-kart.k-kayip .z-konum { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); color: #f3dc9a; }
+  .z-icerik { flex: 1; min-width: 0; }
+  .z-bas { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+  .z-bas h4 { font-size: 1rem; font-weight: 700; letter-spacing: -.2px; }
+  .z-kat {
+    font-size: .68rem; font-weight: 700;
+    padding: .18rem .6rem; border-radius: 999px;
+    background: rgba(255,255,255,.7);
+    display: inline-flex; align-items: center; gap: .3rem;
+  }
+  .z-kart p { font-size: .8rem; color: #4c4232; line-height: 1.55; margin-top: .3rem; }
+  .z-kitap {
+    flex: 1 1 100%;
+    width: 100%;
+    margin-top: .8rem;
+    padding-top: .6rem;
+    border-top: 1px dashed rgba(163,116,31,.35);
+    font-size: .72rem; line-height: 1.6;
+    color: #7a6744;
+  }
+  .z-kitap .kitap-bas { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-size: .66rem; display: block; margin-bottom: .15rem; }
+  .z-kitap em { font-style: normal; font-weight: 600; color: #5b4a2c; }
+  .z-kart.k-vefat .z-kitap, .z-kart.k-kayip .z-kitap { border-top-color: rgba(255,255,255,.22); color: #e2e6ec; }
+  .z-kart.k-vefat .z-kitap .kitap-bas, .z-kart.k-kayip .z-kitap .kitap-bas { color: #f3dc9a; }
+  .z-kart.k-vefat .z-kitap em, .z-kart.k-kayip .z-kitap em { color: #fff; }
+  .z-konum {
+    flex: 0 0 auto;
+    font-size: .72rem; font-weight: 700;
+    color: var(--accent);
+    background: rgba(255,255,255,.75);
+    border: 1px solid #e2d3a5;
+    padding: .3rem .7rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    margin-top: .15rem;
+    display: inline-flex; align-items: center; gap: .35rem;
+  }
+  .z-konum::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 11px; height: 11px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23a3741f"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 9a2.5 2.5 0 0 1 0 2.5z"/></svg>') no-repeat center/contain;
+  }
+  .z-kart.k-vefat .z-konum::before { filter: brightness(1.6); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    background: #241d12;
+    color: #c9b98d;
+    text-align: center;
+    padding: 1.1rem 1rem;
+    font-size: .78rem;
+  }
+  footer b { color: #f3dc9a; }
+  footer a { color: #f3dc9a; text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    header { padding: 2rem 1rem 1.6rem; }
+    nav { position: static; overflow-x: auto; justify-content: flex-start; }
+    nav .tab { white-space: nowrap; }
+    .kartlar { grid-template-columns: 1fr; }
+    .z-kart { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="rozet">☪ Hüccetü'l-İslâm · Eş'arî Kelâm · Şâfiî Fıkıh</span>
+  <h1>İmâm-ı Gazâlî Hazretleri<br>Hüccetü'l-İslâm Ebû Hâmid Muhammed b. Muhammed el-Gazzâlî et-Tûsî <span style="opacity:.55">(ö. 505/1111)</span></h1>
+  <p class="alt"><b>Hüccetü'l-İslâm</b> · Filozofları tenkidiyle tanınan Eş'arî kelâmcısı, Şâfiî fakihi ve mutasavvıf · ö. 14 Cemâziyelâhir 505 (M. 18 Aralık 1111)</p>
+</header>
+
+<nav id="tabBar">
+  <button class="tab aktif" data-sekme="sehirler"><span class="sayi">1</span> Şehirler</button>
+  <button class="tab" data-sekme="kisiler"><span class="sayi">2</span> Kişiler</button>
+  <button class="tab" data-sekme="olaylar"><span class="sayi">3</span> Olaylar</button>
+  <button class="tab" data-sekme="eserler"><span class="sayi">4</span> Eserleri</button>
+  <button class="tab" data-sekme="sozler"><span class="sayi">5</span> Sözleri</button>
+</nav>
+
+<main>
+  <section class="sekme aktif" id="sehirler">
+    <div class="baslik">
+      <h2>Şehirler</h2>
+      <p>Madde metninde geçen coğrafî noktalar — ileride ilüstratif haritaya point olarak işlenecek</p>
+    </div>
+    <div class="kartlar">
+      <div class="kart blg k-dogum" data-derin="tus"><div class="ust"><span class="sira">1</span></div><h4>Tûs <span class="adis">| bugünkü Meşhed</span></h4><div class="lokal">Horasan</div><div class="not">450 (1058) doğum yeri; 505 (1111) vefat ve defnedildiği yer. Günümüzde halk arasında Hârûniyye adıyla anılan yapının bahçesindeki kabir onun mezarı olarak gösterilir.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">2</span></div><h4>Cürcân</h4><div class="lokal">Horasan</div><div class="not">Beş yıllık ileri öğrenim; İsmâilî sülalesinden hadisçi hocası; eşkıya ile ders notlarının (taʿlîka) geri alındığı meşhur hâdise.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">3</span></div><h4>Nîşâbur</h4><div class="lokal">Horasan</div><div class="not">Nizâmiye Medresesi (473/1080) ve İmâmü'l-Haremeyn el-Cüveynî; on bir yıl sonra ikinci hocalık (Zilkade 499 / Temmuz 1106).</div></div>
+      <div class="kart blg k-saray"><div class="ust"><span class="sira">4</span></div><h4>Bağdat</h4><div class="lokal">Irak · Abbâsî başşehri</div><div class="not">Nizâmiye müderrisliği (Cemâziyelevvel 484 / Temmuz 1091); Tehâfüt ve Bâtınîlik incelemeleri; Zilkade 488'de (1095) ayrılış.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">5</span></div><h4>Dımaşk <span class="adis">| Şam</span></h4><div class="lokal">Suriye</div><div class="not">Emeviyye Camii'ne çekilerek riyâzet ve mücâhede; nefsi terbiye, ahlâkı güzelleştirme ve kalbi arındırma (y. 488–490/1095–1097).</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">6</span></div><h4>Kudüs</h4><div class="lokal">Filistin</div><div class="not">İnzivâ hayatı; buradaki insanlar için er-Risâletü'l-ḳudsiyye yazıldı.</div></div>
+      <div class="kart blg k-sefer"><div class="ust"><span class="sira">7</span></div><h4>Hicaz <span class="adis">| Mekke–Medine</span></h4><div class="lokal">Arabistan</div><div class="not">Hac farîzası; Mekke ve Medine'nin bereketlerinden nasip alma ve Resûlullah'ı ziyaret.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">8</span></div><h4>Hemedan</h4><div class="lokal">İran</div><div class="not">Bâtınîler'in "dört mesele" hakkındaki sorularına cevaplar; Mufaṣṣılü'l-ḫilâf burada kaleme alındı.</div></div>
+      <div class="kart blg k-sefer"><div class="ust"><span class="sira">9</span></div><h4>İskenderiye</h4><div class="lokal">Mısır</div><div class="not">Mağrib Sultanı Yûsuf b. Tâşfîn'i ziyaret yolculuğu; 500'de (1106) sultanın ölüm haberi üzerine son bulduğu rivayet edilir.</div></div>
+    </div>
+  </section>
+
+  <section class="sekme kisiler" id="kisiler">
+    <div class="baslik">
+      <h2>Kişiler</h2>
+      <p>Hayatına dokunanlar — kategorilere göre</p>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🕌</span><span class="g-yazi">Aile</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-kayip"><h4>Babası <span class="adis">| Muhammed · Tûslu iplikçi (gazzâl)</span></h4><div class="not">Zühd ve tasavvufa eğilimliydi; cami dersleriyle bilgisini artırıyor, ilim erbabına imkânı ölçüsünde destek oluyordu. Ömrünün yetmeyeceğini anlayınca bütün imkânını oğullarının eğitimine harcattı, onları bir sûfî dostunun himayesine emanet etti.</div></div>
+      <div class="kart blg k-kayip"><h4>Kardeşi <span class="adis">| Ahmed el-Gazzâlî</span></h4><div class="not">Kendinden küçük kardeş; sonraları özellikle sûfî kimliğiyle büyük ün kazandı. Gazzâlî, Bağdat'tan ayrılırken Nizâmiye'deki mevkisini ona bıraktı.</div></div>
+      <div class="kart blg k-kayip"><h4>Amcası <span class="adis">| (zayıf ihtimalle dayısı)</span></h4><div class="not">Gazzâlî ile aynı künye ve nisbeyi taşıyan biri; hakkındaki bilgiler son derece azdır.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">📖</span><span class="g-yazi">Hocaları</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim"><h4>Ahmed b. Muhammed er-Râzkânî <span class="adis">| Râzkânî</span></h4><div class="kopya">Tûs · 465/1073</div><div class="not">İleri düzeydeki ilk öğrenimin hocası; Tûs'ta fıkıh dersleri verdi.</div></div>
+      <div class="kart blg k-ilim"><h4>Ebü'l-Kāsım el-İsmâilî <span class="adis">| İsmâil b. Mes'ade</span></h4><div class="kopya">Cürcân · hadisçi</div><div class="not">Beş yıllık Cürcân öğreniminin hocası olduğu geniş kabul gören âlim; Ebû Nasr el-İsmâilî nisbesi yaygın bir hataya dayanır.</div></div>
+      <div class="kart blg k-ilim"><h4>İmâmü'l-Haremeyn el-Cüveynî <span class="adis">| Cüveynî</span></h4><div class="kopya">ö. 478/1085</div><div class="not">Nîşâbur Nizâmiye'nin baş müderrisi; dönemin en tanınmış kelâm âlimi. "Gazzâlî derin bir denizdir" diyen hocası.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Ebû Ali el-Fârmedî</h4><div class="kopya">ö. 477/1084</div><div class="not">Kuşeyrî'nin öğrencilerinden; Tûs ve Nîşâbur sûfîlerinin meşhurlarından. Gazzâlî'yi tasavvufî pratiklere yönelten şeyh olarak anılır.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">👑</span><span class="g-yazi">Selçuklu Sarayı ve Çağdaşlar</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-saray"><h4>Nizâmülmülk</h4><div class="kopya">ö. 485/1092</div><div class="not">Büyük Selçuklu veziri; karargâhında (478/1085) genç Gazzâlî'yi barındırdı, Bağdat Nizâmiye'ye tayin etti. İsmâilî ajanlarca öldürüldü.</div></div>
+      <div class="kart blg k-saray"><h4>Halife Muktedî-Biemrillâh</h4><div class="kopya">1075–1094</div><div class="not">Bağdat Abbâsî halifesi; dindarlığı ve faziletiyle tanınır; Gazzâlî'nin ilgi ve desteğine mazhar olduğu isim.</div></div>
+      <div class="kart blg k-saray"><h4>Fahrülmülk</h4><div class="kopya">Nizâmülmülk'ün oğlu</div><div class="not">Sultan Sencer'in veziri; Gazzâlî'yi Zilkade 499'da (1106) Nîşâbur Nizâmiye'ye dönmeye ikna eden isim.</div></div>
+      <div class="kart blg k-saray"><h4>Sultan Sencer</h4><div class="kopya">1118–1157</div><div class="not">Büyük Selçuklu hükümdarı; Gazzâlî'nin ikinci hocalık döneminin sultanı. Merv'deki türbesi Hârûniyye ile aynı plandadır.</div></div>
+      <div class="kart blg k-saray"><h4>Yûsuf b. Tâşfîn</h4><div class="kopya">Murabıt sultanı · ö. 500/1106</div><div class="not">Gazzâlî'nin büyük saygı duyduğu Mağrib sultanı; ziyaret yolculuğu, İskenderiye'ye vardığında (500/1106) ölüm haberinin alınması üzerine son buldu.</div></div>
+      <div class="kart blg k-ilim"><h4>Abdülgāfir el-Fârisî</h4><div class="kopya">çağdaşı bilgin</div><div class="not">Gazzâlî'yi "İslâm'ın ve müslümanların hücceti, din önderlerinin imamı... mantık, zekâ ve tabiat itibariyle benzeri görülmemiş bir kişi" diye niteledi.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🗯️</span><span class="g-yazi">Tartışma ve Etkiler</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim"><h4>İbn Rüşd</h4><div class="kopya">ö. 595/1198</div><div class="not">Tehâfütü't-tehâfüt ile Gazzâlî'nin Tehâfütü'l-felâsife'sine cevap verdi; felsefî geleneği ve Meşşâîliği savundu.</div></div>
+      <div class="kart blg k-ilim"><h4>Ebü'l-Ferec İbnü'l-Cevzî</h4><div class="not">Gazzâlî'nin muarızlarından; eserleri ve kişiliği hakkında olumsuz değerlendirmeleri bulunan Hanbelî âlim.</div></div>
+      <div class="kart blg k-ilim"><h4>İbn Teymiyye</h4><div class="not">Felsefî ve tasavvufî yönü dolayısıyla Gazzâlî'yi eleştiren Hanbelî âlim.</div></div>
+      <div class="kart blg k-saray"><h4>Endülüs ulemâsı</h4><div class="kopya">Kurtuba · 530/1136</div><div class="not">İḥyâʾü ʿulûmi'd-dîn, bazı Endülüs âlimlerince ağır eleştirilere uğradı ve emirlerin öncülüğünde Kurtuba'da yakıldı.</div></div>
+      <div class="kart blg k-ilim"><h4>Zekî Mübârek</h4><div class="not">el-Ahlâku inde'l-Ġazzâlî müellifi; Gazzâlî'yi ezbercilikle ve Haçlı işgalleri karşısında sessiz kalmakla eleştiren çağdaş yazar.</div></div>
+      <div class="kart blg k-ilim"><h4>W. Montgomery Watt</h4><div class="kopya">Müslüman Aydın, 1963</div><div class="not">Gazzâlî'nin bunalımı ve dönüşümünü çağdaş biyografik çalışmaya dönüştüren şarkiyatçı.</div></div>
+      <div class="kart blg k-ilim"><h4>Lazarus-Yafeh</h4><div class="not">Gazzâlî'nin eserlerinin otantikliği ve imajı etrafındaki tartışmaları ifade eden "Ghazālī-Problem"i ele alan modern araştırmacı.</div></div>
+      <div class="kart blg k-ilim"><h4>Mâcid Fahrî</h4><div class="kopya">İslâm Felsefesi Tarihi</div><div class="not">Gazzâlî'nin Bağdat'ı terketmesinde zamanın karışık durumunun ve siyasî gelişmelerin de rol oynadığını tartışan çağdaş araştırmacı.</div></div>
+    </div>
+  </section>
+
+  <section class="sekme" id="olaylar">
+    <div class="baslik">
+      <h2>Olaylar</h2>
+      <p>Hayat kronolojisi — kategorilere göre blok renkleri</p>
+    </div>
+
+    <div class="lejant" id="lejant">
+      <span class="aktif" data-kat="tumu" style="background:#f3eddf">🗂️ Tümü</span>
+      <span data-kat="c-dogum" style="background:#e1f3e8">🌙 Doğum</span>
+      <span data-kat="c-kayip" style="background:#57606b;color:#fff">🕊️ Aile ve Bunalım</span>
+      <span data-kat="c-ilim" style="background:#e0f2ef">🕌 İlim ve Tasavvuf</span>
+      <span data-kat="c-eser" style="background:#e9effc">📖 Eser</span>
+      <span data-kat="c-saray" style="background:#faf2da">👑 Saray ve Siyaset</span>
+      <span data-kat="c-sefer" style="background:#ffeadd">🧭 Sefer</span>
+      <span data-kat="c-vefat" style="background:#3a3f46;color:#fff">🕋 Vefat</span>
+    </div>
+
+    <div class="zaman">
+      <div class="z-item c-dogum"><div class="z-bilgi"><span class="z-yas">0 yaş</span><span class="z-tarih">450 <span class="h">| M. 1058 · Tûs</span></span></div>
+        <div class="z-kart k-dogum" data-derin="dogum"><div class="z-icerik"><div class="z-bas"><h4>Doğum</h4><span class="z-kat">🌙 Doğum</span></div><p>İran'ın Horasan bölgesinde, yetiştirdiği âlimler ve devlet adamlarıyla tanınan Tûs'ta (bugünkü Meşhed) dünyaya geldi. Hüccetülislâm ve Zeynüddin lakaplarıyla anılır; künyesi Ebû Hâmid'dir. 451'de (1059) doğduğu şeklinde bir kayıt varsa da bu bilgi itimada şayan görülmez. Ortaçağ Batı skolastiklerince <b>Abuhamet</b> ve <b>Algazel</b> diye tanındı. Babası Muhammed, Tûs'ta iplikçilik (gazzâl) yapan zühd ehli bir adamdı.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Tûs</div></div>
+      </div>
+      <div class="z-item c-ilim"><div class="z-bilgi"><span class="z-yas">15 yaş</span><span class="z-tarih">465 <span class="h">| M. 1073</span></span></div>
+        <div class="z-kart k-ilim"><div class="z-icerik"><div class="z-bas"><h4>İlk Öğrenim</h4><span class="z-kat">🕌 İlim</span></div><p>Okuma yazma, Kur'ân-ı Kerîm'in ezberlenmesi, dil bilgisi ve aritmetik gibi dönemin geleneksel ilk öğrenimini, babasının kendisini emanet ettiği sûfî bir dostun himayesinde gördü. İleri düzeydeki ilk öğrenimine 465'te (1073) <a class="ad-link" data-ad="Râzkânî">Ahmed b. Muhammed er-Râzkânî</a>'den fıkıh dersleri alarak başladı.</p></div><div class="z-konum">Tûs</div></div>
+      </div>
+      <div class="z-item c-ilim"><div class="z-bilgi"><span class="z-yas">y. 15–20</span><span class="z-tarih">y. 466–471 <span class="h">| y. 1073–1078</span></span></div>
+        <div class="z-kart k-ilim"><div class="z-icerik"><div class="z-bas"><h4>Cürcân Tahsili ve Taʿlîḳa</h4><span class="z-kat">🕌 İlim</span></div><p>Cürcân'a giderek <a class="ad-link" data-ad="Ebü'l-Kāsım el-İsmâilî">Ebü'l-Kāsım el-İsmâilî</a>'nin öğrencisi oldu; yaygın görüşün aksine fıkıh yanında hadis de okudu. Dönüş yolunda eşkıya ders notlarını (taʿlîka) alıverdi; reis, "bilgileri hâfızaya koymak yerine kâğıtlarda bırakmışsın" diye alay edip notları iade etti. Bu eleştiriyi Allah'ın bir ikazı sayan Gazzâlî, üç yıl içinde notların tamamını ezberlediğini belirtir.</p></div><div class="z-konum">Cürcân</div></div>
+      </div>
+      <div class="z-item c-ilim"><div class="z-bilgi"><span class="z-yas">y. 22</span><span class="z-tarih">473 <span class="h">| M. 1080</span></span></div>
+        <div class="z-kart k-ilim"><div class="z-icerik"><div class="z-bas"><h4>Nîşâbur Nizâmiye ve Cüveynî</h4><span class="z-kat">🕌 İlim</span></div><p>Bir grup Tûslu gençle Nîşâbur'daki Nizâmiye Medresesi'ne girdi ve dönemin en tanınmış kelâm âlimi <a class="ad-link" data-ad="Cüveynî">İmâmü'l-Haremeyn el-Cüveynî</a>'nin öğrencisi olma şansını elde etti. Şâfiî fıkhı, hilâf, cedel, kelâm ve mantıkta parlak bir âlim olarak yetişti; hikmet ve felsefe de okudu. "Gazzâlî derin bir denizdir" diyen hocası, el-Menḫûl'ü görünce "Beni sağken mezara gömdün; ölümümü bekleyemez miydin?" dedi.</p></div><div class="z-konum">Nîşâbur</div></div>
+      </div>
+      <div class="z-item c-tasavvuf"><div class="z-bilgi"><span class="z-yas">y. 25</span><span class="z-tarih">y. 476–477 <span class="h">| y. 1083–1084</span></span></div>
+        <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>Ebû Ali el-Fârmedî ile Görüşmeler</h4><span class="z-kat">📿 Tasavvuf</span></div><p><a class="ad-link" data-ad="Fârmedî">Ebû Ali el-Fârmedî</a>, Kuşeyrî'nin öğrencilerinden olup Tûs ve Nîşâbur sûfîlerinin meşhurlarından biri hâline gelmiş bir şeyhti; Gazzâlî'yi tasavvufî pratiklere yönelten kişinin o olduğu söylenir. Fakat bu dönemdeki ilgi görüşmelerle sınırlı kaldı; şeyhin 477'de (1084) vefatı üzerine Gazzâlî kelâm ve felsefe ile meşgul olmayı sürdürdü.</p></div><div class="z-konum">Tûs · Nîşâbur</div></div>
+      </div>
+      <div class="z-item c-saray"><div class="z-bilgi"><span class="z-yas">y. 27</span><span class="z-tarih">478 <span class="h">| M. 1085</span></span></div>
+        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Nizâmülmülk Karargâhı</h4><span class="z-kat">👑 Saray</span></div><p>Cüveynî'nin vefatı üzerine kültürlü vezir <a class="ad-link" data-ad="Nizâmülmülk">Nizâmülmülk</a>'ün nerede olduğu bilinmeyen karargâhına gitti; daha yirmi sekiz yaşında olmasına rağmen saygıyla karşılandı. Altı yıl boyunca âlimler, din büyükleri ve edebiyatçılardan oluşan bu entelektüel çevrede ilmî müzakere ve tartışmalarla başarısını ve ününü artırdı: "Daha önce Horasan'ın imamı iken şimdi de Irak'ın imamı oldu."</p></div><div class="z-konum">Vezir Karargâhı</div></div>
+      </div>
+      <div class="z-item c-saray c-eser"><div class="z-bilgi"><span class="z-yas">y. 33</span><span class="z-tarih">Cemâziyelevvel 484 <span class="h">| M. Temmuz 1091</span></span></div>
+        <div class="z-kart k-saray" data-derin="bagdat"><div class="z-icerik"><div class="z-bas"><h4>Bağdat Nizâmiye Müderrisliği</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Vezir tarafından Bağdat Nizâmiye Medresesi müderrisliğine tayin edildi; <a class="ad-link" data-ad="Halife Muktedî-Biemrillâh">Halife Muktedî-Biemrillâh</a>'ın ilgi ve desteğine mazhar oldu. Dört yıl süren bu dönem kitap telifi bakımından en verimli devresidir; içlerinde Hanbelî âlimlerinin de bulunduğu 300'e yakın öğrenciye ders verdi.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Bağdat</div></div>
+      </div>
+      <div class="z-item c-eser"><div class="z-bilgi"><span class="z-yas">y. 33–36</span><span class="z-tarih">y. 486–488 <span class="h">| y. 1091–1094</span></span></div>
+        <div class="z-kart k-eser" data-derin="tehafut"><div class="z-icerik"><div class="z-bas"><h4>Felsefe İncelemeleri ve Tehâfüt</h4><span class="z-kat">📖 Eser</span></div><p>Yaklaşık iki yıl süren incelemelerle Meşşâî-İşrâkī felsefeyi derinden kavradı; bir yıl da yeni bilgileri gözden geçirerek filozofların doğru ve yanlış görüşlerini şüpheye yer bırakmayacak şekilde tesbit etti. Önce <a class="kitap-link" data-ad="Maḳāṣıdü'l-felâsife">Maḳāṣıdü'l-felâsife</a> ile felsefeyi tarafsız tanıttı, ardından <a class="kitap-link" data-ad="Tehâfütü'l-felâsife">Tehâfütü'l-felâsife</a> ile eleştirdi.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Bağdat</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Tehâfütü'l-felâsife">Tehâfütü'l-felâsife</a> · <a class="kitap-link" data-ad="Maḳāṣıdü'l-felâsife">Maḳāṣıdü'l-felâsife</a></div></div>
+      </div>
+      <div class="z-item c-eser"><div class="z-bilgi"><span class="z-yas">y. 36</span><span class="z-tarih">y. 487–488 <span class="h">| y. 1094–1095</span></span></div>
+        <div class="z-kart k-eser" data-derin="batini"><div class="z-icerik"><div class="z-bas"><h4>Bâtınîlik İncelemeleri</h4><span class="z-kat">📖 Eser</span></div><p>Bir düşünceyi tanıyıp tarafsız bilgi vermeden eleştirmenin ilim anlayışıyla bağdaşmadığı kanaatiyle yöntemini farklı takip etti; bâtınî imamın yanılmazlığı yerine Peygamber'in yanılmazlığı ilkesini savundu. İlk olarak <a class="kitap-link" data-ad="el-Müstaẓhirî">el-Müstaẓhirî</a>'yi kaleme aldı.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Bağdat</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="el-Müstaẓhirî">el-Müstaẓhirî (Feḍâʾiḥü'l-Bâṭıniyye)</a></div></div>
+      </div>
+      <div class="z-item c-kayip"><div class="z-bilgi"><span class="z-yas">37 yaş</span><span class="z-tarih">488 Receb <span class="h">| M. Temmuz 1095</span></span></div>
+        <div class="z-kart k-kayip" data-derin="kriz"><div class="z-icerik"><div class="z-bas"><h4>Şüphe Krizi ve Fikrî Bunalım</h4><span class="z-kat">🕊️ Bunalım</span></div><p>Kelâm, felsefe, Bâtınîlik ve tasavvuf hakkındaki çalışmalarının sonucu onu zihin ve ruh dünyasında kelimenin tam anlamıyla bir bunalıma sürükledi. İlmî başarı ve şöhretinin üzerini örttüğü şüphe temâyülü, tasavvufu temelden kavramasının da etkisiyle yeniden ve çok daha etkili bir şekilde ortaya çıktı; bilgi meseleleri yanında kendisini ahlâkî bakımdan da sorguluyordu. Ününü ve mevkini terketmeye râzı olmayan nefsiyle altı ay mücadele etti.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Bağdat</div></div>
+      </div>
+      <div class="z-item c-saray"><div class="z-bilgi"><span class="z-yas">37 yaş</span><span class="z-tarih">Zilkade 488 <span class="h">| M. Kasım 1095</span></span></div>
+        <div class="z-kart k-saray" data-derin="azil"><div class="z-icerik"><div class="z-bas"><h4>Bağdat'tan Ayrılış</h4><span class="z-kat">👑 Saray</span></div><p>Duası kabul edilip gönlünün makam, mal, evlât ve dostlardan ayrılmaya râzı olması üzerine Bağdat'la bütün ilişkilerini kesme kararı aldı; ailesine yetecek miktardan fazla olan bütün malını muhtaçlara dağıttı. Asıl niyetini öğrenmelerini istemediği için Mekke'ye gideceğini açıkladı ve Nizâmiye'deki mevkisini <a class="ad-link" data-ad="Kardeşi">kardeşi Ahmed el-Gazzâlî</a>'ye bırakarak ayrıldı.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Bağdat → Dımaşk</div></div>
+      </div>
+      <div class="z-item c-tasavvuf"><div class="z-bilgi"><span class="z-yas">y. 37–39</span><span class="z-tarih">y. 488–490 <span class="h">| y. 1095–1097</span></span></div>
+        <div class="z-kart k-tasavvuf" data-derin="inziva"><div class="z-icerik"><div class="z-bas"><h4>Şam İnzivâsı</h4><span class="z-kat">📿 Tasavvuf</span></div><p>İki yıla yakın Şam'da kaldı; Emeviyye Camii'ne çekilerek nefsini terbiye etmek, ahlâkını güzelleştirmek ve kalbini arındırmak maksadıyla riyâzet ve mücâhede ile meşgul oldu. Ardından Kudüs'e gitti ve bir süre orada da inzivâ hayatı yaşadı.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Dımaşk</div></div>
+      </div>
+      <div class="z-item c-tasavvuf c-eser"><div class="z-bilgi"><span class="z-yas">y. 38–39</span><span class="z-tarih">y. 489–490 <span class="h">| y. 1096–1097</span></span></div>
+        <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>Kudüs ve er-Risâletü'l-ḳudsiyye</h4><span class="z-kat">📿 Tasavvuf</span><span class="z-kat">📖 Eser</span></div><p>Kudüs'te bir süre inzivâ hayatı yaşadı; buradaki insanlar için, sonradan <a class="kitap-link" data-ad="İḥyâʾü ʿulûmi'd-dîn">İḥyâʾü ʿulûmi'd-dîn</a>'in bir bölümünü teşkil edecek olan <a class="kitap-link" data-ad="er-Risâletü'l-ḳudsiyye">er-Risâletü'l-ḳudsiyye</a>'yi yazdı.</p></div><div class="z-konum">Kudüs</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="er-Risâletü'l-ḳudsiyye">er-Risâletü'l-ḳudsiyye</a></div></div>
+      </div>
+      <div class="z-item c-sefer"><div class="z-bilgi"><span class="z-yas">y. 38</span><span class="z-tarih">y. 489–490 <span class="h">| y. 1096–1097</span></span></div>
+        <div class="z-kart k-sefer"><div class="z-icerik"><div class="z-bas"><h4>Hac ve Hicaz</h4><span class="z-kat">🧭 Sefer</span></div><p>Hac farîzasını yerine getirdi; Mekke ve Medine'nin bereketlerinden nasibini alma ve Resûlullah'ı (s.a.v.) ziyaret etme düşüncesiyle Hicaz'a gitti. Kudüs ve Hicaz seyahatiyle Bağdat ve Horasan'a dönüşü iki yıla yakın bir süre içinde vuku buldu.</p></div><div class="z-konum">Hicaz</div></div>
+      </div>
+      <div class="z-item c-tasavvuf c-eser"><div class="z-bilgi"><span class="z-yas">y. 38–44</span><span class="z-tarih">y. 489–495 <span class="h">| y. 1096–1102</span></span></div>
+        <div class="z-kart k-tasavvuf" data-derin="ihya"><div class="z-icerik"><div class="z-bas"><h4>İḥyâ ve İnzivâ Telifleri</h4><span class="z-kat">📿 Tasavvuf</span><span class="z-kat">📖 Eser</span></div><p>On bir yıl sürdüğünü belirttiği ve kendisine "saymakla bitirilemeyecek durumları" keşfetme imkânı verdiğini söylediği bu halvet döneminde baş eseri <a class="kitap-link" data-ad="İḥyâʾü ʿulûmi'd-dîn">İḥyâʾü ʿulûmi'd-dîn</a>'i kaleme aldı; esmâ-i hüsnâya dair eseri, Cevâhirü'l-Ḳurʾân ve Bidâyetü'l-hidâye'yi de bu dönemde yazdı.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Şam · Kudüs · Tûs</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="İḥyâʾü ʿulûmi'd-dîn">İḥyâʾü ʿulûmi'd-dîn</a></div></div>
+      </div>
+      <div class="z-item c-ilim c-eser"><div class="z-bilgi"><span class="z-yas">y. 39–41</span><span class="z-tarih">y. 490–493 <span class="h">| y. 1097–1099</span></span></div>
+        <div class="z-kart k-ilim"><div class="z-icerik"><div class="z-bas"><h4>Horasan'da Bâtınî Reddiyeleri</h4><span class="z-kat">🕌 İlim</span><span class="z-kat">📖 Eser</span></div><p>Bağdat'ta Ḥüccetü'l-ḥaḳḳ, Hemedan'da Mufaṣṣılü'l-ḫilâf, Tûs'ta ed-Dürc ve <a class="kitap-link" data-ad="el-Ḳısṭâsü'l-müstaḳīm">el-Ḳısṭâsü'l-müstaḳīm</a>'i kaleme aldı; Hemedan'da Bâtınîler'in "dört mesele" hakkında sordukları sorulara cevap yazdı. Kudüs'ün 492'de (1099) Haçlılarca işgal edilmesinden önce Horasan'da bulunuyor ve bu yöredeki çeşitli şehirleri dolaşıyordu.</p></div><div class="z-konum">Hemedan · Tûs</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="el-Ḳısṭâsü'l-müstaḳīm">el-Ḳısṭâsü'l-müstaḳīm</a></div></div>
+      </div>
+      <div class="z-item c-saray c-eser"><div class="z-bilgi"><span class="z-yas">48 yaş</span><span class="z-tarih">Zilkade 499 <span class="h">| M. Temmuz 1106</span></span></div>
+        <div class="z-kart k-saray" data-derin="mucaddid"><div class="z-icerik"><div class="z-bas"><h4>Nîşâbur'a Dönüş ve İkinci Hocalık</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Nefis muhasebesinin ardından sultanın ısrarlı davetini reddetmenin nezaketsizlik olacağını düşünerek ulema ile istişare etti ve uzleti terketme yönünde görüş birliğine vardı; dönemin Selçuklu hükümdarı <a class="ad-link" data-ad="Sultan Sencer">Sencer</a>'in veziri ve Nizâmülmülk'ün oğlu <a class="ad-link" data-ad="Fahrülmülk">Fahrülmülk</a>'ün iknasıyla Nîşâbur Nizâmiye'de tekrar öğretime başladı. Bu dönemde kaleme aldığı <a class="kitap-link" data-ad="el-Münḳıẕ min eḍ-ḍalâl">el-Münḳıẕ</a>'da "her asrın başında bir müceddid" hadisine atıfta bulunur.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Nîşâbur</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="el-Münḳıẕ min eḍ-ḍalâl">el-Münḳıẕ min eḍ-ḍalâl</a></div></div>
+      </div>
+      <div class="z-item c-ilim c-eser"><div class="z-bilgi"><span class="z-yas">51 yaş</span><span class="z-tarih">503 <span class="h">| M. 1109</span></span></div>
+        <div class="z-kart k-ilim"><div class="z-icerik"><div class="z-bas"><h4>Tûs'a Dönüş ve Son Telifler</h4><span class="z-kat">🕌 İlim</span><span class="z-kat">📖 Eser</span></div><p>Üç yılı aşkın resmî görevin ardından sağlığının da zorlaşmasıyla Tûs'a döndü; evinin yanına fukaha için bir medrese, sûfiyye için de bir hankah yaptırdı. Ömrünün son demlerini ders okutmak, gönül ehlinin sohbetlerine katılmak ve eser yazmakla geçirdi. Ġāyetü'l-ġavr, <a class="kitap-link" data-ad="el-Müstaṣfâ min ʿilmi'l-uṣûl">el-Müstaṣfâ</a>, ed-Dürretü'l-fâḫire, İlcâmü'l-ʿavâm ve Minhâcü'l-ʿâbidîn bu yılların ürünüdür.</p></div><div class="z-konum">Tûs</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="el-Müstaṣfâ min ʿilmi'l-uṣûl">el-Müstaṣfâ min ʿilmi'l-uṣûl</a></div></div>
+      </div>
+      <div class="z-item c-vefat c-eser"><div class="z-bilgi"><span class="z-yas">53 yaş</span><span class="z-tarih">14 Cemâziyelâhir 505 <span class="h">| M. 18 Aralık 1111</span></span></div>
+        <div class="z-kart k-vefat" data-derin="vefat"><div class="z-icerik"><div class="z-bas"><h4>Vefat ve Kabri</h4><span class="z-kat">🕋 Vefat</span><span class="z-kat">📖 Eser</span></div><p>Tûs'ta vefat etti; ünlü şair Firdevsî'nin mezarının yakınına defnedildi. Günümüzde halk arasında Hârûniyye adıyla anılan yapının bahçesindeki kabir onun mezarı olarak gösterilir; tuğladan âbidevî bu yapının Gazzâlî'nin türbesi olması kuvvetle muhtemeldir.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Tûs</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sekme" id="eserler">
+    <div class="baslik">
+      <h2>Eserleri</h2>
+      <p>On sekiz eserin başlıcası — baş eseri, din ilimlerinin ihya'sı olan İḥyâʾü ʿulûmi'd-dîn'dir</p>
+    </div>
+
+    <div class="detay-ayar">
+      <span class="detay-etiket">Detay:</span>
+      <button class="detay-btn aktif" data-durum="acik">Açık</button>
+      <button class="detay-btn" data-durum="kapali">Gizli</button>
+    </div>
+
+    <div class="grup"><span class="g-ikon">💎</span><span class="g-yazi">İhyâ ve Tasavvuf</span><span class="adet">5</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-tasavvuf" data-derin="ihya"><div class="ust"><span class="sira">1</span></div><h4>İḥyâʾü ʿulûmi'd-dîn</h4><div class="kopya">Arapça • inzivâ dönemi (y. 489–495/1096–1102)</div><div class="not">Baş eseri; İslâm toplumundaki dinî ve ahlâkî yozlaşmaya karşı topyekün bir ıslah düşüncesiyle kaleme alındı. ibâdât, muâmelât, mühlikât ve münecciyât olmak üzere dört ana bölüm (40 kitap) hâlinde din ilimlerinin ihyâsını hedefler.</div></div>
+      <div class="kart blg k-tasavvuf" data-derin="kimya"><div class="ust"><span class="sira">2</span></div><h4>Kimyâ-yı Saʿâdet</h4><div class="kopya">Farsça • inzivâ dönemi</div><div class="not">İḥyâ'nın Farsça konuşan çevreler için hazırlanmış muhtasarı; dünya ve âhiret saadetinin yollarını gösterir.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">3</span></div><h4>Bidâyetü'l-hidâye</h4><div class="kopya">Arapça • inzivâ dönemi</div><div class="not">Hidayetin başlangıcı; günlük ibadet ve ahlâka dair pratik bir dinî rehber.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">4</span></div><h4>Minhâcü'l-ʿâbidîn</h4><div class="kopya">Arapça • Tûs (503–505/1109–1111)</div><div class="not">Son teliflerindendir; âbidin ibadete giden yolunda ilim, irade, mânia, avâtız gibi aşamaları ve nefsin çıkardığı engelleri aşmayı gösterir.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">5</span></div><h4>Eyyühe'l-veled</h4><div class="kopya">Farsça • risâle</div><div class="not">Kendisine müracaat eden bir talebeye hitaben yazılmış nasihat risâlesi; ilmin âhirete hazırlık için lüzumlu hâline dikkat çeker.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🧠</span><span class="g-yazi">Felsefe ve Mantık</span><span class="adet">4</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim" data-derin="tehafut"><div class="ust"><span class="sira">6</span></div><h4>Tehâfütü'l-felâsife</h4><div class="kopya">Arapça • Bağdat (y. 487/1094)</div><div class="not">Filozofların (Meşşâîler'in) görüşlerini ele alır; yirmi meseleden üçünde onları tekfir eder: âlemin ezelîliği, Allah'ın cüz'iyyâtı bilmediği ve bedenle haşrin (âhirette yeniden diriliş) inkârı.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">7</span></div><h4>Maḳāṣıdü'l-felâsife</h4><div class="kopya">Arapça • Bağdat (y. 487/1094)</div><div class="not">Filozofların maksatları; felsefî bilgilerin tarafsız bir tanıtımı. Latinceye "Logica et Philosophia Algazelis Arabis" adıyla çevrildi.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">8</span></div><h4>Miʿyârü'l-ʿilm</h4><div class="kopya">Arapça • Bağdat dönemi</div><div class="not">İlmin ölçüsü; mantık bahislerini din ilimlerinin hizmetine sokan, fıkıh ve kelâmın mantıkla istikamet kazanacağını savunan eser.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">9</span></div><h4>Mîzânü'l-ʿamel</h4><div class="kopya">Arapça • Bağdat dönemi</div><div class="not">Amelin tartısı; ahlâk ve kalp terbiyesine dair. Sonunda "şüphe gerçeğe ulaşmanın tek yoludur" değerlendirmesini içerir.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🕌</span><span class="g-yazi">Kelâm ve Usûl</span><span class="adet">4</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim" data-derin="mustasfa"><div class="ust"><span class="sira">10</span></div><h4>el-Müstaṣfâ min ʿilmi'l-uṣûl</h4><div class="kopya">Arapça • Tûs (503/1109 sonrası)</div><div class="not">Usûl-i fıkıhta son sözü; fıkhî kaynakları özlü bir düzene kavuşturur, dört eksenli sistematik yapısıyla müteahhirîn usûlünün temel metinlerindendir.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">11</span></div><h4>el-İḳtiṣâd fi'l-iʿtiḳād</h4><div class="kopya">Arapça • Bağdat dönemi</div><div class="not">İtikadda orta yol; kelâmın halka değil ehle mahsus olduğunu öğreten, itikadı mutedil bir kelâm diliyle temellendiren eser.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">12</span></div><h4>İlcâmü'l-ʿavâm ʿan ʿilmi'l-kelâm</h4><div class="kopya">Arapça • Tûs (503/1109 sonrası)</div><div class="not">Halk tabakasını kelâm ilmiyle uğraşmaktan uzaklaştırmayı amaçlayan; kelâmın ehliyetli kimselere mahsus olduğunu vurgulayan eser.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">13</span></div><h4>er-Risâletü'l-ḳudsiyye</h4><div class="kopya">Arapça • Kudüs (y. 489/1096)</div><div class="not">Kudüs halkı için akāid alanında kaleme aldığı risâle; sonradan İḥyâʾü ʿulûmi'd-dîn'in bir bölümünü teşkil etti.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">⚖️</span><span class="g-yazi">Fıkıh</span><span class="adet">2</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-saray"><div class="ust"><span class="sira">14</span></div><h4>el-Vecîz fî fürûʿi'l-meẕheb</h4><div class="kopya">Arapça • Bağdat dönemi</div><div class="not">Şâfiî fıkhının muhtasarı; el-Basîṭ, el-Vasîṭ ve el-Vecîz üçlüsünün en kısası.</div></div>
+      <div class="kart blg k-saray"><div class="ust"><span class="sira">15</span></div><h4>el-Menḫûl</h4><div class="kopya">Arapça • Nîşâbur (Cüveynî dönemi)</div><div class="not">Usûl-i fıkıhtaki ilk tecrübesi; hocası Cüveynî'ye "Beni sağken mezara gömdün; ölümümü bekleyemez miydin?" dedirten gençlik eseri.</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">🧭</span><span class="g-yazi">Arayış ve Reddiyeler</span><span class="adet">3</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim" data-derin="munkiz"><div class="ust"><span class="sira">16</span></div><h4>el-Münḳıẕ min eḍ-ḍalâl</h4><div class="kopya">Arapça • Nîşâbur II. hocalık (y. 501/1108)</div><div class="not">Dalâletten kurtuluş; hakikati arayışının hikâyesi — kelâm, felsefe, Bâtınîlik ve tasavvufa dair değerlendirmeleriyle şüphe krizini ve tasavvufa yönelişini anlatan ünlü eseri.</div></div>
+      <div class="kart blg k-saray" data-derin="batini"><div class="ust"><span class="sira">17</span></div><h4>el-Müstaẓhirî <span class="adis">| Feḍâʾiḥü'l-Bâṭıniyye</span></h4><div class="kopya">Arapça • Bağdat (y. 487/1094)</div><div class="not">Bâtınîliğe karşı ilk reddiye; bâtınî imamın yanılmazlığı yerine Peygamber'in yanılmazlığı ilkesini savunur. Eserin adı, halife Müstaẓhir-Billâh'a izâfe edilir.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">18</span></div><h4>el-Ḳısṭâsü'l-müstaḳīm</h4><div class="kopya">Arapça • Tûs, inzivâ dönemi</div><div class="not">Doğru ölçü; Bâtınî iddialarına karşı hakikatin anlaşılmasında Kur'an'a dayanan ölçülere işaret eder.</div></div>
+    </div>
+  </section>
+
+  <section class="sekme" id="sozler">
+    <div class="baslik">
+      <h2>Sözleri</h2>
+      <p>Mübârek sözleri ve kitaplarından seçmeler</p>
+    </div>
+
+    <div class="grup"><span class="g-ikon">💬</span><span class="g-yazi">Mübârek Sözlerinden</span><span class="adet">4</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-ilim"><h4>Şüphe ve Hakikat</h4><div class="not">"Şüphe gerçeğe ulaşmanın tek yoludur. Şüphe etmeyen düşünemez; düşünemeyen gerçeği göremez; gerçeği göremeyen de körlük ve dalâlete saplanıp kalır."</div></div>
+      <div class="kart blg k-ilim"><h4>Kesin Bilgi</h4><div class="not">"Kesin bilgi, her türlü şüphe ve hata ihtimalinden arınmış olmalıdır."</div></div>
+      <div class="kart blg k-ilim"><h4>Zorunlu Bilgiler Aranmaz</h4><div class="not">"Aklın zorunlu bilgileri aranmamalıdır; çünkü onlar zaten mevcuttur. Mevcut olanın araştırılması halinde bu bilgiler gözden uzaklaşıp gizlenir."</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Kalbe Atılan Nur</h4><div class="not">"İki ay kadar süren bu şüphe hastalığından, Allah'ın kalbime attığı bir nurla kurtuldum ve sıhhat ile itidale kavuştum."</div></div>
+    </div>
+
+    <div class="grup"><span class="g-ikon">✍️</span><span class="g-yazi">Kitablarından</span><span class="adet">2</span><div class="cizgi"></div></div>
+    <div class="kartlar">
+      <div class="kart blg k-tasavvuf"><h4>Mevki Terkettiren İlim</h4><div class="kopya">el-Münḳıẕ'ten</div><div class="not">"O zaman mevki kazandıran ilmi öğretiyordum...; şimdi ise mevki terkettiren ilme çağırıyorum."</div></div>
+      <div class="kart blg k-ilim"><h4>Kendi Mezhebini Kendin Bul</h4><div class="kopya">Mîzânü'l-ʿamel'den</div><div class="not">"İnsan, kendi mezhebini zihnî ve aklî faaliyetleriyle yine kendisi bulmalıdır; ataların veya üstatların mezhebine taassupla bağlanmak, temelinde kıskançlık ve bencilliğin yattığı mezhepçiliğe götürür."</div></div>
+    </div>
+  </section>
+</main>
+
+<div class="blg-ust hidden" id="blgUst"></div>
+<div class="blg-popup hidden" id="blgPop">
+  <div class="p-bas">
+    <h3 id="blgBaslik"></h3>
+    <button class="p-kapat" id="blgKapat" title="Kapat">✕</button>
+  </div>
+  <div class="p-tur hidden" id="blgTur"></div>
+  <div class="p-satir hidden" id="satirGrup"><b>Grup</b><span id="blgGrup"></span></div>
+  <div class="p-satir hidden" id="satirTarih"><b>Dönem / Kaynak</b><span id="blgTarih"></span></div>
+  <div class="p-satir hidden" id="satirOnemli"><b>Öne Çıkanlar</b><span id="blgOnemli"></span></div>
+  <div class="p-satir hidden" id="satirMetin"><b>Açıklama</b><span id="blgMetin"></span></div>
+  <div class="p-satir hidden" id="satirDetay"><b>Detaylı Metin</b><span id="blgDetay"></span></div>
+</div>
+
+<footer>
+  <b>İmâm-ı Gazâlî Hazretleri (Hüccetü'l-İslâm) Biyografi Projesi</b> • HTML + CSS + JS interaktif animasyon<br>
+  İçerik esası: TDV İslâm Ansiklopedisi — "Gazzâlî", M. Çağrıcı ve arkadaşları (İstanbul 1996, c. 13) | <a href="../index.html">← Biyografiler anasayfası</a>
+</footer>
+
+<script>
+  const tabBar = document.getElementById('tabBar');
+  const sekmeler = document.querySelectorAll('.sekme');
+
+  function goster(id) {
+    document.querySelectorAll('nav .tab').forEach(t => t.classList.toggle('aktif', t.dataset.sekme === id));
+    sekmeler.forEach(s => s.classList.toggle('aktif', s.id === id));
+  }
+
+  tabBar.addEventListener('click', e => {
+    const btn = e.target.closest('.tab');
+    if (!btn) return;
+    const id = btn.dataset.sekme;
+    if (location.hash.slice(1) !== id) location.hash = id;
+    else goster(id);
+  });
+
+  window.addEventListener('hashchange', () => {
+    const id = location.hash.slice(1);
+    if (id && document.getElementById(id)) goster(id);
+  });
+
+  const ilkSekme = location.hash.slice(1);
+  if (ilkSekme && document.getElementById(ilkSekme)) goster(ilkSekme);
+
+  /* Olaylar — lejant çipleriyle filtre */
+  const lejant = document.getElementById('lejant');
+  if (lejant) {
+    const zamanKartlari = [...document.querySelectorAll('#olaylar .z-item')];
+    const eseriVar = z => z.querySelector('.z-kitap') !== null;
+    lejant.addEventListener('click', e => {
+      const chip = e.target.closest('span[data-kat]');
+      if (!chip) return;
+      const kat = chip.dataset.kat;
+      const zatenAktif = chip.classList.contains('aktif');
+      lejant.querySelectorAll('span[data-kat]').forEach(s => s.classList.remove('aktif'));
+      if (kat === 'tumu' || zatenAktif) {
+        zamanKartlari.forEach(z => z.classList.remove('gizli'));
+        lejant.querySelector('span[data-kat="tumu"]').classList.add('aktif');
+        return;
+      }
+      chip.classList.add('aktif');
+      zamanKartlari.forEach(z => {
+        const uygun = kat === 'c-ilim' ? (z.classList.contains('c-ilim') || z.classList.contains('c-tasavvuf'))
+                   : kat === 'c-eser' ? (z.classList.contains('c-eser') || eseriVar(z))
+                   : z.classList.contains(kat);
+        z.classList.toggle('gizli', !uygun);
+      });
+    });
+  }
+
+  /* Olaylar — Kitaplar başlığına adet */
+  document.querySelectorAll('#olaylar .z-kitap').forEach(k => {
+    const n = k.querySelectorAll('a.kitap-link').length;
+    if (n > 1) {
+      const bas = k.querySelector('.kitap-bas');
+      if (bas) bas.textContent = bas.textContent + ' (' + n + ')';
+    }
+  });
+
+  /* Eserler — detay göster/gizle */
+  const eserlerSec = document.getElementById('eserler');
+  if (eserlerSec) {
+    document.querySelectorAll('#eserler .detay-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#eserler .detay-btn').forEach(b => b.classList.toggle('aktif', b === btn));
+        eserlerSec.classList.toggle('kapali', btn.dataset.durum === 'kapali');
+      });
+    });
+  }
+
+  /* Kişiler ve Eserler — adlar link gibi, tıklayınca bilgi kutusu */
+  const blgUst = document.getElementById('blgUst');
+  const blgPop = document.getElementById('blgPop');
+  const blgBaslik = document.getElementById('blgBaslik');
+  const blgTur = document.getElementById('blgTur');
+  const blgTarih = document.getElementById('blgTarih');
+  const blgGrup = document.getElementById('blgGrup');
+  const blgOnemli = document.getElementById('blgOnemli');
+  const blgMetin = document.getElementById('blgMetin');
+  const blgDetay = document.getElementById('blgDetay');
+  const satirTur = blgTur;
+  const satirTarih = document.getElementById('satirTarih');
+  const satirGrup = document.getElementById('satirGrup');
+  const satirOnemli = document.getElementById('satirOnemli');
+  const satirMetin = document.getElementById('satirMetin');
+  const satirDetay = document.getElementById('satirDetay');
+
+  const ESER_TUR = {
+    'İḥyâʾü ʿulûmi\'d-dîn': 'Arapça · İhyâ / Tasavvuf',
+    'Kimyâ-yı Saʿâdet': 'Farsça · Tasavvuf',
+    'Bidâyetü\'l-hidâye': 'Arapça · Dinî Rehber',
+    'Minhâcü\'l-ʿâbidîn': 'Arapça · Tasavvuf',
+    'Eyyühe\'l-veled': 'Farsça · Nasihat',
+    'Tehâfütü\'l-felâsife': 'Arapça · Felsefe Eleştirisi',
+    'Maḳāṣıdü\'l-felâsife': 'Arapça · Felsefe Tanıtımı',
+    'Miʿyârü\'l-ʿilm': 'Arapça · Mantık',
+    'Mîzânü\'l-ʿamel': 'Arapça · Ahlâk / Amel',
+    'el-Müstaṣfâ min ʿilmi\'l-uṣûl': 'Arapça · Usûl-i Fıkıh',
+    'el-İḳtiṣâd fi\'l-iʿtiḳād': 'Arapça · Kelâm',
+    'İlcâmü\'l-ʿavâm ʿan ʿilmi\'l-kelâm': 'Arapça · Kelâm',
+    'er-Risâletü\'l-ḳudsiyye': 'Arapça · Akāid',
+    'el-Vecîz fî fürûʿi\'l-meẕheb': 'Arapça · Fıkıh (Şâfiî)',
+    'el-Menḫûl': 'Arapça · Usûl-i Fıkıh',
+    'el-Münḳıẕ min eḍ-ḍalâl': 'Arapça · İlmî Otobiyografi',
+    'el-Müstaẓhirî': 'Arapça · Reddiye (Bâtınîlik)',
+    'el-Ḳısṭâsü\'l-müstaḳīm': 'Arapça · Reddiye / Kur\'an'
+  };
+
+  const ESER_ONEMLI = {
+    'İḥyâʾü ʿulûmi\'d-dîn': 'Baş eseridir; ibâdât, muâmelât, mühlikât ve münecciyât dört ana bölüm (40 kitap) hâlinde, din ilimlerinin ihyâsını ve toplumun dinî-ahlâkî yönden ıslahını hedefler. İnzivâ döneminde (y. 489–495/1096–1102) telif edildi.',
+    'Kimyâ-yı Saʿâdet': 'İḥyâ\'nın Farsça muhtasarı; dünya ve âhiret saadetinin (saadet kimyâsının) yollarını gösterir.',
+    'Bidâyetü\'l-hidâye': 'Hidayetin başlangıcı; günlük ibadet ve ahlâkın pratik yolunu öğreten rehber.',
+    'Minhâcü\'l-ʿâbidîn': 'Son teliflerdendir; âbidin yolunu, nefsin çıkardığı engelleri aşmayı esas alır.',
+    'Eyyühe\'l-veled': 'Kendisine müracaat eden bir talebeye hitaben yazılmış nasihat risâlesi.',
+    'Tehâfütü\'l-felâsife': 'Meşşâî felsefesine yönelik eleştiri; âlemin ezelîliği, Allah\'ın cüz\'iyyâtı bilmemesi ve bedenle haşrin inkârı olmak üzere üç meselede filozofları tekfir eder.',
+    'Maḳāṣıdü\'l-felâsife': 'Filozofların maksatları; felsefî bilginin tarafsız tanıtımı. Latinceye "Logica et Philosophia Algazelis Arabis" (1506) adıyla çevrildi.',
+    'Miʿyârü\'l-ʿilm': 'İlmin ölçüsü; mantığı din ilimlerinin hizmetine sokar.',
+    'Mîzânü\'l-ʿamel': 'Amelin tartısı; ahlâk ve kalp terbiyesi. "Şüphe gerçeğe ulaşmanın tek yoludur" sözünü içerir.',
+    'el-Müstaṣfâ min ʿilmi\'l-uṣûl': 'Usûl-i fıkıhta son sözü; kaynakları özlü bir düzene kavuşturur, müteahhirîn usûlünün temel metinlerindendir.',
+    'el-İḳtiṣâd fi\'l-iʿtiḳād': 'İtikadda orta yol; mutedil kelâm diliyle inancı temellendirir.',
+    'İlcâmü\'l-ʿavâm ʿan ʿilmi\'l-kelâm': 'Halkı kelâm ilmiyle uğraşmaktan uzak tutmayı amaçlar; kelâmın ehliyetli kimselere mahsus olduğunu vurgular.',
+    'er-Risâletü\'l-ḳudsiyye': 'Kudüs halkı için yazılan akāid risâlesi; İḥyâ\'nın bir bölümünü teşkil eder.',
+    'el-Vecîz fî fürûʿi\'l-meẕheb': 'Şâfiî fıkhının muhtasarı; Basît–Vasît–Vecîz üçlüsünün en kısası.',
+    'el-Menḫûl': 'Usûl-i fıkıhtaki ilk tecrübesi; Cüveynî\'nin "Beni sağken mezara gömdün" diyerek övdüğü gençlik eseri.',
+    'el-Münḳıẕ min eḍ-ḍalâl': 'Hakikati arayışının hikâyesi; kelâm, felsefe, Bâtınîlik ve tasavvuf değerlendirmesiyle şüphe krizini ve yönelişini anlatır.',
+    'el-Müstaẓhirî': 'Bâtınîliğe karşı ilk reddiye (Feḍâʾiḥü\'l-Bâṭıniyye); Peygamber\'in yanılmazlığı ilkesini savunur; eser adı halife Müstaẓhir-Billâh\'a izâfedir.',
+    'el-Ḳısṭâsü\'l-müstaḳīm': 'Bâtınî iddialarına karşı hakikatin Kur\'an\'a dayanan ölçülerini gösterir.'
+  };
+
+  const DERIN_METIN = {
+    'dogum': 'Gazzâlî, 450 (1058) yılında İran\'ın Horasan bölgesinde, yetiştirdiği âlimler ve devlet adamlarıyla tanınan Tûs\'ta (bugünkü Meşhed) dünyaya geldi. 451 (1059) doğum kaydı itimada şayan görülmez. Hüccetülislâm, Zeynüddin gibi lakaplarla anılır; künyesi Ebû Hâmid\'dir; bir oğlunun olup olmadığı bilinmemektedir. Batı skolastiğinde Abuhamet ve Algazel diye tanındı. Doğduğu kasabaya nisbetle Tûsî de denilir, fakat onun adını bile unutturacak derecede meşhur olan nisbesi Gazzâlî (Gazâlî) dir. Bu iki nisbeden hangisinin doğru olduğu tartışılmıştır: Zehebî\'nin naklettiği anekdota göre kendisi "İnsanlar beni çift \'z\' ile (Gazzâlî diye) anıyorlar; halbuki ben Gazâle denilen bir köydenim" demiştir. Çoğunluğa göre ise babasının mesleğine (gazzâl: yün eğirici, iplikçi) nisbetle Gazzâlî diye anılmıştır. Fars asıllı olduğu sanılır; babası Tûs\'ta iplikçi dükkânında el emeği ürünü satarak geçimini sağlayan, zühd ve tasavvufa eğilimli Muhammed idi.',
+    'tus': 'Tûs, Horasan bölgesinde yetiştirdiği âlimler ve devlet adamlarıyla tanınan, bugünkü Meşhed\'in bulunduğu şehirdir. Gazzâlî\'nin 450 (1058) doğum ve 505 (1111) vefat yeridir. 465\'te (1073) fıkıh dersleriyle ilk ileri öğrenimi burada başladı; 503\'te (1109) Tûs\'a dönen Gazzâlî evinin yanına fukaha için bir medrese, sûfiyye için de bir hankah yaptırdı. Vefatında ünlü şair Firdevsî\'nin mezarının yakınına defnedildi. Bugün halk arasında Hârûniyye adıyla anılan, çini ve alçı tezyinatı harap olmakla birlikte tuğladan âbidevî bir eser hâlinde ayakta duran yapının bahçesindeki kabir, onun mezarı olarak gösterilir; Yâkūt el-Hamevî ve İbn Battûta gibi müelliflerce ziyaret edilen bu yapının Gazzâlî\'nin türbesi olması kuvvetle muhtemeldir ki Sultan Sencer\'in Merv\'deki türbesiyle aynı planda olması ve Selçuklu mimari özellikleri taşıması bunu destekler.',
+    'bagdat': 'Nizâmülmülk, Cemâziyelevvel 484\'te (Temmuz 1091) Gazzâlî\'yi Bağdat Nizâmiye Medresesi müderrisliğine tayin etti. Dört yıl süren bu dönem kitap telifi bakımından en verimli devresidir; içlerinde Hanbelî âlimlerinden Ebü\'l-Vefâ İbn Akīl ve Ebü\'l-Hattâb el-Kelvezânî\'nin de bulunduğu 300\'e yakın öğrenciye ders verdi. Burada iki yıl Meşşâî-İşrâkī felsefeyi, bir yıl da felsefe hakkında edindiği bilgileri gözden geçirdi; ardından Bâtınîlik incelemelerine koyuldu. Taʿlîḳa ve el-Menḫûl dışında en az yirmi beş eserini Nizâmiye\'den ayrılmadan önce yazmıştır.',
+    'tehafut': 'Bağdat\'ta yaklaşık iki yıl süren incelemeler sayesinde, tenkit etmeyi düşündüğü Meşşâî-İşrâkī felsefeyi derinden kavradı; bir yıl da yeni bilgileri gözden geçirdi ve filozofların doğru ve yanlış görüşlerini şüpheye yer bırakmayacak şekilde tesbit etti. Maḳāṣıdü\'l-felâsife\'de filozofların maksatlarını tarafsızca tanıttıktan sonra Tehâfütü\'l-felâsife\'de eleştirdi. Yirmi meseleden üçünde filozofları küfürle itham etti: âlemin ezelîliği (kıdem-i Âlem), Allah\'ın cüz\'iyyâtı (tikel olayları) bilmemesi ve bedenle haşrin inkârı. Bu eser, İbn Rüşd\'ün Tehâfütü\'t-tehâfüt\'üyle başlayan "tehâfütler tartışması"nı başlatarak İslâm düşünce tarihinde kalıcı iz bıraktı.',
+    'batini': 'Bâtınîliğe yönelik incelemelerinde bir düşünceyi yeterince tanıyıp tarafsız bilgi vermeden eleştirmenin ilim anlayışıyla bağdaşmadığı kanaatiyle önce hareketin ilkelerini anlattı; bu yöntemi bazılarınca eleştirildi. Bâtınîlik\'teki imamın yanılmazlığı yerine Peygamber\'in yanılmazlığı ilkesini savundu; Eş\'arî\'nin Mu\'tezile\'yi kendi metotlarıyla yıkması gibi Bâtınîler\'e karşı aynı tenkit yöntemiyle mücadele etti ve onların düşmanlığını kazandı. İlk reddiyesi el-Müstaẓhirî (Feḍâʾiḥü\'l-Bâṭıniyye) idi.',
+    'kriz': 'Dört araştırma halkasının (kelâm, felsefe, Bâtınîlik, tasavvuf) sonucu onu kelimenin tam anlamıyla bir fikrî bunalıma sürükledi. Bağdat Nizâmiye\'nin büyük müderrisinin görünüşte başarılı hayatı gün geçtikçe şüphelerle altüst oluyordu; şüpheciliğin tabiatında olduğunu kendisi belirtir. Sadece bilgi problemleri değil, ahlâkî bakımdan da kendini sorguluyor; makam ve şöhret arzusunun niyetine karıştığını farkediyordu. Ününü ve mevkini terketmeye râzı olmayan nefsiyle altı ay mücadele etti; şüphe krizi giderek psikolojik depresyonlara, iştahsızlık ve hazımsızlık gibi fizyolojik rahatsızlıklara yol açtı. Tabiplerin ilâçlı tedavisi sonuç vermeyince hastalığın psikolojik sebeplerden kaynaklandığına hükmetti. Gazzâlî, iki ay kadar süren ve "hastalık ve safsata" diye nitelediği bu krizden "Allah\'ın kalbine attığı bir nurla" kurtulduğunu söyler.',
+    'azil': 'Bağdat\'la bütün ilişkilerini kesme kararı, gönlünün makam, mal, evlât ve dostlardan ayrılmaya râzı olmasıyla kesinleşti. Halifenin ve dostlarının gerçek niyetini öğrenmemesi için Mekke\'ye gideceğini açıkladı; medresedeki mevkisini kardeşi Ahmed el-Gazzâlî\'ye bırakarak Zilkade 488\'de (Kasım 1095) ayrıldı. Sonraki araştırmalarda Bağdat\'ı terketmesine siyasî sebepler de ileri sürülmüştür (Berkyaruk ile ihtilâf, Bâtınî suikast endişesi vb.). Bununla birlikte özellikle tasavvufî hâl ve şartlar içinde on yılı aşkın yaşamayı sürdürmesi, ayrılışın asıl sebebinin el-Münḳıẕ\'da belirttiği epistemolojik ve ahlâkî şüphe olduğunu gösterir; Mâcid Fahrî gibi yazarlar zamanın karışık siyasî durumunun da bir ölçüde rol oynadığını kabul eder.',
+    'inziva': 'Gazzâlî, on bir yıl sürdüğünü belirttiği halvet döneminde "saymakla bitirilemeyecek durumları" keşfettiğini söyler. Bu dönemin kronolojisi kaynaklarda farklıdır: Sübkî\'ye göre 488\'de (1095) hac, 489\'da (1096) Dımaşk, Kudüs, tekrar Dımaşk; İbnü\'l-Esîr\'e göre 488\'de Şam, Kudüs, 489\'da hac. Yaygın kabul gören kurguya göre 488 yılının son bir iki ayı ile 489 ve 490\'ın ilk aylarını Suriye-Filistin\'de geçirdi (Emeviyye Camii\'nde riyâzet ve mücâhede; Kudüs\'te inzivâ ve er-Risâletü\'l-ḳudsiyye), ardından Hicaz\'a gidip hac farîzasını yerine getirdi, sonra Bağdat\'a döndü. Ebû Bekir İbnü\'l-Arabî, Cemâziyelâhir 490\'da (Mayıs-Haziran 1097) onunla karşılaştı. Haçlılar\'ın Kudüs\'ü işgal ettiği 492\'de (1099) Horasan\'ın çeşitli şehirlerinde bulunuyordu.',
+    'ihya': 'Baş eseri İḥyâʾü ʿulûmi\'d-dîn, inzivâ döneminde (y. 489–495/1096–1102) kaleme alındı. İsim, üslup ve muhtevası bütünüyle dikkate alındığında, İslâm insanı ve toplumunun içine düştüğü dinî-ahlâkî yozlaşma ve bunun sonucu siyasî istikrarsızlıklar karşısında bir ıslah ve "din ilimlerinin ihyâsı" programıdır. ibâdât, muâmelât, mühlikât ve münecciyât ana bölümleri altında kırk kitapta; inanç, ibadet, ahlâk ve firaset konularıyla kalbin tasfiyesini ve Allah\'a yaklaşmayı öğretir.',
+    'kimya': 'Kimyâ-yı Saʿâdet, İḥyâʾü ʿulûmi\'d-dîn\'in Farsça konuşan çevreler için hazırlanmış muhtasarıdır; dünya ve âhiret saadetini elde etmenin (saadet kimyâsının) yollarını gösterir.',
+    'mustasfa': 'el-Müstaṣfâ min ʿilmi\'l-uṣûl, usûl-i fıkıh alanında son sözüdür. Kaynakları özlü bir düzene kavuşturur; fıkhî kaynakların üçe indirilmesi ve dört eksenli sistematik yapısıyla müteahhirîn usûlünün temel metinleri arasında kendine yer bulmuştur. Tûs\'a dönüş sonrası (503/1109) telif edildi.',
+    'munkiz': 'el-Münḳıẕ min eḍ-ḍalâl (Dalâletten Kurtuluş), Gazzâlî\'nin hakikati arayışının hikâyesidir. Kelâm (ilim), felsefe, Bâtınîlik ve tasavvuf olmak üzere dört araştırma halkasını tartışır; şüphe krizini, dine ve tasavvufa yönelişini, Bağdat\'ı terkedişini ve ilim öğretimine tekrar dönüşünü anlatır. İkinci hocalık döneminde (y. 501/1108) kaleme alınmış; "her asrın başında bir müceddid" hadisine atıfta bulunur.',
+    'mucaddid': 'Gazzâlî, Zilkade 499\'da (Temmuz 1106) Nîşâbur\'a dönerek Nizâmiye\'de tekrar öğretime başladı. Bu dönemde "O zaman mevki kazandıran ilmi öğretiyordum... şimdi ise mevki terkettiren ilme çağırıyorum" der. Dönüşünde, İslâm toplumunun her asrın başında bir müceddide sahip olacağını bildiren hadisin de etkili olduğu söylenir; el-Münḳıẕ\'da bu hadise atıfta bulunur. Onu Nîşâbur\'a döndüren, dönemin Selçuklu hükümdarı Sencer\'in veziri ve Nizâmülmülk\'ün oğlu Fahrülmülk idi. Lâkin ikinci hocalık dönemi, birincisi kadar zevkli ve hareketli geçmedi; yeni bir sükûnetin özlemi ve sağlığının bozulmasıyla üç yılı aşkın resmî görevin ardından Tûs\'a döndü (503/1109).',
+    'vefat': 'Gazzâlî, 14 Cemâziyelâhir 505 (18 Aralık 1111) tarihinde Tûs\'ta vefat etti ve ünlü şair Firdevsî\'nin mezarının yakınına defnedildi. Günümüzde halk arasında Hârûniyye adıyla anılan, çini ve alçı tezyinatı harap olmakla birlikte tuğladan âbidevî bir eser hâlinde ayakta duran yapının bahçesindeki kabir onun mezarı olarak gösterilir. Yâkūt el-Hamevî ve İbn Battûta gibi müelliflerce ziyaret edilen bu yapının Gazzâlî\'nin türbesi olması kuvvetle muhtemeldir; Sultan Sencer\'in Merv\'deki türbesiyle aynı planda olması ve Selçuklu mimari özellikleri taşıması bunu destekler.'
+  };
+
+  function eserBilgi(kart) {
+    const h4 = kart.querySelector('h4');
+    const ad = h4 ? h4.textContent.trim().toLowerCase().replace(/\s+/g, ' ') : '';
+    let tur = '', onemli = '';
+    for (const [k, v] of Object.entries(ESER_TUR)) {
+      if (ad === k.toLowerCase().replace(/\s+/g, ' ') || ad.startsWith(k.toLowerCase().replace(/\s+/g, ' '))) { tur = v; break; }
+    }
+    for (const [k, v] of Object.entries(ESER_ONEMLI)) {
+      if (ad === k.toLowerCase().replace(/\s+/g, ' ') || ad.startsWith(k.toLowerCase().replace(/\s+/g, ' '))) { onemli = v; break; }
+    }
+    return { tur, onemli };
+  }
+
+  function blgKapat() {
+    blgUst.classList.add('hidden');
+    blgPop.classList.add('hidden');
+  }
+
+  function blgAc(kart) {
+    const h4 = kart.querySelector('h4');
+    if (!h4) return;
+    blgBaslik.innerHTML = h4.innerHTML;
+    const bilgi = eserBilgi(kart);
+    const zItem = kart.closest('.z-item');
+    const zTarih = zItem ? zItem.querySelector('.z-tarih') : null;
+    const kop = kart.querySelector('.kopya') || zTarih;
+    if (bilgi.tur) { blgTur.textContent = bilgi.tur; blgTur.classList.remove('hidden'); }
+    else blgTur.classList.add('hidden');
+    if (kop && kop.textContent.trim()) { blgTarih.textContent = kop.textContent.trim(); satirTarih.classList.remove('hidden'); }
+    else satirTarih.classList.add('hidden');
+    const sec = kart.closest('section');
+    let grup = '';
+    if (sec) {
+      sec.querySelectorAll('.grup .g-yazi').forEach(g => {
+        if (kart.compareDocumentPosition(g) & Node.DOCUMENT_POSITION_FOLLOWING) grup = g.textContent.trim();
+      });
+    }
+    if (!grup && sec && sec.id === 'olaylar') {
+      const kat = kart.querySelector('.z-bas .z-kat');
+      if (kat) grup = kat.textContent.trim();
+    }
+    if (grup && !bilgi.tur) { blgGrup.textContent = grup; satirGrup.classList.remove('hidden'); }
+    else satirGrup.classList.add('hidden');
+    if (bilgi.onemli) { blgOnemli.textContent = bilgi.onemli; satirOnemli.classList.remove('hidden'); }
+    else satirOnemli.classList.add('hidden');
+    const nt = kart.querySelector('.not, p');
+    if (nt && nt.textContent.trim()) { blgMetin.textContent = nt.textContent.trim(); satirMetin.classList.remove('hidden'); }
+    else satirMetin.classList.add('hidden');
+    const dk = kart.dataset.derin;
+    if (dk && DERIN_METIN[dk]) { blgDetay.textContent = DERIN_METIN[dk]; satirDetay.classList.remove('hidden'); }
+    else satirDetay.classList.add('hidden');
+    blgUst.classList.remove('hidden');
+    blgPop.classList.remove('hidden');
+  }
+
+  const eserKartlari = [...document.querySelectorAll('#eserler .kart')].map(k => {
+    const h4 = k.querySelector('h4');
+    return { el: k, ad: h4 ? h4.textContent.trim().toLowerCase().replace(/\s+/g, ' ') : '' };
+  });
+  function eserBul(ad) {
+    const n = ad.trim().toLowerCase().replace(/\s+/g, ' ');
+    return eserKartlari.find(e => e.ad === n || e.ad.startsWith(n)) || null;
+  }
+
+  const kisiKartlari = [...document.querySelectorAll('#kisiler .kart')].map(k => {
+    const h4 = k.querySelector('h4');
+    const adis = h4 ? h4.querySelector('.adis') : null;
+    return {
+      el: k,
+      ad: h4 ? h4.textContent.trim().toLowerCase().replace(/\s+/g, ' ') : '',
+      adis: adis ? adis.textContent.trim().replace(/^\|\s*/, '').toLowerCase().replace(/\s+/g, ' ') : ''
+    };
+  });
+  function kisiBul(ad) {
+    const n = ad.trim().toLowerCase().replace(/\s+/g, ' ');
+    return kisiKartlari.find(k => k.adis && k.adis === n) ||
+           kisiKartlari.find(k => k.ad === n) ||
+           kisiKartlari.find(k => k.ad.includes(n)) || null;
+  }
+
+  document.querySelectorAll('a.kitap-link').forEach(a => {
+    a.addEventListener('click', e => {
+      e.stopPropagation();
+      const k = eserBul(a.dataset.ad);
+      if (k) blgAc(k.el);
+    });
+  });
+  document.querySelectorAll('a.ad-link').forEach(a => {
+    a.addEventListener('click', e => {
+      e.stopPropagation();
+      const k = kisiBul(a.dataset.ad);
+      if (k) blgAc(k.el);
+    });
+  });
+  document.querySelectorAll('.z-kart[data-derin], .kart.blg').forEach(el => {
+    el.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      blgAc(el);
+    });
+  });
+  document.getElementById('blgKapat').addEventListener('click', blgKapat);
+  blgUst.addEventListener('click', blgKapat);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') blgKapat(); });
+</script>
+
+</body>
+</html>
