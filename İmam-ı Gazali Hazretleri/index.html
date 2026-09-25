@@ -530,8 +530,8 @@
     padding: .5rem 1.4rem;
   }
   .sn-slayt { position: relative; width: 100%; max-width: 1180px; animation: snGirisKart .34s ease; }
-  .sn-ic { position: relative; z-index: 1; width: 100%; transform-origin: 50% 50%; transition: opacity .34s ease; }
-  .sn-ic.sn-cikis { position: absolute; top: 0; left: 0; width: 100%; z-index: 0; pointer-events: none; }
+  .sn-ic { position: relative; z-index: 1; width: 100%; transform-origin: 50% 50%; transition: opacity .5s ease, filter .5s ease; }
+  .sn-ic.sn-cikis { position: absolute; top: 0; left: 0; width: 100%; z-index: 0; pointer-events: none; opacity: 0; filter: blur(4px); }
   @keyframes snGirisKart {
     from { opacity: 0; transform: translateY(18px) scale(.985); }
     to { opacity: 1; transform: none; }
@@ -1185,7 +1185,7 @@
   blgUst.addEventListener('click', blgKapat);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') blgKapat(); });
 
-  const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22 };
+  const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, sonBekleme: 2000 };
 
   const snEl = document.getElementById('sunum');
   if (snEl) {
@@ -1225,8 +1225,9 @@
     let snOto = true, snBittiMi = false, snAktifEl = null;
 
     const snOkuma = () => slaytlar[snIdx].sure * 1000 / snHiz;
-    const snBekleme = () => 1000 / snHiz;
-    const snToplam = () => snOkuma() + 2 * snBekleme();
+    const snBekleme = () => SUNUM_AYAR.basBekleme / snHiz;
+    const snSonBekleme = () => SUNUM_AYAR.sonBekleme / snHiz;
+    const snToplam = () => snOkuma() + snBekleme() + snSonBekleme();
 
     function snKelimeDoldur(kapsayici) {
       const kelimeler = [];
@@ -1308,12 +1309,13 @@
       const ic = document.createElement('div');
       ic.className = 'sn-ic';
       ic.style.opacity = '0';
+      ic.style.filter = 'blur(4px)';
       ic.appendChild(slaytlar[snIdx].el.cloneNode(true));
       if (eski) {
-        snSlayt.appendChild(eski);
         eski.classList.add('sn-cikis');
         eski.style.opacity = '0';
-        setTimeout(() => { if (eski.parentNode) eski.remove(); }, 380);
+        eski.style.filter = 'blur(4px)';
+        setTimeout(() => { if (eski.parentNode) eski.remove(); }, 540);
       }
       snSlayt.appendChild(ic);
       snAktifEl = ic;
@@ -1330,7 +1332,11 @@
       snBitti = performance.now() + snKalan;
       snDolgu.style.width = '0%';
       snOlc();
-      requestAnimationFrame(() => { if (ic.style.opacity === '0') ic.style.opacity = '1'; });
+      requestAnimationFrame(() => {
+        if (ic.style.opacity !== '0') return;
+        ic.style.opacity = '1';
+        ic.style.filter = '';
+      });
     }
 
     function snDongu() {
