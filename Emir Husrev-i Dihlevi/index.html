@@ -1316,6 +1316,14 @@
       snDongu();
     }
 
+    function snBaslat() {
+      snDurakMi = false;
+      snDuraklatBtn.textContent = '⏸ Duraklat';
+      snDuraklatBtn.classList.remove('aktif');
+      if (snRaf) cancelAnimationFrame(snRaf);
+      snRaf = null;
+    }
+
     function snGit(ileri) {
       if (ileri) {
         if (snIdx >= slaytlar.length - 1) return;
@@ -1324,7 +1332,9 @@
         if (snIdx === 0) return;
         snIdx = snIdx - 1;
       }
+      snBaslat();
       snCiz();
+      snDongu();
     }
 
     function snAc(baslangic) {
