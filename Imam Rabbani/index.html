@@ -30,6 +30,18 @@
   .k-tasavvuf{ background: #e0f2ef; }
   .k-vefat   { background: #e6e8ee; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  .ana-link {
+    position: relative; z-index: 1;
+    display: inline-block;
+    background: rgba(246,231,184,.14);
+    border: 1px solid rgba(246,231,184,.38);
+    color: #f3dc9a; text-decoration: none;
+    font-size: .82rem; font-weight: 600;
+    padding: .3rem .8rem; border-radius: 99px;
+    margin-bottom: .9rem;
+    transition: background .15s, color .15s;
+  }
+  .ana-link:hover { background: rgba(246,231,184,.25); color: #fff6e0; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
     background: var(--bg);
@@ -438,9 +450,10 @@
 <body>
 
 <header>
+  <a href="../index.html" class="ana-link">← Biyografiler Anasayfası</a>
   <span class="rozet">☪ Silsile-i Sâdât-ı Nakşibendiyye-i Aliyye</span>
   <h1>İmâm-ı Rabbânî Müceddid-i Elf-i Sânî<br>Şeyh Ahmed-i Fârûkî Serhendî <span style="opacity:.55">(k.s.)</span></h1>
-  <p class="alt"><b>Müceddid-i Elf-i Sânî</b> · Ahkâm-ı İslâmiyye ile tasavvufu birleştiren Hanefî âlim · ö. 28 Safer 1034 (M. 1624)</p>
+  <p class="alt"><b>Müceddid-i Elf-i Sânî</b> · Ahkâm-ı İslâmiyye ile tasavvufu birleştiren Hanefî âlim · ö. 1624 (28 Safer 1034)</p>
 </header>
 
 <nav id="tabBar">
@@ -458,13 +471,13 @@
       <p>Madde metninde geçen coğrafî noktalar — ileride ilüstratif haritaya point olarak işlenecek</p>
     </div>
     <div class="kartlar">
-      <div class="kart blg k-dogum"><div class="ust"><span class="sira">1</span></div><h4>Serhend <span class="adis">| Sirhind</span></h4><div class="lokal">Pencap eyaleti</div><div class="not">10 Muharrem 971 — Aşûrâ günü (M. 1564) doğum yeri; 28 Safer 1034 (M. 1624) vefat ve defnedildiği yer; kabr-i şerîfi buradadır.</div></div>
+      <div class="kart blg k-dogum"><div class="ust"><span class="sira">1</span></div><h4>Serhend <span class="adis">| Sirhind</span></h4><div class="lokal">Pencap eyaleti</div><div class="not">1564 (10 Muharrem 971 · Aşûrâ günü) doğum yeri; 1624 (28 Safer 1034) vefat ve defnedildiği yer; kabr-i şerîfi buradadır.</div></div>
       <div class="kart blg k-kayip"><div class="ust"><span class="sira">2</span></div><h4>Kâbil</h4><div class="lokal">Afganistan</div><div class="not">Soyunu ikinci halifeye dayandırdığı ailenin asıl memleketi.</div></div>
       <div class="kart blg k-ilim"><div class="ust"><span class="sira">3</span></div><h4>Siyâlkût</h4><div class="lokal">Pencap</div><div class="not">Hadis, tefsir ve aklî ilimler tahsili; Kübrevî intisab.</div></div>
-      <div class="kart blg k-saray"><div class="ust"><span class="sira">4</span></div><h4>Agra</h4><div class="lokal">Bâbürlü başşehri</div><div class="not">Ekber Şah sarayı; 1028 (1619) sorgusu.</div></div>
+      <div class="kart blg k-saray"><div class="ust"><span class="sira">4</span></div><h4>Agra</h4><div class="lokal">Bâbürlü başşehri</div><div class="not">Ekber Şah sarayı; 1619 (1028) sorgusu.</div></div>
       <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">5</span></div><h4>Delhi</h4><div class="lokal">Kuzey Hindistan</div><div class="not">Hâce Bâkī-Billâh ile buluşma ve Nakşibendî intisabı.</div></div>
       <div class="kart blg k-kayip"><div class="ust"><span class="sira">6</span></div><h4>Şânesar</h4><div class="lokal">Hindistan</div><div class="not">Babasıyla buluşma; Şeyh Sultan'ın kızıyla evlilik.</div></div>
-      <div class="kart blg k-esaret"><div class="ust"><span class="sira">7</span></div><h4>Gevâliyâr <span class="adis">| Gwalior</span></h4><div class="lokal">Kuzey Hindistan</div><div class="not">Cihangir'in emriyle hapsedildiği kale (1028/1619).</div></div>
+      <div class="kart blg k-esaret"><div class="ust"><span class="sira">7</span></div><h4>Gevâliyâr <span class="adis">| Gwalior</span></h4><div class="lokal">Kuzey Hindistan</div><div class="not">Cihangir'in emriyle hapsedildiği kale (1619/1028).</div></div>
       <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">8</span></div><h4>Burhânpûr</h4><div class="lokal">Dekken</div><div class="not">Halife Mîr Muhammed Nu'mân'ın faaliyet sahası.</div></div>
       <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">9</span></div><h4>Lahor</h4><div class="lokal">Pencap</div><div class="not">Halife Şeyh Muhammed Tâhir'in faaliyet sahası.</div></div>
       <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">10</span></div><h4>Patna</h4><div class="lokal">Bihar</div><div class="not">Halife Şeyh Nûr Muhammed'in faaliyet sahası.</div></div>
@@ -485,10 +498,10 @@
       <div class="kart blg k-kayip"><h4>Babası <span class="adis">| Şeyh Abdülehad · Çiştiyye ve Kādirî şeyhi</span></h4><div class="not">Tasavvufa ve vahdet-i vücûda dair risâleleri bulunan bir şeyh; oğlunun ilk hocası oldu.</div></div>
       <div class="kart blg k-kayip"><h4>Dedesi <span class="adis">| Zeynelâbidîn</span></h4><div class="not">İmâm-ı Rabbânî'nin dedesi; nesli 28. batında Hazret-i Ömer'e (r.a.) ulaşır.</div></div>
       <div class="kart blg k-kayip"><h4>Eşi <span class="adis">| Şeyh Sultan'ın kızı</span></h4><div class="not">Şânesar'da, eşraftan Şeyh Sultan'ın kızıyla evlendi.</div></div>
-      <div class="kart blg k-kayip"><h4>Hâce Muhammed Sâdık</h4><div class="kopya">ö. 1025/1616</div><div class="not">Büyük oğlu; mânevî mirasın devamında emeği.</div></div>
-      <div class="kart blg k-kayip"><h4>Hâce Muhammed Saîd</h4><div class="kopya">ö. 1072/1662</div><div class="not">Oğlu; mânevî mirasın devamında emeği.</div></div>
-      <div class="kart blg k-kayip"><h4>Hâce Muhammed Ma'sûm <span class="adis">| Urvetü'l-vüskā</span></h4><div class="kopya">ö. 1079/1668</div><div class="not">Üçüncü oğlu; diğerlerine nisbetle en etkili; Müceddidiyye'nin yayılışında kilit isim.</div></div>
-      <div class="kart blg k-kayip"><h4>Hâce Muhammed Yahyâ</h4><div class="kopya">ö. 1096/1685</div><div class="not">Oğlu; mânevî mirasın devamında emeği.</div></div>
+      <div class="kart blg k-kayip"><h4>Hâce Muhammed Sâdık</h4><div class="kopya">ö. 1616/1025</div><div class="not">Büyük oğlu; mânevî mirasın devamında emeği.</div></div>
+      <div class="kart blg k-kayip"><h4>Hâce Muhammed Saîd</h4><div class="kopya">ö. 1662/1072</div><div class="not">Oğlu; mânevî mirasın devamında emeği.</div></div>
+      <div class="kart blg k-kayip"><h4>Hâce Muhammed Ma'sûm <span class="adis">| Urvetü'l-vüskā</span></h4><div class="kopya">ö. 1668/1079</div><div class="not">Üçüncü oğlu; diğerlerine nisbetle en etkili; Müceddidiyye'nin yayılışında kilit isim.</div></div>
+      <div class="kart blg k-kayip"><h4>Hâce Muhammed Yahyâ</h4><div class="kopya">ö. 1685/1096</div><div class="not">Oğlu; mânevî mirasın devamında emeği.</div></div>
     </div>
 
     <div class="grup"><span class="g-ikon">📖</span><span class="g-yazi">Hocaları</span><div class="cizgi"></div></div>
@@ -496,13 +509,13 @@
       <div class="kart blg k-ilim"><h4>Şeyh Ya'kūb Keşmîrî</h4><div class="not">Kübrevî şeyhi; Siyâlkût'ta hadis hocası; intisab edilen son hoca.</div></div>
       <div class="kart blg k-ilim"><h4>Kadı Behlûl Bedahşânî</h4><div class="not">Siyâlkût'ta tefsir hocası.</div></div>
       <div class="kart blg k-ilim"><h4>Mevlânâ Kemal Keşmîrî</h4><div class="not">Aklî ilimler hocası.</div></div>
-      <div class="kart blg k-tasavvuf"><h4>Hâce Bâkī-Billâh</h4><div class="kopya">ö. 1012/1603</div><div class="not">Nakşibendiyye'yi Hindistan'da yayan şeyh; 1007/1598'de intisab; bütün ruhî terakkînin temeli.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Hâce Bâkī-Billâh</h4><div class="kopya">ö. 1603/1012</div><div class="not">Nakşibendiyye'yi Hindistan'da yayan şeyh; 1598/1007'de intisab; bütün ruhî terakkînin temeli.</div></div>
     </div>
 
     <div class="grup"><span class="g-ikon">🛡️</span><span class="g-yazi">Bâbürlü Hükümdarlar</span><div class="cizgi"></div></div>
     <div class="kartlar">
       <div class="kart blg k-saray"><h4>Ekber Şah</h4><div class="kopya">1556–1605</div><div class="not">Sarayına girilen hükümdar; "Dîn-i İlâhî" senkretizmi İs̱bâtü'n-nübüvve'nin hedefi.</div></div>
-      <div class="kart blg k-saray"><h4>Cihangir</h4><div class="kopya">1605–1627</div><div class="not">1028/1619'da sorgulattı, Gevâliyâr'da hapsettirdi; sonra sarayında sohbetler.</div></div>
+      <div class="kart blg k-saray"><h4>Cihangir</h4><div class="kopya">1605–1627</div><div class="not">1619/1028'de sorgulattı, Gevâliyâr'da hapsettirdi; sonra sarayında sohbetler.</div></div>
     </div>
 
     <div class="grup"><span class="g-ikon">📚</span><span class="g-yazi">Çağdaşlar</span><div class="cizgi"></div></div>
@@ -557,7 +570,7 @@
     </div>
 
     <div class="zaman">
-<div class="z-item c-dogum"><div class="z-bilgi"><span class="z-yas">0 yaş</span><span class="z-tarih">10 Muharrem 971 <span class="h">| M. 1564 · Aşûrâ günü</span></span></div>
+<div class="z-item c-dogum"><div class="z-bilgi"><span class="z-yas">0 yaş</span><span class="z-tarih">M. 1564 <span class="h">| h. 10 Muharrem 971 · Aşûrâ günü</span></span></div>
         <div class="z-kart k-dogum" data-derin="dogum"><div class="z-icerik"><div class="z-bas"><h4>Doğum</h4><span class="z-kat">🌙 Doğum</span></div><p>Serhend beldesinde, Aşûrâ günü dünyaya geldi; Hâşiʿ kelimesi ebced hesabıyla bu tarihi gösterir. İsmi Ahmed, babasının adı Abdülehad, dedesinin adı Zeynelâbidîn'dir; lâkabı Bedrüddîn, künyesi Ebu'l-Berekât'tır. Nesli 28. batında Hazret-i Ömer'e (r.a.) ulaşır; <a class="ad-link" data-ad="Babası">babası</a> bir Çiştiyye ve Kādirî şeyhi idi.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Serhend</div></div>
       </div>
       <div class="z-item c-tasavvuf"><div class="z-bilgi"><span class="z-yas">y. 8</span><span class="z-tarih">y. 979 <span class="h">| h. 971 civarı</span></span></div>
@@ -599,7 +612,7 @@
       <div class="z-item c-saray"><div class="z-bilgi"><span class="z-yas">55 yaş</span><span class="z-tarih">y. 1619–1620 <span class="h">| h. 1029</span></span></div>
         <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Serbest Kalış ve Saray Sohbetleri</h4><span class="z-kat">👑 Saray</span></div><p>Yaklaşık bir yıl sonra serbest bırakıldı; hapsi, kahr sıfatının tecellîsini tamamlayan celâl sıfatının tecellîsi olarak yorumladı. Sultanın sarayında İslâm'ın prensiplerinden "bir kıl kadar bile" ayrılmadan sohbetler yaptı.</p></div><div class="z-konum">Agra</div></div>
       </div>
-      <div class="z-item c-vefat c-eser"><div class="z-bilgi"><span class="z-yas">63 yaş</span><span class="z-tarih">28 Safer 1034 <span class="h">| M. 1624</span></span></div>
+      <div class="z-item c-vefat c-eser"><div class="z-bilgi"><span class="z-yas">63 yaş</span><span class="z-tarih">M. 1624 <span class="h">| h. 28 Safer 1034</span></span></div>
         <div class="z-kart k-vefat" data-derin="vefat"><div class="z-icerik"><div class="z-bas"><h4>Vefat</h4><span class="z-kat">🕋 Vefat</span><span class="z-kat">📖 Eser</span></div><p>Serhend'de 63 yaşında âhirete irtihâl etti. Kabr-i şerîfi, bugün Hindistan sınırları içindeki Pencap eyaletine bağlı Serhend'dedir. Ardında sayısız halife ve hicrî II. binyılın müceddidi olarak tecdid anlayışını bıraktı.</p><span class="detay-d">ⓘ Detaylı bilgi</span></div><div class="z-konum">Serhend</div></div>
       </div>
     </div>
@@ -619,22 +632,22 @@
 
     <div class="grup"><span class="g-ikon">🛡️</span><span class="g-yazi">Akaid ve Reddiyeler</span><span class="adet">2</span><div class="cizgi"></div></div>
     <div class="kartlar">
-      <div class="kart blg k-eser" data-derin="isbatun-nubuvve"><div class="ust"><span class="sira">1</span></div><h4>İs̱bâtü'n-nübüvve</h4><div class="kopya">Arapça • Agra, y. 991/1584</div><div class="not">İlk eseri; Ekber'in "Dîn-i İlâhî" senkretizmine ve peygamberliği inkâra varan cereyanlara karşı nübüvvetin gerekliliğini savunur.</div></div>
+      <div class="kart blg k-eser" data-derin="isbatun-nubuvve"><div class="ust"><span class="sira">1</span></div><h4>İs̱bâtü'n-nübüvve</h4><div class="kopya">Arapça • Agra, y. 1584/991 • y. 20 yaş</div><div class="not">İlk eseri; Ekber'in "Dîn-i İlâhî" senkretizmine ve peygamberliği inkâra varan cereyanlara karşı nübüvvetin gerekliliğini savunur.</div></div>
       <div class="kart blg k-eser" data-derin="teyid"><div class="ust"><span class="sira">2</span></div><h4>Teʾyîd-i Ehli's-sünne <span class="adis">| Redd-i Revâfıż</span></h4><div class="kopya">Farsça</div><div class="not">Şîa'ya reddiye; Anadolu ve Mâverâünnehir'e yayılan Şîa akımına karşı sünnî telakkileri savunur.</div></div>
     </div>
 
     <div class="grup"><span class="g-ikon">✉️</span><span class="g-yazi">Mektûbât</span><span class="adet">1</span><div class="cizgi"></div></div>
     <div class="kartlar">
-      <div class="kart blg k-eser" data-derin="mektubat"><div class="ust"><span class="sira">✉</span></div><h4>Mektûbât</h4><div class="kopya">Farsça • 3 cilt, 536 mektup • c. I 1025/1616, c. II 1028/1619, c. III ölümünden sonra</div><div class="not">En meşhur eseri; kalem erbabından halka kadar geniş bir kesimin feyz bulduğu, kendisine müracaatlarını aksettiren bir dinî-ilmî mecmuadır.</div></div>
+      <div class="kart blg k-eser" data-derin="mektubat"><div class="ust"><span class="sira">✉</span></div><h4>Mektûbât</h4><div class="kopya">Farsça • 3 cilt, 536 mektup • c. I 1616/1025, c. II 1619/1028, c. III ölümünden sonra • y. 54–57 yaş</div><div class="not">En meşhur eseri; kalem erbabından halka kadar geniş bir kesimin feyz bulduğu, kendisine müracaatlarını aksettiren bir dinî-ilmî mecmuadır.</div></div>
     </div>
 
     <div class="grup"><span class="g-ikon">🕌</span><span class="g-yazi">Tasavvuf ve Diğer Risâleler</span><span class="adet">5</span><div class="cizgi"></div></div>
     <div class="kartlar">
-      <div class="kart blg k-eser"><div class="ust"><span class="sira">3</span></div><h4>Mükâşefât-ı Ġaybiyye</h4><div class="kopya">Farsça • Karaçi 1384/1965</div><div class="not">Gaybî mükaşefelere dair tasavvufî eser.</div></div>
-      <div class="kart blg k-eser"><div class="ust"><span class="sira">4</span></div><h4>Ḥavâşî ve Taʿlîḳāt ber Şerḥ-i Rubâʿiyyât-ı Ḫâce Bâḳī-Billâh</h4><div class="kopya">Haşiye • Karaçi 1386/1966</div><div class="not">Şeyhi Bâkī-Billâh'ın rubâîleri şerhi üzerine haşiye ve taʿlîkat.</div></div>
-      <div class="kart blg k-eser" data-derin="maarif"><div class="ust"><span class="sira">5</span></div><h4>Maʿârif-i Ledünniyye</h4><div class="kopya">Arapça • Karaçi 1388/1968</div><div class="not">Rabbânî ilimler; vahdet-i vücûd ile tevhid ilişkisini ele alır.</div></div>
-      <div class="kart blg k-eser"><div class="ust"><span class="sira">6</span></div><h4>Mebdeʾ ü Meʿâd <span class="adis">| Âşık-nâme</span></h4><div class="kopya">Farsça • Karaçi 1403/1983</div><div class="not">Sülûkün başlangıç (mebdeʾ) ve sonuçlarını (meʿâd) anlatan tasavvufî eser.</div></div>
-      <div class="kart blg k-eser"><div class="ust"><span class="sira">7</span></div><h4>Risâle-i Tehlîliyye</h4><div class="kopya">Farsça • Karaçi 1403/1983</div><div class="not">Kelime-i tevhîdin içerdiği mânalara dair risâle.</div></div>
+      <div class="kart blg k-eser"><div class="ust"><span class="sira">3</span></div><h4>Mükâşefât-ı Ġaybiyye</h4><div class="kopya">Farsça • Karaçi 1965/1384</div><div class="not">Gaybî mükaşefelere dair tasavvufî eser.</div></div>
+      <div class="kart blg k-eser"><div class="ust"><span class="sira">4</span></div><h4>Ḥavâşî ve Taʿlîḳāt ber Şerḥ-i Rubâʿiyyât-ı Ḫâce Bâḳī-Billâh</h4><div class="kopya">Haşiye • Karaçi 1966/1386</div><div class="not">Şeyhi Bâkī-Billâh'ın rubâîleri şerhi üzerine haşiye ve taʿlîkat.</div></div>
+      <div class="kart blg k-eser" data-derin="maarif"><div class="ust"><span class="sira">5</span></div><h4>Maʿârif-i Ledünniyye</h4><div class="kopya">Arapça • Karaçi 1968/1388</div><div class="not">Rabbânî ilimler; vahdet-i vücûd ile tevhid ilişkisini ele alır.</div></div>
+      <div class="kart blg k-eser"><div class="ust"><span class="sira">6</span></div><h4>Mebdeʾ ü Meʿâd <span class="adis">| Âşık-nâme</span></h4><div class="kopya">Farsça • Karaçi 1983/1403</div><div class="not">Sülûkün başlangıç (mebdeʾ) ve sonuçlarını (meʿâd) anlatan tasavvufî eser.</div></div>
+      <div class="kart blg k-eser"><div class="ust"><span class="sira">7</span></div><h4>Risâle-i Tehlîliyye</h4><div class="kopya">Farsça • Karaçi 1983/1403</div><div class="not">Kelime-i tevhîdin içerdiği mânalara dair risâle.</div></div>
     </div>
   </section>
 
@@ -781,23 +794,23 @@
   const ESER_ONEMLI = {
     'İs̱bâtü\'n-nübüvve': 'Agra döneminde kaleme aldığı ilk eseri; Ekber\'in "Dîn-i İlâhî" senkretizmine ve peygamberliği inkâra varan cereyanlara karşı nübüvvetin gerekliliğini savunur.',
     'Teʾyîd-i Ehli\'s-sünne': 'Redd-i Revâfıż adıyla da bilinir; Şîa\'ya reddiye. Şâh İsmâʿîl-i Sâfî\'nin Şîa\'yı hâkim kılmaya çalıştığı dönemde İran\'dan sünnî bölgelere (Anadolu ve Mâverâünnehir) yayılan Şîa akımına karşı yazıldı.',
-    'Mektûbât': 'Üç cilt, 536 mektup; I. cilt 1025/1616, II. cilt 1028/1619, III. cilt ölümünden sonra derlendi. En meşhur eseridir; kalem ehli ile halkın feyz bulduğu bir dini-ilmî mecmuadır.',
-    'Mükâşefât-ı Ġaybiyye': 'Karaçi 1384/1965.',
-    'Ḥavâşî ve Taʿlîḳāt ber Şerḥ-i Rubâʿiyyât-ı Ḫâce Bâḳī-Billâh': 'Şeyhi Bâkī-Billâh\'ın rubâîlerinin şerhi üzerine haşiye ve taʿlîkat; Karaçi 1386/1966.',
-    'Maʿârif-i Ledünniyye': 'Rabbânî ilimler; vahdet-i vücûd-tevhid ilişkisini ele alır. Karaçi 1388/1968.',
-    'Mebdeʾ ü Meʿâd': 'Âşık-nâme adıyla da bilinir; sülûk ve seyrüseferin başlangıç ve sonuçlarını anlatır. Karaçi 1403/1983.',
-    'Risâle-i Tehlîliyye': 'Kelime-i tevhîdin içerdiği mânalara dair risâle. Karaçi 1403/1983.'
+    'Mektûbât': 'Üç cilt, 536 mektup; I. cilt 1616/1025, II. cilt 1619/1028, III. cilt ölümünden sonra derlendi. En meşhur eseridir; kalem ehli ile halkın feyz bulduğu bir dini-ilmî mecmuadır.',
+    'Mükâşefât-ı Ġaybiyye': 'Karaçi 1965/1384.',
+    'Ḥavâşî ve Taʿlîḳāt ber Şerḥ-i Rubâʿiyyât-ı Ḫâce Bâḳī-Billâh': 'Şeyhi Bâkī-Billâh\'ın rubâîlerinin şerhi üzerine haşiye ve taʿlîkat; Karaçi 1966/1386.',
+    'Maʿârif-i Ledünniyye': 'Rabbânî ilimler; vahdet-i vücûd-tevhid ilişkisini ele alır. Karaçi 1968/1388.',
+    'Mebdeʾ ü Meʿâd': 'Âşık-nâme adıyla da bilinir; sülûk ve seyrüseferin başlangıç ve sonuçlarını anlatır. Karaçi 1983/1403.',
+    'Risâle-i Tehlîliyye': 'Kelime-i tevhîdin içerdiği mânalara dair risâle. Karaçi 1983/1403.'
   };
 
   const DERIN_METIN = {
-    'dogum': 'İmâm-ı Rabbânî, 971 (M. 1564) yılında Aşûrâ gününde Hindistan\'ın Serhend beldesinde doğdu; Hâşiʻ kelimesi ebced hesabıyla bu tarihi gösterir. İsmi Ahmed, babasının ismi Abdülehad, dedesinin ismi Zeynelâbidîn\'dir. Lâkabı Bedrüddîn, künyesi Ebu\'l-Berekât\'tır. Nesli 28. batında Hazret-i Ömer\'e (r.a.) ulaşır.',
+    'dogum': 'İmâm-ı Rabbânî, 1564 (971) yılında Aşûrâ gününde Hindistan\'ın Serhend beldesinde doğdu; Hâşiʻ kelimesi ebced hesabıyla bu tarihi gösterir. İsmi Ahmed, babasının ismi Abdülehad, dedesinin ismi Zeynelâbidîn\'dir. Lâkabı Bedrüddîn, künyesi Ebu\'l-Berekât\'tır. Nesli 28. batında Hazret-i Ömer\'e (r.a.) ulaşır.',
     'imam-rabbani': 'Muhammed Bâkîbillâh Hazretleri kendisine "İmâm-ı Rabbânî" ismini vermişlerdir ve daha çok "İmâm-ı Rabbânî" ismiyle bilinir. Hicrî ikinci bin yılın müceddidi (yenileyicisi) olmasından dolayı "Müceddid-i Elf-i Sânî" denilmiştir ki bu vasıfla ilk defa, Hindistan ulemâsından Abdülhakîm Siyalkûtî Hazretleri tavsîf etmiştir. Ahkâm-ı İslâmiyye ve tasavvufu birleştirmesinden dolayı da birleştirici mânâsında "Sıla" ismi verilmiştir. Hazret-i Ömer\'in (r.a.) neslinden geldiği için "Fârûkî" diye anılmış, Serhend şehrinden olduğu için de oraya nisbetle "Serhendî" denilmiştir. Hanefî mezhebindendir.',
     'vahdet': 'İlk başta tamamen bağlı olduğu vahdet-i vücûd anlayışını aşarak zılliyyet (varlığın Hak\'a nisbeti itibariyle gölge oluşu) ve nihayet abdiyet (kulluk) makamına geçti; vahdet-i şühûd\'un, hakîkatin daha isabetli bir ifadesi olduğunu savundu. Buna göre Hak ile kul arasında zât bakımından bir birlik değil, bir tecellî ve nisbet münasebeti vardır. Bu anlayışı sıddîkıyyet mertebesi ve "müceddid-i elf-i sânî" vasfıyla birleştirdi. Tarikatı şeriatin hizmetçisi saydı; nübüvvetin velâyetten üstün olduğunu ve silsilesinin Hazret-i Ebû Bekir\'e (r.a.) dayandığını vurguladı. Hicrî II. binyılın başında, Ebû Dâvûd\'un "her yüz yıl başında bir müceddid gelir" hadisi mânâsında müceddid görüşünü geliştirdi.',
-    'esaret': 'Bâbürlü Hükümdarı Cihangir, mânevî makamının yüksekliğine ve sülûk esnasında ilk üç halifeyi (Hazret-i Ebû Bekir, Hazret-i Ömer, Hazret-i Osman) geride bıraktığına dair iddiaları dolayısıyla onu 1028 (1619) yılında sorgulanmak üzere Agra\'ya çağırttı; tatmin olmayınca Gevâliyâr (Gwalior) kalesinde hapsettirdi. Yaklaşık bir yıl sonra serbest bırakıldı; bu hâlini, kahr sıfatının tecellîsini tamamlayan celâl sıfatının tecellîsi olarak yorumladı. Daha sonra sultanın sarayında İslâm\'ın prensiplerinden "bir kıl kadar bile" ayrılmadan sohbetlerde bulundu.',
-    'vefat': 'İmâm-ı Rabbânî Hazretleri 28 Safer 1034 (M. 1624) tarihinde 63 yaşında oldukları halde Serhend\'de âhirete irtihâl ettiler. Kabr-i şerifleri, bugün Hindistan hududları içerisinde olan Pencap eyaletine bağlı Serhend\'dedir.',
+    'esaret': 'Bâbürlü Hükümdarı Cihangir, mânevî makamının yüksekliğine ve sülûk esnasında ilk üç halifeyi (Hazret-i Ebû Bekir, Hazret-i Ömer, Hazret-i Osman) geride bıraktığına dair iddiaları dolayısıyla onu 1619 (1028) yılında sorgulanmak üzere Agra\'ya çağırttı; tatmin olmayınca Gevâliyâr (Gwalior) kalesinde hapsettirdi. Yaklaşık bir yıl sonra serbest bırakıldı; bu hâlini, kahr sıfatının tecellîsini tamamlayan celâl sıfatının tecellîsi olarak yorumladı. Daha sonra sultanın sarayında İslâm\'ın prensiplerinden "bir kıl kadar bile" ayrılmadan sohbetlerde bulundu.',
+    'vefat': 'İmâm-ı Rabbânî Hazretleri 1624 (28 Safer 1034) tarihinde 63 yaşında oldukları halde Serhend\'de âhirete irtihâl ettiler. Kabr-i şerifleri, bugün Hindistan hududları içerisinde olan Pencap eyaletine bağlı Serhend\'dedir.',
     'isbatun-nubuvve': 'Agra yıllarında kaleme aldığı ilk eseri; Bâbürlü hükümdarı Ekber Şah\'ın "Dîn-i İlâhî" adlı senkretik telakkisine karşı, kendisince peygamberliğin gerekliliğini şüpheye düşüren akılcı felsefî cereyana (Ebü\'l-Fazl\'ın yaklaşımı gibi) nübüvvetin lüzumunu Arapça olarak savunur.',
     'teyid': 'Teʾyîd-i Ehli\'s-sünne (Redd-i Revâfıż) adlı reddiyesini, Şâh İsmâʿîl-i Sâfî\'nin İmâmiyye\'yi hâkim kıldığı dönemde İran\'dan sünnî bölgelere (Anadolu ve Mâverâünnehir) yayılan Şîa akımına karşı yazdı; dört halifenin fazileti ve sünnî telakkiler savunulur.',
-    'mektubat': 'Mektûbât, üç cilt hâlinde 536 mektubu toplar; I. cilt 1025 (1616), II. cilt 1028 (1619) yılında derlendi, III. cilt ölümünden sonra tamamlandı. Temelini, şeyhi Bâkī-Billâh ile yaptığı yazışmalar (26 mektup) oluşturur. Müridlerin istifadeleri için istiğrak hâlindeyken kaleme alınan bu yazışmalar, kalem ehli ile halkın feyz bulduğu bir dinî-ilmî mecmuadır.',
+    'mektubat': 'Mektûbât, üç cilt hâlinde 536 mektubu toplar; I. cilt 1616 (1025), II. cilt 1619 (1028) yılında derlendi, III. cilt ölümünden sonra tamamlandı. Temelini, şeyhi Bâkī-Billâh ile yaptığı yazışmalar (26 mektup) oluşturur. Müridlerin istifadeleri için istiğrak hâlindeyken kaleme alınan bu yazışmalar, kalem ehli ile halkın feyz bulduğu bir dinî-ilmî mecmuadır.',
     'maarif': 'Rabbânî ilimlere dairdir; başta vahdet-i vücûd ile tevhid münasebeti olmak üzere hakîkat ehli için gerekli mânevî meseleleri ele alır.'
   };
 

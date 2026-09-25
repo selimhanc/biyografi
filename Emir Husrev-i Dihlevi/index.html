@@ -30,6 +30,18 @@
   .k-tasavvuf{ background: #e0f2ef; }
   .k-vefat   { background: #e6e8ee; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  .ana-link {
+    position: relative; z-index: 1;
+    display: inline-block;
+    background: rgba(246,231,184,.14);
+    border: 1px solid rgba(246,231,184,.38);
+    color: #f3dc9a; text-decoration: none;
+    font-size: .82rem; font-weight: 600;
+    padding: .3rem .8rem; border-radius: 99px;
+    margin-bottom: .9rem;
+    transition: background .15s, color .15s;
+  }
+  .ana-link:hover { background: rgba(246,231,184,.25); color: #fff6e0; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
     background: var(--bg);
@@ -418,9 +430,10 @@
 <body>
 
 <header>
+  <a href="../index.html" class="ana-link">← Biyografiler Anasayfası</a>
   <span class="rozet">☪ Biyografik Animasyon</span>
   <h1>EMÎR HÜSREV-i DİHLEVÎ</h1>
-  <p class="alt"><b>Türk asıllı şair, tarihçi ve mutasavvıf</b> • ö. 725 / 1325</p>
+  <p class="alt"><b>Türk asıllı şair, tarihçi ve mutasavvıf</b> • ö. 1325 / 725</p>
 </header>
 
 <nav id="tabBar">
@@ -437,7 +450,7 @@
       <p>Madde metninde geçen coğrafî noktalar — ileride ilüstratif haritaya point olarak işlenecek</p>
     </div>
     <div class="kartlar">
-      <div class="kart blg k-dogum"><div class="ust"><span class="sira">1</span></div><h4>Müminpûr <span class="adis">| Müminâbâd</span></h4><div class="lokal">Delhi kuzeyi, Hindistan</div><div class="not">651 (1253) doğum yeri.</div></div>
+      <div class="kart blg k-dogum"><div class="ust"><span class="sira">1</span></div><h4>Müminpûr <span class="adis">| Müminâbâd</span></h4><div class="lokal">Delhi kuzeyi, Hindistan</div><div class="not">1253 (651) doğum yeri.</div></div>
       <div class="kart blg k-sefer"><div class="ust"><span class="sira">2</span></div><h4>Keş</h4><div class="lokal">Belh yakını, Afganistan</div><div class="not">Babası Seyfeddin'in ilk göç durağı.</div></div>
       <div class="kart blg k-saray"><div class="ust"><span class="sira">3</span></div><h4>Belh</h4><div class="lokal">Kuzey Afganistan</div><div class="not">Babasının ikinci göç durağı.</div></div>
       <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">4</span></div><h4>Mâverâünnehir <span class="adis">| Ceyhun ötesi</span></h4><div class="lokal">Orta Asya bölgesi</div><div class="not">Lâçin Türk kabilesinin memleketi.</div></div>
@@ -478,7 +491,7 @@
 
     <div class="grup"><span class="g-ikon">📖</span><span class="g-yazi">Çağdaşlar ve Etkiler</span><div class="cizgi"></div></div>
     <div class="kartlar">
-      <div class="kart blg k-tasavvuf"><h4>Nizâmeddin Evliyâ</h4><div class="not">Çiştiyye şeyhi; intisap 713/1313; türbesi Gıyâspûr'da.</div></div>
+      <div class="kart blg k-tasavvuf"><h4>Nizâmeddin Evliyâ</h4><div class="not">Çiştiyye şeyhi; intisap 1313/713; türbesi Gıyâspûr'da.</div></div>
       <div class="kart blg k-saray"><h4>Keşli Han</h4><div class="not">Dedesinin ölümü sonrası maiyetine girilen Türk emîri.</div></div>
       <div class="kart blg k-saray"><h4>Muhammed Kaan Mâlik</h4><div class="not">Mültanlı prens; Hüsrev nedimleri arasına katıldı.</div></div>
       <div class="kart blg k-ilim"><h4>Hasan Dihlevî</h4><div class="not">Mültan'da tanıştıkları şair; birlikte esir düştüler (1285).</div></div>
@@ -518,7 +531,7 @@
         <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>Şairlik ve Nizâmeddin Evliyâ ile Tanışma</h4><span class="z-kat">📿 Tasavvuf</span></div><p>On iki yaşında şair olarak belli bir seviyeye ulaştı; <a class="ad-link" data-ad="Nizâmeddin Evliyâ">Çiştiyye şeyhi</a> ile tanıştı, mûsikiye ilgisi bu dönemde başladı.</p></div><div class="z-konum">Müminpûr, Delhi</div></div>
       </div>
       <div class="z-item c-eser"><div class="z-bilgi"><span class="z-yas">19 yaş</span><span class="z-tarih">y. 1272 <span class="h">| h. 670</span></span></div>
-        <div class="z-kart k-eser"><div class="z-icerik"><div class="z-bas"><h4>İlk Divan: <a class="kitap-link" data-ad="Tuhfetü's-sıgâr">Tuhfetü's-sıgâr</a></h4><span class="z-kat">📖 Eser</span></div><p>On dokuz yaşında ilk divanını tertip etti; eser y. 670 (1272) yılında tamamlandı.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Tuhfetü's-sıgâr">Tuhfetü's-sıgâr</a> (y. 670/1272)</div></div>
+        <div class="z-kart k-eser"><div class="z-icerik"><div class="z-bas"><h4>İlk Divan: <a class="kitap-link" data-ad="Tuhfetü's-sıgâr">Tuhfetü's-sıgâr</a></h4><span class="z-kat">📖 Eser</span></div><p>On dokuz yaşında ilk divanını tertip etti; eser y. 1272 (670) yılında tamamlandı.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Tuhfetü's-sıgâr">Tuhfetü's-sıgâr</a> (y. 1272/670)</div></div>
       </div>
       <div class="z-item c-kayip"><div class="z-bilgi"><span class="z-yas">20 yaş</span><span class="z-tarih">1273 <span class="h">| h. 671</span></span></div>
         <div class="z-kart k-kayip"><div class="z-icerik"><div class="z-bas"><h4>Dedesinin Vefatı</h4><span class="z-kat">🤲 Aile</span></div><p><a class="ad-link" data-ad="İmâdülmülk">İmâdülmülk</a>'ün ölümü üzerine Türk emîri <a class="ad-link" data-ad="Keşli Han">Keşli Han</a>'ın maiyetine girdi; onun meclislerinde söz sahibi oldu.</p></div><div class="z-konum">Müminpûr</div></div>
@@ -536,7 +549,7 @@
         <div class="z-kart k-esaret"><div class="z-icerik"><div class="z-bas"><h4>Moğol Esareti</h4><span class="z-kat">⛓️ Esaret</span></div><p>Moğollar Mültan'a girip <a class="ad-link" data-ad="Muhammed Kaan Mâlik">Kaan Mâlik</a>'i öldürdü; Hüsrev, <a class="ad-link" data-ad="Hasan Dihlevî">Hasan Dihlevî</a> ile birlikte esir düştü.</p></div><div class="z-konum">Mültan</div></div>
       </div>
       <div class="z-item c-eser"><div class="z-bilgi"><span class="z-yas">33 yaş</span><span class="z-tarih">y. 1286 <span class="h">| h. 685</span></span></div>
-        <div class="z-kart k-eser"><div class="z-icerik"><div class="z-bas"><h4>Vasatü'l-hayât Divanının Tertibi</h4><span class="z-kat">📖 Eser</span></div><p>20–33 yaş arasındaki şiirlerini "orta hayat" divanında derledi (8441 beyit); <a class="ad-link" data-ad="Nizâmeddin Evliyâ">Nizâmeddin Evliyâ</a>'nın himmetiyle dilinin açıldığını söyler.</p></div><div class="z-konum">Müminâbâd</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Vasatü'l-hayât">Vasatü'l-hayât</a> (y. 686/1287)</div></div>
+        <div class="z-kart k-eser"><div class="z-icerik"><div class="z-bas"><h4>Vasatü'l-hayât Divanının Tertibi</h4><span class="z-kat">📖 Eser</span></div><p>20–33 yaş arasındaki şiirlerini "orta hayat" divanında derledi (8441 beyit); <a class="ad-link" data-ad="Nizâmeddin Evliyâ">Nizâmeddin Evliyâ</a>'nın himmetiyle dilinin açıldığını söyler.</p></div><div class="z-konum">Müminâbâd</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Vasatü'l-hayât">Vasatü'l-hayât</a> (y. 1287/686)</div></div>
       </div>
       <div class="z-item c-kayip"><div class="z-bilgi"><span class="z-yas">34 yaş</span><span class="z-tarih">1287 <span class="h">| h. 686</span></span></div>
         <div class="z-kart k-kayip"><div class="z-icerik"><div class="z-bas"><h4>Balaban Han'ın Ölümü</h4><span class="z-kat">🤲 Aile</span></div><p>Esaretten kurtulduktan sonra <a class="ad-link" data-ad="Balaban Han">Balaban</a>'ın ölümüne dek dost ve akrabalarıyla Müminâbâd'da oturdu; saray davetini kabul etmedi.</p></div><div class="z-konum">Müminâbâd</div></div>
@@ -545,10 +558,10 @@
         <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Oudh'a Gidiş</h4><span class="z-kat">👑 Saray</span></div><p>Himayesine girdiği <a class="ad-link" data-ad="Hâtem Han">Hâtem Han</a> Oudh'a vali olunca bir defa daha Delhi'den ayrıldı; kısa süre sonra geri döndü.</p></div><div class="z-konum">Oudh</div></div>
       </div>
       <div class="z-item c-saray"><div class="z-bilgi"><span class="z-yas">35 yaş</span><span class="z-tarih">1288 <span class="h">| h. 687</span></span></div>
-        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Saray Şairi Unvanı</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Delhi'ye döndü ve saraydan gelen teklifi kabul etti; kendisine "saray şairi" unvanı verildi.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Kırânü's-saʿdeyn">Kırânü's-saʿdeyn</a> (688/1289)</div></div>
+        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Saray Şairi Unvanı</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Delhi'ye döndü ve saraydan gelen teklifi kabul etti; kendisine "saray şairi" unvanı verildi.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Kırânü's-saʿdeyn">Kırânü's-saʿdeyn</a> (1289/688)</div></div>
       </div>
       <div class="z-item c-saray"><div class="z-bilgi"><span class="z-yas">37–43 yaş</span><span class="z-tarih">1290–1296 <span class="h">| h. 689–696</span></span></div>
-        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Fîrûz Şah Halacî Devri</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Sarayda mushafdarlık görevinde bulundu. <a class="kitap-link" data-ad="Miftâhu'l-fütûh">Miftâhu'l-fütûh</a> (690/1291) bu dönemin zaferlerini anlatır.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Miftâhu'l-fütûh">Miftâhu'l-fütûh</a> (690/1291) • <a class="kitap-link" data-ad="Gurretü'l-kemâl">Gurretü'l-kemâl</a> (693/1294)</div></div>
+        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Fîrûz Şah Halacî Devri</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Sarayda mushafdarlık görevinde bulundu. <a class="kitap-link" data-ad="Miftâhu'l-fütûh">Miftâhu'l-fütûh</a> (1291/690) bu dönemin zaferlerini anlatır.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Miftâhu'l-fütûh">Miftâhu'l-fütûh</a> (1291/690) • <a class="kitap-link" data-ad="Gurretü'l-kemâl">Gurretü'l-kemâl</a> (1294/693)</div></div>
       </div>
       <div class="z-item c-saray"><div class="z-bilgi"><span class="z-yas">43–63 yaş</span><span class="z-tarih">1296–1316 <span class="h">| h. 696–716</span></span></div>
         <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Alâeddin Halacî: En Verimli Yıllar</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Savaşı seven sultandan beklediği ilgiyi göremediyse de geniş zaman bulup eser yazma imkânına kavuştu.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b>Hamse (5): <a class="kitap-link" data-ad="Matla'u'l-envâr">Matla'u'l-envâr</a> • <a class="kitap-link" data-ad="Şîrîn ü Hüsrev">Şîrîn ü Hüsrev</a> • <a class="kitap-link" data-ad="Mecnûn u Leylî">Mecnûn u Leylî</a> • <a class="kitap-link" data-ad="Heşt Bihişt">Heşt Bihişt</a> • <a class="kitap-link" data-ad="Âyîne-i İskenderî">Âyîne-i İskenderî</a> — <a class="kitap-link" data-ad="ʿAşîka">ʿAşîka</a> • <a class="kitap-link" data-ad="Hazâʾinü'l-fütûh">Hazâʾinü'l-fütûh</a> • <a class="kitap-link" data-ad="İʿcâz-ı Hüsrevî">İʿcâz-ı Hüsrevî</a> • <a class="kitap-link" data-ad="Bakıyye-i Nakıyye">Bakıyye-i Nakıyye</a></div></div>
@@ -557,7 +570,7 @@
         <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>Nizâmeddin Evliyâ'ya İntisap</h4><span class="z-kat">📿 Tasavvuf</span><span class="z-kat">📖 Eser</span></div><p>Çocukluğundan beri görüştüğü şeyhe bu yıl tam intisap etti; tarikat yolculuğu ağırlık kazandı.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Efzalü'l-fevâʾid">Efzalü'l-fevâʾid</a> (1313–1319)</div></div>
       </div>
       <div class="z-item c-saray"><div class="z-bilgi"><span class="z-yas">63–67 yaş</span><span class="z-tarih">1316–1320 <span class="h">| h. 716–720</span></span></div>
-        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Kutbüddin Mübârek Şâh Devri</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Şiir ve müziğe ilgisi Hüsrev'e eski itibarını kazandırdı; <a class="kitap-link" data-ad="Nüh Sipihr">Nüh Sipihr</a> dönemi betimler.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Nüh Sipihr">Nüh Sipihr</a> (718/1318) • <a class="kitap-link" data-ad="Sitar Üstâdı">Sitar üstâdı</a></div></div>
+        <div class="z-kart k-saray"><div class="z-icerik"><div class="z-bas"><h4>Kutbüddin Mübârek Şâh Devri</h4><span class="z-kat">👑 Saray</span><span class="z-kat">📖 Eser</span></div><p>Şiir ve müziğe ilgisi Hüsrev'e eski itibarını kazandırdı; <a class="kitap-link" data-ad="Nüh Sipihr">Nüh Sipihr</a> dönemi betimler.</p></div><div class="z-konum">Delhi</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Nüh Sipihr">Nüh Sipihr</a> (1318/718) • <a class="kitap-link" data-ad="Sitar Üstâdı">Sitar üstâdı</a></div></div>
       </div>
       <div class="z-item c-sefer"><div class="z-bilgi"><span class="z-yas">71 yaş</span><span class="z-tarih">1324 <span class="h">| h. 724</span></span></div>
         <div class="z-kart k-sefer"><div class="z-icerik"><div class="z-bas"><h4>Son Bengal Seferi</h4><span class="z-kat">⚔️ Sefer</span><span class="z-kat">📖 Eser</span></div><p>Sultan <a class="ad-link" data-ad="Gıyâseddin Tuğluk">Gıyâseddin Tuğluk</a> zamanında Bengal seferine katıldı.</p></div><div class="z-konum">Bengal</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Tuğluknâme">Tuğluknâme</a></div></div>
@@ -566,7 +579,7 @@
         <div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4>Şeyhinin Vefatı ve İnziva</h4><span class="z-kat">📿 Tasavvuf</span></div><p>Şeyhi <a class="ad-link" data-ad="Nizâmeddin Evliyâ">Nizâmeddin Evliyâ</a>'nın öldüğünü haber alınca Delhi'ye döndü; Gıyâspûr'daki mezarında bir müddet inzivaya çekildi.</p></div><div class="z-konum">Gıyâspûr</div></div>
       </div>
       <div class="z-item c-vefat"><div class="z-bilgi"><span class="z-yas">72 yaş</span><span class="z-tarih">17 Eylül 1325 <span class="h">| h. 8 Şevval 725</span></span></div>
-        <div class="z-kart k-vefat"><div class="z-icerik"><div class="z-bas"><h4>Vefat</h4><span class="z-kat">🕋 Vefat</span><span class="z-kat">📖 Eser</span></div><p>İnzivanın hemen ardından vefat etti ve <a class="ad-link" data-ad="Nizâmeddin Evliyâ">Nizâmeddin Evliyâ</a>'nın kabri yakınına defnedildi; türbeleri Delhi'nin önemli ziyaret yerlerindendir.</p></div><div class="z-konum">Gıyâspûr</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Nihâyetü'l-kemâl">Nihâyetü'l-kemâl</a> (son divanı, 725/1325) • <a class="kitap-link" data-ad="Hâlik Bârî">Hâlik Bârî</a></div></div>
+        <div class="z-kart k-vefat"><div class="z-icerik"><div class="z-bas"><h4>Vefat</h4><span class="z-kat">🕋 Vefat</span><span class="z-kat">📖 Eser</span></div><p>İnzivanın hemen ardından vefat etti ve <a class="ad-link" data-ad="Nizâmeddin Evliyâ">Nizâmeddin Evliyâ</a>'nın kabri yakınına defnedildi; türbeleri Delhi'nin önemli ziyaret yerlerindendir.</p></div><div class="z-konum">Gıyâspûr</div><div class="z-kitap"><b class="kitap-bas">📚 Kitaplar</b><a class="kitap-link" data-ad="Nihâyetü'l-kemâl">Nihâyetü'l-kemâl</a> (son divanı, 1325/725) • <a class="kitap-link" data-ad="Hâlik Bârî">Hâlik Bârî</a></div></div>
       </div>
     </div>
   </section>
@@ -585,37 +598,37 @@
 
     <div class="grup"><span class="g-ikon">✒️</span><span class="g-yazi">Divanlar</span><span class="adet">5</span><div class="cizgi"></div></div>
     <div class="kartlar">
-      <div class="kart blg k-ilim"><div class="ust"><span class="sira">1</span></div><h4>Tuhfetü's-sıgâr</h4><div class="kopya">y. 670 / 1272 • 16–19 yaş</div><div class="not">İlk divan; Hâkānî tesirinde 35 kaside ve mesneviler.</div></div>
-      <div class="kart blg k-ilim"><div class="ust"><span class="sira">2</span></div><h4>Vasatü'l-hayât</h4><div class="kopya">20–33 yaş • 8441 beyit</div><div class="not">Nizâmeddin Evliyâ'nın himmetiyle dilinin açıldığını söyler.</div></div>
-      <div class="kart blg k-ilim"><div class="ust"><span class="sira">3</span></div><h4>Gurretü'l-kemâl</h4><div class="kopya">693 / 1294 • 34 yaş sonrası</div><div class="not">Dîbâcesi şiir sanatı ve hayatının özeti; "Mir'âtü's-safâ", "Deryâ-yı Ebrâr".</div></div>
-      <div class="kart blg k-ilim"><div class="ust"><span class="sira">4</span></div><h4>Bakıyye-i Nakıyye</h4><div class="kopya">716 / 1316 • 43–66 yaş</div><div class="not">Divanlarını "dört göğe" benzetir; dördüncüsü "ateş gibi yakıcı".</div></div>
-      <div class="kart blg k-ilim"><div class="ust"><span class="sira">5</span></div><h4>Nihâyetü'l-kemâl</h4><div class="kopya">Son günlerde tamamlandı</div><div class="not">Kutbüddin Mübârek Şah mersiyesi ve II. Muhammed Tuğluk kasideleri.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">1</span></div><h4>Tuhfetü's-sıgâr</h4><div class="kopya">y. 1272/670 • 16–19 yaş</div><div class="not">İlk divan; Hâkānî tesirinde 35 kaside ve mesneviler.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">2</span></div><h4>Vasatü'l-hayât</h4><div class="kopya">y. 1287/686 • 20–33 yaş • 8441 beyit</div><div class="not">Nizâmeddin Evliyâ'nın himmetiyle dilinin açıldığını söyler.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">3</span></div><h4>Gurretü'l-kemâl</h4><div class="kopya">1294/693 • 34 yaş sonrası</div><div class="not">Dîbâcesi şiir sanatı ve hayatının özeti; "Mir'âtü's-safâ", "Deryâ-yı Ebrâr".</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">4</span></div><h4>Bakıyye-i Nakıyye</h4><div class="kopya">1316/716 • 43–66 yaş</div><div class="not">Divanlarını "dört göğe" benzetir; dördüncüsü "ateş gibi yakıcı".</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">5</span></div><h4>Nihâyetü'l-kemâl</h4><div class="kopya">Son günlerde tamamlandı • y. 74 yaş</div><div class="not">Kutbüddin Mübârek Şah mersiyesi ve II. Muhammed Tuğluk kasideleri.</div></div>
     </div>
 
     <div class="grup"><span class="g-ikon">⚔️</span><span class="g-yazi">Tarihî Mesneviler</span><span class="adet">5</span><div class="cizgi"></div></div>
     <div class="kartlar">
-      <div class="kart blg k-saray"><div class="ust"><span class="sira">1</span></div><h4>Kırânü's-saʿdeyn <span class="adis">| Mecma'u'l-evṣâf</span></h4><div class="not">Keykubad'ın isteğiyle; Buğra Han ile karşılaşması anlatılır.</div></div>
-      <div class="kart blg k-sefer"><div class="ust"><span class="sira">2</span></div><h4>Miftâhu'l-fütûh</h4><div class="kopya">690 / 1291</div><div class="not">Fîrûz Şah Halacî'nin dört büyük zaferi.</div></div>
-      <div class="kart blg k-kayip"><div class="ust"><span class="sira">3</span></div><h4>ʿAşîka <span class="adis">| Düvelrânî Hızır Han</span></h4><div class="kopya">715/1316</div><div class="not">Hızır Han'ın isteğiyle 4519 beyitlik aşk hikâyesi; dört ayda yazıldı.</div></div>
-      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">4</span></div><h4>Nüh Sipihr</h4><div class="kopya">Kalküta 1368 nuşası</div><div class="not">Mübârek Şah dönemi; dokuz "gök"te Hindistan Müslümanları'nın örf ve âdetleri.</div></div>
-      <div class="kart blg k-vefat"><div class="ust"><span class="sira">5</span></div><h4>Tuğluknâme</h4><div class="kopya">Haydarâbâd 1933</div><div class="not">Halacîler'in yıkılışı ve Gıyâseddin Tuğluk dönemi.</div></div>
+      <div class="kart blg k-saray"><div class="ust"><span class="sira">1</span></div><h4>Kırânü's-saʿdeyn <span class="adis">| Mecma'u'l-evṣâf</span></h4><div class="kopya">1289/688 • 37 yaş</div><div class="not">Keykubad'ın isteğiyle; Buğra Han ile karşılaşması anlatılır.</div></div>
+      <div class="kart blg k-sefer"><div class="ust"><span class="sira">2</span></div><h4>Miftâhu'l-fütûh</h4><div class="kopya">1291/690 • 39 yaş</div><div class="not">Fîrûz Şah Halacî'nin dört büyük zaferi.</div></div>
+      <div class="kart blg k-kayip"><div class="ust"><span class="sira">3</span></div><h4>ʿAşîka <span class="adis">| Düvelrânî Hızır Han</span></h4><div class="kopya">1316/715 • 64 yaş</div><div class="not">Hızır Han'ın isteğiyle 4519 beyitlik aşk hikâyesi; dört ayda yazıldı.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">4</span></div><h4>Nüh Sipihr</h4><div class="kopya">1318/718 • 67 yaş</div><div class="not">Mübârek Şah dönemi; dokuz "gök"te Hindistan Müslümanları'nın örf ve âdetleri.</div></div>
+      <div class="kart blg k-vefat"><div class="ust"><span class="sira">5</span></div><h4>Tuğluknâme</h4><div class="kopya">y. 1320/720 • y. 69 yaş</div><div class="not">Halacîler'in yıkılışı ve Gıyâseddin Tuğluk dönemi.</div></div>
     </div>
 
     <div class="grup"><span class="g-ikon">📖</span><span class="g-yazi">Hamse — Nizâmî'ye nazîre</span><span class="adet">5</span><div class="cizgi"></div></div>
     <div class="kartlar">
-      <div class="kart blg k-ilim"><div class="ust"><span class="sira">H1</span></div><h4>Matla'u'l-envâr</h4><div class="kopya">Leknev 1303</div><div class="not"><em>Mahzenü'l-esrâr</em>'a nazîre.</div></div>
-      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">H2</span></div><h4>Şîrîn ü Hüsrev</h4><div class="kopya">Bombay 1326</div><div class="not"><em>Hüsrev ü Şîrîn</em>'e nazîre.</div></div>
-      <div class="kart blg k-kayip"><div class="ust"><span class="sira">H3</span></div><h4>Mecnûn u Leylî</h4><div class="kopya">Kalküta 1244</div><div class="not"><em>Leylî vü Mecnûn</em>'a nazîre; Türk divan şairlerine yol gösterdi.</div></div>
-      <div class="kart blg k-saray"><div class="ust"><span class="sira">H4</span></div><h4>Heşt Bihişt</h4><div class="kopya">Bombay 1337</div><div class="not"><em>Heft Peyker</em>'e nazîre.</div></div>
-      <div class="kart blg k-sefer"><div class="ust"><span class="sira">H5</span></div><h4>Âyîne-i İskenderî</h4><div class="kopya">Bombay 1336</div><div class="not"><em>İskendernâme</em>'ye nazîre.</div></div>
+      <div class="kart blg k-ilim"><div class="ust"><span class="sira">H1</span></div><h4>Matla'u'l-envâr</h4><div class="kopya">y. 1298/698 • 47 yaş</div><div class="not"><em>Mahzenü'l-esrâr</em>'a nazîre.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">H2</span></div><h4>Şîrîn ü Hüsrev</h4><div class="kopya">y. 1298/697–698 • 46–47 yaş</div><div class="not"><em>Hüsrev ü Şîrîn</em>'e nazîre.</div></div>
+      <div class="kart blg k-kayip"><div class="ust"><span class="sira">H3</span></div><h4>Mecnûn u Leylî</h4><div class="kopya">y. 1298/698 • 47 yaş</div><div class="not"><em>Leylî vü Mecnûn</em>'a nazîre; Türk divan şairlerine yol gösterdi.</div></div>
+      <div class="kart blg k-saray"><div class="ust"><span class="sira">H4</span></div><h4>Heşt Bihişt</h4><div class="kopya">1301/701 • 50 yaş</div><div class="not"><em>Heft Peyker</em>'e nazîre.</div></div>
+      <div class="kart blg k-sefer"><div class="ust"><span class="sira">H5</span></div><h4>Âyîne-i İskenderî</h4><div class="kopya">1301/700 • 49 yaş</div><div class="not"><em>İskendernâme</em>'ye nazîre.</div></div>
     </div>
 
     <div class="grup"><span class="g-ikon">🕌</span><span class="g-yazi">Mensur Eserler ve Diğer</span><span class="adet">6</span><div class="cizgi"></div></div>
     <div class="kartlar">
       <div class="kart blg k-ilim"><div class="ust"><span class="sira">1</span></div><h4>İʿcâz-ı Hüsrevî <span class="adis">| Resâʾilü'l-iʿcâz</span></h4><div class="not">Beş risâle; dil, üslûp, kitâbet, mûsiki ve gençlik mektupları.</div></div>
-      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">2</span></div><h4>Efzalü'l-fevâʾid</h4><div class="kopya">1313–1319</div><div class="not">Nizâmeddin Evliyâ'nın sohbetlerinden tuttuğu notlar.</div></div>
-      <div class="kart blg k-saray"><div class="ust"><span class="sira">3</span></div><h4>Hazâʾinü'l-fütûh</h4><div class="kopya">Aligarh 1345</div><div class="not">Alâeddin Halacî dönemini anlatır.</div></div>
-      <div class="kart blg k-sefer"><div class="ust"><span class="sira">4</span></div><h4>Leknevtî Fetihnâmesi</h4><div class="kopya">y. 1275</div><div class="not">İlk mensur eseri; Buğra Han dönemi Bengal seferini anlatır.</div></div>
+      <div class="kart blg k-tasavvuf"><div class="ust"><span class="sira">2</span></div><h4>Efzalü'l-fevâʾid</h4><div class="kopya">1313–1319 • 62–68 yaş</div><div class="not">Nizâmeddin Evliyâ'nın sohbetlerinden tuttuğu notlar.</div></div>
+      <div class="kart blg k-saray"><div class="ust"><span class="sira">3</span></div><h4>Hazâʾinü'l-fütûh</h4><div class="kopya">1311/711 • 60 yaş</div><div class="not">Alâeddin Halacî dönemini anlatır.</div></div>
+      <div class="kart blg k-sefer"><div class="ust"><span class="sira">4</span></div><h4>Leknevtî Fetihnâmesi</h4><div class="kopya">y. 1275 • y. 23 yaş</div><div class="not">İlk mensur eseri; Buğra Han dönemi Bengal seferini anlatır.</div></div>
       <div class="kart blg k-ilim"><div class="ust"><span class="sira">5</span></div><h4>Hâlik Bârî</h4><div class="kopya">Hintçe</div><div class="not">Kendisine nisbet edilen Hintçe şiirlerin en bilineni.</div></div>
       <div class="kart blg k-ilim"><div class="ust"><span class="sira">6</span></div><h4>Sitar Üstâdı</h4><div class="kopya">Mûsiki</div><div class="not">Hint-Müslüman mûsiki geleneğinin kurucusu kabul edilir.</div></div>
     </div>
