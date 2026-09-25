@@ -235,7 +235,7 @@ if (snEl) {
       siraIdx = sira;
     }
   }
-  function olc() { if (!aktif) return; aktif.style.transform = ''; const max = snSahne.clientHeight - 18 - (snZeta ? snZeta.offsetHeight + 10 : 0); const ratio = max > 0 && aktif.scrollHeight > max ? Math.max(.55, max / aktif.scrollHeight) : 1; aktif.style.transform = ratio < 1 ? 'scale(' + ratio.toFixed(3) + ')' : ''; }
+  function olc() { if (!aktif) return; aktif.style.transform = ''; const max = snSahne.clientHeight - (parseFloat(getComputedStyle(snSahne).paddingTop) + parseFloat(getComputedStyle(snSahne).paddingBottom) + 8) - (snZeta ? snZeta.offsetHeight + 10 : 0); const ratio = max > 0 && aktif.scrollHeight > max ? Math.max(.55, max / aktif.scrollHeight) : 1; aktif.style.transform = ratio < 1 ? 'scale(' + ratio.toFixed(3) + ')' : ''; }
   function ciz() {
     const eski = aktif;
     const yari = SUNUM_AYAR.gecis / 2;
@@ -343,7 +343,7 @@ if (snEl) {
     b.addEventListener('click', e => { e.stopPropagation(); acSunum(i); });
     hedef.appendChild(b);
   });
-  snSahne.addEventListener('click', e => { if (e.target === snSahne) git(true); });
+  snSahne.addEventListener('click', e => { if (e.target !== snSahne && !e.target.closest('#snZeta')) return; const r = snSahne.getBoundingClientRect(); git(e.clientX - r.left < r.width / 2 ? false : true); });
   window.addEventListener('resize', olc);
   document.addEventListener('keydown', e => {
     if (snEl.hidden) return;

@@ -350,7 +350,7 @@
       const ic = snAktifEl;
       if (!ic) return;
       ic.style.transform = '';
-      const ust = snSahne.clientHeight - 18 - (snZeta ? snZeta.offsetHeight + 10 : 0);
+      const ust = snSahne.clientHeight - (parseFloat(getComputedStyle(snSahne).paddingTop) + parseFloat(getComputedStyle(snSahne).paddingBottom) + 8) - (snZeta ? snZeta.offsetHeight + 10 : 0);
       const yuk = ic.scrollHeight;
       const olcek = (yuk > ust && ust > 0) ? Math.max(0.55, ust / yuk) : 1;
       ic.style.transform = olcek < 1 ? 'scale(' + olcek.toFixed(3) + ')' : '';
@@ -561,7 +561,9 @@
       snOtoYazi();
     });
     snSahne.addEventListener('click', e => {
-      if (e.target === snSahne) snGit(true);
+      if (e.target !== snSahne && !e.target.closest('#snZeta')) return;
+      const r = snSahne.getBoundingClientRect();
+      snGit(e.clientX - r.left < r.width / 2 ? false : true);
     });
     window.addEventListener('resize', snOlc);
     document.addEventListener('keydown', e => {
