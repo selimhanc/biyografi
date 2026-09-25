@@ -656,3 +656,6 @@
     .sn-btn { font-size: .8rem; padding: .52rem .9rem; }
     .sn-hiz-btn { font-size: .66rem; padding: .22rem .45rem; }
   }
+
+svg.mez { width: 1.05em; height: 1.05em; vertical-align: -.16em; display: inline-block; fill: currentColor; }
+.z-kat svg.mez, #lejant svg.mez { margin-right: .18em; }
