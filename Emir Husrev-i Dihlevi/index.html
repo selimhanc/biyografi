@@ -656,14 +656,14 @@
 </header>
 
 <nav id="tabBar">
-  <button class="tab aktif" data-sekme="sehirler"><span class="sayi">1</span> Şehirler</button>
-  <button class="tab" data-sekme="kisiler"><span class="sayi">2</span> Kişiler</button>
-  <button class="tab" data-sekme="olaylar"><span class="sayi">3</span> Olaylar</button>
+  <button class="tab aktif" data-sekme="olaylar"><span class="sayi">1</span> Olaylar</button>
+  <button class="tab" data-sekme="sehirler"><span class="sayi">2</span> Şehirler</button>
+  <button class="tab" data-sekme="kisiler"><span class="sayi">3</span> Kişiler</button>
   <button class="tab" data-sekme="eserler"><span class="sayi">4</span> Eserleri</button>
 </nav>
 
 <main>
-  <section class="sekme aktif" id="sehirler">
+  <section class="sekme" id="sehirler">
     <div class="baslik">
       <h2>Şehirler</h2>
       <p>Madde metninde geçen coğrafî noktalar — ileride ilüstratif haritaya point olarak işlenecek</p>
@@ -721,7 +721,7 @@
     </div>
   </section>
 
-  <section class="sekme" id="olaylar">
+  <section class="sekme aktif" id="olaylar">
     <div class="baslik baslik-sunum">
       <div>        
         <h2>Olaylar</h2>
@@ -1131,7 +1131,7 @@
 </script>
 
 <script>
-  const SUNUM_AYAR = { referansNo: 0, referansSaniye: 20, enAz: 4, enCok: 22 };
+  const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22 };
 
   const snEl = document.getElementById('sunum');
   if (snEl) {
@@ -1162,10 +1162,8 @@
       return { harf: harfSay(z), sure: 0, el: kopya };
     });
 
-    const refHarf = (slaytlar[SUNUM_AYAR.referansNo] || slaytlar[0] || { harf: 1 }).harf || 1;
-    const carpan = SUNUM_AYAR.referansSaniye / refHarf;
     slaytlar.forEach(s => {
-      s.sure = Math.min(SUNUM_AYAR.enCok, Math.max(SUNUM_AYAR.enAz, Math.round(s.harf * carpan)));
+      s.sure = Math.min(SUNUM_AYAR.enCok, Math.max(SUNUM_AYAR.enAz, Math.round(s.harf * SUNUM_AYAR.saniyeHarf)));
     });
 
     let snIdx = 0, snDurakMi = false, snBitti = 0, snRaf = null, snKalan = 0, snHiz = 1;
@@ -1208,7 +1206,8 @@
 
     function snIsaretle() {
       if (!snKelimeler.length) return;
-      const oran = Math.max(0, Math.min(1, (snToplam() - snKalan - snBekleme()) / snOkuma()));
+      const gecen = snToplam() - snKalan - snBekleme();
+      const oran = gecen <= 0 ? 0 : Math.min(1, gecen / snOkuma());
       const hedef = oran * snToplamHarf;
       let g = 0;
       while (g < snKelimeler.length && snKelimeler[g].son <= hedef) g++;
@@ -1218,7 +1217,7 @@
         for (let i = gecti; i < snKelimeler.length; i++) snKelimeler[i].el.classList.remove('sn-gecti');
         snGectiIdx = gecti;
       }
-      const sira = gecti < snKelimeler.length ? gecti : -1;
+      const sira = (gecen > 0 && gecti < snKelimeler.length) ? gecti : -1;
       if (sira !== snSiraIdx) {
         if (snSiraIdx >= 0) snKelimeler[snSiraIdx].el.classList.remove('sn-sira');
         if (sira >= 0) snKelimeler[sira].el.classList.add('sn-sira');
