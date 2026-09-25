@@ -2,30 +2,11 @@
   "surum": 2,
   "slug": "Hace Muhammed Bakibillah",
   "olaylar": [
-    {
-      "tur": "dogum",
-      "yas": "",
-      "tarih": "M. 1563",
-      "h": "| H. 971",
-      "baslik": "Kâbil'de Doğum",
-      "tag": "🌙 Doğum",
-      "aciklama": "971 (M. 1563) yılında Kâbil'de dünyaya geldi. Babası Kâdı Abdüsselâm'dır. Annesi Hz. Hüseyin'in neslinden, seyyide, kanâatkâr, dervişlere hizmet eden sâliha bir hanımdır.",
-      "konum": "Kâbil"
-    },
-    {
-      "tur": "kayip",
-      "yas": "123",
-      "tarih": "123",
-      "h": "",
-      "baslik": "yeni",
-      "tag": "🕊️ Ayrılış",
-      "aciklama": "sdasdad",
-      "konum": "asd"
-    },
+    null,
     {
       "tur": "tasavvuf",
       "yas": "ibâdet hayatı",
-      "tarih": "",
+      "tarih": "Tarih",
       "h": "",
       "baslik": "Az Yer, Az Uyku, Az Konuşma",
       "tag": "🕌 Tasavvuf",
@@ -35,7 +16,7 @@
     {
       "tur": "ilim",
       "yas": "geceleri",
-      "tarih": "",
+      "tarih": "Tarih",
       "h": "",
       "baslik": "Fecir Sorusu",
       "tag": "🕌 İlim",
@@ -45,7 +26,7 @@
     {
       "tur": "tasavvuf",
       "yas": "yemek âdâbı",
-      "tarih": "",
+      "tarih": "Tarih",
       "h": "",
       "baslik": "Yemekte İhtiyat ve Huzur",
       "tag": "🕌 Tasavvuf",
@@ -55,7 +36,7 @@
     {
       "tur": "ilim",
       "yas": "feyz kapısı",
-      "tarih": "",
+      "tarih": "Tarih",
       "h": "",
       "baslik": "\"Huzûr ve İhtiyât\" Sözü",
       "tag": "🕌 İlim",
@@ -65,33 +46,15 @@
     {
       "tur": "tasavvuf",
       "yas": "lâkabı",
-      "tarih": "",
+      "tarih": "Tarih",
       "h": "",
       "baslik": "Hâce Bireng Lâkâbı",
       "tag": "🕌 Tasavvuf",
       "aciklama": "Silsile-i Sâdât'ın yirmi ikinci halkası olan Bâkîbillâh'ın lâkabı Hâce Bireng'dir. Hânevi tarikatına mensuptur.",
       "konum": "Kâbil"
     },
-    {
-      "tur": "vefat",
-      "yas": "40 yaş",
-      "tarih": "M. 1603",
-      "h": "| H. 25 Rebîulâhir 1012",
-      "baslik": "Delhi'de Vefat",
-      "tag": "Vefat",
-      "aciklama": "25 Rebîulâhir 1012 (M. 1603) târihinde kırk yaşında iken âhirete irtihâl etti. Hindistan'a geçmiş ve Delhi'de yaşamıştır; Resûlüllâh'ın (s.a.v.) ayak bastığı yer olarak meşhur olan \"Kademgâh\" denilen mevkiye defnedildi.",
-      "konum": "Delhi"
-    },
-    {
-      "tur": "vefat",
-      "yas": "defin mucizesi",
-      "tarih": "M. 1603",
-      "h": "| H. 1012",
-      "baslik": "\"Toprağı Elbisemizi Tuttu\"",
-      "tag": "Vefat",
-      "aciklama": "Vefat ettiğinde en sâdık talebeleri mezarını kazdılar. Fakat naaşını taşırken oraya değil de gayr-ı ihtiyârî olarak başka bir yere götürdüler. Tabutunu yere koyduklarında oranın Hâzreti'nin daha önce geldiği bir yer olduğunu hatırladılar. O bu mekânı beğenerek iki rek'at namaz kılmış ve kıyafetine bu yerin toprağı bulaşmıştı. Bunun üzerine: \"Bu yerin toprağı bizim elbisemizi tuttu\" buyurmuştu.",
-      "konum": "Delhi"
-    }
+    null,
+    null
   ],
   "kartlar": {
     "sehirler": [
@@ -102,7 +65,7 @@
         "kartlar": [
           {
             "tur": "dogum",
-            "sira": "2",
+            "sira": "4",
             "baslik": "Kâbil",
             "aciklama": "971 (M. 1563) yılında Kâbil'de dünyaya geldi. Silsile-i Sâdât'ın yirmi ikinci halkasıdır.",
             "adis": "| doğum",
@@ -110,7 +73,7 @@
           },
           {
             "tur": "sefer",
-            "sira": "3",
+            "sira": "5",
             "baslik": "Hindistan",
             "aciklama": "Kâbil'den Hindistan'a geçti. Daima az yer, az uyur, az konuşur; her gece teheccüd vaktine kadar Kur'ân-ı Azîmuşşân'ı hatmederdi.",
             "adis": "| talebe ve ibadet",
@@ -118,7 +81,7 @@
           },
           {
             "tur": "vefat",
-            "sira": "4",
+            "sira": "6",
             "baslik": "Delhi",
             "aciklama": "25 Rebîulâhir 1012 (M. 1603) târihinde kırk yaşında iken âhirete irtihâl etti. Resûlüllâh'ın (s.a.v.) ayak bastığı yer olarak meşhur olan \"Kademgâh\" denilen mevkiye defnedildi.",
             "adis": "| Kademgâh",
@@ -135,28 +98,28 @@
         "kartlar": [
           {
             "tur": "tasavvuf",
-            "sira": "2",
+            "sira": "4",
             "baslik": "Silsile-i Sâdât · 22. Halka",
             "aciklama": "Silsile-i Sâdât'ın yirmi ikinci halkasıdır. Lâkabı Hâce Bireng'dir.",
             "kopya": "Hânevi · Hâce Bireng"
           },
           {
             "tur": "ilim",
-            "sira": "3",
+            "sira": "5",
             "baslik": "Gece Kur'ân Okuma",
             "aciklama": "Her gece yatsı namazından sonra teheccüd vaktine kadar Kur'ân-ı Azîmuşşân'ı hatmeder ve daha sonra fecir doğana kadar yirmi bir defa Yâsîn Sûresini okurdu.",
             "kopya": "yirmi bir defa Yâsîn"
           },
           {
             "tur": "tasavvuf",
-            "sira": "4",
+            "sira": "6",
             "baslik": "Yemek ve Ev Âdâbı",
             "aciklama": "Yemek pişirenin abdestli olmasını, yemek pişirirken dünya kelamı konuşulmamasını tenbih ederdi. \"Huzûr ve ihtiyât sahibi olmayanın yemeklerinden bir duman çıkar ki, feyz kapısını kapatır.\"",
             "kopya": "huzûr ve ihtiyât"
           },
           {
             "tur": "ilim",
-            "sira": "5",
+            "sira": "7",
             "baslik": "Azîmet ve İhtiyat",
             "aciklama": "İşlerinde azîmet ve evlâ olan ile hareket ederdi. Şüphelilerden kaçındığı gibi mübahların da fazlasından kaçınır, zarûret mikdarı işlerdi.",
             "kopya": "zarûret mikdarı"
