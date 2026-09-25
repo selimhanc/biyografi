@@ -256,6 +256,9 @@ a.kitap-link:hover, a.ad-link:hover { color: #7d5812; text-decoration-color: #7d
 .z-icerik { flex: 1; min-width: 0; }
 .z-bas { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .z-bas h4 { font-size: 1rem; font-weight: 700; letter-spacing: -.2px; color: var(--ink); }
+svg.mez { width: 1.05em; height: 1.05em; vertical-align: -.16em; display: inline-block; fill: currentColor; }
+.z-kat svg.mez, #lejant svg.mez { margin-right: .18em; }
+
 .z-kat { font-size: .68rem; font-weight: 700; padding: .18rem .6rem; border-radius: 999px; background: rgba(255,255,255,.7); display: inline-flex; align-items: center; gap: .3rem; }
 .z-kart p { font-size: .8rem; color: #4c4232; line-height: 1.55; margin-top: .3rem; }
 .z-kitap { flex: 1 1 100%; width: 100%; margin-top: .8rem; padding-top: .6rem; border-top: 1px dashed rgba(163,116,31,.35); font-size: .72rem; line-height: 1.6; color: #7a6744; }

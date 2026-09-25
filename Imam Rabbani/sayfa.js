@@ -215,10 +215,12 @@
   });
   document.querySelectorAll('.z-kart[data-derin], .kart.blg').forEach(el => {
     el.addEventListener('click', e => {
-      if (e.target.closest('a')) return;
+      if (e.target.closest('a') || e.target.closest('.dz-detay')) return;
+      if (document.body.classList.contains('dz-mod')) return;
       blgAc(el);
     });
   });
+  window.KartPopAc = blgAc;
   document.getElementById('blgKapat').addEventListener('click', blgKapat);
   blgUst.addEventListener('click', blgKapat);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') blgKapat(); });
@@ -230,6 +232,7 @@
     const snSahne = document.getElementById('snSahne'); const snZeta = document.getElementById('snZeta'); if (snZeta) { const snH1 = document.querySelector('header h1'); if (snH1) snZeta.innerHTML = snH1.innerHTML; }
     const snDolgu = document.getElementById('snDolgu');
     const snSayac = document.getElementById('snSayac');
+  const snAdet = document.getElementById('snAdet');
     const snSure  = document.getElementById('snSure');
     const snGeri  = document.getElementById('snGeri');
     const snIleri = document.getElementById('snIleri');
@@ -242,7 +245,10 @@
 
     const harfSay = el => ((el.textContent || '').match(/[\p{L}\p{N}]/gu) || []).length;
 
-    const slaytlar = [...document.querySelectorAll('#olaylar .z-item')].map(z => {
+    const slaytlar = [];
+    function snSlaytlariKur() {
+    slaytlar.length = 0;
+      const gecici = [...document.querySelectorAll('#olaylar .z-item')].map(z => {
       const kopya = z.cloneNode(true);
       kopya.removeAttribute('id');
       kopya.removeAttribute('data-derin');
@@ -252,6 +258,7 @@
       if (sb) sb.remove();
       return { harf: harfSay(z), sure: 0, el: kopya };
     });
+      gecici.forEach(s => slaytlar.push(s));
 
     slaytlar.forEach(s => {
       s.sure = Math.min(SUNUM_AYAR.enCok, Math.max(SUNUM_AYAR.enAz, Math.round(s.harf * SUNUM_AYAR.saniyeHarf)));
@@ -271,6 +278,8 @@
       const el = sozSlayt(k);
       slaytlar.push({ harf: harfSay(el), sure: sozSure(el), el });
     });
+    }
+    snSlaytlariKur();
 
     let snIdx = 0, snDurakMi = false, snBitti = 0, snRaf = null, snKalan = 0, snHiz = 1;
     let snKelimeler = [], snToplamHarf = 0, snGectiIdx = -1, snSiraIdx = -1;
@@ -334,7 +343,8 @@
 
     function snYazi() {
       if (snSayac) snSayac.textContent =(snIdx + 1) + ' / ' + slaytlar.length;
-      if (snSure) if (snSure) snSure.textContent = '~' + Math.round(snToplam() / 1000) + ' sn · ' + slaytlar[snIdx].harf + ' harf';
+  if (snAdet) snAdet.textContent = (snIdx + 1) + ' / ' + slaytlar.length + ' olay';
+      if (snSure) snSure.textContent = '~' + Math.round(snToplam() / 1000) + ' sn · ' + slaytlar[snIdx].harf + ' harf';
     }
 
     function snOtoYazi() {
@@ -508,6 +518,15 @@
       }
     }
 
+    window.SunumDuzenle = window.SunumDuzenle || {};
+    window.SunumDuzenle.yenile = function () {
+      snSlaytlariKur();
+      if (snIdx >= slaytlar.length) snIdx = Math.max(0, slaytlar.length - 1);
+      if (!snEl.hidden) { snAktifEl = null; snSlayt.innerHTML = ''; snKelimeler = []; snCiz(); }
+      return slaytlar.length;
+    };
+    window.SunumDuzenle.sureler = () => slaytlar.map(s => s.sure);
+    window.SunumDuzenle.ayar = SUNUM_AYAR;
     document.getElementById('sunumAc').addEventListener('click', () => snAc(0));
     snHizDugme.addEventListener('click', e => {
       e.stopPropagation();

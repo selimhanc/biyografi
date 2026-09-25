@@ -115,6 +115,9 @@ a.kitap-link:hover, a.ad-link:hover { color: #7d5812; }
 .z-icerik { flex: 1; min-width: 0; }
 .z-bas { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .z-bas h4 { font-size: 1rem; font-weight: 700; color: var(--ink); }
+svg.mez { width: 1.05em; height: 1.05em; vertical-align: -.16em; display: inline-block; fill: currentColor; }
+.z-kat svg.mez, #lejant svg.mez { margin-right: .18em; }
+
 .z-kat { font-size: .68rem; font-weight: 700; padding: .18rem .6rem; border-radius: 999px; background: rgba(255,255,255,.7); color: var(--ink); }
 .z-kart.k-vefat .z-kat, .z-kart.k-kayip .z-kat { background: rgba(255,255,255,.88); color: #2b3038; }
 .z-kart p { font-size: .8rem; color: #4c4232; line-height: 1.55; margin-top: .3rem; }
@@ -142,7 +145,9 @@ footer a { text-decoration: underline; }
 .sunum[hidden] { display: none; }
 .sn-kapat { position: absolute; top: .9rem; right: .9rem; z-index: 5; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.08); color: #f6efdd; cursor: pointer; }
 .sn-ust { display: flex; align-items: center; gap: .7rem; padding: 1rem 1.4rem .1rem; }
-.sn-sure, .sn-sayac { font-size: .74rem; color: rgba(246,239,221,.7); }
+    .sn-sure, .sn-sayac { font-size: .74rem; color: rgba(246,239,221,.7); }
+    .sn-adet { font-size: .74rem; color: rgba(246,239,221,.78); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: .22rem .6rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .sn-adet:empty { display: none; }
 .sn-yer { flex: 1; }
 .sn-sahne { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 1.4rem; }
 .sn-zeta {position: absolute; left: 1.4rem; right: 1.4rem; top: 45px; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }

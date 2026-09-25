@@ -127,8 +127,11 @@ document.querySelectorAll('a.ad-link').forEach(a => a.addEventListener('click', 
   if (k) ac(k);
 }));
 document.querySelectorAll('.z-kart[data-derin], .kart.blg').forEach(k => k.addEventListener('click', e => {
-  if (!e.target.closest('a')) ac(k);
+  if (e.target.closest('a') || e.target.closest('.dz-detay')) return;
+  if (document.body.classList.contains('dz-mod')) return;
+  ac(k);
 }));
+window.KartPopAc = ac;
 document.getElementById('blgKapat').addEventListener('click', kapat);
 blgUst.addEventListener('click', kapat);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.classList.contains('hidden')) kapat(); });
@@ -140,6 +143,7 @@ if (snEl) {
   const snSahne = document.getElementById('snSahne'); const snZeta = document.getElementById('snZeta'); if (snZeta) { const snH1 = document.querySelector('header h1'); if (snH1) snZeta.innerHTML = snH1.innerHTML; }
   const snDolgu = document.getElementById('snDolgu');
   const snSayac = document.getElementById('snSayac');
+  const snAdet = document.getElementById('snAdet');
   const snSure = document.getElementById('snSure');
   const snGeri = document.getElementById('snGeri');
   const snIleri = document.getElementById('snIleri');
@@ -161,25 +165,30 @@ if (snEl) {
     el.querySelector('.z-konum').textContent = (k.querySelector('.kopya')?.textContent || 'Söz').trim();
     return el;
   };
-  const slaytlar = [...document.querySelectorAll('#olaylar .z-item')].map(z => {
-    const el = z.cloneNode(true);
-    el.removeAttribute('id');
-    el.removeAttribute('data-derin');
-    el.querySelector('.detay-d')?.remove();
-    const harf = harfSay(z);
-    return { el, harf, sure: kelimeSure(harf) };
-  });
-  document.querySelectorAll('#sozler .kart').forEach(k => {
-    const el = sozSlayt(k);
-    slaytlar.push({ el, harf: harfSay(el), sure: sozSure(el) });
-  });
+  const slaytlar = [];
+  function slaytlariKur() {
+    slaytlar.length = 0;
+    [...document.querySelectorAll('#olaylar .z-item')].forEach(z => {
+      const el = z.cloneNode(true);
+      el.removeAttribute('id');
+      el.removeAttribute('data-derin');
+      el.querySelector('.detay-d')?.remove();
+      const harf = harfSay(z);
+      slaytlar.push({ el, harf, sure: kelimeSure(harf) });
+    });
+    document.querySelectorAll('#sozler .kart').forEach(k => {
+      const el = sozSlayt(k);
+      slaytlar.push({ el, harf: harfSay(el), sure: sozSure(el) });
+    });
+  }
+  slaytlariKur();
   let idx = 0, durak = false, kalan = 0, bitti = 0, raf = null, hiz = 1, oto = true, aktif = null, bittiMi = false;
   let kelimeler = [], toplamHarf = 0, gectiIdx = -1, siraIdx = -1;
   const okuma = () => slaytlar[idx].sure * 1000 / hiz;
   const bekleme = () => SUNUM_AYAR.basBekleme / hiz;
   const sonBekleme = () => SUNUM_AYAR.sonBekleme / hiz;
   const toplam = () => okuma() + bekleme() + sonBekleme();
-  function yazi() { snSayac && (snSayac.textContent = (idx + 1) + ' / ' + slaytlar.length); if (snSure) if (snSure) snSure.textContent = '~' + Math.round(toplam() / 1000) + ' sn · ' + slaytlar[idx].harf + ' harf'; }
+  function yazi() { snSayac && (snSayac.textContent = (idx + 1) + ' / ' + slaytlar.length); if (snAdet) snAdet.textContent = (idx + 1) + ' / ' + slaytlar.length + ' olay'; if (snSure) snSure.textContent = '~' + Math.round(toplam() / 1000) + ' sn · ' + slaytlar[idx].harf + ' harf'; }
   function otoYazi() {
     snOto.textContent = oto ? '⏭ Otomatik' : '⏭ Etkileşimli';
     snOto.classList.toggle('aktif', oto);
@@ -308,6 +317,15 @@ if (snEl) {
 
   function acSunum(bas) { snKilitAl(); idx = Math.max(0, Math.min(slaytlar.length - 1, bas || 0)); durak = false; bittiMi = false; aktif = null; snSlayt.innerHTML = ''; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); otoYazi(); snEl.hidden = false; document.body.style.overflow = 'hidden'; ciz(); dongu(); const fs = snEl.requestFullscreen || snEl.webkitRequestFullscreen; if (fs) try { const p = fs.call(snEl); if (p?.catch) p.catch(() => {}); } catch (e) {} }
   function kapatSunum() { snKilitBirak(); snEl.hidden = true; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); durak = false; bittiMi = false; idx = 0; aktif = null; kelimeler = []; gectiIdx = -1; siraIdx = -1; snSlayt.innerHTML = ''; snDolgu.style.width = '0%'; if (raf) cancelAnimationFrame(raf); raf = null; document.body.style.overflow = ''; const cik = document.exitFullscreen || document.webkitExitFullscreen; if (cik && (document.fullscreenElement || document.webkitFullscreenElement)) try { cik.call(document); } catch (e) {} }
+  window.SunumDuzenle = window.SunumDuzenle || {};
+  window.SunumDuzenle.yenile = function () {
+    slaytlariKur();
+    if (idx >= slaytlar.length) idx = Math.max(0, slaytlar.length - 1);
+    if (!snEl.hidden) { aktif = null; snSlayt.innerHTML = ''; kelimeler = []; ciz(); }
+    return slaytlar.length;
+  };
+  window.SunumDuzenle.sureler = () => slaytlar.map(s => s.sure);
+  window.SunumDuzenle.ayar = SUNUM_AYAR;
   document.getElementById('sunumAc').addEventListener('click', () => acSunum(0));
   snKapat.addEventListener('click', kapatSunum);
   snGeri.addEventListener('click', () => git(false));
