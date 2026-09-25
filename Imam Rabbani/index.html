@@ -445,7 +445,226 @@
     .kartlar { grid-template-columns: 1fr; }
     .z-kart { flex-direction: column; }
   }
+  .z-sunum-btn {
+    position: absolute;
+    bottom: .5rem; right: .55rem;
+    z-index: 2;
+    width: 26px; height: 26px; border-radius: 50%;
+    display: grid; place-items: center;
+    padding: 0;
+    font-size: .6rem; line-height: 1; cursor: pointer;
+    background: rgba(255,255,255,.9);
+    border: 1px solid var(--line);
+    color: var(--accent);
+    transition: background .15s ease, transform .15s ease;
+  }
+  .z-sunum-btn:hover { background: #fff; transform: scale(1.12); }
+  .z-sunum-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .sunum .z-sunum-btn { display: none; }
+  #olaylar .z-kart { padding-right: 2.3rem; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    background: #241d12;
+    color: #c9b98d;
+    text-align: center;
+    padding: 1.1rem 1rem;
+    font-size: .78rem;
+  }
+  footer b { color: #f3dc9a; }
+  footer a { color: #f3dc9a; text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    header { padding: 2rem 1rem 1.6rem; }
+    nav { position: static; overflow-x: auto; justify-content: flex-start; }
+    nav .tab { white-space: nowrap; }
+    .kartlar { grid-template-columns: 1fr; }
+    .z-kart { flex-direction: column; }
+  }
+
+  /* ================= OLAY SUNUMU (tam ekran) ================= */
+  .baslik-sunum {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap;
+  }
+  .sunum-btn {
+    font-family: inherit; cursor: pointer;
+    display: inline-flex; align-items: center; gap: .45rem;
+    font-size: .88rem; font-weight: 700;
+    color: #fff8e6;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border: 1px solid rgba(122,90,20,.45);
+    border-radius: 999px;
+    padding: .55rem 1.2rem;
+    box-shadow: 0 6px 18px rgba(122,90,20,.28);
+    transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+  }
+  .sunum-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(122,90,20,.36); filter: brightness(1.06); }
+  .sunum-btn:active { transform: translateY(0); }
+
+  .sunum {
+    position: fixed; inset: 0; z-index: 200;
+    background: radial-gradient(circle at 50% 28%, #2e2514, #13100a 72%);
+    color: #f6efdd;
+    display: flex; flex-direction: column;
+    animation: snGiris .22s ease;
+  }
+  .sunum[hidden] { display: none; }
+  @keyframes snGiris { from { opacity: 0; } to { opacity: 1; } }
+
+  .sn-kapat {
+    position: absolute; top: .9rem; right: .9rem; z-index: 5;
+    width: 42px; height: 42px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 1rem; line-height: 1; cursor: pointer;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.16);
+    color: #f6efdd;
+    transition: background .15s ease, transform .2s ease;
+  }
+  .sn-kapat:hover { background: rgba(255,255,255,.2); transform: rotate(90deg); }
+
+  .sn-ust {
+    display: flex; align-items: center; gap: .7rem;
+    padding: 1rem 4rem .1rem 1.4rem;
+  }
+  .sn-ust .sn-ad { font-size: .95rem; font-weight: 700; color: #f3dc9a; letter-spacing: .2px; }
+  .sn-ust .sn-sure { font-size: .74rem; font-weight: 600; color: rgba(246,239,221,.6); }
+  .sn-ust .sn-yer { flex: 1; }
+  .sn-ust .sn-sayac {
+    font-size: .78rem; font-weight: 700; color: #f6efdd;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 999px; padding: .25rem .8rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* sahne: blok ortada, üstte ve altta boşluk kalır */
+  .sn-sahne {
+    flex: 1; min-height: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: .5rem 1.4rem;
+  }
+  .sn-slayt { position: relative; width: 100%; max-width: 1180px; animation: snGirisKart .34s ease; }
+  .sn-ic { position: relative; z-index: 1; width: 100%; transform-origin: 50% 50%; transition: opacity .34s ease; }
+  .sn-ic.sn-cikis { position: absolute; top: 0; left: 0; width: 100%; z-index: 0; pointer-events: none; }
+  @keyframes snGirisKart {
+    from { opacity: 0; transform: translateY(18px) scale(.985); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* sunumda zaman çizelgesi çizgisi/noktası gizlenir, tarih-kategori renkleri korunur */
+  .sunum .z-item { position: static; margin: 0; padding: 0; }
+  .sunum .z-item::before { display: none; }
+  .sunum .z-bilgi { gap: .7rem; margin-bottom: .85rem; }
+  .sunum .z-yas { font-size: 1.18rem; padding: .4rem 1.15rem; }
+  .sunum .z-tarih { font-size: 1.18rem; padding: .4rem 1.25rem; }
+  .sunum .z-kart {
+    flex-direction: column; align-items: stretch;
+    gap: .85rem; padding: 1.7rem 1.9rem;
+    box-shadow: 0 22px 60px rgba(0,0,0,.4);
+  }
+  .sunum .z-bas h4 { font-size: 1.75rem; }
+  .sunum .z-kart:not(.k-vefat):not(.k-kayip) { color: #4c4232; }
+  .sunum .z-kart:not(.k-vefat):not(.k-kayip) h4 { color: var(--ink); }
+  .sunum .z-kat { font-size: .82rem; padding: .27rem .78rem; }
+  .sunum .z-kart p { font-size: 1.12rem; line-height: 1.72; margin-top: .55rem; }
+  .sunum .z-konum { align-self: flex-start; font-size: .88rem; padding: .38rem .95rem; margin-top: 0; }
+  .sunum .z-kitap { font-size: .88rem; line-height: 1.7; margin-top: .2rem; padding-top: .85rem; }
+  .sunum .z-kitap .kitap-bas { font-size: .74rem; }
+  .sunum .detay-d { display: none; }
+
+  /* kelime kelime okuma animasyonu: yalnızca sağ/sol padding */
+  .sn-kelime {
+    display: inline-block;
+    padding: 0 .2rem;
+    border-radius: .3rem;
+    background: transparent;
+    transition: background .3s ease;
+  }
+  .sn-kelime.sn-gecti { background: rgba(217,178,63,.3); }
+  .sn-kelime.sn-sira { background: rgba(217,178,63,.58); }
+  .z-kart.k-vefat .sn-kelime.sn-gecti, .z-kart.k-kayip .sn-kelime.sn-gecti { background: rgba(246,231,184,.2); }
+  .z-kart.k-vefat .sn-kelime.sn-sira, .z-kart.k-kayip .sn-kelime.sn-sira { background: rgba(246,231,184,.38); }
+
+  .sn-alt {
+    display: flex; align-items: center; justify-content: center;
+    gap: .6rem; padding: .3rem 1.4rem 1.1rem;
+  }
+  .sn-btn {
+    font-family: inherit; cursor: pointer;
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .9rem; font-weight: 700;
+    color: #f6efdd;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 999px;
+    padding: .6rem 1.25rem;
+    transition: background .15s ease, transform .15s ease, border-color .15s ease;
+  }
+  .sn-btn:hover { background: rgba(255,255,255,.16); transform: translateY(-1px); }
+  .sn-btn:disabled { opacity: .3; cursor: default; transform: none; }
+  .sn-btn:disabled:hover { background: rgba(255,255,255,.07); }
+  .sn-btn.aktif {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-color: transparent; color: #241d12;
+  }
+
+  .sn-hiz { position: relative; display: flex; align-items: center; }
+  .sn-hiz-btn {
+    font-family: inherit; cursor: pointer;
+    font-size: .72rem; font-weight: 700;
+    color: rgba(246,239,221,.72);
+    background: rgba(255,255,255,.06);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: .26rem .6rem;
+    font-variant-numeric: tabular-nums;
+    transition: background .15s ease, color .15s ease;
+  }
+  .sn-hiz-btn:hover { background: rgba(255,255,255,.14); color: #f6efdd; }
+  .sn-hiz-btn.aktif {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #241d12;
+  }
+  .sn-hiz-btn[aria-expanded="true"] { background: rgba(255,255,255,.16); color: #f6efdd; }
+  .sn-hiz-liste {
+    position: absolute; top: calc(100% + .4rem); right: 0; z-index: 20;
+    display: flex; flex-direction: column; gap: .1rem;
+    min-width: 5.2rem; padding: .3rem;
+    background: rgba(24,19,11,.97);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: .7rem;
+    box-shadow: 0 18px 40px rgba(0,0,0,.5);
+  }
+  .sn-hiz-liste[hidden] { display: none; }
+  .sn-hiz-liste .sn-hiz-btn {
+    text-align: left; border-radius: .45rem;
+    padding: .34rem .6rem; width: 100%;
+  }
+
+  .sn-ilerleme { height: 4px; background: rgba(255,255,255,.08); flex: 0 0 auto; }
+  .sn-ilerleme i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent-2), #f6e3a8); }
+
+  /* mobil: tüm ekran, ama her köşede biraz boşluk */
+  @media (max-width: 760px) {
+    .sunum { padding: .5rem; }
+    .sn-ust { padding: 1.5rem .9rem 0; gap: .5rem; flex-wrap: wrap; }
+    .sn-sahne { padding: .8rem .2rem; }
+    .sn-slayt { max-width: 100%; }
+    .sunum .z-kart { padding: 1.15rem 1.05rem; border-radius: 12px; gap: .7rem; }
+    .sunum .z-bas h4 { font-size: 1.28rem; }
+    .sunum .z-kart p { font-size: .96rem; line-height: 1.62; }
+    .sunum .z-yas, .sunum .z-tarih { font-size: .95rem; padding: .3rem .8rem; }
+    .sunum .z-kat { font-size: .72rem; }
+    .sunum .z-konum { font-size: .78rem; padding: .32rem .75rem; }
+    .sunum .z-kitap { font-size: .8rem; }
+    .sn-alt { padding: .2rem .5rem 1.2rem; gap: .4rem; }
+    .sn-btn { font-size: .8rem; padding: .52rem .9rem; }
+    .sn-hiz-btn { font-size: .66rem; padding: .22rem .45rem; }
+  }
 </style>
+  <script src="../kapi.js"></script>
 </head>
 <body>
 
@@ -553,9 +772,12 @@
   </section>
 
   <section class="sekme" id="olaylar">
-    <div class="baslik">
-      <h2>Olaylar</h2>
-      <p>Hayat kronolojisi — kategorilere göre blok renkleri</p>
+    <div class="baslik baslik-sunum">
+      <div>        
+        <h2>Olaylar</h2>
+        <p>Hayat kronolojisi — kategorilere göre blok renkleri</p>
+      </div>
+      <button class="sunum-btn" id="sunumAc" type="button">▶ Sunum</button>
     </div>
 
     <div class="lejant" id="lejant">
@@ -672,6 +894,37 @@
     </div>
   </section>
 </main>
+
+<div class="sunum" id="sunum" hidden>
+  <button class="sn-kapat" id="snKapat" type="button" title="Kapat (Esc)">✕</button>
+  <div class="sn-ust">
+    <span class="sn-ad">Olaylar Sunumu</span>
+    <span class="sn-sure" id="snSure"></span>
+    <span class="sn-yer"></span>
+    <div class="sn-hiz" id="snHiz">
+      <button class="sn-hiz-btn" id="snHizDugme" type="button" aria-haspopup="true" aria-expanded="false" title="Oynatma hızı">1× ▾</button>
+      <div class="sn-hiz-liste" id="snHizListe" role="group" aria-label="Oynatma hızı" hidden>
+        <button class="sn-hiz-btn" type="button" data-hiz="0.5">0.5×</button>
+        <button class="sn-hiz-btn" type="button" data-hiz="0.75">0.75×</button>
+        <button class="sn-hiz-btn aktif" type="button" data-hiz="1">1×</button>
+        <button class="sn-hiz-btn" type="button" data-hiz="1.25">1.25×</button>
+        <button class="sn-hiz-btn" type="button" data-hiz="1.5">1.5×</button>
+        <button class="sn-hiz-btn" type="button" data-hiz="2">2×</button>
+      </div>
+    </div>
+    <span class="sn-sayac" id="snSayac"></span>
+  </div>
+  <div class="sn-sahne" id="snSahne">
+    <div class="sn-slayt" id="snSlayt"></div>
+  </div>
+  <div class="sn-alt">
+    <button class="sn-btn" id="snGeri" type="button">◀ Geri</button>
+    <button class="sn-btn" id="snDuraklat" type="button">⏸ Duraklat</button>
+    <button class="sn-btn" id="snIleri" type="button">İleri ▶</button>
+    <button class="sn-btn aktif" id="snOto" type="button">⏭ Otomatik</button>
+  </div>
+  <div class="sn-ilerleme"><i id="snDolgu"></i></div>
+</div>
 
 <div class="blg-ust hidden" id="blgUst"></div>
 <div class="blg-popup hidden" id="blgPop">
@@ -917,6 +1170,309 @@
   document.getElementById('blgKapat').addEventListener('click', blgKapat);
   blgUst.addEventListener('click', blgKapat);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') blgKapat(); });
+</script>
+
+<script>
+  const SUNUM_AYAR = { referansNo: 0, referansSaniye: 20, enAz: 4, enCok: 22 };
+
+  const snEl = document.getElementById('sunum');
+  if (snEl) {
+    const snSlayt = document.getElementById('snSlayt');
+    const snSahne = document.getElementById('snSahne');
+    const snDolgu = document.getElementById('snDolgu');
+    const snSayac = document.getElementById('snSayac');
+    const snSure  = document.getElementById('snSure');
+    const snGeri  = document.getElementById('snGeri');
+    const snIleri = document.getElementById('snIleri');
+    const snHizKutu = document.getElementById('snHiz');
+    const snHizDugme = document.getElementById('snHizDugme');
+    const snHizListe = document.getElementById('snHizListe');
+    const snDuraklatBtn = document.getElementById('snDuraklat');
+    const snOtoBtn = document.getElementById('snOto');
+    const snKapat = document.getElementById('snKapat');
+
+    const harfSay = el => ((el.textContent || '').match(/[\p{L}\p{N}]/gu) || []).length;
+
+    const slaytlar = [...document.querySelectorAll('#olaylar .z-item')].map(z => {
+      const kopya = z.cloneNode(true);
+      kopya.removeAttribute('id');
+      kopya.removeAttribute('data-derin');
+      const dd = kopya.querySelector('.detay-d');
+      if (dd) dd.remove();
+      const sb = kopya.querySelector('.z-sunum-btn');
+      if (sb) sb.remove();
+      return { harf: harfSay(z), sure: 0, el: kopya };
+    });
+
+    const refHarf = (slaytlar[SUNUM_AYAR.referansNo] || slaytlar[0] || { harf: 1 }).harf || 1;
+    const carpan = SUNUM_AYAR.referansSaniye / refHarf;
+    slaytlar.forEach(s => {
+      s.sure = Math.min(SUNUM_AYAR.enCok, Math.max(SUNUM_AYAR.enAz, Math.round(s.harf * carpan)));
+    });
+
+    let snIdx = 0, snDurakMi = false, snBitti = 0, snRaf = null, snKalan = 0, snHiz = 1;
+    let snKelimeler = [], snToplamHarf = 0, snGectiIdx = -1, snSiraIdx = -1;
+    let snOto = true, snBittiMi = false, snAktifEl = null;
+
+    const snOkuma = () => slaytlar[snIdx].sure * 1000 / snHiz;
+    const snBekleme = () => 1000 / snHiz;
+    const snToplam = () => snOkuma() + 2 * snBekleme();
+
+    function snKelimeDoldur(kapsayici) {
+      const kelimeler = [];
+      kapsayici.querySelectorAll('h4, p, .z-kitap').forEach(blok => {
+        const dugumler = [];
+        const yuru = dugum => {
+          dugum.childNodes.forEach(c => {
+            if (c.nodeType === 3) dugumler.push(c);
+            else if (c.nodeType === 1 && !c.classList.contains('kitap-bas')) yuru(c);
+          });
+        };
+        yuru(blok);
+        dugumler.forEach(t => {
+          const parca = document.createDocumentFragment();
+          t.textContent.split(/(\s+)/).forEach(p => {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { parca.appendChild(document.createTextNode(p)); return; }
+            const span = document.createElement('span');
+            span.className = 'sn-kelime';
+            span.textContent = p;
+            parca.appendChild(span);
+            kelimeler.push({ el: span, son: 0 });
+          });
+          t.parentNode.replaceChild(parca, t);
+        });
+      });
+      let toplam = 0;
+      kelimeler.forEach(k => { toplam += harfSay(k.el); k.son = toplam; });
+      return { kelimeler, toplam };
+    }
+
+    function snIsaretle() {
+      if (!snKelimeler.length) return;
+      const oran = Math.max(0, Math.min(1, (snToplam() - snKalan - snBekleme()) / snOkuma()));
+      const hedef = oran * snToplamHarf;
+      let g = 0;
+      while (g < snKelimeler.length && snKelimeler[g].son <= hedef) g++;
+      const gecti = Math.min(g, snKelimeler.length);
+      if (gecti !== snGectiIdx) {
+        for (let i = 0; i < gecti; i++) snKelimeler[i].el.classList.add('sn-gecti');
+        for (let i = gecti; i < snKelimeler.length; i++) snKelimeler[i].el.classList.remove('sn-gecti');
+        snGectiIdx = gecti;
+      }
+      const sira = gecti < snKelimeler.length ? gecti : -1;
+      if (sira !== snSiraIdx) {
+        if (snSiraIdx >= 0) snKelimeler[snSiraIdx].el.classList.remove('sn-sira');
+        if (sira >= 0) snKelimeler[sira].el.classList.add('sn-sira');
+        snSiraIdx = sira;
+      }
+    }
+
+    function snYazi() {
+      snSayac.textContent = (snIdx + 1) + ' / ' + slaytlar.length;
+      snSure.textContent = '~' + Math.round(snToplam() / 1000) + ' sn · ' + slaytlar[snIdx].harf + ' harf';
+    }
+
+    function snOtoYazi() {
+      snOtoBtn.textContent = snOto ? '⏭ Otomatik' : '⏭ Etkileşimli';
+      snOtoBtn.classList.toggle('aktif', snOto);
+      snOtoBtn.setAttribute('aria-pressed', String(snOto));
+      snOtoBtn.title = snOto
+        ? 'Geçişler otomatik — tıklayınca etkileşimliye döner'
+        : 'Geçişler sizin kontrolünüzde — tıklayınca otomatik olur';
+    }
+
+    function snOlc() {
+      const ic = snAktifEl;
+      if (!ic) return;
+      ic.style.transform = '';
+      const ust = snSahne.clientHeight - 18;
+      const yuk = ic.scrollHeight;
+      const olcek = (yuk > ust && ust > 0) ? Math.max(0.55, ust / yuk) : 1;
+      ic.style.transform = olcek < 1 ? 'scale(' + olcek.toFixed(3) + ')' : '';
+    }
+
+    function snCiz() {
+      const eski = snAktifEl;
+      const ic = document.createElement('div');
+      ic.className = 'sn-ic';
+      ic.style.opacity = '0';
+      ic.appendChild(slaytlar[snIdx].el.cloneNode(true));
+      if (eski) {
+        snSlayt.appendChild(eski);
+        eski.classList.add('sn-cikis');
+        eski.style.opacity = '0';
+        setTimeout(() => { if (eski.parentNode) eski.remove(); }, 380);
+      }
+      snSlayt.appendChild(ic);
+      snAktifEl = ic;
+      const k = snKelimeDoldur(ic);
+      snKelimeler = k.kelimeler;
+      snToplamHarf = k.toplam;
+      snGectiIdx = -1;
+      snSiraIdx = -1;
+      snBittiMi = false;
+      snYazi();
+      snGeri.disabled = snIdx === 0;
+      snIleri.disabled = snIdx === slaytlar.length - 1;
+      snKalan = snToplam();
+      snBitti = performance.now() + snKalan;
+      snDolgu.style.width = '0%';
+      snOlc();
+      requestAnimationFrame(() => { if (ic.style.opacity === '0') ic.style.opacity = '1'; });
+    }
+
+    function snDongu() {
+      if (snRaf) cancelAnimationFrame(snRaf);
+      snRaf = requestAnimationFrame(() => {
+        snKalan = Math.max(0, snBitti - performance.now());
+        const oran = Math.max(0, Math.min(1, 1 - snKalan / snToplam()));
+        snDolgu.style.width = (oran * 100).toFixed(2) + '%';
+        snIsaretle();
+        if (snKalan <= 0) {
+          if (!snOto) { snBittiMi = true; snDur(); return; }
+          if (snIdx >= slaytlar.length - 1) { snDur(); return; }
+          snIdx = snIdx + 1;
+          snCiz();
+        }
+        snDongu();
+      });
+    }
+
+    function snDur() {
+      if (snDurakMi) return;
+      snDurakMi = true;
+      snKalan = Math.max(0, snBitti - performance.now());
+      if (snRaf) cancelAnimationFrame(snRaf);
+      snRaf = null;
+      snDuraklatBtn.textContent = '▶ Devam';
+      snDuraklatBtn.classList.add('aktif');
+    }
+
+    function snDevam() {
+      if (!snDurakMi) return;
+      snDurakMi = false;
+      snDuraklatBtn.textContent = '⏸ Duraklat';
+      snDuraklatBtn.classList.remove('aktif');
+      if (snKalan <= 0) snKalan = snToplam();
+      snBitti = performance.now() + snKalan;
+      snDongu();
+    }
+
+    function snGit(ileri) {
+      if (ileri) {
+        if (snIdx >= slaytlar.length - 1) return;
+        snIdx = snIdx + 1;
+      } else {
+        if (snIdx === 0) return;
+        snIdx = snIdx - 1;
+      }
+      snCiz();
+    }
+
+    function snAc(baslangic) {
+      snIdx = Math.max(0, Math.min(slaytlar.length - 1, baslangic || 0));
+      snDurakMi = false;
+      snBittiMi = false;
+      snAktifEl = null;
+      snSlayt.innerHTML = '';
+      snDuraklatBtn.textContent = '⏸ Duraklat';
+      snDuraklatBtn.classList.remove('aktif');
+      snOtoYazi();
+      snDuraklatBtn.classList.remove('aktif');
+      snEl.hidden = false;
+      document.body.style.overflow = 'hidden';
+      snCiz();
+      snDongu();
+      const fs = snEl.requestFullscreen || snEl.webkitRequestFullscreen;
+      if (fs) { try { const p = fs.call(snEl); if (p && p.catch) p.catch(() => {}); } catch (err) {} }
+    }
+
+    function snKapa() {
+      snEl.hidden = true;
+      snHizListe.hidden = true;
+      snHizDugme.setAttribute('aria-expanded', 'false');
+      snDurakMi = false;
+      snBittiMi = false;
+      snIdx = 0;
+      snAktifEl = null;
+      snSlayt.innerHTML = '';
+      snDuraklatBtn.textContent = '⏸ Duraklat';
+      snDuraklatBtn.classList.remove('aktif');
+      if (snRaf) cancelAnimationFrame(snRaf);
+      snRaf = null;
+      snDolgu.style.width = '0%';
+      document.body.style.overflow = '';
+      const cik = document.exitFullscreen || document.webkitExitFullscreen;
+      if (cik && (document.fullscreenElement || document.webkitFullscreenElement)) {
+        try { cik.call(document); } catch (err) {}
+      }
+    }
+
+    document.getElementById('sunumAc').addEventListener('click', () => snAc(0));
+    snHizDugme.addEventListener('click', e => {
+      e.stopPropagation();
+      const acik = snHizListe.hidden;
+      snHizListe.hidden = !acik;
+      snHizDugme.setAttribute('aria-expanded', String(acik));
+    });
+    snHizKutu.addEventListener('click', e => {
+      const b = e.target.closest('.sn-hiz-btn[data-hiz]');
+      if (!b) return;
+      const yeni = parseFloat(b.dataset.hiz);
+      snHizListe.hidden = true;
+      snHizDugme.setAttribute('aria-expanded', 'false');
+      snHizDugme.textContent = b.textContent + ' ▾';
+      if (!yeni || yeni === snHiz) return;
+      snKalan = snKalan * (snHiz / yeni);
+      snHiz = yeni;
+      snHizListe.querySelectorAll('.sn-hiz-btn').forEach(x => x.classList.toggle('aktif', x === b));
+      snYazi();
+      snBitti = performance.now() + snKalan;
+      if (!snDurakMi) snDongu();
+    });
+    document.addEventListener('click', e => {
+      if (snHizListe.hidden) return;
+      if (!snHizKutu.contains(e.target)) {
+        snHizListe.hidden = true;
+        snHizDugme.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.querySelectorAll('#olaylar .z-item').forEach((z, i) => {
+      const hedef = z.querySelector('.z-kart') || z;
+      const baslik = z.querySelector('h4');
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'z-sunum-btn';
+      b.title = 'Sunumdan buradan başla';
+      b.setAttribute('aria-label', 'Sunum: ' + (baslik ? baslik.textContent.trim() : (i + 1) + '. olay') + ' olayından başla');
+      b.textContent = '▶';
+      b.addEventListener('click', e => { e.stopPropagation(); snAc(i); });
+      hedef.appendChild(b);
+    });
+    snKapat.addEventListener('click', snKapa);
+    snGeri.addEventListener('click', () => snGit(false));
+    snIleri.addEventListener('click', () => snGit(true));
+    snDuraklatBtn.addEventListener('click', () => {
+      if (snBittiMi) { snGit(true); return; }
+      snDurakMi ? snDevam() : snDur();
+    });
+    snOtoBtn.addEventListener('click', () => {
+      snOto = !snOto;
+      snOtoYazi();
+    });
+    snSahne.addEventListener('click', e => {
+      if (e.target === snSahne) snGit(true);
+    });
+    window.addEventListener('resize', snOlc);
+    document.addEventListener('keydown', e => {
+      if (snEl.hidden) return;
+      if (e.key === 'Escape') { if (!snHizListe.hidden) { snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); } else snKapa(); }
+      else if (e.key === 'ArrowRight') snGit(true);
+      else if (e.key === 'ArrowLeft') snGit(false);
+      else if (e.key === ' ') { e.preventDefault(); if (snBittiMi) snGit(true); else snDurakMi ? snDevam() : snDur(); }
+    });
+  }
 </script>
 
 </body>
