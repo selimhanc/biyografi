@@ -1,0 +1,134 @@
+  :root {
+    --bg: #f8f5ee;
+    --panel: #fffdf7;
+    --ink: #241d12;
+    --muted: #827253;
+    --line: #eae2cd;
+    --accent: #a3741f;
+    --accent-2: #d9b23f;
+    --gold-soft: #f6e7b8;
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(86, 66, 20, .09);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(135deg, #201607, #45320f 55%, #8a6a20);
+    color: #fff6e0;
+    padding: 2.6rem 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute; left: -15%; right: -15%; top: -130%;
+    height: 230%; background: radial-gradient(circle, rgba(253,215,120,.22), transparent 45%);
+  }
+  header .rozet {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: rgba(246,231,184,.14);
+    border: 1px solid rgba(246,231,184,.38);
+    color: #f3dc9a;
+    font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: .4rem .85rem; border-radius: 99px;
+  }
+  header h1 {
+    position: relative; z-index: 1;
+    font-size: clamp(1.5rem, 4.4vw, 2.5rem);
+    font-weight: 800; letter-spacing: .01em;
+    margin-top: 1rem; line-height: 1.2;
+  }
+  header .alt {
+    position: relative; z-index: 1;
+    margin-top: .7rem; color: #e8dbc0; font-size: .95rem;
+  }
+
+  main {
+    flex: 1;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1.2rem 3rem;
+  }
+  .baslik h2 {
+    font-size: 1.3rem; font-weight: 700; color: var(--ink);
+  }
+  .baslik p {
+    margin-top: .3rem; color: var(--muted); font-size: .9rem;
+  }
+  .kartlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+  .kart {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.3rem 1.3rem 1.4rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    overflow: hidden;
+  }
+  .kart::before {
+    content: "";
+    position: absolute; left: 0; top: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #a3741f, #d9b23f);
+  }
+  .kart:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(86, 66, 20, .16);
+    border-color: var(--accent-2);
+  }
+  .kart .sira {
+    font-size: .72rem; font-weight: 700; color: var(--accent);
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+  .kart h3 {
+    margin-top: .55rem; font-size: 1.15rem; font-weight: 800; color: var(--ink);
+    line-height: 1.3;
+  }
+  .kart h3 .adis {
+    display: block; margin-top: .2rem;
+    font-size: .8rem; font-weight: 600; color: var(--muted);
+  }
+  .kart .not {
+    margin-top: .6rem; font-size: .85rem; color: #5b503c; line-height: 1.55;
+  }
+  .kart .durum {
+    margin-top: auto;
+    padding-top: .8rem;
+    justify-self: end;
+    align-self: flex-start;
+    font-size: .78rem; font-weight: 700; color: var(--accent);
+  }
+
+  footer {
+    background: #f2ecda;
+    color: var(--muted);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    font-size: .82rem;
+    border-top: 1px solid var(--line);
+  }
+  footer a { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    header { padding: 2rem 1rem 1.6rem; }
+  }
