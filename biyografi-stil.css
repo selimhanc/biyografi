@@ -26,7 +26,7 @@ header { background: linear-gradient(135deg,#201607,#45320f 55%,#8a6a20); color:
 header::after { content: ''; position: absolute; left: -15%; right: -15%; top: -130%; height: 230%; background: radial-gradient(circle,rgba(253,215,120,.22),transparent 45%); }
 header .rozet, header h1, header .alt { position: relative; z-index: 1; }
 header .rozet { display: inline-flex; align-items: center; gap: .45rem; background: rgba(246,231,184,.14); border: 1px solid rgba(246,231,184,.38); color: #f3dc9a; padding: .35rem .95rem; border-radius: 999px; font-size: .72rem; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 600; }
-header h1 { font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-size: clamp(1.9rem,4.4vw,3rem); font-weight: 600; line-height: 1.12; margin: .85rem 0 .2rem; letter-spacing: .5px; color: #ffedbe; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
+header h1 { font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(2rem,4.6vw,3.2rem); font-weight: 600; line-height: 1.18; margin: .8rem 0 .2rem; letter-spacing: .5px; color: #ffedbe; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
 header .alt { font-size: .95rem; color: rgba(255,238,190,.88); }
 header .alt b { color: #fff6e0; }
 nav { position: sticky; top: 0; z-index: 50; background: rgba(255,251,240,.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); display: flex; justify-content: center; gap: .4rem; padding: .65rem 1rem; }
@@ -145,8 +145,8 @@ footer a { text-decoration: underline; }
 .sn-ad { font-size: .95rem; font-weight: 700; color: #f3dc9a; }
 .sn-sure, .sn-sayac { font-size: .74rem; color: rgba(246,239,221,.7); }
 .sn-yer { flex: 1; }
-.sn-sahne { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: .5rem 1.4rem; }
-.sn-zeta { flex: 0 0 auto; margin-bottom: .55rem; font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem,3.3vw,2.35rem); font-weight: 600; line-height: 1.15; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
+.sn-sahne { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: .1rem 1.4rem .4rem; }
+.sn-zeta { flex: 0 0 auto; margin-bottom: .15rem; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.3rem,3vw,2.15rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
 .sn-zeta::after { content: ''; display: block; width: 86px; height: 1px; margin: .45rem auto 0; background: linear-gradient(90deg, transparent, rgba(217,178,63,.8), transparent); }
 .sn-zeta:empty { display: none; }
 .sn-slayt { position: relative; width: 100%; max-width: 1180px; }
@@ -187,4 +187,4 @@ footer a { text-decoration: underline; }
 .sn-ilerleme { height: 4px; background: rgba(255,255,255,.08); }
 .sn-ilerleme i { display: block; height: 100%; width: 0; background: linear-gradient(90deg,var(--accent-2),#f6e3a8); }
 @media (max-width:720px) { header { padding: 2rem 1rem 1.6rem; } nav { position: static; overflow-x: auto; justify-content: flex-start; } nav .tab { white-space: nowrap; } .kartlar { grid-template-columns: 1fr; } .z-kart { flex-direction: column; } }
-@media (max-width:760px) { .sunum { padding: .5rem; } .sn-ust { padding: 1.5rem .9rem 0; gap: .5rem; flex-wrap: wrap; } .sn-sahne { padding: .8rem .2rem; } .sunum .z-kart { padding: 1.15rem 1.05rem; } .sunum .z-bas h4 { font-size: 1.28rem; } .sunum .z-kart p { font-size: .96rem; } .sn-alt { padding: .2rem .5rem 1.2rem; gap: .4rem; } .sn-btn { font-size: .8rem; padding: .52rem .9rem; } }
+@media (max-width:760px) { .sunum { padding: .5rem; } .sn-ust { padding: 1.5rem .9rem 0; gap: .5rem; flex-wrap: wrap; } .sn-sahne { padding: .15rem .2rem .6rem; } .sunum .z-kart { padding: 1.15rem 1.05rem; } .sunum .z-bas h4 { font-size: 1.28rem; } .sunum .z-kart p { font-size: .96rem; } .sn-alt { padding: .2rem .5rem 1.2rem; gap: .4rem; } .sn-btn { font-size: .8rem; padding: .52rem .9rem; } }

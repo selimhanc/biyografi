@@ -65,7 +65,7 @@
     font-size: .72rem; letter-spacing: 1.4px; text-transform: uppercase;
     font-weight: 600;
   }
-  header h1 { font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-size: clamp(1.9rem,4.4vw,3rem); font-weight: 600; line-height: 1.12; margin: .85rem 0 .2rem; letter-spacing: .5px; color: #ffedbe; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
+  header h1 { font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(2rem,4.6vw,3.2rem); font-weight: 600; line-height: 1.18; margin: .8rem 0 .2rem; letter-spacing: .5px; color: #ffedbe; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
   header .alt {
     position: relative; z-index: 1;
     font-size: .95rem; color: rgba(255,238,190,.88);
@@ -526,8 +526,8 @@
   /* sahne: blok ortada, üstte ve altta boşluk kalır */
   .sn-sahne {
     flex: 1; min-height: 0; position: relative;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: .5rem 1.4rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding: .1rem 1.4rem .4rem;
   }
   .sn-sahne::after {
     content: ''; position: absolute; inset: 0; z-index: 3;
@@ -535,7 +535,7 @@
     transition: opacity 1s ease;
   }
   .sn-sahne.sn-karanlik::after { opacity: .5; }
-  .sn-zeta { flex: 0 0 auto; margin-bottom: .55rem; font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem,3.3vw,2.35rem); font-weight: 600; line-height: 1.15; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
+  .sn-zeta { flex: 0 0 auto; margin-bottom: .15rem; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.3rem,3vw,2.15rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
 .sn-zeta::after { content: ''; display: block; width: 86px; height: 1px; margin: .45rem auto 0; background: linear-gradient(90deg, transparent, rgba(217,178,63,.8), transparent); }
 .sn-zeta:empty { display: none; }
 .sn-slayt { position: relative; width: 100%; max-width: 1180px; animation: snGirisKart .34s ease; }
@@ -643,7 +643,7 @@
   @media (max-width: 760px) {
     .sunum { padding: .5rem; }
     .sn-ust { padding: 1.5rem .9rem 0; gap: .5rem; flex-wrap: wrap; }
-    .sn-sahne { padding: .8rem .2rem; }
+    .sn-sahne { padding: .15rem .2rem .6rem; }
     .sn-slayt { max-width: 100%; }
     .sunum .z-kart { padding: 1.15rem 1.05rem; border-radius: 12px; gap: .7rem; }
     .sunum .z-bas h4 { font-size: 1.28rem; }
