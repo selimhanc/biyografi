@@ -291,8 +291,23 @@ if (snEl) {
   function dur() { if (durak) return; durak = true; kalan = Math.max(0, bitti - performance.now()); if (raf) cancelAnimationFrame(raf); raf = null; snDuraklat.textContent = '▶ Devam'; snDuraklat.classList.add('aktif'); }
   function devam() { if (!durak) return; durak = false; snDuraklat.textContent = '⏸ Duraklat'; snDuraklat.classList.remove('aktif'); if (kalan <= 0) kalan = toplam(); bitti = performance.now() + kalan; dongu(); }
   function git(ileri) { if (ileri ? idx >= slaytlar.length - 1 : idx === 0) return; idx += ileri ? 1 : -1; durak = false; snDuraklat.textContent = '⏸ Duraklat'; snDuraklat.classList.remove('aktif'); if (raf) cancelAnimationFrame(raf); ciz(); dongu(); }
-  function acSunum(bas) { idx = Math.max(0, Math.min(slaytlar.length - 1, bas || 0)); durak = false; bittiMi = false; aktif = null; snSlayt.innerHTML = ''; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); otoYazi(); snEl.hidden = false; document.body.style.overflow = 'hidden'; ciz(); dongu(); const fs = snEl.requestFullscreen || snEl.webkitRequestFullscreen; if (fs) try { const p = fs.call(snEl); if (p?.catch) p.catch(() => {}); } catch (e) {} }
-  function kapatSunum() { snEl.hidden = true; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); durak = false; bittiMi = false; idx = 0; aktif = null; kelimeler = []; gectiIdx = -1; siraIdx = -1; snSlayt.innerHTML = ''; snDolgu.style.width = '0%'; if (raf) cancelAnimationFrame(raf); raf = null; document.body.style.overflow = ''; const cik = document.exitFullscreen || document.webkitExitFullscreen; if (cik && (document.fullscreenElement || document.webkitFullscreenElement)) try { cik.call(document); } catch (e) {} }
+  /* ekran uyku kilidi: sunum surerken ekran kararmasin */
+  let snKilit = null;
+  async function snKilitAl() {
+    if (!('wakeLock' in navigator) || document.hidden) return;
+    if (snKilit && !snKilit.released) return;
+    try { snKilit = await navigator.wakeLock.request('screen'); } catch (err) {}
+  }
+  function snKilitBirak() {
+    if (!snKilit) return;
+    try { snKilit.release(); } catch (err) {}
+    snKilit = null;
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && !snEl.hidden) snKilitAl(); });
+  ['pointerdown', 'keydown', 'touchend'].forEach(t => document.addEventListener(t, () => { if (!snEl.hidden) snKilitAl(); }, { passive: true }));
+
+  function acSunum(bas) { snKilitAl(); idx = Math.max(0, Math.min(slaytlar.length - 1, bas || 0)); durak = false; bittiMi = false; aktif = null; snSlayt.innerHTML = ''; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); otoYazi(); snEl.hidden = false; document.body.style.overflow = 'hidden'; ciz(); dongu(); const fs = snEl.requestFullscreen || snEl.webkitRequestFullscreen; if (fs) try { const p = fs.call(snEl); if (p?.catch) p.catch(() => {}); } catch (e) {} }
+  function kapatSunum() { snKilitBirak(); snEl.hidden = true; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); durak = false; bittiMi = false; idx = 0; aktif = null; kelimeler = []; gectiIdx = -1; siraIdx = -1; snSlayt.innerHTML = ''; snDolgu.style.width = '0%'; if (raf) cancelAnimationFrame(raf); raf = null; document.body.style.overflow = ''; const cik = document.exitFullscreen || document.webkitExitFullscreen; if (cik && (document.fullscreenElement || document.webkitFullscreenElement)) try { cik.call(document); } catch (e) {} }
   document.getElementById('sunumAc').addEventListener('click', () => acSunum(0));
   snKapat.addEventListener('click', kapatSunum);
   snGeri.addEventListener('click', () => git(false));

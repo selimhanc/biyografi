@@ -452,7 +452,23 @@
       snDongu();
     }
 
+    /* ekran uyku kilidi: sunum surerken ekran kararmasin */
+    let snKilit = null;
+    async function snKilitAl() {
+      if (!('wakeLock' in navigator) || document.hidden) return;
+      if (snKilit && !snKilit.released) return;
+      try { snKilit = await navigator.wakeLock.request('screen'); } catch (err) {}
+    }
+    function snKilitBirak() {
+      if (!snKilit) return;
+      try { snKilit.release(); } catch (err) {}
+      snKilit = null;
+    }
+    document.addEventListener('visibilitychange', () => { if (!document.hidden && !snEl.hidden) snKilitAl(); });
+    ['pointerdown', 'keydown', 'touchend'].forEach(t => document.addEventListener(t, () => { if (!snEl.hidden) snKilitAl(); }, { passive: true }));
+
     function snAc(baslangic) {
+    snKilitAl();
       snIdx = Math.max(0, Math.min(slaytlar.length - 1, baslangic || 0));
       snDurakMi = false;
       snBittiMi = false;
@@ -471,6 +487,7 @@
     }
 
     function snKapa() {
+    snKilitBirak();
       snEl.hidden = true;
       snHizListe.hidden = true;
       snHizDugme.setAttribute('aria-expanded', 'false');
