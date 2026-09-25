@@ -283,6 +283,21 @@
       s.sure = Math.min(SUNUM_AYAR.enCok, Math.max(SUNUM_AYAR.enAz, Math.round(s.harf * SUNUM_AYAR.saniyeHarf)));
     });
 
+    const sozSure = el => Math.min(SUNUM_AYAR.enCok, Math.max(SUNUM_AYAR.enAz, Math.round(harfSay(el) * SUNUM_AYAR.saniyeHarf)));
+    const sozSlayt = k => {
+      const el = document.createElement('div');
+      el.className = 'z-item c-tasavvuf';
+      el.innerHTML = '<div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4></h4><span class="z-kat">💬 Söz</span></div><p></p></div><div class="z-konum"></div></div>';
+      el.querySelector('h4').textContent = (k.querySelector('h4')?.textContent || 'Söz').trim();
+      el.querySelector('p').textContent = (k.querySelector('.not')?.textContent || '').trim();
+      el.querySelector('.z-konum').textContent = (k.querySelector('.kopya')?.textContent || 'Söz').trim();
+      return el;
+    };
+    document.querySelectorAll('#sozler .kart').forEach(k => {
+      const el = sozSlayt(k);
+      slaytlar.push({ harf: harfSay(el), sure: sozSure(el), el });
+    });
+
     let snIdx = 0, snDurakMi = false, snBitti = 0, snRaf = null, snKalan = 0, snHiz = 1;
     let snKelimeler = [], snToplamHarf = 0, snGectiIdx = -1, snSiraIdx = -1;
     let snOto = true, snBittiMi = false, snAktifEl = null;

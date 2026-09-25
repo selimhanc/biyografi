@@ -114,8 +114,9 @@ a.kitap-link:hover, a.ad-link:hover { color: #7d5812; }
 .z-kart.k-vefat p, .z-kart.k-kayip p { color: #e2e6ec; }
 .z-icerik { flex: 1; min-width: 0; }
 .z-bas { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
-.z-bas h4 { font-size: 1rem; font-weight: 700; }
-.z-kat { font-size: .68rem; font-weight: 700; padding: .18rem .6rem; border-radius: 999px; background: rgba(255,255,255,.7); }
+.z-bas h4 { font-size: 1rem; font-weight: 700; color: var(--ink); }
+.z-kat { font-size: .68rem; font-weight: 700; padding: .18rem .6rem; border-radius: 999px; background: rgba(255,255,255,.7); color: var(--ink); }
+.z-kart.k-vefat .z-kat, .z-kart.k-kayip .z-kat { background: rgba(255,255,255,.88); color: #2b3038; }
 .z-kart p { font-size: .8rem; color: #4c4232; line-height: 1.55; margin-top: .3rem; }
 .z-kitap { flex: 1 1 100%; width: 100%; margin-top: .8rem; padding-top: .6rem; border-top: 1px dashed rgba(163,116,31,.35); font-size: .72rem; line-height: 1.6; color: #7a6744; }
 .z-kitap .kitap-bas { display: block; font-weight: 700; color: var(--accent); font-size: .66rem; margin-bottom: .15rem; }
@@ -154,6 +155,12 @@ footer a { text-decoration: underline; }
 .sunum .z-yas, .sunum .z-tarih { font-size: 1.18rem; padding: .4rem 1.15rem; }
 .sunum .z-kart { flex-direction: column; align-items: stretch; gap: .85rem; padding: 1.7rem 1.9rem; box-shadow: 0 22px 60px rgba(0,0,0,.4); }
 .sunum .z-bas h4 { font-size: 1.75rem; }
+.sunum .z-kart:not(.k-vefat):not(.k-kayip) h4 { color: var(--ink); }
+.sunum .z-kart:not(.k-vefat):not(.k-kayip) p { color: #4c4232; }
+.sunum .z-kart.k-vefat h4, .sunum .z-kart.k-kayip h4 { color: #fff; }
+.sunum .z-kart.k-vefat p, .sunum .z-kart.k-kayip p { color: #e2e6ec; }
+.sunum .z-kart.k-vefat .z-kat, .sunum .z-kart.k-kayip .z-kat { color: #2b3038; }
+.sunum .z-kart.k-vefat .z-konum, .sunum .z-kart.k-kayip .z-konum { color: #7d5812; }
 .sunum .z-kart p { font-size: 1.12rem; line-height: 1.72; }
 .sunum .z-konum { align-self: flex-start; font-size: .88rem; }
 .sunum .z-kitap { font-size: .88rem; }

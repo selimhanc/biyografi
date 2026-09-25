@@ -356,7 +356,7 @@
   .z-kart.k-kayip .z-konum { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); color: #f3dc9a; }
   .z-icerik { flex: 1; min-width: 0; }
   .z-bas { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
-  .z-bas h4 { font-size: 1rem; font-weight: 700; letter-spacing: -.2px; }
+  .z-bas h4 { font-size: 1rem; font-weight: 700; letter-spacing: -.2px; color: var(--ink); }
   .z-kat {
     font-size: .68rem; font-weight: 700;
     padding: .18rem .6rem; border-radius: 999px;

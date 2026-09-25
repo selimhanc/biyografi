@@ -149,12 +149,26 @@ if (snEl) {
   const snOto = document.getElementById('snOto');
   const snKapat = document.getElementById('snKapat');
   const harfSay = el => ((el.textContent || '').match(/[\p{L}\p{N}]/gu) || []).length;
+  const sozSure = el => Math.min(22, Math.max(4, Math.round(harfSay(el) * .053)));
+  const sozSlayt = k => {
+    const el = document.createElement('div');
+    el.className = 'z-item c-tasavvuf';
+    el.innerHTML = '<div class="z-kart k-tasavvuf"><div class="z-icerik"><div class="z-bas"><h4></h4><span class="z-kat">💬 Söz</span></div><p></p></div><div class="z-konum"></div></div>';
+    el.querySelector('h4').textContent = (k.querySelector('h4')?.textContent || 'Söz').trim();
+    el.querySelector('p').textContent = (k.querySelector('.not')?.textContent || '').trim();
+    el.querySelector('.z-konum').textContent = (k.querySelector('.kopya')?.textContent || 'Söz').trim();
+    return el;
+  };
   const slaytlar = [...document.querySelectorAll('#olaylar .z-item')].map(z => {
     const el = z.cloneNode(true);
     el.removeAttribute('data-derin');
     el.querySelector('.detay-d')?.remove();
-    const sure = Math.min(22, Math.max(4, Math.round(harfSay(z) * .053)));
+    const sure = sozSure(z);
     return { el, harf: harfSay(z), sure };
+  });
+  document.querySelectorAll('#sozler .kart').forEach(k => {
+    const el = sozSlayt(k);
+    slaytlar.push({ el, harf: harfSay(el), sure: sozSure(el) });
   });
   let idx = 0, durak = false, kalan = 0, bitti = 0, raf = null, hiz = 1, oto = true, aktif = null, bittiMi = false;
   const okuma = () => slaytlar[idx].sure * 1000 / hiz;
