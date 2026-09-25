@@ -496,10 +496,6 @@
     display: flex; align-items: center; gap: .7rem;
     padding: 1rem 4rem .1rem 1.4rem;
   }
-.sn-ust #snSayac { order: 1; margin-left: 0; }
-.sn-ust #snHiz { order: 2; }
-.sn-ust .sn-yer { order: 3; }
-.sn-ust #snSure { order: 4; }
   .sn-ust .sn-ust .sn-sure { font-size: .74rem; font-weight: 600; color: rgba(246,239,221,.6); }
   .sn-ust .sn-yer { flex: 1; }
   .sn-ust .sn-sayac {
@@ -514,7 +510,7 @@
   .sn-sahne {
     flex: 1; min-height: 0; position: relative;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 2.2rem 1.4rem 1.6rem;
+    padding: 0 1.4rem;
   }
   .sn-sahne::after {
     content: ''; position: absolute; inset: 0; z-index: 3;
@@ -522,7 +518,7 @@
     transition: opacity 1s ease;
   }
   .sn-sahne.sn-karanlik::after { opacity: .5; }
-  .sn-zeta { flex: 0 0 auto; margin-bottom: .15rem; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
+  .sn-zeta {position: absolute; left: 1.4rem; right: 1.4rem; top: 0; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
 .sn-zeta::after { content: ''; display: block; width: 86px; height: 1px; margin: .45rem auto 0; background: linear-gradient(90deg, transparent, rgba(217,178,63,.8), transparent); }
 .sn-zeta:empty { display: none; }
 .sn-slayt { position: relative; width: 100%; max-width: 1180px; animation: snGirisKart .34s ease; }
@@ -571,6 +567,8 @@
     display: flex; align-items: center; justify-content: center;
     gap: .6rem; padding: .3rem 1.4rem 1.1rem;
   }
+.sn-alt .sn-hiz-btn { padding: .45rem .95rem; }
+.sn-alt .sn-hiz-liste { top: auto; bottom: calc(100% + .4rem); }
   .sn-btn {
     font-family: inherit; cursor: pointer;
     display: inline-flex; align-items: center; gap: .4rem;
