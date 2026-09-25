@@ -137,7 +137,7 @@ const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, so
 const snEl = document.getElementById('sunum');
 if (snEl) {
   const snSlayt = document.getElementById('snSlayt');
-  const snSahne = document.getElementById('snSahne');
+  const snSahne = document.getElementById('snSahne'); const snZeta = document.getElementById('snZeta'); if (snZeta) { const snH1 = document.querySelector('header h1'); if (snH1) snZeta.innerHTML = snH1.innerHTML; }
   const snDolgu = document.getElementById('snDolgu');
   const snSayac = document.getElementById('snSayac');
   const snSure = document.getElementById('snSure');
@@ -235,7 +235,7 @@ if (snEl) {
       siraIdx = sira;
     }
   }
-  function olc() { if (!aktif) return; aktif.style.transform = ''; const max = snSahne.clientHeight - 18; const ratio = max > 0 && aktif.scrollHeight > max ? Math.max(.55, max / aktif.scrollHeight) : 1; aktif.style.transform = ratio < 1 ? 'scale(' + ratio.toFixed(3) + ')' : ''; }
+  function olc() { if (!aktif) return; aktif.style.transform = ''; const max = snSahne.clientHeight - 18 - (snZeta ? snZeta.offsetHeight + 10 : 0); const ratio = max > 0 && aktif.scrollHeight > max ? Math.max(.55, max / aktif.scrollHeight) : 1; aktif.style.transform = ratio < 1 ? 'scale(' + ratio.toFixed(3) + ')' : ''; }
   function ciz() {
     const eski = aktif;
     const yari = SUNUM_AYAR.gecis / 2;

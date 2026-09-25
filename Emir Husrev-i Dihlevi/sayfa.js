@@ -224,7 +224,7 @@
   const snEl = document.getElementById('sunum');
   if (snEl) {
     const snSlayt = document.getElementById('snSlayt');
-    const snSahne = document.getElementById('snSahne');
+    const snSahne = document.getElementById('snSahne'); const snZeta = document.getElementById('snZeta'); if (snZeta) { const snH1 = document.querySelector('header h1'); if (snH1) snZeta.innerHTML = snH1.innerHTML; }
     const snDolgu = document.getElementById('snDolgu');
     const snSayac = document.getElementById('snSayac');
     const snSure  = document.getElementById('snSure');
@@ -347,7 +347,7 @@
       const ic = snAktifEl;
       if (!ic) return;
       ic.style.transform = '';
-      const ust = snSahne.clientHeight - 18;
+      const ust = snSahne.clientHeight - 18 - (snZeta ? snZeta.offsetHeight + 10 : 0);
       const yuk = ic.scrollHeight;
       const olcek = (yuk > ust && ust > 0) ? Math.max(0.55, ust / yuk) : 1;
       ic.style.transform = olcek < 1 ? 'scale(' + olcek.toFixed(3) + ')' : '';
