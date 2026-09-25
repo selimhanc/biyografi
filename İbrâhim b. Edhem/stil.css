@@ -44,7 +44,7 @@ body {
 }
 .ana-link:hover { background: rgba(246,231,184,.25); color: #fff6e0; }
 header {
-  background: linear-gradient(135deg, #201607, #45320f 55%, #8a6a20);
+  background-image: linear-gradient(135deg, rgba(32,22,7,.93), rgba(69,50,15,.87) 55%, rgba(138,106,32,.83)), url('../map-antique.jpg'); background-size: cover; background-position: center;
   color: #fff6e0;
   padding: 2.6rem 1.5rem 2rem;
   text-align: center;
@@ -288,19 +288,19 @@ footer a { color: #f3dc9a; text-decoration: underline; }
 .baslik-sunum { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .sunum-btn { font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: .45rem; font-size: .88rem; font-weight: 700; color: #fff8e6; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border: 1px solid rgba(122,90,20,.45); border-radius: 999px; padding: .55rem 1.2rem; box-shadow: 0 6px 18px rgba(122,90,20,.28); transition: .16s; }
 .sunum-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(122,90,20,.36); filter: brightness(1.06); }
-.sunum { position: fixed; inset: 0; z-index: 200; background: radial-gradient(circle at 50% 28%, #2e2514, #13100a 72%); color: #f6efdd; display: flex; flex-direction: column; animation: snGiris .22s ease; }
+.sunum { position: fixed; inset: 0; z-index: 200; background-image: radial-gradient(circle at 50% 16%, rgba(253,215,120,.22), transparent 46%), linear-gradient(135deg, rgba(32,22,7,.94), rgba(69,50,15,.91) 55%, rgba(138,106,32,.88)), url('../map-antique.jpg'); background-size: cover; background-position: center; color: #f6efdd; display: flex; flex-direction: column; animation: snGiris .22s ease; }
 .sunum[hidden] { display: none; }
 @keyframes snGiris { from { opacity: 0; } to { opacity: 1; } }
 .sn-kapat { position: absolute; top: .9rem; right: .9rem; z-index: 5; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font-size: 1rem; line-height: 1; cursor: pointer; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); color: #f6efdd; transition: .2s; }
 .sn-kapat:hover { background: rgba(255,255,255,.2); transform: rotate(90deg); }
-.sn-ust { display: flex; align-items: center; gap: .7rem; padding: 1rem 4rem .1rem 1.4rem; }
+.sn-ust { display: flex; align-items: center; gap: .7rem; padding: 1rem 1.4rem .1rem; }
 .sn-ust .sn-ust .sn-sure { font-size: .74rem; font-weight: 600; color: rgba(246,239,221,.6); }
 .sn-ust .sn-yer { flex: 1; }
 .sn-ust .sn-sayac { font-size: .78rem; font-weight: 700; color: #f6efdd; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: .25rem .8rem; font-variant-numeric: tabular-nums; }
 .sn-sahne { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 1.4rem; }
 .sn-sahne::after { content: ''; position: absolute; inset: 0; z-index: 3; background: #100c06; opacity: 0; pointer-events: none; transition: opacity 1s ease; }
 .sn-sahne.sn-karanlik::after { opacity: .5; }
-.sn-zeta {position: absolute; left: 1.4rem; right: 1.4rem; top: 0; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
+.sn-zeta {position: absolute; left: 1.4rem; right: 1.4rem; top: 45px; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
 .sn-zeta::after { content: ''; display: block; width: 86px; height: 1px; margin: .45rem auto 0; background: linear-gradient(90deg, transparent, rgba(217,178,63,.8), transparent); }
 .sn-zeta:empty { display: none; }
 .sn-slayt { position: relative; width: 100%; max-width: 1180px; animation: snGirisKart .34s ease; }
@@ -328,8 +328,7 @@ footer a { color: #f3dc9a; text-decoration: underline; }
 .z-kart.k-vefat .sn-kelime.sn-gecti, .z-kart.k-kayip .sn-kelime.sn-gecti { background: rgba(246,231,184,.2); }
 .z-kart.k-vefat .sn-kelime.sn-sira, .z-kart.k-kayip .sn-kelime.sn-sira { background: rgba(246,231,184,.38); }
 .sn-alt { display: flex; align-items: center; justify-content: center; gap: .6rem; padding: .3rem 1.4rem 1.1rem; }
-.sn-alt .sn-hiz-btn { padding: .45rem .95rem; }
-.sn-alt .sn-hiz-liste { top: auto; bottom: calc(100% + .4rem); }
+
 .sn-btn { font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; font-weight: 700; color: #f6efdd; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: .6rem 1.25rem; transition: .15s; }
 .sn-btn:hover { background: rgba(255,255,255,.16); transform: translateY(-1px); }
 .sn-btn:disabled { opacity: .3; cursor: default; transform: none; }

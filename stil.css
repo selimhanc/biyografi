@@ -21,7 +21,7 @@
   }
 
   header {
-    background: linear-gradient(135deg, #201607, #45320f 55%, #8a6a20);
+    background-image: linear-gradient(135deg, rgba(32,22,7,.93), rgba(69,50,15,.87) 55%, rgba(138,106,32,.83)), url('map-antique.jpg'); background-size: cover; background-position: center;
     color: #fff6e0;
     padding: 2.6rem 1.5rem 2rem;
     text-align: center;

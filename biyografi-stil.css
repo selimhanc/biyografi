@@ -22,7 +22,7 @@
 body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; display: flex; flex-direction: column; }
 .ana-link { position: relative; z-index: 1; display: inline-block; background: rgba(246,231,184,.14); border: 1px solid rgba(246,231,184,.38); color: #f3dc9a; text-decoration: none; font-size: .82rem; font-weight: 600; padding: .3rem .8rem; border-radius: 99px; margin-bottom: .9rem; transition: .15s; }
 .ana-link:hover { background: rgba(246,231,184,.25); color: #fff6e0; }
-header { background: linear-gradient(135deg,#201607,#45320f 55%,#8a6a20); color: #fff6e0; padding: 2.6rem 1.5rem 2rem; text-align: center; position: relative; overflow: hidden; }
+header { background-image: linear-gradient(135deg, rgba(32,22,7,.93), rgba(69,50,15,.87) 55%, rgba(138,106,32,.83)), url('map-antique.jpg'); background-size: cover; background-position: center; color: #fff6e0; padding: 2.6rem 1.5rem 2rem; text-align: center; position: relative; overflow: hidden; }
 header::after { content: ''; position: absolute; left: -15%; right: -15%; top: -130%; height: 230%; background: radial-gradient(circle,rgba(253,215,120,.22),transparent 45%); }
 header .rozet, header h1, header .alt { position: relative; z-index: 1; }
 header .rozet { display: inline-flex; align-items: center; gap: .45rem; background: rgba(246,231,184,.14); border: 1px solid rgba(246,231,184,.38); color: #f3dc9a; padding: .35rem .95rem; border-radius: 999px; font-size: .72rem; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 600; }
@@ -138,14 +138,14 @@ footer a { text-decoration: underline; }
 .p-satir b { display: block; font-size: .64rem; text-transform: uppercase; letter-spacing: 1.1px; color: var(--muted); margin-bottom: .15rem; }
 .baslik-sunum { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .sunum-btn { font: inherit; cursor: pointer; display: inline-flex; gap: .45rem; font-size: .88rem; font-weight: 700; color: #fff8e6; background: linear-gradient(135deg,var(--accent),var(--accent-2)); border: 0; border-radius: 999px; padding: .55rem 1.2rem; }
-.sunum { position: fixed; inset: 0; z-index: 200; background: radial-gradient(circle at 50% 28%,#2e2514,#13100a 72%); color: #f6efdd; display: flex; flex-direction: column; }
+.sunum { position: fixed; inset: 0; z-index: 200; background-image: radial-gradient(circle at 50% 16%, rgba(253,215,120,.22), transparent 46%), linear-gradient(135deg, rgba(32,22,7,.94), rgba(69,50,15,.91) 55%, rgba(138,106,32,.88)), url('map-antique.jpg'); background-size: cover; background-position: center; color: #f6efdd; display: flex; flex-direction: column; }
 .sunum[hidden] { display: none; }
 .sn-kapat { position: absolute; top: .9rem; right: .9rem; z-index: 5; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.08); color: #f6efdd; cursor: pointer; }
-.sn-ust { display: flex; align-items: center; gap: .7rem; padding: 1rem 4rem .1rem 1.4rem; }
+.sn-ust { display: flex; align-items: center; gap: .7rem; padding: 1rem 1.4rem .1rem; }
 .sn-sure, .sn-sayac { font-size: .74rem; color: rgba(246,239,221,.7); }
 .sn-yer { flex: 1; }
 .sn-sahne { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 1.4rem; }
-.sn-zeta {position: absolute; left: 1.4rem; right: 1.4rem; top: 0; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
+.sn-zeta {position: absolute; left: 1.4rem; right: 1.4rem; top: 45px; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
 .sn-zeta::after { content: ''; display: block; width: 86px; height: 1px; margin: .45rem auto 0; background: linear-gradient(90deg, transparent, rgba(217,178,63,.8), transparent); }
 .sn-zeta:empty { display: none; }
 .sn-slayt { position: relative; width: 100%; max-width: 1180px; }
@@ -174,8 +174,7 @@ footer a { text-decoration: underline; }
 .z-kart.k-vefat .sn-kelime.sn-gecti, .z-kart.k-kayip .sn-kelime.sn-gecti { background: rgba(246,231,184,.2); }
 .z-kart.k-kayip .sn-kelime.sn-sira, .z-kart.k-vefat .sn-kelime.sn-sira { background: rgba(246,231,184,.38); }
 .sn-alt { display: flex; align-items: center; justify-content: center; gap: .6rem; padding: .3rem 1.4rem 1.1rem; }
-.sn-alt .sn-hiz-btn { padding: .45rem .95rem; }
-.sn-alt .sn-hiz-liste { top: auto; bottom: calc(100% + .4rem); }
+
 .sn-btn, .sn-hiz-btn { font: inherit; cursor: pointer; color: #f6efdd; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: .6rem 1.25rem; }
 .sn-btn.aktif, .sn-hiz-btn.aktif { background: linear-gradient(135deg,var(--accent),var(--accent-2)); color: #241d12; }
 .sn-btn:disabled { opacity: .3; }

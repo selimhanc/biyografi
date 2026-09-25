@@ -179,7 +179,7 @@ if (snEl) {
   const bekleme = () => SUNUM_AYAR.basBekleme / hiz;
   const sonBekleme = () => SUNUM_AYAR.sonBekleme / hiz;
   const toplam = () => okuma() + bekleme() + sonBekleme();
-  function yazi() { snSayac && (snSayac.textContent = (idx + 1) + ' / ' + slaytlar.length); snSure.textContent = '~' + Math.round(toplam() / 1000) + ' sn · ' + slaytlar[idx].harf + ' harf'; }
+  function yazi() { snSayac && (snSayac.textContent = (idx + 1) + ' / ' + slaytlar.length); if (snSure) if (snSure) snSure.textContent = '~' + Math.round(toplam() / 1000) + ' sn · ' + slaytlar[idx].harf + ' harf'; }
   function otoYazi() {
     snOto.textContent = oto ? '⏭ Otomatik' : '⏭ Etkileşimli';
     snOto.classList.toggle('aktif', oto);
@@ -235,7 +235,7 @@ if (snEl) {
       siraIdx = sira;
     }
   }
-  function olc() { if (!aktif) return; aktif.style.transform = ''; const st = getComputedStyle(snSahne); const hc = snSahne.clientHeight - (parseFloat(st.paddingTop) || 0) - (parseFloat(st.paddingBottom) || 0); const zh = snZeta ? snZeta.offsetHeight : 0; const max = hc - zh * 2 - 26; const ratio = max > 0 && aktif.scrollHeight > max ? Math.max(.55, max / aktif.scrollHeight) : 1; aktif.style.transform = ratio < 1 ? 'scale(' + ratio.toFixed(3) + ')' : ''; if (snZeta) snZeta.style.top = Math.max(0, Math.round((hc - aktif.scrollHeight * ratio) / 2 - zh - 14)) + 'px'; }
+  function olc() { if (!aktif) return; aktif.style.transform = ''; const st = getComputedStyle(snSahne); const hc = snSahne.clientHeight - (parseFloat(st.paddingTop) || 0) - (parseFloat(st.paddingBottom) || 0); const zh = snZeta ? snZeta.offsetHeight : 0; const max = hc - (zh + 45 + 26) * 2; const ratio = max > 0 && aktif.scrollHeight > max ? Math.max(.55, max / aktif.scrollHeight) : 1; aktif.style.transform = ratio < 1 ? 'scale(' + ratio.toFixed(3) + ')' : ''; }
   function ciz() {
     const eski = aktif;
     const yari = SUNUM_AYAR.gecis / 2;

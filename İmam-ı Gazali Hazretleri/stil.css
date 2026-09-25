@@ -43,7 +43,7 @@
   }
 
   header {
-    background: linear-gradient(135deg, #201607, #45320f 55%, #8a6a20);
+    background-image: linear-gradient(135deg, rgba(32,22,7,.93), rgba(69,50,15,.87) 55%, rgba(138,106,32,.83)), url('../map-antique.jpg'); background-size: cover; background-position: center;
     color: #fff6e0;
     padding: 2.6rem 1.5rem 2rem;
     text-align: center;
@@ -472,7 +472,7 @@
 
   .sunum {
     position: fixed; inset: 0; z-index: 200;
-    background: radial-gradient(circle at 50% 28%, #2e2514, #13100a 72%);
+    background-image: radial-gradient(circle at 50% 16%, rgba(253,215,120,.22), transparent 46%), linear-gradient(135deg, rgba(32,22,7,.94), rgba(69,50,15,.91) 55%, rgba(138,106,32,.88)), url('../map-antique.jpg'); background-size: cover; background-position: center;
     color: #f6efdd;
     display: flex; flex-direction: column;
     animation: snGiris .22s ease;
@@ -494,7 +494,7 @@
 
   .sn-ust {
     display: flex; align-items: center; gap: .7rem;
-    padding: 1rem 4rem .1rem 1.4rem;
+    padding: 1rem 1.4rem .1rem;
   }
   .sn-ust .sn-ust .sn-sure { font-size: .74rem; font-weight: 600; color: rgba(246,239,221,.6); }
   .sn-ust .sn-yer { flex: 1; }
@@ -518,7 +518,7 @@
     transition: opacity 1s ease;
   }
   .sn-sahne.sn-karanlik::after { opacity: .5; }
-  .sn-zeta {position: absolute; left: 1.4rem; right: 1.4rem; top: 0; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
+  .sn-zeta {position: absolute; left: 1.4rem; right: 1.4rem; top: 45px; max-width: 100%; font-family: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive; font-size: clamp(1.65rem,4vw,2.9rem); font-weight: 600; line-height: 1.2; letter-spacing: .5px; color: #ffedbe; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
 .sn-zeta::after { content: ''; display: block; width: 86px; height: 1px; margin: .45rem auto 0; background: linear-gradient(90deg, transparent, rgba(217,178,63,.8), transparent); }
 .sn-zeta:empty { display: none; }
 .sn-slayt { position: relative; width: 100%; max-width: 1180px; animation: snGirisKart .34s ease; }
@@ -567,8 +567,7 @@
     display: flex; align-items: center; justify-content: center;
     gap: .6rem; padding: .3rem 1.4rem 1.1rem;
   }
-.sn-alt .sn-hiz-btn { padding: .45rem .95rem; }
-.sn-alt .sn-hiz-liste { top: auto; bottom: calc(100% + .4rem); }
+
   .sn-btn {
     font-family: inherit; cursor: pointer;
     display: inline-flex; align-items: center; gap: .4rem;

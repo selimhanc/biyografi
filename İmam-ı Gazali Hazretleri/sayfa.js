@@ -360,7 +360,7 @@
 
     function snYazi() {
       if (snSayac) snSayac.textContent =(snIdx + 1) + ' / ' + slaytlar.length;
-      snSure.textContent = '~' + Math.round(snToplam() / 1000) + ' sn · ' + slaytlar[snIdx].harf + ' harf';
+      if (snSure) if (snSure) snSure.textContent = '~' + Math.round(snToplam() / 1000) + ' sn · ' + slaytlar[snIdx].harf + ' harf';
     }
 
     function snOtoYazi() {
@@ -376,10 +376,10 @@
       const ic = snAktifEl;
       if (!ic) return;
       ic.style.transform = '';
-      const st = getComputedStyle(snSahne); const hc = snSahne.clientHeight - (parseFloat(st.paddingTop) || 0) - (parseFloat(st.paddingBottom) || 0); const zh = snZeta ? snZeta.offsetHeight : 0; const ust = hc - zh * 2 - 26;
+      const st = getComputedStyle(snSahne); const hc = snSahne.clientHeight - (parseFloat(st.paddingTop) || 0) - (parseFloat(st.paddingBottom) || 0); const zh = snZeta ? snZeta.offsetHeight : 0; const ust = hc - (zh + 45 + 26) * 2;
       const yuk = ic.scrollHeight;
       const olcek = (yuk > ust && ust > 0) ? Math.max(0.55, ust / yuk) : 1;
-      ic.style.transform = olcek < 1 ? 'scale(' + olcek.toFixed(3) + ')' : ''; if (snZeta) snZeta.style.top = Math.max(0, Math.round((hc - ic.scrollHeight * olcek) / 2 - zh - 14)) + 'px';
+      ic.style.transform = olcek < 1 ? 'scale(' + olcek.toFixed(3) + ')' : '';
     }
 
     function snCiz() {
