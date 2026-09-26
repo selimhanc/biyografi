@@ -693,7 +693,7 @@
   function dosyaYolu() { return 'veri/' + SLUG + '.json'; }
   /* Sunucuda kayitli yama (yoksa null) */
   function mevcutYama() {
-    return gh(GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu(), { headers: { Accept: 'application/vnd.github.raw' } })
+    return gh(GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu() + '?ref=' + encodeURIComponent(DAL_KAYDET), { headers: { Accept: 'application/vnd.github.raw' } })
       .then(function (r) {
         if (!r.ok) return null;
         return r.json().then(function (v) { return v && v.surum ? v : null; }).catch(function () { return null; });
