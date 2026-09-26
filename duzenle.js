@@ -1027,6 +1027,27 @@
     window.Duzenle.temel = function () { return TEMEL; };
     bildir('Sayfa verisi yüklendi: ' + dal, 'bilgi');
   }
+  /* Yama okuma: raw.githubusercontent.com CDN'i yeni commit'i gecikmeli
+     verir (yazma aninda guncel, okuma aninda eski). Bu yuzden token varsa
+     once API denenir; token yoksa veya API hata verirse raw'a dusulur. */
+  function yamaOku(dal) {
+    var ham = GH_RAW + dal + '/' + dosyaYolu() + '?t=' + Date.now();
+    var api = function () {
+      return gh(GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu() + '?ref=' + encodeURIComponent(dal) + '&_=' + Date.now(),
+        { headers: { Accept: 'application/vnd.github.raw' }, cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (v) { return v && v.surum ? v : null; })
+        .catch(function () { return null; });
+    };
+    var raw = function () {
+      return fetch(ham, { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (v) { return v && v.surum ? v : null; })
+        .catch(function () { return null; });
+    };
+    if (!token) return raw();
+    return api().then(function (v) { return v || raw(); });
+  }
   /* Kaydedilen dosya GitHub Pages derlendikten sonra gorunur; sayfa
      hemen yenilenirse 404 alinir. Bu durumda kisa surede tekrar dener. */
   function bekleyenKayitVar() { return sessionStorage.getItem('dz_bekleyen') === SLUG; }
@@ -1035,14 +1056,19 @@
     var kalan = 24;   // ~2 dakika, 5 saniyede bir
     bildir('Kaydınız yayınlanıyor, sayfa kendiliğinden yenilenecek…', 'bilgi');
     (function dene() {
-      if (kalan-- <= 0) { bekleyenTemizle(); bildir('Yayın hâlâ hazır değil. Sayfayı birazdan yenileyin.', 'hata'); return; }
-      fetch(GH_RAW + DAL_OKU[0] + '/' + dosyaYolu() + '?t=' + Date.now())
-        .then(function (r) { return r.ok ? r.json() : null; })
+      if (kalan-- <= 0) {
+        bekleyenTemizle();
+        bildir('Yayın hâlâ hazır değil. Kaydınız sunucuda duruyor — Ctrl+Shift+R ile yenileyin.', 'hata', {
+          metin: 'Sayfayı yenile',
+          tikla: function () { location.reload(); }
+        });
+        return;
+      }
+      yamaOku(DAL_OKU[0])
         .then(function (yama) {
-          if (yama && yama.surum) { bekleyenTemizle(); yamaUygula(yama, DAL_OKU[0] + ' (yeni kayıt)'); return; }
+          if (yama) { bekleyenTemizle(); yamaUygula(yama, DAL_OKU[0] + ' (yeni kayıt)'); return; }
           setTimeout(dene, 5000);
-        })
-        .catch(function () { setTimeout(dene, 5000); });
+        });
     })();
   }
   function jsonYukle() {
@@ -1053,14 +1079,11 @@
         return;
       }
       var dal = DAL_OKU[i++];
-      fetch(GH_RAW + dal + '/' + dosyaYolu() + '?t=' + Date.now())
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (yama) {
-          if (!yama || !yama.surum) return dene();
-          bekleyenTemizle();
-          yamaUygula(yama, dal);
-        })
-        .catch(function () { dene(); });
+      yamaOku(dal).then(function (yama) {
+        if (!yama) return dene();
+        bekleyenTemizle();
+        yamaUygula(yama, dal);
+      });
     }
     dene();
   }
