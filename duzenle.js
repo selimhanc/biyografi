@@ -56,18 +56,23 @@
 
   /* ---------------- bildirim ---------------- */
   var bildirimKutu = null;
-  function bildir(metin, tur) {
+  function bildir(metin, tur, eylem) {
     if (!bildirimKutu) {
       bildirimKutu = el('div', { class: 'dz-bildirim' });
       document.body.appendChild(bildirimKutu);
     }
-    var kutu = el('div', { class: 'dz-uyari ' + (tur || ''), text: metin });
+    var kutu = el('div', { class: 'dz-uyari ' + (tur || '') }, [el('span', { text: metin })]);
+    if (eylem) {
+      var d = el('button', { class: 'dz-eylem', type: 'button', text: eylem.metin });
+      d.addEventListener('click', eylem.tikla);
+      kutu.appendChild(d);
+    }
     bildirimKutu.appendChild(kutu);
     setTimeout(function () {
       kutu.style.transition = 'opacity .3s';
       kutu.style.opacity = '0';
       setTimeout(function () { kutu.remove(); }, 320);
-    }, tur === 'hata' ? 5200 : 3200);
+    }, tur === 'hata' ? 7000 : (eylem ? 12000 : 3200));
   }
 
   /* ---------------- pencere ---------------- */
@@ -512,7 +517,8 @@
   }
   function serbestMetinleriUygula(v) {
     (v.metin || []).forEach(function (m) {
-      var a = document.querySelector(m.yol);
+      var a = null;
+      try { a = document.querySelector(m.yol); } catch (e) { a = null; }
       if (a) dogrudanYaz(a, m.deger);
     });
   }
@@ -806,6 +812,13 @@
         return c;
       });
     });
+    // serbest metin yamasi: yola gore birlestirilir
+    if (Array.isArray(yama.metin)) {
+      var m = {};
+      (v.metin || []).forEach(function (x) { m[x.yol] = x; });
+      yama.metin.forEach(function (x) { m[x.yol] = x; });
+      v.metin = Object.keys(m).map(function (k) { return m[k]; });
+    }
     return v;
   }
 
@@ -890,11 +903,17 @@
         });
       };
       gonder(3).then(function () {
-        perde.remove();
         kirli = false;
         var d = $('#dzKaydet'); if (d) d.classList.remove('kirli');
         durum.className = 'dz-durum iyi';
-        bildir('Kaydedildi: veri/' + SLUG + '.json (' + DAL_KAYDET + ')', 'iyi');
+        durum.textContent = 'Kaydedildi: veri/' + SLUG + '.json → ' + DAL_KAYDET + '. Yayın 1-2 dakika içinde görünecek.';
+        onay.disabled = true;
+        try { sessionStorage.setItem('dz_bekleyen', SLUG); } catch (e) {}
+        setTimeout(function () { perde.remove(); }, 1400);
+        bildir('Kaydedildi: veri/' + SLUG + '.json → ' + DAL_KAYDET + ' branch. Yayın 1-2 dakika içinde.', 'iyi', {
+          metin: 'Sayfayı yenile',
+          tikla: function () { location.reload(); }
+        });
       }).catch(function (h) {
         onay.disabled = false; iptal.disabled = false;
         durum.className = 'dz-durum hata'; durum.textContent = h.message || 'Kaydedilemedi.';
@@ -973,22 +992,47 @@
   }
 
   /* ---------------- JSON yukleme ---------------- */
+  function yamaUygula(yama, dal) {
+    // surum 1 = tam veri, surum 2 = yama (HTML tabani uzerine)
+    var veri = yama.surum >= 2 ? birlestir(TEMEL, yama) : yama;
+    uygula(veri);
+    window.Duzenle.veri = veri;
+    window.Duzenle.yama = yama;
+    window.Duzenle.temel = TEMEL;
+    bildir('Sayfa verisi yüklendi: ' + dal, 'bilgi');
+  }
+  /* Kaydedilen dosya GitHub Pages derlendikten sonra gorunur; sayfa
+     hemen yenilenirse 404 alinir. Bu durumda kisa surede tekrar dener. */
+  function bekleyenKayitVar() { return sessionStorage.getItem('dz_bekleyen') === SLUG; }
+  function bekleyenTemizle() { sessionStorage.removeItem('dz_bekleyen'); }
+  function bekleyenBekle() {
+    var kalan = 24;   // ~2 dakika, 5 saniyede bir
+    bildir('Kaydınız yayınlanıyor, sayfa kendiliğinden yenilenecek…', 'bilgi');
+    (function dene() {
+      if (kalan-- <= 0) { bekleyenTemizle(); bildir('Yayın hâlâ hazır değil. Sayfayı birazdan yenileyin.', 'hata'); return; }
+      fetch(GH_RAW + DAL_OKU[0] + '/' + dosyaYolu() + '?t=' + Date.now())
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (yama) {
+          if (yama && yama.surum) { bekleyenTemizle(); yamaUygula(yama, DAL_OKU[0] + ' (yeni kayıt)'); return; }
+          setTimeout(dene, 5000);
+        })
+        .catch(function () { setTimeout(dene, 5000); });
+    })();
+  }
   function jsonYukle() {
     var i = 0;
     function dene() {
-      if (i >= DAL_OKU.length) return;
+      if (i >= DAL_OKU.length) {
+        if (bekleyenKayitVar()) bekleyenBekle();
+        return;
+      }
       var dal = DAL_OKU[i++];
       fetch(GH_RAW + dal + '/' + dosyaYolu() + '?t=' + Date.now())
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (yama) {
           if (!yama || !yama.surum) return dene();
-          // surum 1 = tam veri, surum 2 = yama (HTML tabani uzerine)
-          var veri = yama.surum >= 2 ? birlestir(TEMEL, yama) : yama;
-          uygula(veri);
-          window.Duzenle.veri = veri;
-          window.Duzenle.yama = yama;
-          window.Duzenle.temel = TEMEL;
-          bildir('Sayfa verisi yüklendi: ' + dal, 'bilgi');
+          bekleyenTemizle();
+          yamaUygula(yama, dal);
         })
         .catch(function () { dene(); });
     }

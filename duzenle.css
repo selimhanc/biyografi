@@ -99,6 +99,8 @@ body.dz-mod .dz-ekle.gorunur { display: block; }
 }
 .dz-uyari.hata { background: #a3312a; }
 .dz-uyari.bilgi { background: #6b5227; }
+.dz-eylem { pointer-events: auto; margin-left: 10px; font: 700 13px/1 system-ui, sans-serif; color: #fff; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.42); border-radius: 7px; padding: 6px 11px; cursor: pointer; }
+.dz-eylem:hover { background: rgba(255,255,255,.32); }
 @keyframes dz-gir { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
 
 /* --- pencereler --- */
