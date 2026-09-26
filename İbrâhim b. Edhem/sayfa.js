@@ -410,7 +410,7 @@ if (snEl) {
 
   function snYazi() {
     if (snSayac) snSayac.textContent =(snIdx + 1) + ' / ' + slaytlar.length;
-  if (snAdet) snAdet.textContent = (snIdx + 1) + ' / ' + slaytlar.length + ' olay';
+  if (snAdet) snAdet.textContent = (snIdx + 1) + ' / ' + slaytlar.length;
     if (snSure) snSure.textContent = '~' + Math.round(snToplam() / 1000) + ' sn · ' + slaytlar[snIdx].harf + ' harf';
   }
 

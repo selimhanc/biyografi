@@ -188,7 +188,7 @@ if (snEl) {
   const bekleme = () => SUNUM_AYAR.basBekleme / hiz;
   const sonBekleme = () => SUNUM_AYAR.sonBekleme / hiz;
   const toplam = () => okuma() + bekleme() + sonBekleme();
-  function yazi() { snSayac && (snSayac.textContent = (idx + 1) + ' / ' + slaytlar.length); if (snAdet) snAdet.textContent = (idx + 1) + ' / ' + slaytlar.length + ' olay'; if (snSure) snSure.textContent = '~' + Math.round(toplam() / 1000) + ' sn · ' + slaytlar[idx].harf + ' harf'; }
+  function yazi() { snSayac && (snSayac.textContent = (idx + 1) + ' / ' + slaytlar.length); if (snAdet) snAdet.textContent = (idx + 1) + ' / ' + slaytlar.length; if (snSure) snSure.textContent = '~' + Math.round(toplam() / 1000) + ' sn · ' + slaytlar[idx].harf + ' harf'; }
   function otoYazi() {
     snOto.textContent = oto ? '⏭ Otomatik' : '⏭ Etkileşimli';
     snOto.classList.toggle('aktif', oto);
