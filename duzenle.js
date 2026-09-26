@@ -716,13 +716,22 @@
     if (sha) govde.sha = sha;
     return gh(GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu(), { method: 'PUT', body: JSON.stringify(govde) })
       .then(function (r) {
-        if (r.status === 409 || r.status === 422) {
-          if (geriKalan <= 0) throw new Error('Sunucudaki dosya değişmiş. Lütfen tekrar deneyin.');
+        /* 409 = sunucudaki sha degismis, yeniden denenir.
+           422 = dogrulama hatasi; tekrar denemek anlamsiz, GitHub'in
+           mesaji oldugu gibi gosterilir. */
+        if (r.status === 409) {
+          if (geriKalan <= 0) {
+            return r.json().catch(function () { return {}; }).then(function (h) {
+              throw new Error('Sunucudaki dosya değişmiş. Lütfen tekrar deneyin.' + (h && h.message ? ' GitHub: ' + h.message : ''));
+            });
+          }
           return mevcutSha(GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu(), dal)
             .then(function (y) { return yazGitHub(dal, icerik, y ? y.sha : null, geriKalan - 1); });
-        }        if (!r.ok) {
+        }
+        if (!r.ok) {
           return r.json().catch(function () { return {}; }).then(function (h) {
-            throw new Error(h.message || 'Kayıt başarısız (HTTP ' + r.status + ').');
+            var n = (h && h.message) || ('HTTP ' + r.status);
+            throw new Error(r.status === 422 ? 'Sunucu kaydı reddetti: ' + n : 'Kayıt başarısız: ' + n);
           });
         }
         return r.json();
@@ -868,8 +877,16 @@
 
   /* ---------------- JSON kaydetme ---------------- */
   function kaydetPenceresi() {
-    var yama = farkVeri(TEMEL, serilestir());
+    /* Karsilastirma tabani ham HTML degil, sunucudaki yamanin uygulanmis
+       hali olmali. Aksi halde yama icinden eklenip sonra silinen bir blok
+       HTML tabanina dondugu icin fark bos kaliyor ve silme "degisiklik
+       bulunamadi" diye reddediliyor. */
+    var yuklenen = window.Duzenle && window.Duzenle.veri ? window.Duzenle.veri : null;
+    var yama = farkVeri(yuklenen || TEMEL, serilestir());
     var sayi = (yama.olaylar || []).filter(Boolean).length;
+    if (yama.ust) sayi += Object.keys(yama.ust).length;
+    if (yama.bolumler) sayi += yama.bolumler.length;
+    if (yama.metin) sayi += yama.metin.length;
     Object.keys(yama.kartlar || {}).forEach(function (s) {
       (yama.kartlar[s] || []).forEach(function (g) {
         if (!g) return;
@@ -893,10 +910,12 @@
       onay.disabled = true; iptal.disabled = true;
       durum.className = 'dz-durum'; durum.textContent = 'Kaydediliyor…';
       var yol = GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu();
+      var sonIcerik = null;
       var gonder = function (deneme) {
         // once sunucudaki yamayi oku, yeni yamayi onun uzerine birlestir
         return mevcutYama().then(function (sunucuYama) {
           var icerik = JSON.stringify(yamaBirlestir(sunucuYama, yama), null, 2);
+          sonIcerik = icerik;
           return mevcutSha(yol, DAL_KAYDET).then(function (y) {
             return yazGitHub(DAL_KAYDET, icerik, y ? y.sha : null, deneme);
           });
@@ -904,6 +923,11 @@
       };
       gonder(3).then(function () {
         kirli = false;
+        /* Kaydedilen yama artik taban; sonraki kaydetmeler buna gore fark alir */
+        try {
+          window.Duzenle.yama = JSON.parse(sonIcerik);
+          window.Duzenle.veri = birlestir(TEMEL, window.Duzenle.yama);
+        } catch (e) {}
         var d = $('#dzKaydet'); if (d) d.classList.remove('kirli');
         durum.className = 'dz-durum iyi';
         durum.textContent = 'Kaydedildi: veri/' + SLUG + '.json → ' + DAL_KAYDET + '. Yayın 1-2 dakika içinde görünecek.';
@@ -998,7 +1022,7 @@
     uygula(veri);
     window.Duzenle.veri = veri;
     window.Duzenle.yama = yama;
-    window.Duzenle.temel = TEMEL;
+    window.Duzenle.temel = function () { return TEMEL; };
     bildir('Sayfa verisi yüklendi: ' + dal, 'bilgi');
   }
   /* Kaydedilen dosya GitHub Pages derlendikten sonra gorunur; sayfa
