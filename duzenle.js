@@ -691,9 +691,11 @@
 
   /* ---------------- GitHub kaydetme ---------------- */
   function dosyaYolu() { return 'veri/' + SLUG + '.json'; }
-  /* Sunucuda kayitli yama (yoksa null) */
+  /* Sunucuda kayitli yama (yoksa null)
+     GitHub Contents API 'Cache-Control: private, max-age=60' donuyor; ozel
+     bellege dusulurse sha hep eski gelir ve her yazma 409 verir. */
   function mevcutYama() {
-    return gh(GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu() + '?ref=' + encodeURIComponent(DAL_KAYDET), { headers: { Accept: 'application/vnd.github.raw' } })
+    return gh(GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu() + '?ref=' + encodeURIComponent(DAL_KAYDET), { headers: { Accept: 'application/vnd.github.raw' }, cache: 'no-store' })
       .then(function (r) {
         if (!r.ok) return null;
         return r.json().then(function (v) { return v && v.surum ? v : null; }).catch(function () { return null; });
@@ -701,7 +703,7 @@
       .catch(function () { return null; });
   }
   function mevcutSha(ur, dal) {
-    return gh(ur + '?ref=' + encodeURIComponent(dal)).then(function (r) {
+    return gh(ur + '?ref=' + encodeURIComponent(dal) + '&_=' + Date.now(), { cache: 'no-store' }).then(function (r) {
       if (r.status === 404) return null;
       if (!r.ok) throw new Error('SHA alınamadı (HTTP ' + r.status + ').');
       return r.json();
@@ -722,7 +724,7 @@
         if (r.status === 409) {
           if (geriKalan <= 0) {
             return r.json().catch(function () { return {}; }).then(function (h) {
-              throw new Error('Sunucudaki dosya değişmiş. Lütfen tekrar deneyin.' + (h && h.message ? ' GitHub: ' + h.message : ''));
+              throw new Error('Sunucudaki dosya değişmiş. Sayfayı yenileyip tekrar deneyin.' + (h && h.message ? ' GitHub: ' + h.message : ''));
             });
           }
           return mevcutSha(GH_API + '/repos/' + DEPO + '/contents/' + dosyaYolu(), dal)
