@@ -1045,7 +1045,7 @@
         .then(function (v) { return v && v.surum ? v : null; })
         .catch(function () { return null; });
     };
-    if (!token) return raw();
+    if (!token && location.protocol === 'file:') return raw();
     return api().then(function (v) { return v || raw(); });
   }
   /* Kaydedilen dosya GitHub Pages derlendikten sonra gorunur; sayfa
