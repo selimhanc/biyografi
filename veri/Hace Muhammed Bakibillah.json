@@ -1,0 +1,100 @@
+{
+  "surum": 2,
+  "slug": "Hace Muhammed Bakibillah",
+  "olaylar": [
+    {
+      "tur": "dogum",
+      "yas": "",
+      "tarih": "M. 1563",
+      "h": "| H. 971",
+      "baslik": "Kâbil'de Doğum",
+      "tag": "🌙 Doğum",
+      "aciklama": "971 (M. 1563) yılında Kâbil'de dünyaya geldi. Babası Kâdı Abdüsselâm'dır. Annesi Hz. Hüseyin'in neslinden, seyyide, kanâatkâr, dervişlere hizmet eden sâliha bir hanımdır.",
+      "konum": "Kâbil"
+    },
+    {
+      "tur": "ilim",
+      "yas": "",
+      "tarih": "Tarih",
+      "h": "",
+      "baslik": "yeni",
+      "tag": "🕌 İlim",
+      "aciklama": "sdf",
+      "konum": ""
+    },
+    {
+      "tur": "tasavvuf",
+      "yas": "ibâdet hayatı",
+      "tarih": "",
+      "h": "",
+      "baslik": "Az Yer, Az Uyku, Az Konuşma",
+      "tag": "🕌 Tasavvuf",
+      "aciklama": "İbâdet ve tâat hususunda büyük bir gayret sahibi idi. Daima az yer, az uyur, az konuşurdu. Her gece yatsı namazından sonra teheccüd vaktine kadar Kur'ân-ı Azîmuşşân'ı hatmeder ve daha sonra fecir doğana kadar yirmi bir defa Yâsîn Sûresini okurdu.",
+      "konum": "Kâbil",
+      "d_derin": "ibadet"
+    },
+    {
+      "tur": "ilim",
+      "yas": "geceleri",
+      "tarih": "",
+      "h": "",
+      "baslik": "Fecir Sorusu",
+      "tag": "🕌 İlim",
+      "aciklama": "Fecrin doğuşundan bîzâr olur \"Yâ Rabbi! Geceler neden böyle çabuk geçiyor?\" derlerdi. Geceleri Kur'ân okumaya ayırması, onun en belirgin hâliydi.",
+      "konum": "Kâbil"
+    },
+    {
+      "tur": "tasavvuf",
+      "yas": "yemek âdâbı",
+      "tarih": "",
+      "h": "",
+      "baslik": "Yemekte İhtiyat ve Huzur",
+      "tag": "🕌 Tasavvuf",
+      "aciklama": "Yemek yemede çok ihtiyatlı idi. Bir hediye geldiği zaman onu sünnet-ı seniyyeye uymak için geri çevirmez, fakat husûsî işlerine sarf etmezdi. Yemek pişirenin abdestli olmasını, yemek pişirirken dünya kelamı konuşulmamasını tenbih ederdi.",
+      "konum": "Kâbil",
+      "d_derin": "yemek"
+    },
+    {
+      "tur": "ilim",
+      "yas": "feyz kapısı",
+      "tarih": "",
+      "h": "",
+      "baslik": "\"Huzûr ve İhtiyât\" Sözü",
+      "tag": "🕌 İlim",
+      "aciklama": "\"Huzûr ve ihtiyât sahibi olmayanın yemeklerinden bir duman çıkar ki, feyz kapısını kapatır.\" buyururlardı. İşlerinde azîmet ve evlâ olan ile hareket eder, şüphelilerden kaçındığı gibi mübahların da fazlasından kaçınır, zarûret mikdarı işlerdi.",
+      "konum": "Kâbil"
+    },
+    {
+      "tur": "tasavvuf",
+      "yas": "lâkabı",
+      "tarih": "",
+      "h": "",
+      "baslik": "Hâce Bireng Lâkâbı",
+      "tag": "🕌 Tasavvuf",
+      "aciklama": "Silsile-i Sâdât'ın yirmi ikinci halkası olan Bâkîbillâh'ın lâkabı Hâce Bireng'dir. Hânevi tarikatına mensuptur.",
+      "konum": "Kâbil"
+    },
+    {
+      "tur": "vefat",
+      "yas": "40 yaş",
+      "tarih": "M. 1603",
+      "h": "| H. 25 Rebîulâhir 1012",
+      "baslik": "Delhi'de Vefat",
+      "tag": "Vefat",
+      "aciklama": "25 Rebîulâhir 1012 (M. 1603) târihinde kırk yaşında iken âhirete irtihâl etti. Hindistan'a geçmiş ve Delhi'de yaşamıştır; Resûlüllâh'ın (s.a.v.) ayak bastığı yer olarak meşhur olan \"Kademgâh\" denilen mevkiye defnedildi.",
+      "konum": "Delhi",
+      "d_derin": "kademgah"
+    },
+    {
+      "tur": "vefat",
+      "yas": "defin mucizesi",
+      "tarih": "M. 1603",
+      "h": "| H. 1012",
+      "baslik": "\"Toprağı Elbisemizi Tuttu\"",
+      "tag": "Vefat",
+      "aciklama": "Vefat ettiğinde en sâdık talebeleri mezarını kazdılar. Fakat naaşını taşırken oraya değil de gayr-ı ihtiyârî olarak başka bir yere götürdüler. Tabutunu yere koyduklarında oranın Hâzreti'nin daha önce geldiği bir yer olduğunu hatırladılar. O bu mekânı beğenerek iki rek'at namaz kılmış ve kıyafetine bu yerin toprağı bulaşmıştı. Bunun üzerine: \"Bu yerin toprağı bizim elbisemizi tuttu\" buyurmuştu.",
+      "konum": "Delhi",
+      "d_derin": "toprak"
+    }
+  ]
+}
