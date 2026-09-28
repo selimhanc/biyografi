@@ -137,9 +137,10 @@ blgUst.addEventListener('click', kapat);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.classList.contains('hidden')) kapat(); });
 
   const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, sonBekleme: 2000, gecis: 2000 };
-  const SES_AYAR = { durakMs: 1000, isaret: '\u0001', cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II' } };
+  const SES_AYAR = { durakMs: 1000, isaret: '\u0001', acHiz: 0.75, kapaHiz: 1, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU' } };
+  const SES_CEVIR = new RegExp('[' + Object.keys(SES_AYAR.cevir).map(k => k.replace(/[\\^\]\-]/g, '\\$&')).join('') + ']', 'g');
   function sesCevir(s) {
-    return s.replace(/[âÂîÎ]/g, m => SES_AYAR.cevir[m] || m);
+    return s.replace(SES_CEVIR, m => SES_AYAR.cevir[m] || m);
   }
 const snEl = document.getElementById('sunum');
 if (snEl) {
@@ -412,14 +413,13 @@ if (snEl) {
     if (!sesVar()) { sesUyari('Tarayıcı desteklemiyor'); return; }
     sesAcik = !sesAcik;
     sesYazi();
-    if (!sesAcik) {
-      sesIptal();
-      const oran = kelimeler.length ? Math.max(0, Math.min(1, gectiIdx / kelimeler.length)) : 0;
-      bitti = performance.now() + Math.max(600, okuma() * (1 - oran));
-      if (aktif && !durak) dongu();
-      return;
-    }
-    if (!snEl.hidden && aktif) sesYeniden();
+    if (sesAcik) { hizAyarla(SES_AYAR.acHiz); return; }
+    sesIptal();
+    const oran = kelimeler.length ? Math.max(0, Math.min(1, gectiIdx / kelimeler.length)) : 0;
+    kalan = Math.max(600, okuma() * (1 - oran));
+    hizAyarla(SES_AYAR.kapaHiz);
+    bitti = performance.now() + kalan;
+    if (aktif && !durak) dongu();
   });
   sesYazi();
   window.addEventListener('pagehide', sesIptal);
@@ -458,21 +458,27 @@ if (snEl) {
   snDuraklat.addEventListener('click', () => { if (bittiMi) git(true); else if (durak) devam(); else dur(); });
   snOto.addEventListener('click', () => { oto = !oto; otoYazi(); });
   snHizDugme.addEventListener('click', e => { e.stopPropagation(); const acik = snHizListe.hidden; snHizListe.hidden = !acik; snHizDugme.setAttribute('aria-expanded', String(acik)); });
+  function hizAyarla(yeni) {
+    if (!yeni) return;
+    if (yeni !== hiz) {
+      kalan *= hiz / yeni;
+      hiz = yeni;
+      yazi();
+      bitti = performance.now() + kalan;
+      if (!durak) dongu();
+      sesYeniden();
+    }
+    const b = snHizListe.querySelector('.sn-hiz-btn[data-hiz="' + yeni + '"]');
+    if (!b) return;
+    snHizDugme.textContent = b.textContent + ' ▾';
+    snHizListe.querySelectorAll('.sn-hiz-btn').forEach(x => x.classList.toggle('aktif', x === b));
+  }
   snHizKutu.addEventListener('click', e => {
     const b = e.target.closest('.sn-hiz-btn[data-hiz]');
     if (!b) return;
-    const yeni = parseFloat(b.dataset.hiz);
     snHizListe.hidden = true;
     snHizDugme.setAttribute('aria-expanded', 'false');
-    snHizDugme.textContent = b.textContent + ' ▾';
-    snHizListe.querySelectorAll('.sn-hiz-btn').forEach(x => x.classList.toggle('aktif', x === b));
-    if (!yeni || yeni === hiz) return;
-    kalan *= hiz / yeni;
-    hiz = yeni;
-    yazi();
-    bitti = performance.now() + kalan;
-    if (!durak) dongu();
-    sesYeniden();
+    hizAyarla(parseFloat(b.dataset.hiz));
   });
   document.addEventListener('click', e => { if (!snHizListe.hidden && !snHizKutu.contains(e.target)) { snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); } });
   document.querySelectorAll('#olaylar .z-item').forEach((z, i) => {
