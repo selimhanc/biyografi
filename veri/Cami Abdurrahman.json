@@ -11,35 +11,16 @@
       "yas": "olgunluk",
       "tarih": "M. 15. yüzyıl",
       "h": "",
-      "baslik": "Sa‘deddîn-i Kâşgarî'ye İntisap",
+      "baslik": "Sâdeddîn-i Kaşgârî'ye İntisap",
       "tag": "📿 Tasavvuf",
       "aciklama": "Genç yaşta bütün ilimlere vâkıf olmasına rağmen Semerkant dönüşünde Nakşibendî şeyhlerinden Sâdeddin-i Kaşgârî'ye intisap etti. Medresede ders vermeyi, bir tekkeye şeyhlik yapmaya tercih etti.",
       "konum": "Horasan",
       "d_derin": "kasgari"
     },
-    {
-      "tur": "tasavvuf",
-      "yas": "42 yaşından sonra",
-      "tarih": "M. 1456 sonrası",
-      "h": "| H. 860 sonrası",
-      "baslik": "Ubeydullah Ahrâr ile Bağlantı",
-      "tag": "📿 Tasavvuf",
-      "aciklama": "Sâdeddin'in vefatından sonra halefi Hâce Ubeydullah Ahrâr'a bağlandı. Birkaç defa görüştü ve mektuplaşarak ilişkiyi sürdürdü; Ahrâr'ın Câmî üzerindeki etkisi büyüktü.",
-      "konum": "Nakşibendî çevresi",
-      "d_derin": "ahrar"
-    },
     null,
     null,
     null,
-    {
-      "tur": "vefat",
-      "yas": "yaklaşık 80 yaş",
-      "tarih": "M. 9 Kasım 1492",
-      "h": "| H. 18 Muharrem 898",
-      "baslik": "Herat'ta Vefat",
-      "tag": "Vefat",
-      "aciklama": "Cuma günü Herat'ta vefat etti. Cenazesi devrin ileri gelenleri tarafından kaldırıldı ve şeyhi Sâdeddin-i Kaşgârî'nin kabrinin yanına defnedildi.",
-      "konum": "Herat"
-    }
+    null,
+    null
   ]
 }
