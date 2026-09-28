@@ -136,7 +136,11 @@ document.getElementById('blgKapat').addEventListener('click', kapat);
 blgUst.addEventListener('click', kapat);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.classList.contains('hidden')) kapat(); });
 
-const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, sonBekleme: 2000, gecis: 2000 };
+  const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, sonBekleme: 2000, gecis: 2000 };
+  const SES_AYAR = { durakMs: 1000, isaret: '\u0001', cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II' } };
+  function sesCevir(s) {
+    return s.replace(/[âÂîÎ]/g, m => SES_AYAR.cevir[m] || m);
+  }
 const snEl = document.getElementById('sunum');
 if (snEl) {
   const snSlayt = document.getElementById('snSlayt');
@@ -198,7 +202,9 @@ if (snEl) {
   function kelimeDoldur(kapsayici) {
     const liste = [];
     const parcalar = [];
-    let ofset = 0;
+    const konusParcalar = [];
+    const durakHarf = SES_AYAR.durakMs / (SUNUM_AYAR.saniyeHarf * 1000);
+    let ofset = 0, ofsetS = 0;
     kapsayici.querySelectorAll('h4, p, .z-kitap').forEach(blok => {
       const dugumler = [];
       const yuru = dugum => {
@@ -213,20 +219,25 @@ if (snEl) {
         t.textContent.split(/(\s+)/).forEach(p => {
           if (!p) return;
           parcalar.push(p);
-          if (/^\s+$/.test(p)) { parca.appendChild(document.createTextNode(p)); ofset += p.length; return; }
+          const k = sesCevir(p);
+          konusParcalar.push(k);
+          if (/^\s+$/.test(p)) { parca.appendChild(document.createTextNode(p)); ofset += p.length; ofsetS += k.length; return; }
           const span = document.createElement('span');
           span.className = 'sn-kelime';
           span.textContent = p;
           parca.appendChild(span);
-          liste.push({ el: span, son: 0, bas: ofset, uz: p.length });
+          liste.push({ el: span, son: 0, bas: ofset, uz: p.length, basS: ofsetS, uzS: k.length });
           ofset += p.length;
+          ofsetS += k.length;
         });
         t.parentNode.replaceChild(parca, t);
       });
+      if (blok.tagName === 'H4' && liste.length) liste[liste.length - 1].durak = durakHarf;
+      if (blok.tagName === 'H4') { konusParcalar.push(SES_AYAR.isaret); ofsetS += SES_AYAR.isaret.length; }
     });
     let harfToplam = 0;
-    liste.forEach(k => { harfToplam += harfSay(k.el); k.son = harfToplam; });
-    return { kelimeler: liste, toplam: harfToplam, metin: parcalar.join('') };
+    liste.forEach(k => { harfToplam += harfSay(k.el); harfToplam += k.durak || 0; k.son = harfToplam; });
+    return { kelimeler: liste, toplam: harfToplam, metin: parcalar.join(''), konus: konusParcalar.join('') };
   }
   function isaretle() {
     if (!kelimeler.length) return;
@@ -274,7 +285,7 @@ if (snEl) {
     const k = kelimeDoldur(ic);
     kelimeler = k.kelimeler;
     toplamHarf = k.toplam;
-    sesMetin = k.metin;
+    sesMetin = k.konus;
     gectiIdx = -1;
     siraIdx = -1;
     bittiMi = false;
@@ -285,7 +296,7 @@ if (snEl) {
     bitti = performance.now() + kalan;
     snDolgu.style.width = '0%';
     olc();
-    sesKonus(k.metin);
+    sesKonus(k.konus);
     if (!eski) requestAnimationFrame(() => { if (ic.style.opacity === '0') ic.style.opacity = '1'; });
   }
   function dongu() {
@@ -343,7 +354,7 @@ if (snEl) {
   function sesAtla(ci) {
     if (!kelimeler.length) return;
     let g = 0;
-    while (g < kelimeler.length - 1 && kelimeler[g].bas + kelimeler[g].uz <= ci) g++;
+    while (g < kelimeler.length - 1 && kelimeler[g].basS + kelimeler[g].uzS <= ci) g++;
     for (let i = 0; i < g; i++) kelimeler[i].el.classList.add('sn-gecti');
     for (let i = g; i < kelimeler.length; i++) kelimeler[i].el.classList.remove('sn-gecti');
     if (siraIdx >= 0 && siraIdx < kelimeler.length) kelimeler[siraIdx].el.classList.remove('sn-sira');
@@ -357,18 +368,37 @@ if (snEl) {
     const sesler = speechSynthesis.getVoices().filter(v => /^tr/i.test(v.lang || ''));
     const ses = sesler.find(v => /google/i.test(v.name)) || sesler[0];
     if (!ses) { sesUyari('Türkçe ses yok'); return; }
-    const u = new SpeechSynthesisUtterance(metin);
-    u.lang = ses.lang || 'tr-TR';
-    u.voice = ses;
-    u.rate = hiz;
-    u.pitch = 1;
-    sesUtt = u;
+    const bolumler = [];
+    let ofs = 0;
+    metin.split(SES_AYAR.isaret).forEach(parca => {
+      if (parca.trim()) bolumler.push({ metin: parca, basS: ofs });
+      ofs += parca.length + SES_AYAR.isaret.length;
+    });
+    if (!bolumler.length) return;
+    const jeton = { no: 0 };
+    const durakMs = SES_AYAR.durakMs / hiz;
+    sesUtt = jeton;
     sesKonusuyor = true;
-    u.onboundary = e => { if (sesUtt !== u || typeof e.charIndex !== 'number') return; sesSinir = 1; sesAtla(e.charIndex); };
-    u.onend = u.onerror = () => { if (sesUtt !== u) return; sesUtt = null; sesKonusuyor = false; bitti = performance.now() + bekleme(); };
-    try { speechSynthesis.speak(u); } catch (err) { sesIptal(); return; }
     bitti = Infinity;
     sesBekle = performance.now() + Math.max(6000, okuma() * 1.7 + 3000);
+    function bolum(b) {
+      if (sesUtt !== jeton) return;
+      const u = new SpeechSynthesisUtterance(b.metin);
+      u.lang = ses.lang || 'tr-TR';
+      u.voice = ses;
+      u.rate = hiz;
+      u.pitch = 1;
+      u.onboundary = e => { if (sesUtt !== jeton || typeof e.charIndex !== 'number') return; sesSinir = 1; sesAtla(b.basS + e.charIndex); };
+      u.onend = u.onerror = () => {
+        if (sesUtt !== jeton) return;
+        if (jeton.no < bolumler.length - 1) { jeton.no++; setTimeout(() => bolum(bolumler[jeton.no]), durakMs); return; }
+        sesUtt = null;
+        sesKonusuyor = false;
+        bitti = performance.now() + bekleme();
+      };
+      try { speechSynthesis.speak(u); } catch (err) { sesIptal(); }
+    }
+    bolum(bolumler[0]);
   }
   function sesYeniden() {
     if (!sesAcik || !sesMetin) return;
@@ -420,6 +450,7 @@ if (snEl) {
   };
   window.SunumDuzenle.sureler = () => slaytlar.map(s => s.sure);
   window.SunumDuzenle.ayar = SUNUM_AYAR;
+  window.SunumDuzenle.sesAyar = SES_AYAR;
   document.getElementById('sunumAc').addEventListener('click', () => acSunum(0));
   snKapat.addEventListener('click', kapatSunum);
   snGeri.addEventListener('click', () => git(false));
