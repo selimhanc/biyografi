@@ -659,3 +659,10 @@
 
 svg.mez { width: 1.05em; height: 1.05em; vertical-align: -.16em; display: inline-block; fill: currentColor; }
 .z-kat svg.mez, #lejant svg.mez { margin-right: .18em; }
+
+/* sesli okuma dugmesi ve slayt sayaci (biyografi-stil.css ile ayni) */
+.sn-adet { font-size: .74rem; color: rgba(246,239,221,.78); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: .22rem .6rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sn-adet:empty { display: none; }
+.sn-ses-btn { font: inherit; cursor: pointer; color: #f6efdd; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: .34rem .85rem; font-size: .78rem; font-weight: 600; white-space: nowrap; letter-spacing: .01em; }
+.sn-ses-btn:hover { background: rgba(255,255,255,.18); }
+.sn-ses-btn.aktif { background: linear-gradient(135deg,var(--accent),var(--accent-2)); color: #241d12; border-color: transparent; }
