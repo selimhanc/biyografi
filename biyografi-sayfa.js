@@ -323,8 +323,10 @@ if (snEl) {
   const snSesDugme = document.createElement('button');
   snSesDugme.type = 'button';
   snSesDugme.className = 'sn-ses-btn';
-  const snYer = document.querySelector('#sunum .sn-yer');
-  if (snYer) snYer.appendChild(snSesDugme);
+  const snUst = document.querySelector('#sunum .sn-ust');
+  const snHizKutuDugum = document.getElementById('snHiz');
+  if (snHizKutuDugum && snHizKutuDugum.parentNode) snHizKutuDugum.parentNode.insertBefore(snSesDugme, snHizKutuDugum.nextSibling);
+  else if (snUst) snUst.appendChild(snSesDugme);
   function sesVar() { return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window; }
   function sesIptal() {
     sesUtt = null;
@@ -332,12 +334,12 @@ if (snEl) {
     if (sesVar()) { try { speechSynthesis.cancel(); } catch (err) {} }
   }
   function sesYazi() {
-    snSesDugme.textContent = sesAcik ? '🔊 Sesli' : '🔇 Ses';
+    snSesDugme.textContent = sesAcik ? '🔊 Sesli okuma' : '🔇 Sesli okuma';
     snSesDugme.classList.toggle('aktif', sesAcik);
     snSesDugme.setAttribute('aria-pressed', String(sesAcik));
-    snSesDugme.title = sesAcik ? 'Sesli okuma açık — kapatmak için tıkla' : 'Okunan kelimeleri sesli vurgula';
+    snSesDugme.title = sesAcik ? 'Sesli okuma açık — kapatmak için tıkla (S)' : 'Sesli okuma kapalı — açmak için tıkla (S)';
   }
-  function sesUyari(m) { snSesDugme.textContent = '🔇 ' + m; setTimeout(sesYazi, 4500); }
+  function sesUyari(m) { snSesDugme.textContent = '⚠ ' + m; setTimeout(sesYazi, 4500); }
   function sesAtla(ci) {
     if (!kelimeler.length) return;
     let g = 0;
