@@ -197,6 +197,8 @@ if (snEl) {
   }
   function kelimeDoldur(kapsayici) {
     const liste = [];
+    const parcalar = [];
+    let ofset = 0;
     kapsayici.querySelectorAll('h4, p, .z-kitap').forEach(blok => {
       const dugumler = [];
       const yuru = dugum => {
@@ -210,19 +212,21 @@ if (snEl) {
         const parca = document.createDocumentFragment();
         t.textContent.split(/(\s+)/).forEach(p => {
           if (!p) return;
-          if (/^\s+$/.test(p)) { parca.appendChild(document.createTextNode(p)); return; }
+          parcalar.push(p);
+          if (/^\s+$/.test(p)) { parca.appendChild(document.createTextNode(p)); ofset += p.length; return; }
           const span = document.createElement('span');
           span.className = 'sn-kelime';
           span.textContent = p;
           parca.appendChild(span);
-          liste.push({ el: span, son: 0 });
+          liste.push({ el: span, son: 0, bas: ofset, uz: p.length });
+          ofset += p.length;
         });
         t.parentNode.replaceChild(parca, t);
       });
     });
     let harfToplam = 0;
     liste.forEach(k => { harfToplam += harfSay(k.el); k.son = harfToplam; });
-    return { kelimeler: liste, toplam: harfToplam };
+    return { kelimeler: liste, toplam: harfToplam, metin: parcalar.join('') };
   }
   function isaretle() {
     if (!kelimeler.length) return;
@@ -270,6 +274,7 @@ if (snEl) {
     const k = kelimeDoldur(ic);
     kelimeler = k.kelimeler;
     toplamHarf = k.toplam;
+    sesMetin = k.metin;
     gectiIdx = -1;
     siraIdx = -1;
     bittiMi = false;
@@ -280,14 +285,25 @@ if (snEl) {
     bitti = performance.now() + kalan;
     snDolgu.style.width = '0%';
     olc();
+    sesKonus(k.metin);
     if (!eski) requestAnimationFrame(() => { if (ic.style.opacity === '0') ic.style.opacity = '1'; });
   }
   function dongu() {
     if (raf) cancelAnimationFrame(raf);
     raf = requestAnimationFrame(() => {
       kalan = Math.max(0, bitti - performance.now());
-      snDolgu.style.width = (Math.max(0, Math.min(1, 1 - kalan / toplam())) * 100).toFixed(2) + '%';
-      isaretle();
+      if (sesAcik && sesKonusuyor) {
+        if (sesSinir !== 1) isaretle();
+        const oran = kelimeler.length ? Math.max(0, Math.min(1, gectiIdx / kelimeler.length)) : 0;
+        snDolgu.style.width = (oran * 100).toFixed(2) + '%';
+        if (performance.now() < sesBekle) { dongu(); return; }
+        sesKonusuyor = false;
+        kalan = 0;
+        bitti = performance.now();
+      } else {
+        snDolgu.style.width = (Math.max(0, Math.min(1, 1 - kalan / toplam())) * 100).toFixed(2) + '%';
+        isaretle();
+      }
       if (kalan <= 0) {
         if (!oto) { bittiMi = true; dur(); return; }
         if (idx >= slaytlar.length - 1) { dur(); return; }
@@ -297,11 +313,85 @@ if (snEl) {
       dongu();
     });
   }
-  function dur() { if (durak) return; durak = true; kalan = Math.max(0, bitti - performance.now()); if (raf) cancelAnimationFrame(raf); raf = null; snDuraklat.textContent = '▶ Devam'; snDuraklat.classList.add('aktif'); }
-  function devam() { if (!durak) return; durak = false; snDuraklat.textContent = '⏸ Duraklat'; snDuraklat.classList.remove('aktif'); if (kalan <= 0) kalan = toplam(); bitti = performance.now() + kalan; dongu(); }
+  function dur() { if (durak) return; durak = true; kalan = Math.max(0, bitti - performance.now()); if (raf) cancelAnimationFrame(raf); raf = null; if (sesVar() && speechSynthesis.speaking && !speechSynthesis.paused) { try { speechSynthesis.pause(); } catch (err) {} } snDuraklat.textContent = '▶ Devam'; snDuraklat.classList.add('aktif'); }
+  function devam() { if (!durak) return; durak = false; snDuraklat.textContent = '⏸ Duraklat'; snDuraklat.classList.remove('aktif'); if (kalan <= 0) kalan = toplam(); bitti = performance.now() + kalan; if (sesAcik && sesUtt) { try { speechSynthesis.resume(); } catch (err) {} } dongu(); }
   function git(ileri) { if (ileri ? idx >= slaytlar.length - 1 : idx === 0) return; idx += ileri ? 1 : -1; durak = false; snDuraklat.textContent = '⏸ Duraklat'; snDuraklat.classList.remove('aktif'); if (raf) cancelAnimationFrame(raf); ciz(); dongu(); }
   /* ekran uyku kilidi: sunum surerken ekran kararmasin */
   let snKilit = null;
+  /* ---- Sesli okuma: vurgulanan kelimeleri sesli okur ---- */
+  let sesAcik = false, sesKonusuyor = false, sesSinir = -1, sesUtt = null, sesBekle = 0, sesMetin = '';
+  const snSesDugme = document.createElement('button');
+  snSesDugme.type = 'button';
+  snSesDugme.className = 'sn-ses-btn';
+  const snYer = document.querySelector('#sunum .sn-yer');
+  if (snYer) snYer.appendChild(snSesDugme);
+  function sesVar() { return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window; }
+  function sesIptal() {
+    sesUtt = null;
+    sesKonusuyor = false;
+    if (sesVar()) { try { speechSynthesis.cancel(); } catch (err) {} }
+  }
+  function sesYazi() {
+    snSesDugme.textContent = sesAcik ? '🔊 Sesli' : '🔇 Ses';
+    snSesDugme.classList.toggle('aktif', sesAcik);
+    snSesDugme.setAttribute('aria-pressed', String(sesAcik));
+    snSesDugme.title = sesAcik ? 'Sesli okuma açık — kapatmak için tıkla' : 'Okunan kelimeleri sesli vurgula';
+  }
+  function sesUyari(m) { snSesDugme.textContent = '🔇 ' + m; setTimeout(sesYazi, 4500); }
+  function sesAtla(ci) {
+    if (!kelimeler.length) return;
+    let g = 0;
+    while (g < kelimeler.length - 1 && kelimeler[g].bas + kelimeler[g].uz <= ci) g++;
+    for (let i = 0; i < g; i++) kelimeler[i].el.classList.add('sn-gecti');
+    for (let i = g; i < kelimeler.length; i++) kelimeler[i].el.classList.remove('sn-gecti');
+    if (siraIdx >= 0 && siraIdx < kelimeler.length) kelimeler[siraIdx].el.classList.remove('sn-sira');
+    kelimeler[g].el.classList.add('sn-sira');
+    gectiIdx = g;
+    siraIdx = g;
+  }
+  function sesKonus(metin) {
+    sesIptal();
+    if (!sesAcik || !sesVar() || !metin || !metin.trim()) return;
+    const sesler = speechSynthesis.getVoices().filter(v => /^tr/i.test(v.lang || ''));
+    const ses = sesler.find(v => /google/i.test(v.name)) || sesler[0];
+    if (!ses) { sesUyari('Türkçe ses yok'); return; }
+    const u = new SpeechSynthesisUtterance(metin);
+    u.lang = ses.lang || 'tr-TR';
+    u.voice = ses;
+    u.rate = hiz;
+    u.pitch = 1;
+    sesUtt = u;
+    sesKonusuyor = true;
+    u.onboundary = e => { if (sesUtt !== u || typeof e.charIndex !== 'number') return; sesSinir = 1; sesAtla(e.charIndex); };
+    u.onend = u.onerror = () => { if (sesUtt !== u) return; sesUtt = null; sesKonusuyor = false; bitti = performance.now() + bekleme(); };
+    try { speechSynthesis.speak(u); } catch (err) { sesIptal(); return; }
+    bitti = Infinity;
+    sesBekle = performance.now() + Math.max(6000, okuma() * 1.7 + 3000);
+  }
+  function sesYeniden() {
+    if (!sesAcik || !sesMetin) return;
+    gectiIdx = -1;
+    siraIdx = -1;
+    kelimeler.forEach(k => k.el.classList.remove('sn-gecti', 'sn-sira'));
+    sesKonus(sesMetin);
+  }
+  snSesDugme.addEventListener('click', e => {
+    e.stopPropagation();
+    if (!sesVar()) { sesUyari('Tarayıcı desteklemiyor'); return; }
+    sesAcik = !sesAcik;
+    sesYazi();
+    if (!sesAcik) {
+      sesIptal();
+      const oran = kelimeler.length ? Math.max(0, Math.min(1, gectiIdx / kelimeler.length)) : 0;
+      bitti = performance.now() + Math.max(600, okuma() * (1 - oran));
+      if (aktif && !durak) dongu();
+      return;
+    }
+    if (!snEl.hidden && aktif) sesYeniden();
+  });
+  sesYazi();
+  window.addEventListener('pagehide', sesIptal);
+
   async function snKilitAl() {
     if (!('wakeLock' in navigator) || document.hidden) return;
     if (snKilit && !snKilit.released) return;
@@ -316,9 +406,11 @@ if (snEl) {
   ['pointerdown', 'keydown', 'touchend'].forEach(t => document.addEventListener(t, () => { if (!snEl.hidden) snKilitAl(); }, { passive: true }));
 
   function acSunum(bas) { snKilitAl(); idx = Math.max(0, Math.min(slaytlar.length - 1, bas || 0)); durak = false; bittiMi = false; aktif = null; snSlayt.innerHTML = ''; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); otoYazi(); snEl.hidden = false; document.body.style.overflow = 'hidden'; ciz(); dongu(); const fs = snEl.requestFullscreen || snEl.webkitRequestFullscreen; if (fs) try { const p = fs.call(snEl); if (p?.catch) p.catch(() => {}); } catch (e) {} }
-  function kapatSunum() { snKilitBirak(); snEl.hidden = true; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); durak = false; bittiMi = false; idx = 0; aktif = null; kelimeler = []; gectiIdx = -1; siraIdx = -1; snSlayt.innerHTML = ''; snDolgu.style.width = '0%'; if (raf) cancelAnimationFrame(raf); raf = null; document.body.style.overflow = ''; const cik = document.exitFullscreen || document.webkitExitFullscreen; if (cik && (document.fullscreenElement || document.webkitFullscreenElement)) try { cik.call(document); } catch (e) {} }
+  function kapatSunum() { sesIptal(); snKilitBirak(); snEl.hidden = true; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); durak = false; bittiMi = false; idx = 0; aktif = null; kelimeler = []; gectiIdx = -1; siraIdx = -1; snSlayt.innerHTML = ''; snDolgu.style.width = '0%'; if (raf) cancelAnimationFrame(raf); raf = null; document.body.style.overflow = ''; const cik = document.exitFullscreen || document.webkitExitFullscreen; if (cik && (document.fullscreenElement || document.webkitFullscreenElement)) try { cik.call(document); } catch (e) {} }
   window.SunumDuzenle = window.SunumDuzenle || {};
   window.SunumDuzenle.yenile = function () {
+    sesIptal();
+    sesMetin = '';
     slaytlariKur();
     if (idx >= slaytlar.length) idx = Math.max(0, slaytlar.length - 1);
     if (!snEl.hidden) { aktif = null; snSlayt.innerHTML = ''; kelimeler = []; ciz(); }
@@ -347,6 +439,7 @@ if (snEl) {
     yazi();
     bitti = performance.now() + kalan;
     if (!durak) dongu();
+    sesYeniden();
   });
   document.addEventListener('click', e => { if (!snHizListe.hidden && !snHizKutu.contains(e.target)) { snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); } });
   document.querySelectorAll('#olaylar .z-item').forEach((z, i) => {
@@ -366,6 +459,7 @@ if (snEl) {
   document.addEventListener('keydown', e => {
     if (snEl.hidden) return;
     if (e.key === 'Escape') { if (!snHizListe.hidden) { snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); } else kapatSunum(); }
+    else if (e.key === 's' || e.key === 'S') snSesDugme.click();
     else if (e.key === 'ArrowRight') git(true);
     else if (e.key === 'ArrowLeft') git(false);
     else if (e.key === ' ') { e.preventDefault(); if (bittiMi) git(true); else if (durak) devam(); else dur(); }
