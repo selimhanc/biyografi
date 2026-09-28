@@ -137,7 +137,7 @@ blgUst.addEventListener('click', kapat);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.classList.contains('hidden')) kapat(); });
 
   const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, sonBekleme: 2000, gecis: 2000 };
-  const SES_AYAR = { durakMs: 1000, isaret: '\u0001', acHiz: 0.75, kapaHiz: 1, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU' } };
+  const SES_AYAR = { durakMs: 500, isaret: '\u0001', acHiz: 0.75, kapaHiz: 1, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU' } };
   const SES_CEVIR = new RegExp('[' + Object.keys(SES_AYAR.cevir).map(k => k.replace(/[\\^\]\-]/g, '\\$&')).join('') + ']', 'g');
   function sesCevir(s) {
     return s.replace(SES_CEVIR, m => SES_AYAR.cevir[m] || m);
