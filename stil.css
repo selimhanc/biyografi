@@ -100,14 +100,16 @@
     font-size: .72rem; font-weight: 700; color: var(--accent);
     letter-spacing: .1em; text-transform: uppercase;
   }
-  /* Ses dosyası hazırlanmış sayfalarda görünen etiket */
+  /* Ses dosyası hazırlanmış sayfalarda sağ üstte hoparlör ikonu */
+  .kart { position: relative; }
   .kart .ses-rozet {
-    display: inline-flex; align-items: center; gap: .25rem;
-    margin-left: .45rem; padding: .12rem .5rem;
-    border: 1px solid var(--accent); border-radius: 999px;
+    position: absolute; top: .85rem; right: .9rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.1rem; height: 2.1rem;
+    border: 1px solid var(--accent); border-radius: 50%;
     background: #fff8e6; color: var(--accent);
-    font-size: .64rem; font-weight: 700; letter-spacing: normal;
-    text-transform: none; vertical-align: middle; text-decoration: none;
+    font-size: 1.05rem; line-height: 1;
+    text-decoration: none; letter-spacing: normal;
   }
   .kart h3 {
     margin-top: .55rem; font-size: 1.15rem; font-weight: 800; color: var(--ink);

@@ -57,7 +57,7 @@ body:has(.sds-bar) { padding-bottom: 5.2rem; }
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
-.sds-hiz { display: flex; gap: .25rem; flex: none; }
+.sds-hiz { position: relative; display: flex; gap: .25rem; flex: none; }
 .sds-hiz-btn {
   border: 1px solid var(--line);
   background: transparent;
@@ -67,7 +67,24 @@ body:has(.sds-bar) { padding-bottom: 5.2rem; }
   font-size: .72rem;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
 }
+/* Açılır hız listesi yukarı doğru açılır, çubuğun dışına taşmaz. */
+.sds-hiz-liste {
+  position: absolute;
+  bottom: calc(100% + .4rem);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding: .25rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-width: 4.4rem;
+}
+.sds-hiz-liste[hidden] { display: none; }
 .sds-hiz-btn.aktif { background: var(--accent); border-color: var(--accent); color: #fff8e6; }
 .sds-bar.sds-hata .sds-ad { color: #a33; }
 

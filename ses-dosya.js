@@ -134,19 +134,58 @@
     sar.setAttribute('aria-label', 'Ses konumu');
 
     const sureYazi = el('span', 'sds-sure', '0:00 / ' + ss(z.toplamSure));
+
+    /* Hız seçimi: açılır liste (play düğmesinin solunda durur) */
+    const HIZ_DEGERLERI = [0.75, 1, 1.25, 1.5, 2];
+    const hizSecenek = el('button', 'sds-hiz-btn', '1×');
+    hizSecenek.type = 'button';
+    hizSecenek.setAttribute('aria-haspopup', 'true');
+    hizSecenek.setAttribute('aria-expanded', 'false');
+    hizSecenek.title = 'Ses hızı';
+    const hizListe = el('div', 'sds-hiz-liste');
+    hizListe.hidden = true;
+    hizListe.setAttribute('role', 'group');
+    hizListe.setAttribute('aria-label', 'Ses hızı');
     const hizKutu = el('div', 'sds-hiz');
-    [1, 1.25, 1.5].forEach(h => {
+    hizKutu.append(hizSecenek, hizListe);
+    HIZ_DEGERLERI.forEach(h => {
       const b = el('button', 'sds-hiz-btn' + (h === 1 ? ' aktif' : ''), h + '×');
       b.type = 'button';
-      b.addEventListener('click', () => {
-        hizKutu.querySelectorAll('.sds-hiz-btn').forEach(x => x.classList.toggle('aktif', x === b));
+      b.addEventListener('click', ev => {
+        ev.stopPropagation();
         ses.playbackRate = h;
         try { ses.preservesPitch = true; } catch (e) {}
+        hizSecenek.textContent = h + '×';
+        hizListe.querySelectorAll('.sds-hiz-btn').forEach(x => x.classList.toggle('aktif', x === b));
+        hizListe.hidden = true;
+        hizSecenek.setAttribute('aria-expanded', 'false');
+        try { localStorage.setItem('biyografi-ses-hiz', String(h)); } catch (err) {}
       });
-      hizKutu.appendChild(b);
+      hizListe.appendChild(b);
     });
+    hizSecenek.addEventListener('click', ev => {
+      ev.stopPropagation();
+      hizListe.hidden = !hizListe.hidden;
+      hizSecenek.setAttribute('aria-expanded', String(!hizListe.hidden));
+    });
+    document.addEventListener('click', () => {
+      if (!hizListe.hidden) { hizListe.hidden = true; hizSecenek.setAttribute('aria-expanded', 'false'); }
+    });
+    /* Kayıtlı hız tercihini hatırla. */
+    try {
+      const kayitli = Number(localStorage.getItem('biyografi-ses-hiz'));
+      if (HIZ_DEGERLERI.includes(kayitli)) {
+        ses.playbackRate = kayitli;
+        hizSecenek.textContent = kayitli + '×';
+        const isabet = hizListe.querySelector('.sds-hiz-btn.aktif');
+        if (isabet) isabet.classList.remove('aktif');
+        const dogru = [...hizListe.children].find(x => x.textContent === kayitli + '×');
+        if (dogru) dogru.classList.add('aktif');
+      }
+    } catch (e) {}
 
-    bar.append(dugme, adYazi, sar, sureYazi, hizKutu);
+    /* Sıra: ad · kaydırma · süre · hız · play (play en sağda) */
+    bar.append(adYazi, sar, sureYazi, hizKutu, dugme);
     // Çubuk lejantın ÜSTÜNE, başlığın altına gelsin: lejant çizelgeyi süzsün diye yapışmasın.
     const lejantEl = document.getElementById('lejant');
     if (lejantEl && lejantEl.parentNode === zamanKutusu.parentNode) {
@@ -296,5 +335,53 @@
 
     vurgula(true);
     window.SesDosya = { ses, z, hedef, eslesen, toplam, kacirilan, git, oynat, duraklat };
+
+    /* ---- Sunum görünümüyle köprü ----
+       Hazır kayıt varsa sunumun "Sesli okuma" düğmesi bu kaydı kullanır:
+       oynarken oynayan bloğun slaydına otomatik geçer. */
+    const snEl = document.getElementById('sunum');
+    if (snEl) {
+      const snSes = snEl.querySelector('.sn-ses-btn');
+      if (snSes) {
+        const blokIndeks = t => {
+          let bi = 0;
+          for (let i = 0; i < bloklar.length; i++) if (t >= bloklar[i].bas - 0.05) bi = i;
+          return bi;
+        };
+        const sunumAPI = window.SunumDuzenle || null;
+        let rafSunum = null;
+        const izle = () => {
+          const t = ses.currentTime;
+          if (sunumAPI && typeof sunumAPI.gitNo === 'function') {
+            sunumAPI.gitNo(Math.min(blokIndeks(t), (bloklar.length || 1) - 1));
+          }
+          if (!ses.paused && !ses.ended) rafSunum = requestAnimationFrame(izle);
+        };
+        snSes.addEventListener('click', ev => {
+          ev.stopPropagation();
+          if (ses.paused || ses.ended) {
+            if (ses.ended) ses.currentTime = 0;
+            ses.play().then(() => {
+              snSes.classList.add('aktif');
+              snSes.textContent = '⏸ Sesli okuma';
+              snSes.title = 'Hazır kaydı duraklat';
+              if (!rafSunum) rafSunum = requestAnimationFrame(izle);
+            }).catch(() => {});
+          } else {
+            duraklat();
+            if (rafSunum) { cancelAnimationFrame(rafSunum); rafSunum = null; }
+            snSes.classList.remove('aktif');
+            snSes.textContent = '🔊 Sesli okuma';
+            snSes.title = 'Hazır kaydı oynat';
+          }
+        }, true);
+        ses.addEventListener('ended', () => {
+          if (rafSunum) { cancelAnimationFrame(rafSunum); rafSunum = null; }
+          snSes.classList.remove('aktif');
+          snSes.textContent = '🔊 Sesli okuma';
+          snSes.title = 'Hazır kaydı oynat';
+        });
+      }
+    }
   }
 })();

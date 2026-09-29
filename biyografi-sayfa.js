@@ -603,6 +603,16 @@ if (snEl) {
   function acSunum(bas) { snKilitAl(); idx = Math.max(0, Math.min(slaytlar.length - 1, bas || 0)); durak = false; bittiMi = false; aktif = null; snSlayt.innerHTML = ''; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); otoYazi(); snEl.hidden = false; document.body.style.overflow = 'hidden'; sesSecYazi(); sesIzinSor(); ciz(); dongu(); const fs = snEl.requestFullscreen || snEl.webkitRequestFullscreen; if (fs) try { const p = fs.call(snEl); if (p?.catch) p.catch(() => {}); } catch (e) {} }
   function kapatSunum() { sesIptal(); snKilitBirak(); snEl.hidden = true; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); durak = false; bittiMi = false; idx = 0; aktif = null; kelimeler = []; gectiIdx = -1; siraIdx = -1; snSlayt.innerHTML = ''; snDolgu.style.width = '0%'; if (raf) cancelAnimationFrame(raf); raf = null; document.body.style.overflow = ''; const cik = document.exitFullscreen || document.webkitExitFullscreen; if (cik && (document.fullscreenElement || document.webkitFullscreenElement)) try { cik.call(document); } catch (e) {} }
   window.SunumDuzenle = window.SunumDuzenle || {};
+  /* Hazır ses kaydı oynarken ilgili bloğun slaydına geçmek için (ses-dosya.js çağırır). */
+  window.SunumDuzenle.gitNo = function (no) {
+    if (no === idx) return;
+    idx = Math.max(0, Math.min(slaytlar.length - 1, no));
+    durak = false;
+    bittiMi = false;
+    aktif = null;
+    snSlayt.innerHTML = '';
+    ciz();
+  };
   window.SunumDuzenle.yenile = function () {
     sesIptal();
     sesMetin = '';
