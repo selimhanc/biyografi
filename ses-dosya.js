@@ -216,12 +216,30 @@
     /* ---- Oynatma ---- */
     let aktifKelime = -1, aktifBlok = -1, raf = null, sonPozisyon = -1;
 
+    /* Ekran uykuya girmesin: yazı okunurken ekran açık kalsın.
+       Sunum modundaki snKilitAl ile aynı davranış. */
+    let sdsKilit = null;
+    async function sdsKilitAl() {
+      if (!('wakeLock' in navigator) || document.hidden) return;
+      if (sdsKilit && !sdsKilit.released) return;
+      try { sdsKilit = await navigator.wakeLock.request('screen'); } catch (err) {}
+    }
+    function sdsKilitBirak() {
+      if (!sdsKilit) return;
+      try { sdsKilit.release(); } catch (err) {}
+      sdsKilit = null;
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && !ses.paused) sdsKilitAl();
+    });
+
     function oynat() {
       const p = ses.play();
       if (p && p.catch) p.catch(() => {});
       dugme.textContent = '⏸';
       dugme.setAttribute('aria-label', 'Sesi duraklat');
       bar.classList.add('sds-oynuyor');
+      sdsKilitAl();
       dongu();
     }
     function duraklat() {
@@ -229,6 +247,7 @@
       dugme.textContent = '▶';
       dugme.setAttribute('aria-label', 'Sesi başlat');
       bar.classList.remove('sds-oynuyor');
+      sdsKilitBirak();
       if (raf) cancelAnimationFrame(raf);
       raf = null;
     }
@@ -365,6 +384,7 @@
               snSes.classList.add('aktif');
               snSes.textContent = '⏸ Sesli okuma';
               snSes.title = 'Hazır kaydı duraklat';
+              sdsKilitAl();
               if (!rafSunum) rafSunum = requestAnimationFrame(izle);
             }).catch(() => {});
           } else {
