@@ -196,3 +196,7 @@ footer a { text-decoration: underline; }
 .sn-ilerleme i { display: block; height: 100%; width: 0; background: linear-gradient(90deg,var(--accent-2),#f6e3a8); }
 @media (max-width:720px) { header { padding: 2rem 1rem 1.6rem; } nav { position: static; overflow-x: auto; justify-content: flex-start; } nav .tab { white-space: nowrap; } .kartlar { grid-template-columns: 1fr; } .z-kart { flex-direction: column; } }
 @media (max-width:760px) { .sunum { padding: .5rem; } .sn-ust { padding: 1.5rem .9rem 0; gap: .5rem; flex-wrap: wrap; } .sn-sahne { padding: .15rem .2rem .6rem; } .sunum .z-kart { padding: 1.15rem 1.05rem; } .sunum .z-bas h4 { font-size: 1.28rem; } .sunum .z-kart p { font-size: .96rem; } .sn-alt { padding: .2rem .5rem 1.2rem; gap: .4rem; } .sn-btn { font-size: .8rem; padding: .52rem .9rem; } }
+
+.sn-ses-sec { font: inherit; cursor: pointer; color: #f6efdd; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: .34rem .5rem .34rem .85rem; font-size: .78rem; font-weight: 600; white-space: nowrap; max-width: 11rem; }
+.sn-ses-sec:hover { background: rgba(255,255,255,.18); }
+.sn-ses-sec option { color: #241d12; background: #f6efdd; }
