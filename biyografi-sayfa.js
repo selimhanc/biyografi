@@ -137,7 +137,7 @@ blgUst.addEventListener('click', kapat);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.classList.contains('hidden')) kapat(); });
 
   const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, sonBekleme: 2000, gecis: 2000 };
-  const SES_AYAR = { durakMs: 500, isaret: '\u0001', acHiz: 0.75, kapaHiz: 1, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU' } };
+  const SES_AYAR = { durakMs: 500, takilmaMs: 15000, isaret: '\u0001', acHiz: 0.75, kapaHiz: 1, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU' } };
   const SES_CEVIR = new RegExp('[' + Object.keys(SES_AYAR.cevir).map(k => k.replace(/[\\^\]\-]/g, '\\$&')).join('') + ']', 'g');
   function sesCevir(s) {
     return s.replace(SES_CEVIR, m => SES_AYAR.cevir[m] || m);
@@ -309,9 +309,9 @@ if (snEl) {
         const oran = kelimeler.length ? Math.max(0, Math.min(1, gectiIdx / kelimeler.length)) : 0;
         snDolgu.style.width = (oran * 100).toFixed(2) + '%';
         if (performance.now() < sesBekle) { dongu(); return; }
-        sesKonusuyor = false;
-        kalan = 0;
-        bitti = performance.now();
+        sesKurtar();
+        dongu();
+        return;
       } else {
         snDolgu.style.width = (Math.max(0, Math.min(1, 1 - kalan / toplam())) * 100).toFixed(2) + '%';
         isaretle();
@@ -331,7 +331,7 @@ if (snEl) {
   /* ekran uyku kilidi: sunum surerken ekran kararmasin */
   let snKilit = null;
   /* ---- Sesli okuma: vurgulanan kelimeleri sesli okur ---- */
-  let sesAcik = false, sesKonusuyor = false, sesSinir = -1, sesUtt = null, sesBekle = 0, sesMetin = '';
+  let sesAcik = false, sesKonusuyor = false, sesSinir = -1, sesUtt = null, sesBekle = 0, sesMetin = '', sesIs = null;
   const snSesDugme = document.createElement('button');
   snSesDugme.type = 'button';
   snSesDugme.className = 'sn-ses-btn';
@@ -342,8 +342,18 @@ if (snEl) {
   function sesVar() { return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window; }
   function sesIptal() {
     sesUtt = null;
+    sesIs = null;
     sesKonusuyor = false;
     if (sesVar()) { try { speechSynthesis.cancel(); } catch (err) {} }
+  }
+  function sesDurdurMotor() {
+    if (sesUtt && sesUtt.utt) { const u = sesUtt.utt; u.onend = u.onerror = u.onboundary = null; sesUtt.utt = null; }
+    if (sesVar()) { try { speechSynthesis.cancel(); } catch (err) {} }
+  }
+  function sesKurtar() {
+    if (sesUtt && sesUtt.ilerle) { sesDurdurMotor(); sesUtt.ilerle(1); return; }
+    sesKonusuyor = false;
+    bitti = performance.now();
   }
   function sesYazi() {
     snSesDugme.textContent = sesAcik ? '🔊 Sesli okuma' : '🔇 Sesli okuma';
@@ -363,46 +373,74 @@ if (snEl) {
     gectiIdx = g;
     siraIdx = g;
   }
-  function sesKonus(metin) {
+  function sesKonus(metin, no = 0, ofs = 0) {
     sesIptal();
     if (!sesAcik || !sesVar() || !metin || !metin.trim()) return;
     const sesler = speechSynthesis.getVoices().filter(v => /^tr/i.test(v.lang || ''));
     const ses = sesler.find(v => /google/i.test(v.name)) || sesler[0];
     if (!ses) { sesUyari('Türkçe ses yok'); return; }
     const bolumler = [];
-    let ofs = 0;
+    let ofset = 0;
     metin.split(SES_AYAR.isaret).forEach(parca => {
-      if (parca.trim()) bolumler.push({ metin: parca, basS: ofs });
-      ofs += parca.length + SES_AYAR.isaret.length;
+      if (parca.trim()) bolumler.push({ metin: parca, basS: ofset });
+      ofset += parca.length + SES_AYAR.isaret.length;
     });
     if (!bolumler.length) return;
-    const jeton = { no: 0 };
+    if (no >= bolumler.length) no = bolumler.length - 1;
+    const jeton = { no, ofs, aktifOfs: ofs, bolumler, utt: null, ilerle: null };
     const durakMs = SES_AYAR.durakMs / hiz;
     sesUtt = jeton;
+    sesIs = jeton;
     sesKonusuyor = true;
     bitti = Infinity;
-    sesBekle = performance.now() + Math.max(6000, okuma() * 1.7 + 3000);
+    sesBekle = performance.now() + Math.max(10000, okuma() * 2.5 + 5000);
     function bolum(b) {
       if (sesUtt !== jeton) return;
-      const u = new SpeechSynthesisUtterance(b.metin);
+      const bas = jeton.ofs;
+      const u = new SpeechSynthesisUtterance(b.metin.slice(bas));
+      jeton.utt = u;
       u.lang = ses.lang || 'tr-TR';
       u.voice = ses;
       u.rate = hiz;
       u.pitch = 1;
-      u.onboundary = e => { if (sesUtt !== jeton || typeof e.charIndex !== 'number') return; sesSinir = 1; sesAtla(b.basS + e.charIndex); };
+      u.onboundary = e => {
+        if (sesUtt !== jeton || typeof e.charIndex !== 'number') return;
+        sesSinir = 1;
+        sesBekle = performance.now() + SES_AYAR.takilmaMs;
+        jeton.aktifOfs = bas + e.charIndex;
+        sesAtla(b.basS + jeton.aktifOfs);
+      };
       u.onend = u.onerror = () => {
         if (sesUtt !== jeton) return;
-        if (jeton.no < bolumler.length - 1) { jeton.no++; setTimeout(() => bolum(bolumler[jeton.no]), durakMs); return; }
+        jeton.utt = null;
+        if (jeton.no < bolumler.length - 1) { setTimeout(() => { if (sesUtt === jeton) jeton.ilerle(1); }, durakMs); return; }
         sesUtt = null;
         sesKonusuyor = false;
-        bitti = performance.now() + bekleme();
+        bitti = performance.now();
       };
       try { speechSynthesis.speak(u); } catch (err) { sesIptal(); }
     }
-    bolum(bolumler[0]);
+    jeton.ilerle = atla => {
+      if (sesUtt !== jeton) return;
+      if (jeton.no + atla < bolumler.length) {
+        jeton.no += atla;
+        jeton.ofs = 0;
+        jeton.aktifOfs = 0;
+        bolum(bolumler[jeton.no]);
+        return;
+      }
+      sesUtt = null;
+      sesKonusuyor = false;
+      bitti = performance.now();
+    };
+    bolum(bolumler[no]);
   }
   function sesYeniden() {
     if (!sesAcik || !sesMetin) return;
+    if (sesIs && sesIs.bolumler && sesIs.bolumler.length) {
+      sesKonus(sesMetin, sesIs.no, sesIs.aktifOfs || 0);
+      return;
+    }
     gectiIdx = -1;
     siraIdx = -1;
     kelimeler.forEach(k => k.el.classList.remove('sn-gecti', 'sn-sira'));
