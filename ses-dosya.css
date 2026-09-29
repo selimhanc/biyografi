@@ -1,0 +1,105 @@
+/* Önceden üretilmiş ses okuma çubuğu (ses-dosya.js) */
+.sds-bar {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: .6rem .85rem;
+  margin: .2rem 0 1rem;
+}
+.sds-dugme {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff8e6;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: .15s;
+}
+.sds-dugme:hover { background: var(--accent-2); border-color: var(--accent-2); }
+.sds-dugme:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+.sds-ad {
+  flex: 1 1 180px;
+  min-width: 0;
+  font-size: .84rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sds-sar {
+  flex: 2 1 220px;
+  min-width: 140px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.sds-sure {
+  flex: none;
+  font-size: .78rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.sds-hiz { display: flex; gap: .25rem; flex: none; }
+.sds-hiz-btn {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 99px;
+  padding: .2rem .5rem;
+  font-size: .72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sds-hiz-btn.aktif { background: var(--accent); border-color: var(--accent); color: #fff8e6; }
+.sds-bar.sds-hata .sds-ad { color: #a33; }
+
+/* Blok dinle düğmesi */
+#olaylar .z-kart { position: relative; }
+.sds-blok-oku {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(36,29,18,.16);
+  background: rgba(255,253,247,.86);
+  color: var(--accent);
+  font-size: .78rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .15s, background .15s;
+  z-index: 2;
+}
+.z-item:hover .sds-blok-oku,
+.sds-blok-aktif .sds-blok-oku,
+.sds-blok-oku:focus-visible { opacity: 1; }
+.sds-blok-oku:hover { background: var(--accent); color: #fff8e6; }
+
+/* Oynarken işaretleme */
+.sds-blok-aktif .z-kart {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.sds-k-aktif {
+  background: var(--accent-2);
+  color: #241d12;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px var(--accent-2);
+}
+
+@media (max-width: 640px) {
+  .sds-bar { gap: .5rem; padding: .5rem .6rem; }
+  .sds-sure { font-size: .72rem; }
+  .sds-blok-oku { opacity: 1; }
+}
