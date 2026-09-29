@@ -80,6 +80,16 @@ a.kitap-link:hover, a.ad-link:hover { color: #7d5812; }
 .lejant { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.2rem; }
 .lejant span { font-size: .72rem; font-weight: 600; padding: .3rem .7rem; border-radius: 999px; border: 1px solid var(--line); display: inline-flex; align-items: center; gap: .35rem; cursor: pointer; user-select: none; }
 .lejant span.aktif { box-shadow: 0 0 0 2px #4a3820; }
+.lejant span[data-kat="tumu"] { background: #ece3d2; }
+.lejant span[data-kat="c-dogum"] { background: #dcece1; }
+.lejant span[data-kat="c-kayip"] { background: #f2dade; }
+.lejant span[data-kat="c-ilim"] { background: #d5e7e6; }
+.lejant span[data-kat="c-tasavvuf"] { background: #d5e9e3; }
+.lejant span[data-kat="c-sefer"] { background: #f8e2d2; }
+.lejant span[data-kat="c-saray"] { background: #efe0b4; }
+.lejant span[data-kat="c-eser"] { background: #dde3ea; }
+.lejant span[data-kat="c-esaret"] { background: #f6dcdc; }
+.lejant span[data-kat="c-vefat"] { background: #3a3f46; color: #fff; }
 .z-item.gizli { display: none; }
 .zaman { position: relative; margin: .5rem 0 0; padding-left: 2rem; }
 .zaman::before { content: ''; position: absolute; left: 9px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(#b9822a,#d9b23f,#e6c75a,#b9822a); border-radius: 2px; }
@@ -106,6 +116,8 @@ a.kitap-link:hover, a.ad-link:hover { color: #7d5812; }
 .z-item.c-esaret .z-tarih { background: #d64545; }
 .z-item.c-tasavvuf .z-tarih { background: #2fa89a; }
 .z-item.c-vefat .z-tarih { background: #5b6170; }
+/* Boş tarih/yaş çipleri gizlenir (biyografi-sayfa.js .z-bos sınıfını ekler). */
+.z-yas.z-bos, .z-tarih.z-bos { display: none; }
 .z-kart { position: relative; display: flex; gap: .9rem; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; border-radius: var(--radius); padding: 1rem 1.1rem; border: 1px solid var(--line); }
 .z-kart.k-vefat, .z-kart.k-kayip { color: #fff; }
 .z-kart.k-vefat { background: #3a3f46; border-color: #3a3f46; }

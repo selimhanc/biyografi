@@ -35,7 +35,12 @@
     /* ---- Kelimeleri DOM'a bağla ---- */
     const hedef = new Array(kelimeler.length).fill(null);
     let eslesen = 0, toplam = 0, kacirilan = [];
-    zamanlar.forEach((item, i) => {
+
+    function bagla() {
+      eslesen = 0; toplam = 0; kacirilan = [];
+      hedef.fill(null);
+      const ogeler = document.querySelectorAll('#olaylar .zaman .z-item');
+      ogeler.forEach((item, i) => {
       const bas = bloklar[i] ? bloklar[i].bas : 0;
       const son = i + 1 < bloklar.length ? bloklar[i + 1].bas : Infinity;
       const h4 = item.querySelector('.z-bas h4');
@@ -68,19 +73,40 @@
           if (kacirilan.length < 12) kacirilan.push(dom.textContent);
         }
       });
-    });
+      });
+    }
+    bagla();
+    /* Başka bir betik olaylar bölümünü yeniden kurarsa (DOM değişirse)
+       kelime bağlarını tazele; aksi halde vurgu boş kalır. */
+    let yenidenBagla = null;
+    new MutationObserver(() => {
+      if (document.querySelector('#olaylar .saman')) return;
+      clearTimeout(yenidenBagla);
+      yenidenBagla = setTimeout(() => {
+        if (!document.querySelectorAll('#olaylar .zaman .sds-k').length) bagla();
+      }, 60);
+    }).observe(zamanKutusu.parentNode, { childList: true, subtree: true });
 
+    /* Metni kelimelere bölüp <span class="sds-k"> sarar.
+       Kutu içinde çocuk eleman varsa (örn. <span class="adis">| doğum yeri</span>)
+       o çocuklar korunur, yalnızca metin düğümleri sarmalanır. */
     function spanla(kutu) {
-      if (!kutu || kutu.children.length) return [];
-      const parcalar = (kutu.textContent || '').split(/(\s+)/);
+      if (!kutu) return [];
       const liste = [];
-      kutu.textContent = '';
-      parcalar.forEach(parca => {
-        if (!parca) return;
-        if (/^\s+$/.test(parca)) { kutu.appendChild(document.createTextNode(' ')); return; }
-        const s = el('span', 'sds-k', parca);
-        kutu.appendChild(s);
-        liste.push(s);
+      const dugumler = [...kutu.childNodes];
+      /* Her metin düğümünü kelimelere böl, span'a sar. */
+      dugumler.forEach(d => {
+        if (d.nodeType !== 3) return;                 // elemanlara dokunma
+        const parcalar = (d.textContent || '').split(/(\s+)/);
+        const parca = document.createDocumentFragment();
+        parcalar.forEach(p => {
+          if (!p) return;
+          if (/^\s+$/.test(p)) { parca.appendChild(document.createTextNode(p)); return; }
+          const s = el('span', 'sds-k', p);
+          parca.appendChild(s);
+          liste.push(s);
+        });
+        d.parentNode.replaceChild(parca, d);
       });
       return liste;
     }
@@ -121,7 +147,13 @@
     });
 
     bar.append(dugme, adYazi, sar, sureYazi, hizKutu);
-    zamanKutusu.parentNode.insertBefore(bar, zamanKutusu);
+    // Çubuk lejantın ÜSTÜNE, başlığın altına gelsin: lejant çizelgeyi süzsün diye yapışmasın.
+    const lejantEl = document.getElementById('lejant');
+    if (lejantEl && lejantEl.parentNode === zamanKutusu.parentNode) {
+      zamanKutusu.parentNode.insertBefore(bar, lejantEl);
+    } else {
+      zamanKutusu.parentNode.insertBefore(bar, zamanKutusu);
+    }
     bar.appendChild(ses);
 
     /* ---- Her bloğa dinle düğmesi ---- */
@@ -189,10 +221,39 @@
     }, true);
     window.addEventListener('pagehide', duraklat);
 
+    /* Kullanıcı sayfayı elle kaydırırsa takibi kısa süre bırak, sonra geri gel. */
+    let takipBekle = 0;
+    ['wheel', 'touchmove', 'keydown'].forEach(tur => {
+      window.addEventListener(tur, () => { takipBekle = performance.now() + 4000; }, { passive: true });
+    });
+
+    /* Vurgulanan kelime ekranda görünmüyorsa sayfayı yumuşakça kaydır.
+       Alt sınır sabit ses çubuğunun üstünde kalır. */
+    function takipEt(el) {
+      if (!el || !el.isConnected) return;
+      if (performance.now() < takipBekle) return;   // kullanıcı elle kaydırıyorsa dokunma
+      const r = el.getBoundingClientRect();
+      if (!r.height) return;
+      const barYuk = bar.getBoundingClientRect().height || 0;
+      const ustPay = 110;   // başlık + yapışkan üst öğeler
+      const altPay = barYuk + 24;
+      if (r.top >= ustPay && r.bottom <= window.innerHeight - altPay) return;
+      const hedefY = window.scrollY + r.top - window.innerHeight / 2;
+      window.scrollTo({ top: Math.max(0, hedefY), behavior: 'smooth' });
+    }
+
     function vurgula(zorla) {
       const t = ses.currentTime;
-      if (!zorla && Math.abs(t - sonPozisyon) < 0.03) return;
-      sonPozisyon = t;
+      if (!zorla) {
+        if (Math.abs(t - sonPozisyon) >= 0.03) { sonPozisyon = t; }
+        else {
+          // Kelime degisimi tam bu aralikta olursa (30 ms'lik atlamada birakilmasin)
+          // guncellemeyi erteleme; simdi bir sonraki kelimenin baslangicina bak.
+          const s = kelimeler[aktifKelime + 1];
+          if (!s || s.b > t + 0.04) return;
+          sonPozisyon = t;
+        }
+      } else sonPozisyon = t;
       if (document.activeElement !== sar) sar.value = String(t);
       sureYazi.textContent = ss(t) + ' / ' + ss(z.toplamSure);
 
@@ -209,6 +270,7 @@
           const eski = aktifKelime >= 0 ? hedef[aktifKelime] : null;
           if (eski && eski !== yeni) eski.classList.remove('sds-k-aktif');
           yeni.classList.add('sds-k-aktif');
+          takipEt(yeni);
         }
         aktifKelime = bul;
       }
@@ -221,12 +283,7 @@
         if (zamanlar[bi]) zamanlar[bi].classList.add('sds-blok-aktif');
         aktifBlok = bi;
         const b = zamanlar[bi];
-        if (b && !b.classList.contains('gizli')) {
-          const r = b.getBoundingClientRect();
-          if (r.top < 90 || r.bottom > window.innerHeight - 40) {
-            b.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }
+        if (b && !b.classList.contains('gizli')) takipEt(b);
       }
       const y = zamanlar[bi] ? zamanlar[bi].querySelector('.z-bas h4') : null;
       adYazi.textContent = y ? y.textContent : 'Tüm zaman çizelgesi';

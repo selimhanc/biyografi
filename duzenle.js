@@ -160,6 +160,7 @@
   function sunumYenile() {
     clearTimeout(sunumZaman);
     sunumZaman = setTimeout(function () {
+      try { if (window.bosCipTemizle) window.bosCipTemizle(); } catch (e) {}
       try { if (window.SunumDuzenle && window.SunumDuzenle.yenile) window.SunumDuzenle.yenile(); } catch (e) {}
     }, 350);
   }

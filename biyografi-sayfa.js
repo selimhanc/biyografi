@@ -2,6 +2,17 @@ const tabBar = document.getElementById('tabBar');
 const sekmeler = document.querySelectorAll('.sekme');
 const normalize = value => (value || '').toLocaleLowerCase('tr-TR').trim().replace(/\s+/g, ' ');
 
+/* Boş tarih/yaş çiplerini gizle: olaylar listesinde ve sunumda aynı kural.
+   Metin "M. 7 Kasım 1414 | H. ..." biçiminde olduğundan yalnız gerçekten
+   boş (ya da yalnız boşluk) olanlar gizlenir. */
+function bosCipTemizle(kapsam) {
+  (kapsam || document).querySelectorAll('.z-yas, .z-tarih').forEach(c => {
+    c.classList.toggle('z-bos', !c.textContent.trim());
+  });
+}
+window.bosCipTemizle = bosCipTemizle;
+bosCipTemizle();
+
 function goster(id) {
   document.querySelectorAll('nav .tab').forEach(t => t.classList.toggle('aktif', t.dataset.sekme === id));
   sekmeler.forEach(s => s.classList.toggle('aktif', s.id === id));
@@ -137,7 +148,7 @@ blgUst.addEventListener('click', kapat);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.classList.contains('hidden')) kapat(); });
 
   const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, sonBekleme: 2000, gecis: 2000 };
-  const SES_AYAR = { durakMs: 500, takilmaMs: 15000, isaret: '\u0001', acHiz: 0.75, kapaHiz: 1, tokluk: 0.88, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU', 'ḥ': 'h', 'Ḥ': 'H', 'ṣ': 's', 'Ṣ': 'S', 'ṭ': 't', 'Ṭ': 'T', 'ḳ': 'k', 'Ḳ': 'K', 'ḫ': 'h', 'Ḫ': 'H', 'ḍ': 'd', 'ḓ': 'd', 'ẓ': 'z', 'Ẓ': 'Z', 'ẕ': 'z', 'Ẕ': 'Z', 'ġ': 'g', 'Ġ': 'G', 'ż': 'z', 'Ż': 'Z', 'ā': 'a', 'ī': 'i', 'ū': 'u', 'é': 'e', 'ʿ': '', 'ʻ': '', 'ʾ': '', '̱': '', '•': ', ', '’': "'", '‘': "'", '“': '"', '”': '"' }, telif: {} };
+  const SES_AYAR = { durakMs: 500, takilmaMs: 15000, isaret: '\u0001', tokluk: 0.88, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU', 'ḥ': 'h', 'Ḥ': 'H', 'ṣ': 's', 'Ṣ': 'S', 'ṭ': 't', 'Ṭ': 'T', 'ḳ': 'k', 'Ḳ': 'K', 'ḫ': 'h', 'Ḫ': 'H', 'ḍ': 'd', 'ḓ': 'd', 'ẓ': 'z', 'Ẓ': 'Z', 'ẕ': 'z', 'Ẕ': 'Z', 'ġ': 'g', 'Ġ': 'G', 'ż': 'z', 'Ż': 'Z', 'ā': 'a', 'ī': 'i', 'ū': 'u', 'é': 'e', 'ʿ': '', 'ʻ': '', 'ʾ': '', '̱': '', '•': ', ', '’': "'", '‘': "'", '“': '"', '”': '"' }, telif: {} };
   const SES_ERKEK = ['tolga', 'emre', 'cem', 'yasin', 'yusuf', 'ahmet', 'mehmet', 'mustafa', 'hasan', 'huseyin', 'murat', 'omer', 'osman', 'salih', 'recep', 'kemal', 'baris', 'kaan', 'mert', 'onur', 'arda', 'doga', 'volkan', 'burak', 'savas', 'tuncer', 'ilker', 'serdar', 'ercan', 'gorkem'];
   const SES_KADIN = ['yelda', 'defne', 'filiz', 'sibel', 'ayse', 'hatice', 'zeynep', 'elif', 'emel', 'gul', 'nur', 'esra', 'seda', 'fatma', 'melek', 'leyla', 'nehir', 'derya', 'berna', 'kubra', 'sena', 'yasemin', 'mine', 'selin', 'sebnem', 'tugba', 'tugce', 'damla', 'busra', 'eylem', 'gizem', 'pelin', 'nazli'];
   function sesCinsiyet(v) {
@@ -150,6 +161,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.cl
     return '?';
   }
   const SES_ANAHTAR = 'biyografi-ses';
+  const HIZ_ANAHTAR = 'biyografi-ses-hiz';
   const SES_CEVIR = new RegExp('[' + Object.keys(SES_AYAR.cevir).map(k => k.replace(/[\\^\]\-]/g, '\\$&')).join('') + ']', 'g');
   let telifRe = null, telifImz = '\u0000';
   function sesTelifRe() {
@@ -462,6 +474,9 @@ if (snEl) {
   function sesKonus(metin, no = 0, ofs = 0) {
     sesIptal();
     if (!sesAcik || !sesVar() || !metin || !metin.trim()) return;
+    /* Sunumdaki okunuş kuralları (â→aa, î→ii, û→uu ve diğer işaretler)
+       olaylar bölümünde de geçerli olsun. */
+    metin = sesCevir(metin);
     const ses = sesSec();
     if (!ses) { sesUyari('Türkçe ses yok'); return; }
     const bolumler = [];
@@ -536,15 +551,17 @@ if (snEl) {
     if (!sesVar()) { sesUyari('Tarayıcı desteklemiyor'); return; }
     sesAcik = !sesAcik;
     sesYazi();
-    if (sesAcik) { hizAyarla(SES_AYAR.acHiz); return; }
+    if (sesAcik) { hizAyarla(hizSec()); return; }
     sesIptal();
     const oran = kelimeler.length ? Math.max(0, Math.min(1, gectiIdx / kelimeler.length)) : 0;
     kalan = Math.max(600, okuma() * (1 - oran));
-    hizAyarla(SES_AYAR.kapaHiz);
+    hizAyarla(hizSec());
     bitti = performance.now() + kalan;
     if (aktif && !durak) dongu();
   });
   sesYazi();
+  /* Kayıtlı hız tercihini geri yükle (yoksa 1.0). */
+  try { hizAyarla(hizSec()); } catch (e) {}
   window.addEventListener('pagehide', sesIptal);
 
   async function snKilitAl() {
@@ -560,7 +577,30 @@ if (snEl) {
   document.addEventListener('visibilitychange', () => { if (!document.hidden && !snEl.hidden) snKilitAl(); });
   ['pointerdown', 'keydown', 'touchend'].forEach(t => document.addEventListener(t, () => { if (!snEl.hidden) snKilitAl(); }, { passive: true }));
 
-  function acSunum(bas) { snKilitAl(); idx = Math.max(0, Math.min(slaytlar.length - 1, bas || 0)); durak = false; bittiMi = false; aktif = null; snSlayt.innerHTML = ''; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); otoYazi(); snEl.hidden = false; document.body.style.overflow = 'hidden'; sesSecYazi(); ciz(); dongu(); const fs = snEl.requestFullscreen || snEl.webkitRequestFullscreen; if (fs) try { const p = fs.call(snEl); if (p?.catch) p.catch(() => {}); } catch (e) {} }
+  /* Tarayıcı ilk kullanımda sesi engelleyebilir. Sunumun ilk açılışında
+     kullanıcıya bir kez sorulur; tercih kaydedilir ve sonrasında tekrar sorulmaz. */
+  const SES_IZIN_ANAHTAR = 'biyografi-ses-izin';
+  function sesIzinSor() {
+    if (sesHatirla(SES_IZIN_ANAHTAR)) return;         // daha önce soruldu
+    if (!sesVar()) return;
+    let bitti = false;
+    try {
+      const u = new SpeechSynthesisUtterance(' ');
+      u.lang = 'tr-TR';
+      u.volume = 0;
+      const hazir = () => {
+        if (bitti) return;
+        bitti = true;
+        try { localStorage.setItem(SES_IZIN_ANAHTAR, '1'); } catch (e) {}
+      };
+      u.onend = hazir; u.onstart = hazir; u.onerror = hazir;
+      speechSynthesis.speak(u);
+    } catch (e) { return; }
+    /* Ses gerçekten başlamadıysa kullanıcıya göster. */
+    setTimeout(() => { if (!bitti) sesUyari('Sesi açmak için düğmeye bas'); }, 700);
+  }
+
+  function acSunum(bas) { snKilitAl(); idx = Math.max(0, Math.min(slaytlar.length - 1, bas || 0)); durak = false; bittiMi = false; aktif = null; snSlayt.innerHTML = ''; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); otoYazi(); snEl.hidden = false; document.body.style.overflow = 'hidden'; sesSecYazi(); sesIzinSor(); ciz(); dongu(); const fs = snEl.requestFullscreen || snEl.webkitRequestFullscreen; if (fs) try { const p = fs.call(snEl); if (p?.catch) p.catch(() => {}); } catch (e) {} }
   function kapatSunum() { sesIptal(); snKilitBirak(); snEl.hidden = true; snHizListe.hidden = true; snHizDugme.setAttribute('aria-expanded', 'false'); durak = false; bittiMi = false; idx = 0; aktif = null; kelimeler = []; gectiIdx = -1; siraIdx = -1; snSlayt.innerHTML = ''; snDolgu.style.width = '0%'; if (raf) cancelAnimationFrame(raf); raf = null; document.body.style.overflow = ''; const cik = document.exitFullscreen || document.webkitExitFullscreen; if (cik && (document.fullscreenElement || document.webkitFullscreenElement)) try { cik.call(document); } catch (e) {} }
   window.SunumDuzenle = window.SunumDuzenle || {};
   window.SunumDuzenle.yenile = function () {
@@ -581,11 +621,17 @@ if (snEl) {
   snDuraklat.addEventListener('click', () => { if (bittiMi) git(true); else if (durak) devam(); else dur(); });
   snOto.addEventListener('click', () => { oto = !oto; otoYazi(); });
   snHizDugme.addEventListener('click', e => { e.stopPropagation(); const acik = snHizListe.hidden; snHizListe.hidden = !acik; snHizDugme.setAttribute('aria-expanded', String(acik)); });
+  /* Kullanıcının hız tercihi kalıcıdır; yoksa 1.0 kullanılır. */
+  function hizSec() {
+    const v = Number(sesHatirla(HIZ_ANAHTAR));
+    return v >= 0.5 && v <= 2 ? v : 1;
+  }
   function hizAyarla(yeni) {
     if (!yeni) return;
     if (yeni !== hiz) {
       kalan *= hiz / yeni;
       hiz = yeni;
+      try { localStorage.setItem(HIZ_ANAHTAR, String(hiz)); } catch (e) {}
       yazi();
       bitti = performance.now() + kalan;
       if (!durak) dongu();

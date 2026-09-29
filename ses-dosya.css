@@ -1,16 +1,25 @@
 /* Önceden üretilmiş ses okuma çubuğu (ses-dosya.js) */
 .sds-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
   display: flex;
   align-items: center;
   gap: .7rem;
-  flex-wrap: wrap;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: .6rem .85rem;
-  margin: .2rem 0 1rem;
+  border-bottom: 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+  box-shadow: 0 -6px 22px rgba(36,29,18,.14);
+  padding: .6rem max(.85rem, env(safe-area-inset-left)) calc(.6rem + env(safe-area-inset-bottom)) max(.85rem, env(safe-area-inset-left));
+  /* Kaydırma çubuğu ve hız düğmeleri asla alta düşmesin, görünüm bozulmasın. */
+  flex-wrap: nowrap;
+  min-width: 0;
 }
+/* Sabit çubuk sayfa sonunun altında kalmasın. */
+body:has(.sds-bar) { padding-bottom: 5.2rem; }
 .sds-dugme {
   flex: none;
   width: 42px;
@@ -27,7 +36,7 @@
 .sds-dugme:hover { background: var(--accent-2); border-color: var(--accent-2); }
 .sds-dugme:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
 .sds-ad {
-  flex: 1 1 180px;
+  flex: 1 1 auto;
   min-width: 0;
   font-size: .84rem;
   font-weight: 600;
@@ -37,8 +46,8 @@
   text-overflow: ellipsis;
 }
 .sds-sar {
-  flex: 2 1 220px;
-  min-width: 140px;
+  flex: 1 1 140px;
+  min-width: 80px;
   accent-color: var(--accent);
   cursor: pointer;
 }
@@ -99,7 +108,14 @@
 }
 
 @media (max-width: 640px) {
-  .sds-bar { gap: .5rem; padding: .5rem .6rem; }
-  .sds-sure { font-size: .72rem; }
+  .sds-bar { gap: .45rem; padding: .5rem .6rem calc(.5rem + env(safe-area-inset-bottom)) .6rem; }
+  .sds-sure { display: none; }
+  .sds-ad { font-size: .78rem; }
   .sds-blok-oku { opacity: 1; }
 }
+/* Çubuk başlığın altına otursun, lejant çizelgeden kopuk kalmasın. */
+.sds-bar + .lejant { margin-top: 0; }
+
+/* Sunum tam ekran açıkken çubuk ve sayfa boşluğu görünmesin. */
+body:has(.sunum:not([hidden])) .sds-bar { display: none; }
+body:has(.sunum:not([hidden])) { padding-bottom: 0; }

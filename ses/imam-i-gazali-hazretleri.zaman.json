@@ -1,0 +1,4336 @@
+{
+ "ses": "tr-TR-AhmetNeural",
+ "pitch": "+0st",
+ "rate": "+0%",
+ "bicer": "MP3 24kHz mono 48kbps",
+ "toplamSure": 470.472,
+ "bloklar": [
+  {
+   "metin": "Doğum. İran'ın Horasan bölgesinde, yetiştirdiği âlimler ve devlet adamlarıyla tanınan Tûs'ta (bugünkü Meşhed) dünyaya geldi. Hüccetülislâm ve Zeynüddin lakaplarıyla anılır; künyesi Ebû Hâmid'dir. 1059'da (451) doğduğu şeklinde bir kayıt varsa da bu bilgi itimada şayan görülmez. Ortaçağ Batı skolastiklerince Abuhamet ve Algazel diye tanındı. Babası Muhammed, Tûs'ta iplikçilik (gazzâl) yapan zühd ehli bir adamdı.",
+   "bas": 0,
+   "sure": 33.768
+  },
+  {
+   "metin": "İlk Öğrenim. Okuma yazma, Kur'ân-ı Kerîm'in ezberlenmesi, dil bilgisi ve aritmetik gibi dönemin geleneksel ilk öğrenimini, babasının kendisini emanet ettiği sûfî bir dostun himayesinde gördü. İleri düzeydeki ilk öğrenimine 465'te (1073) Ahmed b. Muhammed er-Râzkânî 'den fıkıh dersleri alarak başladı.",
+   "bas": 33.768,
+   "sure": 23.568
+  },
+  {
+   "metin": "Cürcân Tahsili ve Taʿlîḳa. Cürcân'a giderek Ebü'l-Kāsım el-İsmâilî 'nin öğrencisi oldu; yaygın görüşün aksine fıkıh yanında hadis de okudu. Dönüş yolunda eşkıya ders notlarını (taʿlîka) alıverdi; reis, \"bilgileri hâfızaya koymak yerine kâğıtlarda bırakmışsın\" diye alay edip notları iade etti. Bu eleştiriyi Allah'ın bir ikazı sayan Gazzâlî, üç yıl içinde notların tamamını ezberlediğini belirtir.",
+   "bas": 57.336,
+   "sure": 28.44
+  },
+  {
+   "metin": "Nîşâbur Nizâmiye ve Cüveynî. Bir grup Tûslu gençle Nîşâbur'daki Nizâmiye Medresesi'ne girdi ve dönemin en tanınmış kelâm âlimi İmâmü'l-Haremeyn el-Cüveynî 'nin öğrencisi olma şansını elde etti. Şâfiî fıkhı, hilâf, cedel, kelâm ve mantıkta parlak bir âlim olarak yetişti; hikmet ve felsefe de okudu. \"Gazzâlî derin bir denizdir\" diyen hocası, el-Menḫûl'ü görünce \"Beni sağken mezara gömdün; ölümümü bekleyemez miydin?\" dedi.",
+   "bas": 85.776,
+   "sure": 30.744
+  },
+  {
+   "metin": "Ebû Ali el-Fârmedî ile Görüşmeler. Ebû Ali el-Fârmedî , Kuşeyrî'nin öğrencilerinden olup Tûs ve Nîşâbur sûfîlerinin meşhurlarından biri hâline gelmiş bir şeyhti; Gazzâlî'yi tasavvufî pratiklere yönelten kişinin o olduğu söylenir. Fakat bu dönemdeki ilgi görüşmelerle sınırlı kaldı; şeyhin 477'de (1084) vefatı üzerine Gazzâlî kelâm ve felsefe ile meşgul olmayı sürdürdü.",
+   "bas": 116.52,
+   "sure": 27.552
+  },
+  {
+   "metin": "Nizâmülmülk Karargâhı. Cüveynî'nin vefatı üzerine kültürlü vezir Nizâmülmülk 'ün nerede olduğu bilinmeyen karargâhına gitti; daha yirmi sekiz yaşında olmasına rağmen saygıyla karşılandı. Altı yıl boyunca âlimler, din büyükleri ve edebiyatçılardan oluşan bu entelektüel çevrede ilmî müzakere ve tartışmalarla başarısını ve ününü artırdı: \"Daha önce Horasan'ın imamı iken şimdi de Irak'ın imamı oldu.\"",
+   "bas": 144.072,
+   "sure": 27.864
+  },
+  {
+   "metin": "Bağdat Nizâmiye Müderrisliği. Vezir tarafından Bağdat Nizâmiye Medresesi müderrisliğine tayin edildi; Halife Muktedî-Biemrillâh 'ın ilgi ve desteğine mazhar oldu. Dört yıl süren bu dönem kitap telifi bakımından en verimli devresidir; içlerinde Hanbelî âlimlerinin de bulunduğu 300'e yakın öğrenciye ders verdi.",
+   "bas": 171.936,
+   "sure": 21.864
+  },
+  {
+   "metin": "Felsefe İncelemeleri ve Tehâfüt. Yaklaşık iki yıl süren incelemelerle Meşşâî-İşrâkī felsefeyi derinden kavradı; bir yıl da yeni bilgileri gözden geçirerek filozofların doğru ve yanlış görüşlerini şüpheye yer bırakmayacak şekilde tesbit etti. Önce Maḳāṣıdü'l-felâsife ile felsefeyi tarafsız tanıttı, ardından Tehâfütü'l-felâsife ile eleştirdi.",
+   "bas": 193.8,
+   "sure": 23.52
+  },
+  {
+   "metin": "Bâtınîlik İncelemeleri. Bir düşünceyi tanıyıp tarafsız bilgi vermeden eleştirmenin ilim anlayışıyla bağdaşmadığı kanaatiyle yöntemini farklı takip etti; bâtınî imamın yanılmazlığı yerine Peygamber'in yanılmazlığı ilkesini savundu. İlk olarak el-Müstaẓhirî 'yi kaleme aldı.",
+   "bas": 217.32,
+   "sure": 19.296
+  },
+  {
+   "metin": "Şüphe Krizi ve Fikrî Bunalım. Kelâm, felsefe, Bâtınîlik ve tasavvuf hakkındaki çalışmalarının sonucu onu zihin ve ruh dünyasında kelimenin tam anlamıyla bir bunalıma sürükledi. İlmî başarı ve şöhretinin üzerini örttüğü şüphe temâyülü, tasavvufu temelden kavramasının da etkisiyle yeniden ve çok daha etkili bir şekilde ortaya çıktı; bilgi meseleleri yanında kendisini ahlâkî bakımdan da sorguluyordu. Ününü ve mevkini terketmeye râzı olmayan nefsiyle altı ay mücadele etti.",
+   "bas": 236.616,
+   "sure": 33.048
+  },
+  {
+   "metin": "Bağdat'tan Ayrılış. Duası kabul edilip gönlünün makam, mal, evlât ve dostlardan ayrılmaya râzı olması üzerine Bağdat'la bütün ilişkilerini kesme kararı aldı; ailesine yetecek miktardan fazla olan bütün malını muhtaçlara dağıttı. Asıl niyetini öğrenmelerini istemediği için Mekke'ye gideceğini açıkladı ve Nizâmiye'deki mevkisini kardeşi Ahmed el-Gazzâlî 'ye bırakarak ayrıldı.",
+   "bas": 269.664,
+   "sure": 26.808
+  },
+  {
+   "metin": "Şam İnzivâsı. İki yıla yakın Şam'da kaldı; Emeviyye Camii'ne çekilerek nefsini terbiye etmek, ahlâkını güzelleştirmek ve kalbini arındırmak maksadıyla riyâzet ve mücâhede ile meşgul oldu. Ardından Kudüs'e gitti ve bir süre orada da inzivâ hayatı yaşadı.",
+   "bas": 296.472,
+   "sure": 19.248
+  },
+  {
+   "metin": "Kudüs ve er-Risâletü'l-ḳudsiyye. Kudüs'te bir süre inzivâ hayatı yaşadı; buradaki insanlar için, sonradan İḥyâʾü ʿulûmi'd-dîn 'in bir bölümünü teşkil edecek olan er-Risâletü'l-ḳudsiyye 'yi yazdı.",
+   "bas": 315.72,
+   "sure": 13.512
+  },
+  {
+   "metin": "Hac ve Hicaz. Hac farîzasını yerine getirdi; Mekke ve Medine'nin bereketlerinden nasibini alma ve Resûlullah'ı (s.a.v.) ziyaret etme düşüncesiyle Hicaz'a gitti. Kudüs ve Hicaz seyahatiyle Bağdat ve Horasan'a dönüşü iki yıla yakın bir süre içinde vuku buldu.",
+   "bas": 329.232,
+   "sure": 19.056
+  },
+  {
+   "metin": "İḥyâ ve İnzivâ Telifleri. On bir yıl sürdüğünü belirttiği ve kendisine \"saymakla bitirilemeyecek durumları\" keşfetme imkânı verdiğini söylediği bu halvet döneminde baş eseri İḥyâʾü ʿulûmi'd-dîn 'i kaleme aldı; esmâ-i hüsnâya dair eseri, Cevâhirü'l-Ḳurʾân ve Bidâyetü'l-hidâye'yi de bu dönemde yazdı.",
+   "bas": 348.288,
+   "sure": 19.848
+  },
+  {
+   "metin": "Horasan'da Bâtınî Reddiyeleri. Bağdat'ta Ḥüccetü'l-ḥaḳḳ, Hemedan'da Mufaṣṣılü'l-ḫilâf, Tûs'ta ed-Dürc ve el-Ḳısṭâsü'l-müstaḳīm 'i kaleme aldı; Hemedan'da Bâtınîler'in \"dört mesele\" hakkında sordukları sorulara cevap yazdı. Kudüs'ün 492'de (1099) Haçlılarca işgal edilmesinden önce Horasan'da bulunuyor ve bu yöredeki çeşitli şehirleri dolaşıyordu.",
+   "bas": 368.136,
+   "sure": 24.768
+  },
+  {
+   "metin": "Nîşâbur'a Dönüş ve İkinci Hocalık. Nefis muhasebesinin ardından sultanın ısrarlı davetini reddetmenin nezaketsizlik olacağını düşünerek ulema ile istişare etti ve uzleti terketme yönünde görüş birliğine vardı; dönemin Selçuklu hükümdarı Sencer 'in veziri ve Nizâmülmülk'ün oğlu Fahrülmülk 'ün iknasıyla Nîşâbur Nizâmiye'de tekrar öğretime başladı. Bu dönemde kaleme aldığı el-Münḳıẕ 'da \"her asrın başında bir müceddid\" hadisine atıfta bulunur.",
+   "bas": 392.904,
+   "sure": 30.216
+  },
+  {
+   "metin": "Tûs'a Dönüş ve Son Telifler. Üç yılı aşkın resmî görevin ardından sağlığının da zorlaşmasıyla Tûs'a döndü; evinin yanına fukaha için bir medrese, sûfiyye için de bir hankah yaptırdı. Ömrünün son demlerini ders okutmak, gönül ehlinin sohbetlerine katılmak ve eser yazmakla geçirdi. Ġāyetü'l-ġavr, el-Müstaṣfâ , ed-Dürretü'l-fâḫire, İlcâmü'l-ʿavâm ve Minhâcü'l-ʿâbidîn bu yılların ürünüdür.",
+   "bas": 423.12,
+   "sure": 28.008
+  },
+  {
+   "metin": "Vefat ve Kabri. Tûs'ta vefat etti; ünlü şair Firdevsî'nin mezarının yakınına defnedildi. Günümüzde halk arasında Hârûniyye adıyla anılan yapının bahçesindeki kabir onun mezarı olarak gösterilir; tuğladan âbidevî bu yapının Gazzâlî'nin türbesi olması kuvvetle muhtemeldir.",
+   "bas": 451.128,
+   "sure": 19.344
+  }
+ ],
+ "kelimeler": [
+  {
+   "t": "Doğum",
+   "b": 0.1,
+   "s": 0.6
+  },
+  {
+   "t": "İran'ın",
+   "b": 1.688,
+   "s": 0.625
+  },
+  {
+   "t": "Horasan",
+   "b": 2.313,
+   "s": 0.487
+  },
+  {
+   "t": "bölgesinde",
+   "b": 2.8,
+   "s": 0.7
+  },
+  {
+   "t": "yetiştirdiği",
+   "b": 3.65,
+   "s": 0.662
+  },
+  {
+   "t": "âlimler",
+   "b": 4.313,
+   "s": 0.475
+  },
+  {
+   "t": "ve",
+   "b": 4.787,
+   "s": 0.1
+  },
+  {
+   "t": "devlet",
+   "b": 4.888,
+   "s": 0.362
+  },
+  {
+   "t": "adamlarıyla",
+   "b": 5.25,
+   "s": 0.625
+  },
+  {
+   "t": "tanınan",
+   "b": 5.888,
+   "s": 0.45
+  },
+  {
+   "t": "Tûs'ta",
+   "b": 6.35,
+   "s": 0.362
+  },
+  {
+   "t": "bugünkü",
+   "b": 6.912,
+   "s": 0.45
+  },
+  {
+   "t": "Meşhed",
+   "b": 7.362,
+   "s": 0.425
+  },
+  {
+   "t": "dünyaya",
+   "b": 7.925,
+   "s": 0.45
+  },
+  {
+   "t": "geldi",
+   "b": 8.375,
+   "s": 0.425
+  },
+  {
+   "t": "Hüccetülislâm",
+   "b": 9.975,
+   "s": 1.05
+  },
+  {
+   "t": "ve",
+   "b": 11.025,
+   "s": 0.138
+  },
+  {
+   "t": "Zeynüddin",
+   "b": 11.162,
+   "s": 0.55
+  },
+  {
+   "t": "lakaplarıyla",
+   "b": 11.713,
+   "s": 0.7
+  },
+  {
+   "t": "anılır",
+   "b": 12.425,
+   "s": 0.425
+  },
+  {
+   "t": "künyesi",
+   "b": 13.05,
+   "s": 0.463
+  },
+  {
+   "t": "Ebû",
+   "b": 13.512,
+   "s": 0.3
+  },
+  {
+   "t": "Hâmid'dir",
+   "b": 13.813,
+   "s": 0.55
+  },
+  {
+   "t": "1059'da",
+   "b": 15.537,
+   "s": 1.188
+  },
+  {
+   "t": "451",
+   "b": 16.875,
+   "s": 0.875
+  },
+  {
+   "t": "doğduğu",
+   "b": 17.863,
+   "s": 0.375
+  },
+  {
+   "t": "şeklinde",
+   "b": 18.238,
+   "s": 0.525
+  },
+  {
+   "t": "bir",
+   "b": 18.775,
+   "s": 0.163
+  },
+  {
+   "t": "kayıt",
+   "b": 18.938,
+   "s": 0.3
+  },
+  {
+   "t": "varsa",
+   "b": 19.25,
+   "s": 0.388
+  },
+  {
+   "t": "da",
+   "b": 19.637,
+   "s": 0.15
+  },
+  {
+   "t": "bu",
+   "b": 19.825,
+   "s": 0.15
+  },
+  {
+   "t": "bilgi",
+   "b": 19.975,
+   "s": 0.275
+  },
+  {
+   "t": "itimada",
+   "b": 20.25,
+   "s": 0.425
+  },
+  {
+   "t": "şayan",
+   "b": 20.675,
+   "s": 0.313
+  },
+  {
+   "t": "görülmez",
+   "b": 20.988,
+   "s": 0.613
+  },
+  {
+   "t": "Ortaçağ",
+   "b": 22.738,
+   "s": 0.713
+  },
+  {
+   "t": "Batı",
+   "b": 23.45,
+   "s": 0.263
+  },
+  {
+   "t": "skolastiklerince",
+   "b": 23.712,
+   "s": 1
+  },
+  {
+   "t": "Abuhamet",
+   "b": 24.75,
+   "s": 0.563
+  },
+  {
+   "t": "ve",
+   "b": 25.4,
+   "s": 0.087
+  },
+  {
+   "t": "Algazel",
+   "b": 25.488,
+   "s": 0.6
+  },
+  {
+   "t": "diye",
+   "b": 26.087,
+   "s": 0.188
+  },
+  {
+   "t": "tanındı",
+   "b": 26.275,
+   "s": 0.475
+  },
+  {
+   "t": "Babası",
+   "b": 27.938,
+   "s": 0.688
+  },
+  {
+   "t": "Muhammed",
+   "b": 28.625,
+   "s": 0.55
+  },
+  {
+   "t": "Tûs'ta",
+   "b": 29.35,
+   "s": 0.3
+  },
+  {
+   "t": "iplikçilik",
+   "b": 29.65,
+   "s": 0.637
+  },
+  {
+   "t": "gazzâl",
+   "b": 30.462,
+   "s": 0.537
+  },
+  {
+   "t": "yapan",
+   "b": 31.075,
+   "s": 0.388
+  },
+  {
+   "t": "zühd",
+   "b": 31.462,
+   "s": 0.275
+  },
+  {
+   "t": "ehli",
+   "b": 31.75,
+   "s": 0.25
+  },
+  {
+   "t": "bir",
+   "b": 32,
+   "s": 0.138
+  },
+  {
+   "t": "adamdı",
+   "b": 32.138,
+   "s": 0.45
+  },
+  {
+   "t": "İlk",
+   "b": 33.868,
+   "s": 0.263
+  },
+  {
+   "t": "Öğrenim",
+   "b": 34.243,
+   "s": 0.475
+  },
+  {
+   "t": "Okuma",
+   "b": 35.831,
+   "s": 0.563
+  },
+  {
+   "t": "yazma",
+   "b": 36.393,
+   "s": 0.425
+  },
+  {
+   "t": "Kur'ân-ı",
+   "b": 37.005,
+   "s": 0.388
+  },
+  {
+   "t": "Kerîm'in",
+   "b": 37.393,
+   "s": 0.438
+  },
+  {
+   "t": "ezberlenmesi",
+   "b": 37.831,
+   "s": 0.988
+  },
+  {
+   "t": "dil",
+   "b": 38.993,
+   "s": 0.25
+  },
+  {
+   "t": "bilgisi",
+   "b": 39.255,
+   "s": 0.525
+  },
+  {
+   "t": "ve",
+   "b": 39.818,
+   "s": 0.113
+  },
+  {
+   "t": "aritmetik",
+   "b": 39.931,
+   "s": 0.65
+  },
+  {
+   "t": "gibi",
+   "b": 40.581,
+   "s": 0.225
+  },
+  {
+   "t": "dönemin",
+   "b": 40.806,
+   "s": 0.35
+  },
+  {
+   "t": "geleneksel",
+   "b": 41.168,
+   "s": 0.65
+  },
+  {
+   "t": "ilk",
+   "b": 41.855,
+   "s": 0.188
+  },
+  {
+   "t": "öğrenimini",
+   "b": 42.056,
+   "s": 0.613
+  },
+  {
+   "t": "babasının",
+   "b": 42.855,
+   "s": 0.55
+  },
+  {
+   "t": "kendisini",
+   "b": 43.406,
+   "s": 0.575
+  },
+  {
+   "t": "emanet",
+   "b": 43.98,
+   "s": 0.537
+  },
+  {
+   "t": "ettiği",
+   "b": 44.518,
+   "s": 0.287
+  },
+  {
+   "t": "sûfî",
+   "b": 44.806,
+   "s": 0.438
+  },
+  {
+   "t": "bir",
+   "b": 45.255,
+   "s": 0.175
+  },
+  {
+   "t": "dostun",
+   "b": 45.431,
+   "s": 0.388
+  },
+  {
+   "t": "himayesinde",
+   "b": 45.818,
+   "s": 0.675
+  },
+  {
+   "t": "gördü",
+   "b": 46.493,
+   "s": 0.4
+  },
+  {
+   "t": "İleri",
+   "b": 48.081,
+   "s": 0.537
+  },
+  {
+   "t": "düzeydeki",
+   "b": 48.618,
+   "s": 0.6
+  },
+  {
+   "t": "ilk",
+   "b": 49.218,
+   "s": 0.25
+  },
+  {
+   "t": "öğrenimine",
+   "b": 49.48,
+   "s": 0.537
+  },
+  {
+   "t": "465'te",
+   "b": 50.018,
+   "s": 1.2
+  },
+  {
+   "t": "1073",
+   "b": 51.468,
+   "s": 0.713
+  },
+  {
+   "t": "Ahmed",
+   "b": 52.306,
+   "s": 0.388
+  },
+  {
+   "t": "b",
+   "b": 52.718,
+   "s": 0.175
+  },
+  {
+   "t": "Muhammed",
+   "b": 52.98,
+   "s": 0.45
+  },
+  {
+   "t": "er-Râzkânî",
+   "b": 53.431,
+   "s": 0.688
+  },
+  {
+   "t": "den",
+   "b": 54.268,
+   "s": 0.237
+  },
+  {
+   "t": "fıkıh",
+   "b": 54.505,
+   "s": 0.313
+  },
+  {
+   "t": "dersleri",
+   "b": 54.818,
+   "s": 0.438
+  },
+  {
+   "t": "alarak",
+   "b": 55.255,
+   "s": 0.362
+  },
+  {
+   "t": "başladı",
+   "b": 55.63,
+   "s": 0.512
+  },
+  {
+   "t": "Cürcân",
+   "b": 57.436,
+   "s": 0.6
+  },
+  {
+   "t": "Tahsili",
+   "b": 58.036,
+   "s": 0.487
+  },
+  {
+   "t": "ve",
+   "b": 58.523,
+   "s": 0.138
+  },
+  {
+   "t": "Taʿlîḳa",
+   "b": 58.661,
+   "s": 0.412
+  },
+  {
+   "t": "Cürcân'a",
+   "b": 60.224,
+   "s": 0.7
+  },
+  {
+   "t": "giderek",
+   "b": 60.923,
+   "s": 0.375
+  },
+  {
+   "t": "Ebü'l-Kāsım",
+   "b": 61.323,
+   "s": 0.563
+  },
+  {
+   "t": "el-İsmâilî",
+   "b": 61.886,
+   "s": 0.637
+  },
+  {
+   "t": "nin",
+   "b": 62.761,
+   "s": 0.188
+  },
+  {
+   "t": "öğrencisi",
+   "b": 62.948,
+   "s": 0.563
+  },
+  {
+   "t": "oldu",
+   "b": 63.511,
+   "s": 0.4
+  },
+  {
+   "t": "yaygın",
+   "b": 64.099,
+   "s": 0.438
+  },
+  {
+   "t": "görüşün",
+   "b": 64.549,
+   "s": 0.425
+  },
+  {
+   "t": "aksine",
+   "b": 64.974,
+   "s": 0.4
+  },
+  {
+   "t": "fıkıh",
+   "b": 65.373,
+   "s": 0.35
+  },
+  {
+   "t": "yanında",
+   "b": 65.724,
+   "s": 0.35
+  },
+  {
+   "t": "hadis",
+   "b": 66.073,
+   "s": 0.325
+  },
+  {
+   "t": "de",
+   "b": 66.398,
+   "s": 0.113
+  },
+  {
+   "t": "okudu",
+   "b": 66.511,
+   "s": 0.388
+  },
+  {
+   "t": "Dönüş",
+   "b": 68.099,
+   "s": 0.662
+  },
+  {
+   "t": "yolunda",
+   "b": 68.761,
+   "s": 0.35
+  },
+  {
+   "t": "eşkıya",
+   "b": 69.123,
+   "s": 0.438
+  },
+  {
+   "t": "ders",
+   "b": 69.561,
+   "s": 0.3
+  },
+  {
+   "t": "notlarını",
+   "b": 69.861,
+   "s": 0.55
+  },
+  {
+   "t": "taʿlîka",
+   "b": 70.586,
+   "s": 0.375
+  },
+  {
+   "t": "alıverdi",
+   "b": 71.011,
+   "s": 0.6
+  },
+  {
+   "t": "reis",
+   "b": 71.761,
+   "s": 0.4
+  },
+  {
+   "t": "bilgileri",
+   "b": 72.373,
+   "s": 0.525
+  },
+  {
+   "t": "hâfızaya",
+   "b": 72.898,
+   "s": 0.525
+  },
+  {
+   "t": "koymak",
+   "b": 73.423,
+   "s": 0.412
+  },
+  {
+   "t": "yerine",
+   "b": 73.849,
+   "s": 0.3
+  },
+  {
+   "t": "kâğıtlarda",
+   "b": 74.148,
+   "s": 0.637
+  },
+  {
+   "t": "bırakmışsın",
+   "b": 74.786,
+   "s": 0.75
+  },
+  {
+   "t": "diye",
+   "b": 75.711,
+   "s": 0.212
+  },
+  {
+   "t": "alay",
+   "b": 75.923,
+   "s": 0.263
+  },
+  {
+   "t": "edip",
+   "b": 76.186,
+   "s": 0.212
+  },
+  {
+   "t": "notları",
+   "b": 76.411,
+   "s": 0.388
+  },
+  {
+   "t": "iade",
+   "b": 76.798,
+   "s": 0.362
+  },
+  {
+   "t": "etti",
+   "b": 77.161,
+   "s": 0.325
+  },
+  {
+   "t": "Bu",
+   "b": 78.624,
+   "s": 0.175
+  },
+  {
+   "t": "eleştiriyi",
+   "b": 78.999,
+   "s": 0.563
+  },
+  {
+   "t": "Allah'ın",
+   "b": 79.561,
+   "s": 0.425
+  },
+  {
+   "t": "bir",
+   "b": 79.999,
+   "s": 0.163
+  },
+  {
+   "t": "ikazı",
+   "b": 80.161,
+   "s": 0.325
+  },
+  {
+   "t": "sayan",
+   "b": 80.486,
+   "s": 0.35
+  },
+  {
+   "t": "Gazzâlî",
+   "b": 80.836,
+   "s": 0.563
+  },
+  {
+   "t": "üç",
+   "b": 81.611,
+   "s": 0.15
+  },
+  {
+   "t": "yıl",
+   "b": 81.798,
+   "s": 0.188
+  },
+  {
+   "t": "içinde",
+   "b": 81.986,
+   "s": 0.362
+  },
+  {
+   "t": "notların",
+   "b": 82.349,
+   "s": 0.487
+  },
+  {
+   "t": "tamamını",
+   "b": 82.849,
+   "s": 0.55
+  },
+  {
+   "t": "ezberlediğini",
+   "b": 83.398,
+   "s": 0.713
+  },
+  {
+   "t": "belirtir",
+   "b": 84.111,
+   "s": 0.5
+  },
+  {
+   "t": "Nîşâbur",
+   "b": 85.876,
+   "s": 0.625
+  },
+  {
+   "t": "Nizâmiye",
+   "b": 86.501,
+   "s": 0.637
+  },
+  {
+   "t": "ve",
+   "b": 87.138,
+   "s": 0.113
+  },
+  {
+   "t": "Cüveynî",
+   "b": 87.251,
+   "s": 0.537
+  },
+  {
+   "t": "Bir",
+   "b": 88.951,
+   "s": 0.263
+  },
+  {
+   "t": "grup",
+   "b": 89.513,
+   "s": 0.263
+  },
+  {
+   "t": "Tûslu",
+   "b": 89.801,
+   "s": 0.338
+  },
+  {
+   "t": "gençle",
+   "b": 90.138,
+   "s": 0.388
+  },
+  {
+   "t": "Nîşâbur'daki",
+   "b": 90.526,
+   "s": 0.725
+  },
+  {
+   "t": "Nizâmiye",
+   "b": 91.251,
+   "s": 0.613
+  },
+  {
+   "t": "Medresesi'ne",
+   "b": 91.864,
+   "s": 0.637
+  },
+  {
+   "t": "girdi",
+   "b": 92.501,
+   "s": 0.388
+  },
+  {
+   "t": "ve",
+   "b": 93.013,
+   "s": 0.113
+  },
+  {
+   "t": "dönemin",
+   "b": 93.126,
+   "s": 0.425
+  },
+  {
+   "t": "en",
+   "b": 93.551,
+   "s": 0.2
+  },
+  {
+   "t": "tanınmış",
+   "b": 93.763,
+   "s": 0.487
+  },
+  {
+   "t": "kelâm",
+   "b": 94.251,
+   "s": 0.287
+  },
+  {
+   "t": "âlimi",
+   "b": 94.538,
+   "s": 0.263
+  },
+  {
+   "t": "İmâmü'l-Haremeyn",
+   "b": 94.801,
+   "s": 0.813
+  },
+  {
+   "t": "el-Cüveynî",
+   "b": 95.614,
+   "s": 0.662
+  },
+  {
+   "t": "nin",
+   "b": 96.489,
+   "s": 0.2
+  },
+  {
+   "t": "öğrencisi",
+   "b": 96.688,
+   "s": 0.563
+  },
+  {
+   "t": "olma",
+   "b": 97.251,
+   "s": 0.287
+  },
+  {
+   "t": "şansını",
+   "b": 97.538,
+   "s": 0.512
+  },
+  {
+   "t": "elde",
+   "b": 98.051,
+   "s": 0.275
+  },
+  {
+   "t": "etti",
+   "b": 98.326,
+   "s": 0.325
+  },
+  {
+   "t": "Şâfiî",
+   "b": 99.788,
+   "s": 0.563
+  },
+  {
+   "t": "fıkhı",
+   "b": 100.364,
+   "s": 0.45
+  },
+  {
+   "t": "hilâf",
+   "b": 100.976,
+   "s": 0.362
+  },
+  {
+   "t": "cedel",
+   "b": 101.501,
+   "s": 0.463
+  },
+  {
+   "t": "kelâm",
+   "b": 102.088,
+   "s": 0.338
+  },
+  {
+   "t": "ve",
+   "b": 102.426,
+   "s": 0.125
+  },
+  {
+   "t": "mantıkta",
+   "b": 102.551,
+   "s": 0.537
+  },
+  {
+   "t": "parlak",
+   "b": 103.088,
+   "s": 0.425
+  },
+  {
+   "t": "bir",
+   "b": 103.526,
+   "s": 0.163
+  },
+  {
+   "t": "âlim",
+   "b": 103.689,
+   "s": 0.313
+  },
+  {
+   "t": "olarak",
+   "b": 104.001,
+   "s": 0.338
+  },
+  {
+   "t": "yetişti",
+   "b": 104.351,
+   "s": 0.537
+  },
+  {
+   "t": "hikmet",
+   "b": 105.064,
+   "s": 0.35
+  },
+  {
+   "t": "ve",
+   "b": 105.451,
+   "s": 0.087
+  },
+  {
+   "t": "felsefe",
+   "b": 105.538,
+   "s": 0.525
+  },
+  {
+   "t": "de",
+   "b": 106.064,
+   "s": 0.113
+  },
+  {
+   "t": "okudu",
+   "b": 106.176,
+   "s": 0.388
+  },
+  {
+   "t": "Gazzâlî",
+   "b": 107.763,
+   "s": 0.813
+  },
+  {
+   "t": "derin",
+   "b": 108.576,
+   "s": 0.3
+  },
+  {
+   "t": "bir",
+   "b": 108.888,
+   "s": 0.188
+  },
+  {
+   "t": "denizdir",
+   "b": 109.076,
+   "s": 0.487
+  },
+  {
+   "t": "diyen",
+   "b": 109.676,
+   "s": 0.3
+  },
+  {
+   "t": "hocası",
+   "b": 109.976,
+   "s": 0.575
+  },
+  {
+   "t": "el-Menḫûl'ü",
+   "b": 110.738,
+   "s": 0.475
+  },
+  {
+   "t": "görünce",
+   "b": 111.213,
+   "s": 0.525
+  },
+  {
+   "t": "Beni",
+   "b": 111.888,
+   "s": 0.287
+  },
+  {
+   "t": "sağken",
+   "b": 112.176,
+   "s": 0.463
+  },
+  {
+   "t": "mezara",
+   "b": 112.638,
+   "s": 0.388
+  },
+  {
+   "t": "gömdün",
+   "b": 113.026,
+   "s": 0.463
+  },
+  {
+   "t": "ölümümü",
+   "b": 113.613,
+   "s": 0.362
+  },
+  {
+   "t": "bekleyemez",
+   "b": 113.976,
+   "s": 0.637
+  },
+  {
+   "t": "miydin",
+   "b": 114.613,
+   "s": 0.388
+  },
+  {
+   "t": "dedi",
+   "b": 115.101,
+   "s": 0.287
+  },
+  {
+   "t": "Ebû",
+   "b": 116.62,
+   "s": 0.4
+  },
+  {
+   "t": "Ali",
+   "b": 117.057,
+   "s": 0.3
+  },
+  {
+   "t": "el-Fârmedî",
+   "b": 117.358,
+   "s": 0.7
+  },
+  {
+   "t": "ile",
+   "b": 118.057,
+   "s": 0.212
+  },
+  {
+   "t": "Görüşmeler",
+   "b": 118.27,
+   "s": 0.688
+  },
+  {
+   "t": "Ebû",
+   "b": 120.108,
+   "s": 0.438
+  },
+  {
+   "t": "Ali",
+   "b": 120.595,
+   "s": 0.3
+  },
+  {
+   "t": "el-Fârmedî",
+   "b": 120.895,
+   "s": 0.8
+  },
+  {
+   "t": "Kuşeyrî'nin",
+   "b": 121.882,
+   "s": 0.563
+  },
+  {
+   "t": "öğrencilerinden",
+   "b": 122.445,
+   "s": 0.875
+  },
+  {
+   "t": "olup",
+   "b": 123.32,
+   "s": 0.225
+  },
+  {
+   "t": "Tûs",
+   "b": 123.57,
+   "s": 0.463
+  },
+  {
+   "t": "ve",
+   "b": 124.045,
+   "s": 0.15
+  },
+  {
+   "t": "Nîşâbur",
+   "b": 124.195,
+   "s": 0.338
+  },
+  {
+   "t": "sûfîlerinin",
+   "b": 124.532,
+   "s": 0.613
+  },
+  {
+   "t": "meşhurlarından",
+   "b": 125.145,
+   "s": 0.863
+  },
+  {
+   "t": "biri",
+   "b": 126.095,
+   "s": 0.2
+  },
+  {
+   "t": "hâline",
+   "b": 126.295,
+   "s": 0.425
+  },
+  {
+   "t": "gelmiş",
+   "b": 126.72,
+   "s": 0.438
+  },
+  {
+   "t": "bir",
+   "b": 127.157,
+   "s": 0.163
+  },
+  {
+   "t": "şeyhti",
+   "b": 127.32,
+   "s": 0.487
+  },
+  {
+   "t": "Gazzâlî'yi",
+   "b": 127.995,
+   "s": 0.6
+  },
+  {
+   "t": "tasavvufî",
+   "b": 128.595,
+   "s": 0.563
+  },
+  {
+   "t": "pratiklere",
+   "b": 129.157,
+   "s": 0.588
+  },
+  {
+   "t": "yönelten",
+   "b": 129.745,
+   "s": 0.475
+  },
+  {
+   "t": "kişinin",
+   "b": 130.22,
+   "s": 0.45
+  },
+  {
+   "t": "o",
+   "b": 130.683,
+   "s": 0.138
+  },
+  {
+   "t": "olduğu",
+   "b": 130.82,
+   "s": 0.325
+  },
+  {
+   "t": "söylenir",
+   "b": 131.145,
+   "s": 0.55
+  },
+  {
+   "t": "Fakat",
+   "b": 132.895,
+   "s": 0.65
+  },
+  {
+   "t": "bu",
+   "b": 133.57,
+   "s": 0.138
+  },
+  {
+   "t": "dönemdeki",
+   "b": 133.707,
+   "s": 0.525
+  },
+  {
+   "t": "ilgi",
+   "b": 134.232,
+   "s": 0.25
+  },
+  {
+   "t": "görüşmelerle",
+   "b": 134.482,
+   "s": 0.7
+  },
+  {
+   "t": "sınırlı",
+   "b": 135.183,
+   "s": 0.4
+  },
+  {
+   "t": "kaldı",
+   "b": 135.582,
+   "s": 0.45
+  },
+  {
+   "t": "şeyhin",
+   "b": 136.27,
+   "s": 0.412
+  },
+  {
+   "t": "477'de",
+   "b": 136.695,
+   "s": 1.113
+  },
+  {
+   "t": "1084",
+   "b": 138.02,
+   "s": 0.912
+  },
+  {
+   "t": "vefatı",
+   "b": 139.058,
+   "s": 0.4
+  },
+  {
+   "t": "üzerine",
+   "b": 139.457,
+   "s": 0.412
+  },
+  {
+   "t": "Gazzâlî",
+   "b": 139.87,
+   "s": 0.487
+  },
+  {
+   "t": "kelâm",
+   "b": 140.357,
+   "s": 0.35
+  },
+  {
+   "t": "ve",
+   "b": 140.707,
+   "s": 0.113
+  },
+  {
+   "t": "felsefe",
+   "b": 140.82,
+   "s": 0.55
+  },
+  {
+   "t": "ile",
+   "b": 141.37,
+   "s": 0.225
+  },
+  {
+   "t": "meşgul",
+   "b": 141.595,
+   "s": 0.412
+  },
+  {
+   "t": "olmayı",
+   "b": 142.007,
+   "s": 0.35
+  },
+  {
+   "t": "sürdürdü",
+   "b": 142.357,
+   "s": 0.55
+  },
+  {
+   "t": "Nizâmülmülk",
+   "b": 144.172,
+   "s": 0.85
+  },
+  {
+   "t": "Karargâhı",
+   "b": 145.035,
+   "s": 0.725
+  },
+  {
+   "t": "Cüveynî'nin",
+   "b": 146.91,
+   "s": 0.875
+  },
+  {
+   "t": "vefatı",
+   "b": 147.785,
+   "s": 0.388
+  },
+  {
+   "t": "üzerine",
+   "b": 148.172,
+   "s": 0.425
+  },
+  {
+   "t": "kültürlü",
+   "b": 148.597,
+   "s": 0.512
+  },
+  {
+   "t": "vezir",
+   "b": 149.109,
+   "s": 0.338
+  },
+  {
+   "t": "Nizâmülmülk",
+   "b": 149.447,
+   "s": 0.675
+  },
+  {
+   "t": "ün",
+   "b": 150.285,
+   "s": 0.125
+  },
+  {
+   "t": "nerede",
+   "b": 150.435,
+   "s": 0.338
+  },
+  {
+   "t": "olduğu",
+   "b": 150.772,
+   "s": 0.4
+  },
+  {
+   "t": "bilinmeyen",
+   "b": 151.172,
+   "s": 0.537
+  },
+  {
+   "t": "karargâhına",
+   "b": 151.709,
+   "s": 0.7
+  },
+  {
+   "t": "gitti",
+   "b": 152.41,
+   "s": 0.412
+  },
+  {
+   "t": "daha",
+   "b": 153.01,
+   "s": 0.313
+  },
+  {
+   "t": "yirmi",
+   "b": 153.322,
+   "s": 0.263
+  },
+  {
+   "t": "sekiz",
+   "b": 153.584,
+   "s": 0.338
+  },
+  {
+   "t": "yaşında",
+   "b": 153.922,
+   "s": 0.375
+  },
+  {
+   "t": "olmasına",
+   "b": 154.297,
+   "s": 0.55
+  },
+  {
+   "t": "rağmen",
+   "b": 154.847,
+   "s": 0.388
+  },
+  {
+   "t": "saygıyla",
+   "b": 155.234,
+   "s": 0.5
+  },
+  {
+   "t": "karşılandı",
+   "b": 155.734,
+   "s": 0.725
+  },
+  {
+   "t": "Altı",
+   "b": 157.635,
+   "s": 0.412
+  },
+  {
+   "t": "yıl",
+   "b": 158.147,
+   "s": 0.138
+  },
+  {
+   "t": "boyunca",
+   "b": 158.285,
+   "s": 0.412
+  },
+  {
+   "t": "âlimler",
+   "b": 158.697,
+   "s": 0.525
+  },
+  {
+   "t": "din",
+   "b": 159.397,
+   "s": 0.212
+  },
+  {
+   "t": "büyükleri",
+   "b": 159.622,
+   "s": 0.5
+  },
+  {
+   "t": "ve",
+   "b": 160.122,
+   "s": 0.113
+  },
+  {
+   "t": "edebiyatçılardan",
+   "b": 160.234,
+   "s": 1
+  },
+  {
+   "t": "oluşan",
+   "b": 161.234,
+   "s": 0.45
+  },
+  {
+   "t": "bu",
+   "b": 161.685,
+   "s": 0.163
+  },
+  {
+   "t": "entelektüel",
+   "b": 161.847,
+   "s": 0.725
+  },
+  {
+   "t": "çevrede",
+   "b": 162.572,
+   "s": 0.463
+  },
+  {
+   "t": "ilmî",
+   "b": 163.035,
+   "s": 0.338
+  },
+  {
+   "t": "müzakere",
+   "b": 163.372,
+   "s": 0.6
+  },
+  {
+   "t": "ve",
+   "b": 163.972,
+   "s": 0.113
+  },
+  {
+   "t": "tartışmalarla",
+   "b": 164.084,
+   "s": 0.825
+  },
+  {
+   "t": "başarısını",
+   "b": 164.91,
+   "s": 0.65
+  },
+  {
+   "t": "ve",
+   "b": 165.635,
+   "s": 0.125
+  },
+  {
+   "t": "ününü",
+   "b": 165.785,
+   "s": 0.3
+  },
+  {
+   "t": "artırdı",
+   "b": 166.084,
+   "s": 0.55
+  },
+  {
+   "t": "Daha",
+   "b": 166.935,
+   "s": 0.3
+  },
+  {
+   "t": "önce",
+   "b": 167.234,
+   "s": 0.25
+  },
+  {
+   "t": "Horasan'ın",
+   "b": 167.484,
+   "s": 0.588
+  },
+  {
+   "t": "imamı",
+   "b": 168.122,
+   "s": 0.5
+  },
+  {
+   "t": "iken",
+   "b": 168.622,
+   "s": 0.338
+  },
+  {
+   "t": "şimdi",
+   "b": 168.959,
+   "s": 0.338
+  },
+  {
+   "t": "de",
+   "b": 169.297,
+   "s": 0.125
+  },
+  {
+   "t": "Irak'ın",
+   "b": 169.422,
+   "s": 0.5
+  },
+  {
+   "t": "imamı",
+   "b": 169.947,
+   "s": 0.463
+  },
+  {
+   "t": "oldu",
+   "b": 170.41,
+   "s": 0.325
+  },
+  {
+   "t": "Bağdat",
+   "b": 172.036,
+   "s": 0.7
+  },
+  {
+   "t": "Nizâmiye",
+   "b": 172.786,
+   "s": 0.613
+  },
+  {
+   "t": "Müderrisliği",
+   "b": 173.399,
+   "s": 0.725
+  },
+  {
+   "t": "Vezir",
+   "b": 175.261,
+   "s": 0.55
+  },
+  {
+   "t": "tarafından",
+   "b": 175.811,
+   "s": 0.613
+  },
+  {
+   "t": "Bağdat",
+   "b": 176.424,
+   "s": 0.438
+  },
+  {
+   "t": "Nizâmiye",
+   "b": 176.874,
+   "s": 0.588
+  },
+  {
+   "t": "Medresesi",
+   "b": 177.461,
+   "s": 0.563
+  },
+  {
+   "t": "müderrisliğine",
+   "b": 178.024,
+   "s": 0.725
+  },
+  {
+   "t": "tayin",
+   "b": 178.749,
+   "s": 0.375
+  },
+  {
+   "t": "edildi",
+   "b": 179.124,
+   "s": 0.45
+  },
+  {
+   "t": "Halife",
+   "b": 179.774,
+   "s": 0.4
+  },
+  {
+   "t": "Muktedî-Biemrillâh",
+   "b": 180.174,
+   "s": 1.05
+  },
+  {
+   "t": "ın",
+   "b": 181.336,
+   "s": 0.125
+  },
+  {
+   "t": "ilgi",
+   "b": 181.461,
+   "s": 0.263
+  },
+  {
+   "t": "ve",
+   "b": 181.724,
+   "s": 0.125
+  },
+  {
+   "t": "desteğine",
+   "b": 181.849,
+   "s": 0.537
+  },
+  {
+   "t": "mazhar",
+   "b": 182.386,
+   "s": 0.375
+  },
+  {
+   "t": "oldu",
+   "b": 182.761,
+   "s": 0.3
+  },
+  {
+   "t": "Dört",
+   "b": 184.224,
+   "s": 0.463
+  },
+  {
+   "t": "yıl",
+   "b": 184.711,
+   "s": 0.15
+  },
+  {
+   "t": "süren",
+   "b": 184.861,
+   "s": 0.362
+  },
+  {
+   "t": "bu",
+   "b": 185.224,
+   "s": 0.15
+  },
+  {
+   "t": "dönem",
+   "b": 185.374,
+   "s": 0.313
+  },
+  {
+   "t": "kitap",
+   "b": 185.686,
+   "s": 0.362
+  },
+  {
+   "t": "telifi",
+   "b": 186.073,
+   "s": 0.338
+  },
+  {
+   "t": "bakımından",
+   "b": 186.411,
+   "s": 0.688
+  },
+  {
+   "t": "en",
+   "b": 187.149,
+   "s": 0.188
+  },
+  {
+   "t": "verimli",
+   "b": 187.349,
+   "s": 0.325
+  },
+  {
+   "t": "devresidir",
+   "b": 187.674,
+   "s": 0.662
+  },
+  {
+   "t": "içlerinde",
+   "b": 188.549,
+   "s": 0.563
+  },
+  {
+   "t": "Hanbelî",
+   "b": 189.124,
+   "s": 0.45
+  },
+  {
+   "t": "âlimlerinin",
+   "b": 189.573,
+   "s": 0.537
+  },
+  {
+   "t": "de",
+   "b": 190.111,
+   "s": 0.1
+  },
+  {
+   "t": "bulunduğu",
+   "b": 190.211,
+   "s": 0.45
+  },
+  {
+   "t": "300'e",
+   "b": 190.686,
+   "s": 0.5
+  },
+  {
+   "t": "yakın",
+   "b": 191.186,
+   "s": 0.263
+  },
+  {
+   "t": "öğrenciye",
+   "b": 191.448,
+   "s": 0.525
+  },
+  {
+   "t": "ders",
+   "b": 191.974,
+   "s": 0.325
+  },
+  {
+   "t": "verdi",
+   "b": 192.299,
+   "s": 0.362
+  },
+  {
+   "t": "Felsefe",
+   "b": 193.9,
+   "s": 0.662
+  },
+  {
+   "t": "İncelemeleri",
+   "b": 194.563,
+   "s": 0.7
+  },
+  {
+   "t": "ve",
+   "b": 195.263,
+   "s": 0.113
+  },
+  {
+   "t": "Tehâfüt",
+   "b": 195.375,
+   "s": 0.537
+  },
+  {
+   "t": "Yaklaşık",
+   "b": 197.063,
+   "s": 0.787
+  },
+  {
+   "t": "iki",
+   "b": 197.875,
+   "s": 0.237
+  },
+  {
+   "t": "yıl",
+   "b": 198.113,
+   "s": 0.15
+  },
+  {
+   "t": "süren",
+   "b": 198.263,
+   "s": 0.338
+  },
+  {
+   "t": "incelemelerle",
+   "b": 198.6,
+   "s": 0.787
+  },
+  {
+   "t": "Meşşâî-İşrâkī",
+   "b": 199.388,
+   "s": 0.725
+  },
+  {
+   "t": "felsefeyi",
+   "b": 200.113,
+   "s": 0.588
+  },
+  {
+   "t": "derinden",
+   "b": 200.7,
+   "s": 0.463
+  },
+  {
+   "t": "kavradı",
+   "b": 201.175,
+   "s": 0.563
+  },
+  {
+   "t": "bir",
+   "b": 202.013,
+   "s": 0.237
+  },
+  {
+   "t": "yıl",
+   "b": 202.25,
+   "s": 0.175
+  },
+  {
+   "t": "da",
+   "b": 202.425,
+   "s": 0.138
+  },
+  {
+   "t": "yeni",
+   "b": 202.575,
+   "s": 0.287
+  },
+  {
+   "t": "bilgileri",
+   "b": 202.863,
+   "s": 0.463
+  },
+  {
+   "t": "gözden",
+   "b": 203.325,
+   "s": 0.425
+  },
+  {
+   "t": "geçirerek",
+   "b": 203.75,
+   "s": 0.525
+  },
+  {
+   "t": "filozofların",
+   "b": 204.288,
+   "s": 0.713
+  },
+  {
+   "t": "doğru",
+   "b": 205,
+   "s": 0.325
+  },
+  {
+   "t": "ve",
+   "b": 205.325,
+   "s": 0.125
+  },
+  {
+   "t": "yanlış",
+   "b": 205.45,
+   "s": 0.425
+  },
+  {
+   "t": "görüşlerini",
+   "b": 205.875,
+   "s": 0.575
+  },
+  {
+   "t": "şüpheye",
+   "b": 206.45,
+   "s": 0.45
+  },
+  {
+   "t": "yer",
+   "b": 206.9,
+   "s": 0.225
+  },
+  {
+   "t": "bırakmayacak",
+   "b": 207.125,
+   "s": 0.725
+  },
+  {
+   "t": "şekilde",
+   "b": 207.85,
+   "s": 0.425
+  },
+  {
+   "t": "tesbit",
+   "b": 208.275,
+   "s": 0.4
+  },
+  {
+   "t": "etti",
+   "b": 208.675,
+   "s": 0.35
+  },
+  {
+   "t": "Önce",
+   "b": 210.188,
+   "s": 0.35
+  },
+  {
+   "t": "Maḳāṣıdü'l-felâsife",
+   "b": 210.713,
+   "s": 0.912
+  },
+  {
+   "t": "ile",
+   "b": 211.625,
+   "s": 0.237
+  },
+  {
+   "t": "felsefeyi",
+   "b": 211.863,
+   "s": 0.588
+  },
+  {
+   "t": "tarafsız",
+   "b": 212.45,
+   "s": 0.5
+  },
+  {
+   "t": "tanıttı",
+   "b": 212.95,
+   "s": 0.537
+  },
+  {
+   "t": "ardından",
+   "b": 213.675,
+   "s": 0.563
+  },
+  {
+   "t": "Tehâfütü'l-felâsife",
+   "b": 214.25,
+   "s": 1.125
+  },
+  {
+   "t": "ile",
+   "b": 215.375,
+   "s": 0.2
+  },
+  {
+   "t": "eleştirdi",
+   "b": 215.575,
+   "s": 0.575
+  },
+  {
+   "t": "Bâtınîlik",
+   "b": 217.42,
+   "s": 0.725
+  },
+  {
+   "t": "İncelemeleri",
+   "b": 218.158,
+   "s": 0.725
+  },
+  {
+   "t": "Bir",
+   "b": 220.02,
+   "s": 0.25
+  },
+  {
+   "t": "düşünceyi",
+   "b": 220.545,
+   "s": 0.525
+  },
+  {
+   "t": "tanıyıp",
+   "b": 221.07,
+   "s": 0.4
+  },
+  {
+   "t": "tarafsız",
+   "b": 221.495,
+   "s": 0.525
+  },
+  {
+   "t": "bilgi",
+   "b": 222.02,
+   "s": 0.287
+  },
+  {
+   "t": "vermeden",
+   "b": 222.308,
+   "s": 0.537
+  },
+  {
+   "t": "eleştirmenin",
+   "b": 222.845,
+   "s": 0.725
+  },
+  {
+   "t": "ilim",
+   "b": 223.57,
+   "s": 0.237
+  },
+  {
+   "t": "anlayışıyla",
+   "b": 223.808,
+   "s": 0.537
+  },
+  {
+   "t": "bağdaşmadığı",
+   "b": 224.42,
+   "s": 0.662
+  },
+  {
+   "t": "kanaatiyle",
+   "b": 225.083,
+   "s": 0.675
+  },
+  {
+   "t": "yöntemini",
+   "b": 225.758,
+   "s": 0.487
+  },
+  {
+   "t": "farklı",
+   "b": 226.245,
+   "s": 0.4
+  },
+  {
+   "t": "takip",
+   "b": 226.658,
+   "s": 0.375
+  },
+  {
+   "t": "etti",
+   "b": 227.033,
+   "s": 0.362
+  },
+  {
+   "t": "bâtınî",
+   "b": 227.608,
+   "s": 0.425
+  },
+  {
+   "t": "imamın",
+   "b": 228.033,
+   "s": 0.412
+  },
+  {
+   "t": "yanılmazlığı",
+   "b": 228.445,
+   "s": 0.7
+  },
+  {
+   "t": "yerine",
+   "b": 229.145,
+   "s": 0.325
+  },
+  {
+   "t": "Peygamber'in",
+   "b": 229.483,
+   "s": 0.625
+  },
+  {
+   "t": "yanılmazlığı",
+   "b": 230.108,
+   "s": 0.662
+  },
+  {
+   "t": "ilkesini",
+   "b": 230.77,
+   "s": 0.487
+  },
+  {
+   "t": "savundu",
+   "b": 231.258,
+   "s": 0.512
+  },
+  {
+   "t": "İlk",
+   "b": 232.958,
+   "s": 0.188
+  },
+  {
+   "t": "olarak",
+   "b": 233.32,
+   "s": 0.412
+  },
+  {
+   "t": "el-Müstaẓhirî",
+   "b": 233.77,
+   "s": 0.762
+  },
+  {
+   "t": "yi",
+   "b": 234.62,
+   "s": 0.1
+  },
+  {
+   "t": "kaleme",
+   "b": 234.72,
+   "s": 0.375
+  },
+  {
+   "t": "aldı",
+   "b": 235.095,
+   "s": 0.325
+  },
+  {
+   "t": "Şüphe",
+   "b": 236.716,
+   "s": 0.438
+  },
+  {
+   "t": "Krizi",
+   "b": 237.166,
+   "s": 0.412
+  },
+  {
+   "t": "ve",
+   "b": 237.579,
+   "s": 0.138
+  },
+  {
+   "t": "Fikrî",
+   "b": 237.716,
+   "s": 0.338
+  },
+  {
+   "t": "Bunalım",
+   "b": 238.054,
+   "s": 0.487
+  },
+  {
+   "t": "Kelâm",
+   "b": 239.666,
+   "s": 0.55
+  },
+  {
+   "t": "felsefe",
+   "b": 240.329,
+   "s": 0.662
+  },
+  {
+   "t": "Bâtınîlik",
+   "b": 241.129,
+   "s": 0.487
+  },
+  {
+   "t": "ve",
+   "b": 241.629,
+   "s": 0.125
+  },
+  {
+   "t": "tasavvuf",
+   "b": 241.754,
+   "s": 0.588
+  },
+  {
+   "t": "hakkındaki",
+   "b": 242.341,
+   "s": 0.537
+  },
+  {
+   "t": "çalışmalarının",
+   "b": 242.879,
+   "s": 0.762
+  },
+  {
+   "t": "sonucu",
+   "b": 243.641,
+   "s": 0.412
+  },
+  {
+   "t": "onu",
+   "b": 244.054,
+   "s": 0.25
+  },
+  {
+   "t": "zihin",
+   "b": 244.304,
+   "s": 0.388
+  },
+  {
+   "t": "ve",
+   "b": 244.716,
+   "s": 0.125
+  },
+  {
+   "t": "ruh",
+   "b": 244.841,
+   "s": 0.212
+  },
+  {
+   "t": "dünyasında",
+   "b": 245.054,
+   "s": 0.625
+  },
+  {
+   "t": "kelimenin",
+   "b": 245.691,
+   "s": 0.5
+  },
+  {
+   "t": "tam",
+   "b": 246.191,
+   "s": 0.263
+  },
+  {
+   "t": "anlamıyla",
+   "b": 246.454,
+   "s": 0.525
+  },
+  {
+   "t": "bir",
+   "b": 246.991,
+   "s": 0.175
+  },
+  {
+   "t": "bunalıma",
+   "b": 247.166,
+   "s": 0.438
+  },
+  {
+   "t": "sürükledi",
+   "b": 247.604,
+   "s": 0.575
+  },
+  {
+   "t": "İlmî",
+   "b": 249.316,
+   "s": 0.525
+  },
+  {
+   "t": "başarı",
+   "b": 249.904,
+   "s": 0.4
+  },
+  {
+   "t": "ve",
+   "b": 250.304,
+   "s": 0.125
+  },
+  {
+   "t": "şöhretinin",
+   "b": 250.429,
+   "s": 0.613
+  },
+  {
+   "t": "üzerini",
+   "b": 251.041,
+   "s": 0.412
+  },
+  {
+   "t": "örttüğü",
+   "b": 251.454,
+   "s": 0.388
+  },
+  {
+   "t": "şüphe",
+   "b": 251.841,
+   "s": 0.325
+  },
+  {
+   "t": "temâyülü",
+   "b": 252.166,
+   "s": 0.65
+  },
+  {
+   "t": "tasavvufu",
+   "b": 253.041,
+   "s": 0.6
+  },
+  {
+   "t": "temelden",
+   "b": 253.641,
+   "s": 0.563
+  },
+  {
+   "t": "kavramasının",
+   "b": 254.216,
+   "s": 0.713
+  },
+  {
+   "t": "da",
+   "b": 254.929,
+   "s": 0.125
+  },
+  {
+   "t": "etkisiyle",
+   "b": 255.066,
+   "s": 0.65
+  },
+  {
+   "t": "yeniden",
+   "b": 255.729,
+   "s": 0.5
+  },
+  {
+   "t": "ve",
+   "b": 256.228,
+   "s": 0.125
+  },
+  {
+   "t": "çok",
+   "b": 256.353,
+   "s": 0.25
+  },
+  {
+   "t": "daha",
+   "b": 256.616,
+   "s": 0.25
+  },
+  {
+   "t": "etkili",
+   "b": 256.866,
+   "s": 0.375
+  },
+  {
+   "t": "bir",
+   "b": 257.241,
+   "s": 0.138
+  },
+  {
+   "t": "şekilde",
+   "b": 257.379,
+   "s": 0.412
+  },
+  {
+   "t": "ortaya",
+   "b": 257.791,
+   "s": 0.425
+  },
+  {
+   "t": "çıktı",
+   "b": 258.216,
+   "s": 0.45
+  },
+  {
+   "t": "bilgi",
+   "b": 258.966,
+   "s": 0.287
+  },
+  {
+   "t": "meseleleri",
+   "b": 259.254,
+   "s": 0.575
+  },
+  {
+   "t": "yanında",
+   "b": 259.829,
+   "s": 0.35
+  },
+  {
+   "t": "kendisini",
+   "b": 260.178,
+   "s": 0.525
+  },
+  {
+   "t": "ahlâkî",
+   "b": 260.716,
+   "s": 0.5
+  },
+  {
+   "t": "bakımdan",
+   "b": 261.216,
+   "s": 0.537
+  },
+  {
+   "t": "da",
+   "b": 261.754,
+   "s": 0.113
+  },
+  {
+   "t": "sorguluyordu",
+   "b": 261.866,
+   "s": 0.787
+  },
+  {
+   "t": "Ününü",
+   "b": 263.866,
+   "s": 0.575
+  },
+  {
+   "t": "ve",
+   "b": 264.441,
+   "s": 0.15
+  },
+  {
+   "t": "mevkini",
+   "b": 264.591,
+   "s": 0.412
+  },
+  {
+   "t": "terketmeye",
+   "b": 265.004,
+   "s": 0.675
+  },
+  {
+   "t": "râzı",
+   "b": 265.678,
+   "s": 0.362
+  },
+  {
+   "t": "olmayan",
+   "b": 266.041,
+   "s": 0.5
+  },
+  {
+   "t": "nefsiyle",
+   "b": 266.541,
+   "s": 0.537
+  },
+  {
+   "t": "altı",
+   "b": 267.154,
+   "s": 0.313
+  },
+  {
+   "t": "ay",
+   "b": 267.466,
+   "s": 0.175
+  },
+  {
+   "t": "mücadele",
+   "b": 267.641,
+   "s": 0.525
+  },
+  {
+   "t": "etti",
+   "b": 268.166,
+   "s": 0.338
+  },
+  {
+   "t": "Bağdat'tan",
+   "b": 269.764,
+   "s": 0.85
+  },
+  {
+   "t": "Ayrılış",
+   "b": 270.614,
+   "s": 0.563
+  },
+  {
+   "t": "Duası",
+   "b": 272.301,
+   "s": 0.8
+  },
+  {
+   "t": "kabul",
+   "b": 273.101,
+   "s": 0.313
+  },
+  {
+   "t": "edilip",
+   "b": 273.414,
+   "s": 0.3
+  },
+  {
+   "t": "gönlünün",
+   "b": 273.751,
+   "s": 0.412
+  },
+  {
+   "t": "makam",
+   "b": 274.164,
+   "s": 0.45
+  },
+  {
+   "t": "mal",
+   "b": 274.776,
+   "s": 0.313
+  },
+  {
+   "t": "evlât",
+   "b": 275.239,
+   "s": 0.375
+  },
+  {
+   "t": "ve",
+   "b": 275.651,
+   "s": 0.113
+  },
+  {
+   "t": "dostlardan",
+   "b": 275.764,
+   "s": 0.688
+  },
+  {
+   "t": "ayrılmaya",
+   "b": 276.476,
+   "s": 0.537
+  },
+  {
+   "t": "râzı",
+   "b": 277.014,
+   "s": 0.362
+  },
+  {
+   "t": "olması",
+   "b": 277.376,
+   "s": 0.4
+  },
+  {
+   "t": "üzerine",
+   "b": 277.776,
+   "s": 0.412
+  },
+  {
+   "t": "Bağdat'la",
+   "b": 278.189,
+   "s": 0.512
+  },
+  {
+   "t": "bütün",
+   "b": 278.714,
+   "s": 0.3
+  },
+  {
+   "t": "ilişkilerini",
+   "b": 279.014,
+   "s": 0.613
+  },
+  {
+   "t": "kesme",
+   "b": 279.626,
+   "s": 0.362
+  },
+  {
+   "t": "kararı",
+   "b": 279.989,
+   "s": 0.463
+  },
+  {
+   "t": "aldı",
+   "b": 280.452,
+   "s": 0.375
+  },
+  {
+   "t": "ailesine",
+   "b": 281.064,
+   "s": 0.625
+  },
+  {
+   "t": "yetecek",
+   "b": 281.689,
+   "s": 0.45
+  },
+  {
+   "t": "miktardan",
+   "b": 282.164,
+   "s": 0.563
+  },
+  {
+   "t": "fazla",
+   "b": 282.726,
+   "s": 0.362
+  },
+  {
+   "t": "olan",
+   "b": 283.089,
+   "s": 0.325
+  },
+  {
+   "t": "bütün",
+   "b": 283.426,
+   "s": 0.3
+  },
+  {
+   "t": "malını",
+   "b": 283.726,
+   "s": 0.325
+  },
+  {
+   "t": "muhtaçlara",
+   "b": 284.051,
+   "s": 0.613
+  },
+  {
+   "t": "dağıttı",
+   "b": 284.664,
+   "s": 0.475
+  },
+  {
+   "t": "Asıl",
+   "b": 286.327,
+   "s": 0.6
+  },
+  {
+   "t": "niyetini",
+   "b": 286.926,
+   "s": 0.425
+  },
+  {
+   "t": "öğrenmelerini",
+   "b": 287.351,
+   "s": 0.675
+  },
+  {
+   "t": "istemediği",
+   "b": 288.026,
+   "s": 0.55
+  },
+  {
+   "t": "için",
+   "b": 288.577,
+   "s": 0.338
+  },
+  {
+   "t": "Mekke'ye",
+   "b": 288.939,
+   "s": 0.45
+  },
+  {
+   "t": "gideceğini",
+   "b": 289.389,
+   "s": 0.5
+  },
+  {
+   "t": "açıkladı",
+   "b": 289.889,
+   "s": 0.65
+  },
+  {
+   "t": "ve",
+   "b": 290.764,
+   "s": 0.125
+  },
+  {
+   "t": "Nizâmiye'deki",
+   "b": 290.889,
+   "s": 0.825
+  },
+  {
+   "t": "mevkisini",
+   "b": 291.714,
+   "s": 0.575
+  },
+  {
+   "t": "kardeşi",
+   "b": 292.289,
+   "s": 0.525
+  },
+  {
+   "t": "Ahmed",
+   "b": 292.814,
+   "s": 0.35
+  },
+  {
+   "t": "el-Gazzâlî",
+   "b": 293.164,
+   "s": 0.762
+  },
+  {
+   "t": "ye",
+   "b": 294.151,
+   "s": 0.15
+  },
+  {
+   "t": "bırakarak",
+   "b": 294.301,
+   "s": 0.5
+  },
+  {
+   "t": "ayrıldı",
+   "b": 294.814,
+   "s": 0.463
+  },
+  {
+   "t": "Şam",
+   "b": 296.572,
+   "s": 0.35
+  },
+  {
+   "t": "İnzivâsı",
+   "b": 296.959,
+   "s": 0.725
+  },
+  {
+   "t": "İki",
+   "b": 298.809,
+   "s": 0.225
+  },
+  {
+   "t": "yıla",
+   "b": 299.284,
+   "s": 0.2
+  },
+  {
+   "t": "yakın",
+   "b": 299.484,
+   "s": 0.275
+  },
+  {
+   "t": "Şam'da",
+   "b": 299.76,
+   "s": 0.4
+  },
+  {
+   "t": "kaldı",
+   "b": 300.159,
+   "s": 0.475
+  },
+  {
+   "t": "Emeviyye",
+   "b": 300.859,
+   "s": 0.487
+  },
+  {
+   "t": "Camii'ne",
+   "b": 301.347,
+   "s": 0.45
+  },
+  {
+   "t": "çekilerek",
+   "b": 301.797,
+   "s": 0.512
+  },
+  {
+   "t": "nefsini",
+   "b": 302.334,
+   "s": 0.412
+  },
+  {
+   "t": "terbiye",
+   "b": 302.747,
+   "s": 0.45
+  },
+  {
+   "t": "etmek",
+   "b": 303.197,
+   "s": 0.412
+  },
+  {
+   "t": "ahlâkını",
+   "b": 303.797,
+   "s": 0.525
+  },
+  {
+   "t": "güzelleştirmek",
+   "b": 304.322,
+   "s": 0.9
+  },
+  {
+   "t": "ve",
+   "b": 305.284,
+   "s": 0.1
+  },
+  {
+   "t": "kalbini",
+   "b": 305.385,
+   "s": 0.487
+  },
+  {
+   "t": "arındırmak",
+   "b": 305.872,
+   "s": 0.6
+  },
+  {
+   "t": "maksadıyla",
+   "b": 306.497,
+   "s": 0.625
+  },
+  {
+   "t": "riyâzet",
+   "b": 307.122,
+   "s": 0.475
+  },
+  {
+   "t": "ve",
+   "b": 307.635,
+   "s": 0.125
+  },
+  {
+   "t": "mücâhede",
+   "b": 307.76,
+   "s": 0.563
+  },
+  {
+   "t": "ile",
+   "b": 308.322,
+   "s": 0.225
+  },
+  {
+   "t": "meşgul",
+   "b": 308.547,
+   "s": 0.412
+  },
+  {
+   "t": "oldu",
+   "b": 308.959,
+   "s": 0.325
+  },
+  {
+   "t": "Ardından",
+   "b": 310.472,
+   "s": 0.85
+  },
+  {
+   "t": "Kudüs'e",
+   "b": 311.322,
+   "s": 0.438
+  },
+  {
+   "t": "gitti",
+   "b": 311.76,
+   "s": 0.375
+  },
+  {
+   "t": "ve",
+   "b": 312.247,
+   "s": 0.138
+  },
+  {
+   "t": "bir",
+   "b": 312.409,
+   "s": 0.188
+  },
+  {
+   "t": "süre",
+   "b": 312.597,
+   "s": 0.25
+  },
+  {
+   "t": "orada",
+   "b": 312.847,
+   "s": 0.375
+  },
+  {
+   "t": "da",
+   "b": 313.222,
+   "s": 0.113
+  },
+  {
+   "t": "inzivâ",
+   "b": 313.334,
+   "s": 0.375
+  },
+  {
+   "t": "hayatı",
+   "b": 313.709,
+   "s": 0.438
+  },
+  {
+   "t": "yaşadı",
+   "b": 314.147,
+   "s": 0.412
+  },
+  {
+   "t": "Kudüs",
+   "b": 315.82,
+   "s": 0.463
+  },
+  {
+   "t": "ve",
+   "b": 316.282,
+   "s": 0.113
+  },
+  {
+   "t": "er-Risâletü'l-ḳudsiyye",
+   "b": 316.395,
+   "s": 1.25
+  },
+  {
+   "t": "Kudüs'te",
+   "b": 318.732,
+   "s": 0.613
+  },
+  {
+   "t": "bir",
+   "b": 319.345,
+   "s": 0.175
+  },
+  {
+   "t": "süre",
+   "b": 319.52,
+   "s": 0.275
+  },
+  {
+   "t": "inzivâ",
+   "b": 319.795,
+   "s": 0.4
+  },
+  {
+   "t": "hayatı",
+   "b": 320.195,
+   "s": 0.45
+  },
+  {
+   "t": "yaşadı",
+   "b": 320.645,
+   "s": 0.475
+  },
+  {
+   "t": "buradaki",
+   "b": 321.357,
+   "s": 0.525
+  },
+  {
+   "t": "insanlar",
+   "b": 321.882,
+   "s": 0.55
+  },
+  {
+   "t": "için",
+   "b": 322.432,
+   "s": 0.375
+  },
+  {
+   "t": "sonradan",
+   "b": 322.932,
+   "s": 0.613
+  },
+  {
+   "t": "İḥyâʾü",
+   "b": 323.545,
+   "s": 0.175
+  },
+  {
+   "t": "ʿulûmi'd-dîn",
+   "b": 323.72,
+   "s": 0.65
+  },
+  {
+   "t": "in",
+   "b": 324.482,
+   "s": 0.15
+  },
+  {
+   "t": "bir",
+   "b": 324.67,
+   "s": 0.15
+  },
+  {
+   "t": "bölümünü",
+   "b": 324.82,
+   "s": 0.412
+  },
+  {
+   "t": "teşkil",
+   "b": 325.232,
+   "s": 0.4
+  },
+  {
+   "t": "edecek",
+   "b": 325.632,
+   "s": 0.375
+  },
+  {
+   "t": "olan",
+   "b": 326.007,
+   "s": 0.325
+  },
+  {
+   "t": "er-Risâletü'l-ḳudsiyye",
+   "b": 326.345,
+   "s": 1.15
+  },
+  {
+   "t": "yi",
+   "b": 327.532,
+   "s": 0.125
+  },
+  {
+   "t": "yazdı",
+   "b": 327.657,
+   "s": 0.4
+  },
+  {
+   "t": "Hac",
+   "b": 329.332,
+   "s": 0.4
+  },
+  {
+   "t": "ve",
+   "b": 329.744,
+   "s": 0.138
+  },
+  {
+   "t": "Hicaz",
+   "b": 329.882,
+   "s": 0.55
+  },
+  {
+   "t": "Hac",
+   "b": 331.482,
+   "s": 0.375
+  },
+  {
+   "t": "farîzasını",
+   "b": 331.982,
+   "s": 0.713
+  },
+  {
+   "t": "yerine",
+   "b": 332.694,
+   "s": 0.338
+  },
+  {
+   "t": "getirdi",
+   "b": 333.032,
+   "s": 0.563
+  },
+  {
+   "t": "Mekke",
+   "b": 333.857,
+   "s": 0.362
+  },
+  {
+   "t": "ve",
+   "b": 334.232,
+   "s": 0.138
+  },
+  {
+   "t": "Medine'nin",
+   "b": 334.369,
+   "s": 0.525
+  },
+  {
+   "t": "bereketlerinden",
+   "b": 334.894,
+   "s": 0.838
+  },
+  {
+   "t": "nasibini",
+   "b": 335.732,
+   "s": 0.512
+  },
+  {
+   "t": "alma",
+   "b": 336.257,
+   "s": 0.338
+  },
+  {
+   "t": "ve",
+   "b": 336.594,
+   "s": 0.125
+  },
+  {
+   "t": "Resûlullah'ı",
+   "b": 336.719,
+   "s": 0.762
+  },
+  {
+   "t": "s.a.v.",
+   "b": 337.619,
+   "s": 0.463
+  },
+  {
+   "t": "ziyaret",
+   "b": 338.244,
+   "s": 0.45
+  },
+  {
+   "t": "etme",
+   "b": 338.707,
+   "s": 0.275
+  },
+  {
+   "t": "düşüncesiyle",
+   "b": 338.982,
+   "s": 0.713
+  },
+  {
+   "t": "Hicaz'a",
+   "b": 339.694,
+   "s": 0.412
+  },
+  {
+   "t": "gitti",
+   "b": 340.107,
+   "s": 0.388
+  },
+  {
+   "t": "Kudüs",
+   "b": 341.632,
+   "s": 0.487
+  },
+  {
+   "t": "ve",
+   "b": 342.132,
+   "s": 0.113
+  },
+  {
+   "t": "Hicaz",
+   "b": 342.244,
+   "s": 0.388
+  },
+  {
+   "t": "seyahatiyle",
+   "b": 342.632,
+   "s": 0.7
+  },
+  {
+   "t": "Bağdat",
+   "b": 343.344,
+   "s": 0.463
+  },
+  {
+   "t": "ve",
+   "b": 343.919,
+   "s": 0.113
+  },
+  {
+   "t": "Horasan'a",
+   "b": 344.032,
+   "s": 0.5
+  },
+  {
+   "t": "dönüşü",
+   "b": 344.532,
+   "s": 0.4
+  },
+  {
+   "t": "iki",
+   "b": 344.944,
+   "s": 0.225
+  },
+  {
+   "t": "yıla",
+   "b": 345.169,
+   "s": 0.2
+  },
+  {
+   "t": "yakın",
+   "b": 345.369,
+   "s": 0.275
+  },
+  {
+   "t": "bir",
+   "b": 345.657,
+   "s": 0.175
+  },
+  {
+   "t": "süre",
+   "b": 345.832,
+   "s": 0.237
+  },
+  {
+   "t": "içinde",
+   "b": 346.069,
+   "s": 0.35
+  },
+  {
+   "t": "vuku",
+   "b": 346.419,
+   "s": 0.287
+  },
+  {
+   "t": "buldu",
+   "b": 346.707,
+   "s": 0.375
+  },
+  {
+   "t": "İḥyâ",
+   "b": 348.388,
+   "s": 0.225
+  },
+  {
+   "t": "ve",
+   "b": 348.738,
+   "s": 0.113
+  },
+  {
+   "t": "İnzivâ",
+   "b": 348.863,
+   "s": 0.4
+  },
+  {
+   "t": "Telifleri",
+   "b": 349.275,
+   "s": 0.55
+  },
+  {
+   "t": "On",
+   "b": 350.95,
+   "s": 0.175
+  },
+  {
+   "t": "bir",
+   "b": 351.45,
+   "s": 0.163
+  },
+  {
+   "t": "yıl",
+   "b": 351.613,
+   "s": 0.175
+  },
+  {
+   "t": "sürdüğünü",
+   "b": 351.788,
+   "s": 0.475
+  },
+  {
+   "t": "belirttiği",
+   "b": 352.263,
+   "s": 0.525
+  },
+  {
+   "t": "ve",
+   "b": 352.8,
+   "s": 0.15
+  },
+  {
+   "t": "kendisine",
+   "b": 352.95,
+   "s": 0.65
+  },
+  {
+   "t": "saymakla",
+   "b": 353.775,
+   "s": 0.613
+  },
+  {
+   "t": "bitirilemeyecek",
+   "b": 354.388,
+   "s": 0.838
+  },
+  {
+   "t": "durumları",
+   "b": 355.225,
+   "s": 0.537
+  },
+  {
+   "t": "keşfetme",
+   "b": 355.975,
+   "s": 0.563
+  },
+  {
+   "t": "imkânı",
+   "b": 356.538,
+   "s": 0.463
+  },
+  {
+   "t": "verdiğini",
+   "b": 357,
+   "s": 0.463
+  },
+  {
+   "t": "söylediği",
+   "b": 357.463,
+   "s": 0.55
+  },
+  {
+   "t": "bu",
+   "b": 358.013,
+   "s": 0.163
+  },
+  {
+   "t": "halvet",
+   "b": 358.175,
+   "s": 0.35
+  },
+  {
+   "t": "döneminde",
+   "b": 358.525,
+   "s": 0.475
+  },
+  {
+   "t": "baş",
+   "b": 359,
+   "s": 0.287
+  },
+  {
+   "t": "eseri",
+   "b": 359.288,
+   "s": 0.313
+  },
+  {
+   "t": "İḥyâʾü",
+   "b": 359.6,
+   "s": 0.2
+  },
+  {
+   "t": "ʿulûmi'd-dîn",
+   "b": 359.8,
+   "s": 0.625
+  },
+  {
+   "t": "i",
+   "b": 360.65,
+   "s": 0.063
+  },
+  {
+   "t": "kaleme",
+   "b": 360.725,
+   "s": 0.388
+  },
+  {
+   "t": "aldı",
+   "b": 361.113,
+   "s": 0.388
+  },
+  {
+   "t": "esmâ-i",
+   "b": 361.725,
+   "s": 0.5
+  },
+  {
+   "t": "hüsnâya",
+   "b": 362.225,
+   "s": 0.487
+  },
+  {
+   "t": "dair",
+   "b": 362.713,
+   "s": 0.338
+  },
+  {
+   "t": "eseri",
+   "b": 363.05,
+   "s": 0.45
+  },
+  {
+   "t": "Cevâhirü'l-Ḳurʾân",
+   "b": 363.775,
+   "s": 0.825
+  },
+  {
+   "t": "ve",
+   "b": 364.613,
+   "s": 0.125
+  },
+  {
+   "t": "Bidâyetü'l-hidâye'yi",
+   "b": 364.75,
+   "s": 1.113
+  },
+  {
+   "t": "de",
+   "b": 365.863,
+   "s": 0.125
+  },
+  {
+   "t": "bu",
+   "b": 365.988,
+   "s": 0.163
+  },
+  {
+   "t": "dönemde",
+   "b": 366.15,
+   "s": 0.412
+  },
+  {
+   "t": "yazdı",
+   "b": 366.563,
+   "s": 0.388
+  },
+  {
+   "t": "Horasan'da",
+   "b": 368.236,
+   "s": 0.725
+  },
+  {
+   "t": "Bâtınî",
+   "b": 368.961,
+   "s": 0.388
+  },
+  {
+   "t": "Reddiyeleri",
+   "b": 369.348,
+   "s": 0.637
+  },
+  {
+   "t": "Bağdat'ta",
+   "b": 371.111,
+   "s": 0.887
+  },
+  {
+   "t": "Ḥüccetü'l-ḥaḳḳ",
+   "b": 371.998,
+   "s": 0.675
+  },
+  {
+   "t": "Hemedan'da",
+   "b": 372.836,
+   "s": 0.575
+  },
+  {
+   "t": "Mufaṣṣılü'l-ḫilâf",
+   "b": 373.411,
+   "s": 0.887
+  },
+  {
+   "t": "Tûs'ta",
+   "b": 374.448,
+   "s": 0.35
+  },
+  {
+   "t": "ed-Dürc",
+   "b": 374.798,
+   "s": 0.388
+  },
+  {
+   "t": "ve",
+   "b": 375.198,
+   "s": 0.1
+  },
+  {
+   "t": "el-Ḳısṭâsü'l-müstaḳīm",
+   "b": 375.298,
+   "s": 1.15
+  },
+  {
+   "t": "i",
+   "b": 376.623,
+   "s": 0.063
+  },
+  {
+   "t": "kaleme",
+   "b": 376.698,
+   "s": 0.375
+  },
+  {
+   "t": "aldı",
+   "b": 377.073,
+   "s": 0.388
+  },
+  {
+   "t": "Hemedan'da",
+   "b": 377.648,
+   "s": 0.537
+  },
+  {
+   "t": "Bâtınîler'in",
+   "b": 378.186,
+   "s": 0.675
+  },
+  {
+   "t": "dört",
+   "b": 378.923,
+   "s": 0.275
+  },
+  {
+   "t": "mesele",
+   "b": 379.211,
+   "s": 0.438
+  },
+  {
+   "t": "hakkında",
+   "b": 379.798,
+   "s": 0.425
+  },
+  {
+   "t": "sordukları",
+   "b": 380.223,
+   "s": 0.6
+  },
+  {
+   "t": "sorulara",
+   "b": 380.823,
+   "s": 0.487
+  },
+  {
+   "t": "cevap",
+   "b": 381.311,
+   "s": 0.375
+  },
+  {
+   "t": "yazdı",
+   "b": 381.711,
+   "s": 0.4
+  },
+  {
+   "t": "Kudüs'ün",
+   "b": 383.286,
+   "s": 0.6
+  },
+  {
+   "t": "492'de",
+   "b": 383.886,
+   "s": 1.113
+  },
+  {
+   "t": "1099",
+   "b": 385.136,
+   "s": 0.963
+  },
+  {
+   "t": "Haçlılarca",
+   "b": 386.123,
+   "s": 0.65
+  },
+  {
+   "t": "işgal",
+   "b": 386.773,
+   "s": 0.412
+  },
+  {
+   "t": "edilmesinden",
+   "b": 387.186,
+   "s": 0.675
+  },
+  {
+   "t": "önce",
+   "b": 387.861,
+   "s": 0.263
+  },
+  {
+   "t": "Horasan'da",
+   "b": 388.123,
+   "s": 0.55
+  },
+  {
+   "t": "bulunuyor",
+   "b": 388.673,
+   "s": 0.475
+  },
+  {
+   "t": "ve",
+   "b": 389.386,
+   "s": 0.138
+  },
+  {
+   "t": "bu",
+   "b": 389.523,
+   "s": 0.15
+  },
+  {
+   "t": "yöredeki",
+   "b": 389.686,
+   "s": 0.4
+  },
+  {
+   "t": "çeşitli",
+   "b": 390.086,
+   "s": 0.438
+  },
+  {
+   "t": "şehirleri",
+   "b": 390.523,
+   "s": 0.475
+  },
+  {
+   "t": "dolaşıyordu",
+   "b": 390.998,
+   "s": 0.713
+  },
+  {
+   "t": "Nîşâbur'a",
+   "b": 393.004,
+   "s": 0.75
+  },
+  {
+   "t": "Dönüş",
+   "b": 393.754,
+   "s": 0.35
+  },
+  {
+   "t": "ve",
+   "b": 394.104,
+   "s": 0.125
+  },
+  {
+   "t": "İkinci",
+   "b": 394.241,
+   "s": 0.425
+  },
+  {
+   "t": "Hocalık",
+   "b": 394.666,
+   "s": 0.487
+  },
+  {
+   "t": "Nefis",
+   "b": 396.304,
+   "s": 0.688
+  },
+  {
+   "t": "muhasebesinin",
+   "b": 396.991,
+   "s": 0.775
+  },
+  {
+   "t": "ardından",
+   "b": 397.767,
+   "s": 0.563
+  },
+  {
+   "t": "sultanın",
+   "b": 398.329,
+   "s": 0.512
+  },
+  {
+   "t": "ısrarlı",
+   "b": 398.841,
+   "s": 0.5
+  },
+  {
+   "t": "davetini",
+   "b": 399.341,
+   "s": 0.512
+  },
+  {
+   "t": "reddetmenin",
+   "b": 399.854,
+   "s": 0.675
+  },
+  {
+   "t": "nezaketsizlik",
+   "b": 400.529,
+   "s": 0.887
+  },
+  {
+   "t": "olacağını",
+   "b": 401.416,
+   "s": 0.5
+  },
+  {
+   "t": "düşünerek",
+   "b": 401.916,
+   "s": 0.512
+  },
+  {
+   "t": "ulema",
+   "b": 402.442,
+   "s": 0.4
+  },
+  {
+   "t": "ile",
+   "b": 402.854,
+   "s": 0.2
+  },
+  {
+   "t": "istişare",
+   "b": 403.054,
+   "s": 0.625
+  },
+  {
+   "t": "etti",
+   "b": 403.679,
+   "s": 0.325
+  },
+  {
+   "t": "ve",
+   "b": 404.179,
+   "s": 0.138
+  },
+  {
+   "t": "uzleti",
+   "b": 404.341,
+   "s": 0.45
+  },
+  {
+   "t": "terketme",
+   "b": 404.791,
+   "s": 0.55
+  },
+  {
+   "t": "yönünde",
+   "b": 405.341,
+   "s": 0.338
+  },
+  {
+   "t": "görüş",
+   "b": 405.679,
+   "s": 0.325
+  },
+  {
+   "t": "birliğine",
+   "b": 406.004,
+   "s": 0.388
+  },
+  {
+   "t": "vardı",
+   "b": 406.392,
+   "s": 0.438
+  },
+  {
+   "t": "dönemin",
+   "b": 407.067,
+   "s": 0.4
+  },
+  {
+   "t": "Selçuklu",
+   "b": 407.466,
+   "s": 0.575
+  },
+  {
+   "t": "hükümdarı",
+   "b": 408.041,
+   "s": 0.512
+  },
+  {
+   "t": "Sencer",
+   "b": 408.554,
+   "s": 0.525
+  },
+  {
+   "t": "in",
+   "b": 409.329,
+   "s": 0.125
+  },
+  {
+   "t": "veziri",
+   "b": 409.479,
+   "s": 0.45
+  },
+  {
+   "t": "ve",
+   "b": 410.041,
+   "s": 0.138
+  },
+  {
+   "t": "Nizâmülmülk'ün",
+   "b": 410.179,
+   "s": 0.838
+  },
+  {
+   "t": "oğlu",
+   "b": 411.017,
+   "s": 0.237
+  },
+  {
+   "t": "Fahrülmülk",
+   "b": 411.254,
+   "s": 0.625
+  },
+  {
+   "t": "ün",
+   "b": 412.041,
+   "s": 0.125
+  },
+  {
+   "t": "iknasıyla",
+   "b": 412.179,
+   "s": 0.65
+  },
+  {
+   "t": "Nîşâbur",
+   "b": 412.841,
+   "s": 0.35
+  },
+  {
+   "t": "Nizâmiye'de",
+   "b": 413.192,
+   "s": 0.713
+  },
+  {
+   "t": "tekrar",
+   "b": 413.904,
+   "s": 0.4
+  },
+  {
+   "t": "öğretime",
+   "b": 414.304,
+   "s": 0.438
+  },
+  {
+   "t": "başladı",
+   "b": 414.741,
+   "s": 0.525
+  },
+  {
+   "t": "Bu",
+   "b": 416.454,
+   "s": 0.188
+  },
+  {
+   "t": "dönemde",
+   "b": 416.854,
+   "s": 0.463
+  },
+  {
+   "t": "kaleme",
+   "b": 417.317,
+   "s": 0.362
+  },
+  {
+   "t": "aldığı",
+   "b": 417.679,
+   "s": 0.375
+  },
+  {
+   "t": "el-Münḳıẕ",
+   "b": 418.054,
+   "s": 0.45
+  },
+  {
+   "t": "da",
+   "b": 418.591,
+   "s": 0.175
+  },
+  {
+   "t": "her",
+   "b": 418.916,
+   "s": 0.163
+  },
+  {
+   "t": "asrın",
+   "b": 419.079,
+   "s": 0.325
+  },
+  {
+   "t": "başında",
+   "b": 419.404,
+   "s": 0.45
+  },
+  {
+   "t": "bir",
+   "b": 419.866,
+   "s": 0.188
+  },
+  {
+   "t": "müceddid",
+   "b": 420.054,
+   "s": 0.512
+  },
+  {
+   "t": "hadisine",
+   "b": 420.729,
+   "s": 0.425
+  },
+  {
+   "t": "atıfta",
+   "b": 421.154,
+   "s": 0.375
+  },
+  {
+   "t": "bulunur",
+   "b": 421.529,
+   "s": 0.375
+  },
+  {
+   "t": "Tûs'a",
+   "b": 423.22,
+   "s": 0.662
+  },
+  {
+   "t": "Dönüş",
+   "b": 423.895,
+   "s": 0.362
+  },
+  {
+   "t": "ve",
+   "b": 424.257,
+   "s": 0.125
+  },
+  {
+   "t": "Son",
+   "b": 424.382,
+   "s": 0.287
+  },
+  {
+   "t": "Telifler",
+   "b": 424.67,
+   "s": 0.537
+  },
+  {
+   "t": "Üç",
+   "b": 426.358,
+   "s": 0.125
+  },
+  {
+   "t": "yılı",
+   "b": 426.757,
+   "s": 0.237
+  },
+  {
+   "t": "aşkın",
+   "b": 426.995,
+   "s": 0.388
+  },
+  {
+   "t": "resmî",
+   "b": 427.382,
+   "s": 0.362
+  },
+  {
+   "t": "görevin",
+   "b": 427.757,
+   "s": 0.4
+  },
+  {
+   "t": "ardından",
+   "b": 428.158,
+   "s": 0.55
+  },
+  {
+   "t": "sağlığının",
+   "b": 428.707,
+   "s": 0.537
+  },
+  {
+   "t": "da",
+   "b": 429.245,
+   "s": 0.138
+  },
+  {
+   "t": "zorlaşmasıyla",
+   "b": 429.382,
+   "s": 0.875
+  },
+  {
+   "t": "Tûs'a",
+   "b": 430.295,
+   "s": 0.575
+  },
+  {
+   "t": "döndü",
+   "b": 430.87,
+   "s": 0.438
+  },
+  {
+   "t": "evinin",
+   "b": 431.533,
+   "s": 0.362
+  },
+  {
+   "t": "yanına",
+   "b": 431.895,
+   "s": 0.362
+  },
+  {
+   "t": "fukaha",
+   "b": 432.257,
+   "s": 0.388
+  },
+  {
+   "t": "için",
+   "b": 432.645,
+   "s": 0.275
+  },
+  {
+   "t": "bir",
+   "b": 432.92,
+   "s": 0.188
+  },
+  {
+   "t": "medrese",
+   "b": 433.108,
+   "s": 0.588
+  },
+  {
+   "t": "sûfiyye",
+   "b": 433.858,
+   "s": 0.45
+  },
+  {
+   "t": "için",
+   "b": 434.308,
+   "s": 0.275
+  },
+  {
+   "t": "de",
+   "b": 434.582,
+   "s": 0.125
+  },
+  {
+   "t": "bir",
+   "b": 434.72,
+   "s": 0.138
+  },
+  {
+   "t": "hankah",
+   "b": 434.858,
+   "s": 0.45
+  },
+  {
+   "t": "yaptırdı",
+   "b": 435.308,
+   "s": 0.5
+  },
+  {
+   "t": "Ömrünün",
+   "b": 436.995,
+   "s": 0.675
+  },
+  {
+   "t": "son",
+   "b": 437.67,
+   "s": 0.287
+  },
+  {
+   "t": "demlerini",
+   "b": 437.957,
+   "s": 0.45
+  },
+  {
+   "t": "ders",
+   "b": 438.408,
+   "s": 0.338
+  },
+  {
+   "t": "okutmak",
+   "b": 438.745,
+   "s": 0.5
+  },
+  {
+   "t": "gönül",
+   "b": 439.457,
+   "s": 0.375
+  },
+  {
+   "t": "ehlinin",
+   "b": 439.832,
+   "s": 0.4
+  },
+  {
+   "t": "sohbetlerine",
+   "b": 440.233,
+   "s": 0.662
+  },
+  {
+   "t": "katılmak",
+   "b": 440.895,
+   "s": 0.537
+  },
+  {
+   "t": "ve",
+   "b": 441.457,
+   "s": 0.1
+  },
+  {
+   "t": "eser",
+   "b": 441.558,
+   "s": 0.362
+  },
+  {
+   "t": "yazmakla",
+   "b": 441.92,
+   "s": 0.487
+  },
+  {
+   "t": "geçirdi",
+   "b": 442.408,
+   "s": 0.475
+  },
+  {
+   "t": "Ġāyetü'l-ġavr",
+   "b": 444.058,
+   "s": 0.887
+  },
+  {
+   "t": "el-Müstaṣfâ",
+   "b": 445.082,
+   "s": 0.787
+  },
+  {
+   "t": "ed-Dürretü'l-fâḫire",
+   "b": 446.033,
+   "s": 1.063
+  },
+  {
+   "t": "İlcâmü'l-ʿavâm",
+   "b": 447.257,
+   "s": 0.787
+  },
+  {
+   "t": "ve",
+   "b": 448.045,
+   "s": 0.125
+  },
+  {
+   "t": "Minhâcü'l-ʿâbidîn",
+   "b": 448.17,
+   "s": 0.75
+  },
+  {
+   "t": "bu",
+   "b": 448.92,
+   "s": 0.15
+  },
+  {
+   "t": "yılların",
+   "b": 449.095,
+   "s": 0.362
+  },
+  {
+   "t": "ürünüdür",
+   "b": 449.457,
+   "s": 0.475
+  },
+  {
+   "t": "Vefat",
+   "b": 451.228,
+   "s": 0.537
+  },
+  {
+   "t": "ve",
+   "b": 451.803,
+   "s": 0.113
+  },
+  {
+   "t": "Kabri",
+   "b": 451.916,
+   "s": 0.425
+  },
+  {
+   "t": "Tûs'ta",
+   "b": 453.49,
+   "s": 0.3
+  },
+  {
+   "t": "vefat",
+   "b": 453.978,
+   "s": 0.362
+  },
+  {
+   "t": "etti",
+   "b": 454.34,
+   "s": 0.362
+  },
+  {
+   "t": "ünlü",
+   "b": 454.89,
+   "s": 0.25
+  },
+  {
+   "t": "şair",
+   "b": 455.14,
+   "s": 0.35
+  },
+  {
+   "t": "Firdevsî'nin",
+   "b": 455.49,
+   "s": 0.65
+  },
+  {
+   "t": "mezarının",
+   "b": 456.14,
+   "s": 0.512
+  },
+  {
+   "t": "yakınına",
+   "b": 456.653,
+   "s": 0.438
+  },
+  {
+   "t": "defnedildi",
+   "b": 457.09,
+   "s": 0.65
+  },
+  {
+   "t": "Günümüzde",
+   "b": 458.903,
+   "s": 0.838
+  },
+  {
+   "t": "halk",
+   "b": 459.74,
+   "s": 0.25
+  },
+  {
+   "t": "arasında",
+   "b": 459.99,
+   "s": 0.475
+  },
+  {
+   "t": "Hârûniyye",
+   "b": 460.465,
+   "s": 0.525
+  },
+  {
+   "t": "adıyla",
+   "b": 460.99,
+   "s": 0.412
+  },
+  {
+   "t": "anılan",
+   "b": 461.416,
+   "s": 0.438
+  },
+  {
+   "t": "yapının",
+   "b": 461.853,
+   "s": 0.375
+  },
+  {
+   "t": "bahçesindeki",
+   "b": 462.228,
+   "s": 0.725
+  },
+  {
+   "t": "kabir",
+   "b": 462.953,
+   "s": 0.313
+  },
+  {
+   "t": "onun",
+   "b": 463.265,
+   "s": 0.3
+  },
+  {
+   "t": "mezarı",
+   "b": 463.565,
+   "s": 0.4
+  },
+  {
+   "t": "olarak",
+   "b": 463.965,
+   "s": 0.35
+  },
+  {
+   "t": "gösterilir",
+   "b": 464.328,
+   "s": 0.625
+  },
+  {
+   "t": "tuğladan",
+   "b": 465.166,
+   "s": 0.45
+  },
+  {
+   "t": "âbidevî",
+   "b": 465.628,
+   "s": 0.425
+  },
+  {
+   "t": "bu",
+   "b": 466.053,
+   "s": 0.138
+  },
+  {
+   "t": "yapının",
+   "b": 466.203,
+   "s": 0.338
+  },
+  {
+   "t": "Gazzâlî'nin",
+   "b": 466.541,
+   "s": 0.65
+  },
+  {
+   "t": "türbesi",
+   "b": 467.19,
+   "s": 0.475
+  },
+  {
+   "t": "olması",
+   "b": 467.666,
+   "s": 0.438
+  },
+  {
+   "t": "kuvvetle",
+   "b": 468.103,
+   "s": 0.475
+  },
+  {
+   "t": "muhtemeldir",
+   "b": 468.578,
+   "s": 0.713
+  }
+ ]
+}
