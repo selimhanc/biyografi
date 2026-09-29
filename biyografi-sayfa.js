@@ -137,7 +137,7 @@ blgUst.addEventListener('click', kapat);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.classList.contains('hidden')) kapat(); });
 
   const SUNUM_AYAR = { saniyeHarf: 0.053, enAz: 4, enCok: 22, basBekleme: 1000, sonBekleme: 2000, gecis: 2000 };
-  const SES_AYAR = { durakMs: 500, takilmaMs: 15000, isaret: '\u0001', acHiz: 0.75, kapaHiz: 1, tokluk: 0.88, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU' } };
+  const SES_AYAR = { durakMs: 500, takilmaMs: 15000, isaret: '\u0001', acHiz: 0.75, kapaHiz: 1, tokluk: 0.88, cevir: { 'â': 'aa', 'Â': 'AA', 'î': 'ii', 'Î': 'II', 'û': 'uu', 'Û': 'UU', 'ḥ': 'h', 'Ḥ': 'H', 'ṣ': 's', 'Ṣ': 'S', 'ṭ': 't', 'Ṭ': 'T', 'ḳ': 'k', 'Ḳ': 'K', 'ḫ': 'h', 'Ḫ': 'H', 'ḍ': 'd', 'ḓ': 'd', 'ẓ': 'z', 'Ẓ': 'Z', 'ẕ': 'z', 'Ẕ': 'Z', 'ġ': 'g', 'Ġ': 'G', 'ż': 'z', 'Ż': 'Z', 'ā': 'a', 'ī': 'i', 'ū': 'u', 'é': 'e', 'ʿ': '', 'ʻ': '', 'ʾ': '', '̱': '', '•': ', ', '’': "'", '‘': "'", '“': '"', '”': '"' }, telif: {} };
   const SES_ERKEK = ['tolga', 'emre', 'cem', 'yasin', 'yusuf', 'ahmet', 'mehmet', 'mustafa', 'hasan', 'huseyin', 'murat', 'omer', 'osman', 'salih', 'recep', 'kemal', 'baris', 'kaan', 'mert', 'onur', 'arda', 'doga', 'volkan', 'burak', 'savas', 'tuncer', 'ilker', 'serdar', 'ercan', 'gorkem'];
   const SES_KADIN = ['yelda', 'defne', 'filiz', 'sibel', 'ayse', 'hatice', 'zeynep', 'elif', 'emel', 'gul', 'nur', 'esra', 'seda', 'fatma', 'melek', 'leyla', 'nehir', 'derya', 'berna', 'kubra', 'sena', 'yasemin', 'mine', 'selin', 'sebnem', 'tugba', 'tugce', 'damla', 'busra', 'eylem', 'gizem', 'pelin', 'nazli'];
   function sesCinsiyet(v) {
@@ -151,8 +151,20 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !blgPop.cl
   }
   const SES_ANAHTAR = 'biyografi-ses';
   const SES_CEVIR = new RegExp('[' + Object.keys(SES_AYAR.cevir).map(k => k.replace(/[\\^\]\-]/g, '\\$&')).join('') + ']', 'g');
+  let telifRe = null, telifImz = '\u0000';
+  function sesTelifRe() {
+    const k = Object.keys(SES_AYAR.telif).sort((a, b) => b.length - a.length);
+    const imz = k.join('\u0000');
+    if (imz !== telifImz) {
+      telifImz = imz;
+      telifRe = k.length ? new RegExp('(?<![\\p{L}\\p{M}])(' + k.map(x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?![\\p{L}\\p{M}])', 'gu') : null;
+    }
+    return telifRe;
+  }
   function sesCevir(s) {
-    return s.replace(SES_CEVIR, m => SES_AYAR.cevir[m] || m);
+    const re = sesTelifRe();
+    if (re) s = s.replace(re, m => m in SES_AYAR.telif ? SES_AYAR.telif[m] : m);
+    return s.replace(SES_CEVIR, m => m in SES_AYAR.cevir ? SES_AYAR.cevir[m] : m);
   }
 const snEl = document.getElementById('sunum');
 if (snEl) {
@@ -357,6 +369,13 @@ if (snEl) {
   snSesSec.hidden = true;
   if (snHizKutuDugum && snHizKutuDugum.parentNode) snHizKutuDugum.parentNode.insertBefore(snSesSec, snSesDugme.nextSibling);
   else if (snUst) snUst.appendChild(snSesSec);
+  const snSesNot = document.createElement('span');
+  snSesNot.className = 'sn-ses-not';
+  snSesNot.hidden = true;
+  snSesNot.textContent = 'Erkek Türkçe ses yok';
+  snSesNot.title = 'Bu cihazda yalnız kadın Türkçe ses var. Android\'de Ayarlar › Sistem › Diller ve giriş › Metinden sese › Türkçe › Ses ekle yolundan yeni ses yükleyebilirsin.';
+  if (snHizKutuDugum && snHizKutuDugum.parentNode) snHizKutuDugum.parentNode.insertBefore(snSesNot, snSesSec.nextSibling);
+  else if (snUst) snUst.appendChild(snSesNot);
   snSesSec.addEventListener('change', () => {
     try { localStorage.setItem(SES_ANAHTAR, snSesSec.value); } catch (e) {}
     if (sesAcik) sesYeniden();
@@ -391,8 +410,11 @@ if (snEl) {
   function sesSecYazi() {
     if (!snSesSec || !sesVar()) return;
     const liste = sesTurkce();
-    if (!liste.length) { snSesSec.hidden = true; return; }
+    if (!liste.length) { snSesSec.hidden = true; snSesNot.hidden = true; return; }
     snSesSec.hidden = false;
+    const erkekVar = liste.some(v => sesCinsiyet(v) === 'e');
+    snSesNot.hidden = erkekVar;
+    snSesSec.title = erkekVar ? 'Okuma sesi' : 'Okuma sesi - bu cihazda erkek Türkçe ses yok';
     const sec = sesSec();
     snSesSec.textContent = '';
     liste.forEach(v => {

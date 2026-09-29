@@ -650,3 +650,5 @@ svg.mez { width: 1.05em; height: 1.05em; vertical-align: -.16em; display: inline
 .sn-ses-sec { font: inherit; cursor: pointer; color: #f6efdd; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: .34rem .5rem .34rem .85rem; font-size: .78rem; font-weight: 600; white-space: nowrap; max-width: 11rem; }
 .sn-ses-sec:hover { background: rgba(255,255,255,.18); }
 .sn-ses-sec option { color: #241d12; background: #f6efdd; }
+
+.sn-ses-not { font-size: .7rem; font-weight: 600; color: #f0d9a8; background: rgba(0,0,0,.28); border: 1px dashed rgba(240,217,168,.45); border-radius: 999px; padding: .22rem .6rem; cursor: help; white-space: nowrap; }
